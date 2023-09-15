@@ -5,13 +5,24 @@
 
     display:flex;
     flex-direction: row;
+    justify-content: space-between;
 
     background: #183D0A;
+    color: #fff;
 
-    img{
+    #logo{
 
         width:auto;
         height:100%;
+    }
+
+    #patinhas{
+
+        height:50%;
+        width:auto;
+
+        margin-top:20px;
+        margin-right:20px;
     }
 
     .container-header{
@@ -21,10 +32,16 @@
 
         padding:20px 0px;
 
+        width:60%;
+
         .container-infs{
 
             display:flex;
             flex-direction: row;
+            justify-content: space-between;
+
+            width:100%;
+            gap:10px;
 
             .pesquisa{
 
@@ -46,6 +63,25 @@
                     background-color: transparent;
                     font-size:20px;
                 }
+            }
+
+            .direcionar{
+
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                gap:20px;
+
+                .criar-conta,.carrinho{
+
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+
+                    gap:10px;
+                }           
             }
         }
     }
