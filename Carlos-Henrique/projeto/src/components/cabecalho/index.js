@@ -51,7 +51,14 @@ export default function Cabecalho() {
 
                 </div>
 
-                <nav className='header-menu'></nav>
+                <nav className='header-menu'>
+
+                    <Link>Cachorro</Link>
+                    <Link>Gato</Link>
+                    <Link>Peixes</Link>
+                    <Link>Pássaros</Link>
+                    <Link>Outros Animaiis</Link>
+                </nav>
             </div>
 
             <img src='/assets/images/patinhas.png' alt='patinhas de enfeite' id='patinhas' />

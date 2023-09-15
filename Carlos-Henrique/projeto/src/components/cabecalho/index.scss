@@ -29,6 +29,7 @@
 
         display: flex;
         flex-direction: column;
+        align-items: center;
 
         padding:20px 0px;
 
@@ -81,8 +82,18 @@
                     align-items: center;
 
                     gap:10px;
+
+                    label{
+
+                        font-size:16px;
+                    }
                 }           
             }
         }
     }
+}
+
+@media(max-width:1220px){
+
+
 }
