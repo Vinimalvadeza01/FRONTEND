@@ -17,6 +17,12 @@
   font-family: 'Josefin Sans', sans-serif;
 }
 
+// Títulos com fonte righteous automático
+h1,h2,h3,h4,h5,h6{
+
+  font-family: 'Righteous', cursive;
+}
+
 // Colocar uma classe .Link para todas as tags links do react-router-dom
 a,button,.Link{
 

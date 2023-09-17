@@ -50,9 +50,7 @@ export default function Cabecalho() {
                                 </svg>
 
                                 <label for='Link-user'>Ver meu carrinho</label>
-                            </Link>
-
-                            
+                            </Link>                        
                         </div>
                     </div>
                 </div>
