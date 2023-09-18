@@ -239,7 +239,7 @@ export default function homePage(){
 
                     <div className='produtos'>
 
-                        <div >
+                        <div>
 
                             <img src='' alt='' />
                             <div className='desconto-estilizacao'></div>
