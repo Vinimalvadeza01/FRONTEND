@@ -1,5 +1,3 @@
-
-
 .Corpo{
     margin: 0px;
     display: flex;
@@ -9,8 +7,8 @@
 
     align-items: center;  
     flex-direction: column;
-    
-        .Conteudo{
+
+    .Conteudo{
         display: flex;        
         width: 100%;
         height: 100vh;
@@ -18,7 +16,7 @@
         flex-direction: column;
         align-items: center;
         justify-self: center;
-        background-color:#C8DFBF ;
+        background-color:#C8DFBF;
         
         .credencial{
 
