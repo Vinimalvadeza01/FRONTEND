@@ -101,6 +101,29 @@
             }
         }
     }
+
+    .section-produtos{
+
+        >div{
+
+            display:flex;
+            flex-direction: column;
+
+            .produtos{
+
+                display: flex;
+                flex-direction: row;
+
+                >div{
+
+                    display:flex;
+                    flex-direction:column;
+
+                    background-color:#EEF1DC;
+                }
+            }
+        }
+    }
 }
 
 @media(max-width:900px){

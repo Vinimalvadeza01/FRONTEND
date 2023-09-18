@@ -1,0 +1,52 @@
+.container-decoration{
+
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+
+    height:10vh;
+    width:100vw;
+
+    margin-bottom:20px;
+
+    .retangulo-decoration{
+
+        width:30%;
+        height:100%;
+
+        border-radius:0 0 600px 0;
+        background-color: #E1FFA1;
+    }
+
+    img{
+
+        margin-top:10px;
+        margin-right:10px;
+
+        height:90%;
+        width:auto;
+    }
+}
+
+@media(max-width:768px){
+
+    .container-decoration .retangulo-decoration{
+
+        width:40%;
+    }
+}
+
+@media(max-width:560px){
+
+    .container-decoration {
+        .retangulo-decoration{
+
+            height:80%;
+        }
+
+        img{
+
+            height:70%;
+        }
+    }
+}

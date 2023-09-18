@@ -1,6 +1,8 @@
 import './index.scss';
 import Cabecalho from '../../components/cabecalho';
 import Enfeite from '../../components/quadrado-enfeite';
+import SectionDecoration from '../../components/section-decoration';
+import { Link } from 'react-router-dom';
 
 export default function homePage(){
 
@@ -10,6 +12,8 @@ export default function homePage(){
         <div className='page-home'>
 
             <Cabecalho/>
+
+            <SectionDecoration/>
 
             <section className='section-mensagem'>
 
@@ -53,6 +57,228 @@ export default function homePage(){
                 </svg>
                 <span>Segurança de entrega, atendimento e pagamento a você!</span>
 
+                </div>
+            </section>
+
+            <Enfeite/>
+            <SectionDecoration/>
+
+            <section className='section-produtos'>
+
+                <div className='mais-vendidos'>
+
+                    <h3>Mais vendidos</h3>
+
+                    <div className='produtos'>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <button></button>
+                    </div>
+                </div>
+
+                <div className='melhor-avaliados'>
+
+                    <h3>Melhor avaliados</h3>
+
+                    <div className='produtos'>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <button></button>
+                    </div>
+                </div>
+
+                <div className='marcas-melhor-avaliadas'>
+
+                    <h3>Marcas melhor avalidas</h3>
+
+                    <div className='produtos'>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <button></button>
+                    </div>
+                </div>
+
+                <div className='caes-mais-gostam'>
+
+                    <h3>O que os cães mais gostam</h3>
+
+                    <div className='produtos'>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <button></button>
+                    </div>
+                </div>
+
+                <div className='gatos-mais-gostam'>
+
+                    <h3>O que os gatos mais gostam</h3>
+
+                    <div className='produtos'>
+
+                        <div >
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <button></button>
+                    </div>
+                </div>
+
+                <div className='ver-tudo'>
+
+                    <h4>Clique para ver mais produtos</h4>
+                    <Link>Ver mais</Link>
                 </div>
             </section>
         </div>
