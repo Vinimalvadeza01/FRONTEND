@@ -1,0 +1,109 @@
+
+
+.Corpo{
+    margin: 0px;
+    display: flex;
+    background-color: #619853;
+    width:100vw ;
+    height: 100%;
+
+    align-items: center;  
+    flex-direction: column;
+    
+        .Conteudo{
+        display: flex;        
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        justify-self: center;
+        background-color:#C8DFBF ;
+        
+        .credencial{
+
+         display:flex;
+         flex-direction: row;
+         align-items: center;
+
+         width: 50%;
+         height: 38px;
+          margin: 15px;
+         padding:10px;
+         border-radius: 10px;
+          background: #FFF;
+        }
+        
+        .credencial>input{
+        
+          background: none;
+          padding: 10px;
+          width: 100%;
+          height:100%;
+        }
+        .senha{
+          display:flex;
+          flex-direction: row;
+          align-items: center;
+ 
+          width: 50%;
+          height: 38px;
+          border-radius: 10px;
+          padding: 10px;
+          background: #FFF;
+        }
+        .senha>input{
+          background: none;
+          width: 100%;
+          height:100%;
+          padding: 10px;
+        }
+        .botao{
+          width: 16vw;
+          height: 8vh;
+          flex-shrink: 0;
+          background-color:#619853;
+          border: none;
+          border-radius: 10px;
+          margin: 0px 0px 0px 0px;
+  
+        }
+  
+       
+        .suporte{
+          color: #000;
+          font-family: Alef;
+          font-size: 10px;
+          margin:   10px 0px 0px 0px;
+          flex-direction: row;
+          width: 40vw;
+          height: 10vh;
+          
+          .esqueceu{
+            margin: 0px ;
+            margin-left: 200px;
+          }
+        }
+       
+        .suporte>a{
+          width: 40px;
+          height: 10px;
+          color: #000;
+          font-family: Alef;
+          font-size: 10px;
+          font-style: normal;
+         margin: 0px 0px 0px 0px;
+          flex-direction: row;
+        }
+      
+        
+      }
+      .Conteudo>h1{
+        display: flex;
+        font-size: 50px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode',   Verdana, sans-serif;
+        margin: 0px 370px 50px 370px;
+        color: #3D5745;
+        
+      }
+  }
