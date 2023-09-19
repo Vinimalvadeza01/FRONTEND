@@ -6,8 +6,11 @@ export default function Cadastro(){
 
     return(
         <section className='All'>
-            ids
+            <Cabecalho/>
+            <div className='Conteudo'>
+                <h1>CRIAR SUA CONTA</h1>
 
+            </div>
         </section>
     )
 }

@@ -1,6 +1,5 @@
 import './index.scss';
 import Cabecalho from '../../components/cabecalho';
-import Efeito from ''
 
 function App() {
   return (
