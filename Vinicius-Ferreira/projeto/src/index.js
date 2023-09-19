@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import Login from './pages/login';
+import Cadastro from './pages/cadastro'
 import {BrowserRouter,Routes, Route} from 'react-router-dom';
 
 
@@ -11,6 +12,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login/>}></Route>
+        <Route path="/Cadastro" element={<Cadastro/>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
