@@ -4,14 +4,13 @@
     background-color: #619853;
     width:100vw ;
     height: 100%;
-
     align-items: center;  
     flex-direction: column;
 
     .Conteudo{
         display: flex;        
         width: 100%;
-        height: 100vh;
+        height: 83vh;
         justify-content: center;
         flex-direction: column;
         align-items: center;
@@ -24,8 +23,8 @@
          flex-direction: row;
          align-items: center;
 
-         width: 50%;
-         height: 38px;
+         width: 40vw;
+         height: 50px;
           margin: 15px;
          padding:10px;
          border-radius: 10px;
@@ -44,8 +43,8 @@
           flex-direction: row;
           align-items: center;
  
-          width: 50%;
-          height: 38px;
+          width: 40vw;
+          height: 50px;
           border-radius: 10px;
           padding: 10px;
           background: #FFF;
@@ -57,21 +56,22 @@
           padding: 10px;
         }
         .botao{
-          width: 16vw;
+          width: 20vw;
           height: 8vh;
           flex-shrink: 0;
           background-color:#619853;
           border: none;
           border-radius: 10px;
           margin: 0px 0px 0px 0px;
-  
+          font-size:larger;
+          font-weight: 400px;
         }
   
        
         .suporte{
           color: #000;
           font-family: Alef;
-          font-size: 10px;
+          font-size: 13px;
           margin:   10px 0px 0px 0px;
           flex-direction: row;
           width: 40vw;
@@ -98,9 +98,9 @@
       }
       .Conteudo>h1{
         display: flex;
-        font-size: 50px;
+        font-size: 40px;
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode',   Verdana, sans-serif;
-        margin: 0px 370px 50px 370px;
+        margin: 0px 290px 30px 290px;
         color: #3D5745;
         
       }
