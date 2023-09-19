@@ -315,8 +315,8 @@ export default function HomePage(){
 
                 <div className='ver-tudo'>
 
-                    <h4>Clique para ver mais produtos</h4>
-                    <Link>Ver mais</Link>
+                    <h2>Clique para ver mais produtos</h2>
+                    <Link className='Link ver-mais-button'>Ver mais</Link>
                 </div>
             </section>
         </div>

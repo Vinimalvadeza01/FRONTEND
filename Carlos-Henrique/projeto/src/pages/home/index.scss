@@ -198,6 +198,39 @@
                 }
             }
         }
+
+        .ver-tudo{
+
+            h2{
+
+                font-size:24px;
+                text-align: center;
+            }
+
+            .ver-mais-button{
+
+                width:100%;
+
+                padding:20px 0;
+
+                background-color: #619853;
+                border-radius:30px;
+
+                color:#fff;
+                text-align: center;
+                font-size:24px;
+            }
+
+            .ver-mais-button:hover{
+                
+                width:110%;
+
+                background-color: #E1FFA1;
+                color:#1D5745;
+
+                transition:0.5s;
+            }
+        }
     }
 }
 
