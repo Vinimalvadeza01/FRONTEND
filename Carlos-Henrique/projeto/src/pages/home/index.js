@@ -1,9 +1,11 @@
 import './index.scss';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Cabecalho from '../../components/cabecalho';
 import Enfeite from '../../components/quadrado-enfeite';
 import SectionDecoration from '../../components/section-decoration';
-import { Link } from 'react-router-dom';
+import Rodape from '../../components/rodape';
+import QuadradoEnfeite from '../../components/quadrado-enfeite';
 
 export default function HomePage(){
 
@@ -319,6 +321,9 @@ export default function HomePage(){
                     <Link className='Link ver-mais-button'>Ver mais</Link>
                 </div>
             </section>
+
+            <QuadradoEnfeite/>
+            <Rodape/>
         </div>
     );
 }
