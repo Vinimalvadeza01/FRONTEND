@@ -6,6 +6,7 @@
     align-items: center;  
     flex-direction: column;
 
+
     .Conteudo{
         display: flex;        
         width: 50%;
@@ -15,6 +16,8 @@
         align-items: center;
         justify-self: center;
         background-color:#C8DFBF;
+        padding: 20px;
+       
 
 
         .input1{
@@ -22,22 +25,90 @@
             border-color: blanchedalmond;
             width: 40vw;
              height: 50px;
+             padding: 10px;
+             margin: 10px;
+
+            
         }
         .input2{
             width: 40vw;
          height: 50px;
+         padding: 10px;
+         margin: 10px;
         }
         .input3{
             width: 40vw;
          height: 50px;
+         padding: 10px;
+         margin: 10px;
         }
         .input4{
             width: 40vw;
          height: 50px;
+         padding: 10px;
+         margin: 10px;
         }
         .input5{
-            width: 40vw;
+            width: 20vw;
          height: 50px;
+         padding: 10px;
+         margin: 10px;
+         display: flex;
+         flex-direction: column;
+        
         }
+
+        .email{
+            display: flex;
+        }   
+
+        .nm{
+            padding-top: 20px;
+        }
+
+        .snh{
+            display: flex;
+            
+        }
+
+        .cpf{
+            display: flex;
+            
+        }
+
+        .dataCadastro{
+            display: flex;
+            width: 100%;
+        }
+
+        .DatadeNascimento{
+            display: flex;
+            flex-direction: column;
+            width: 89%;
+        }
+
+        .botao{
+             margin: 20px;
+            padding:20px 40px;
+            flex-shrink: 0;
+            background-color:#619853;
+            border: none;
+            border-radius: 10px;
+         }
+
+         label{
+            margin: 5px; 
+         }
+        
+         @media(max-width:900px){
+            .DatadeNascimento{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+         
+            
+         }
+        
     }
 }

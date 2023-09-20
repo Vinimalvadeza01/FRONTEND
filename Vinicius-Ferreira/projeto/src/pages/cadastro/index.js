@@ -2,6 +2,7 @@ import './index.scss';
 import Cabecalho from '../../components/cabecalho';
 
 
+
 function Cadastro(){
 
     return(
@@ -11,35 +12,33 @@ function Cadastro(){
                     <h1>CRIAR SUA CONTA</h1>
                     <div className="Nome">
                         <label className="nm">Nome Completo</label>
+                        <input className="input1" type="text" placeholder="Digite seu nome completo"/>
                     </div>  
-                    <div>
-                    <input className="input1" type="text" placeholder="Digite seu nome completo"></input>          
-                    </div>
+
                     <div className="e-mail">
                         <label className="email">E-mail</label>
+                        <input className="input2" type="text" placeholder="Digite e-mail ou número de celular com DDD"/>
                     </div>  
-                    <div>
-                    <input className="input2" type="text" placeholder="Digite seu nome completo"></input>          
-                    </div>
+                    
                     <div className="Senha">
-                        <label className="snh">Nome Completo</label>
+                        <label className="snh">Senha</label>
+                        <input className="input3" type="text" placeholder="Digite sua senha"/> 
                     </div>  
-                    <div>
-                    <input className="input3" type="text" placeholder="Digite seu nome completo"></input>          
-                    </div>
+                    
                     <div className="CPF">
-                        <label className="cpf">Nome Completo</label>
+                        <label className="cpf">CPF</label>
+                        <input className="input4" type="text" placeholder="Digite seu CPF"/>
                     </div>  
-                    <div>
-                    <input className="input4" type="text" placeholder="Digite seu nome completo"></input>          
-                    </div>
-                    <div className="DatadenAscimento">
-                        <label className="fata">Nome Completo</label>
+                    
+                    <div className="DatadeNascimento">
+                        <label className="DataCadastro">Data de Nascimento</label>
+                        <input className="input5" type="text" placeholder="AAAA/MM/DD"/>
                     </div>  
-                    <div >
-                    <input className="input5" type="text" placeholder="Digite seu nome completo"></input>          
-                    </div>
+                    
+
+                    <button className="botao">Confirmar</button>
             </div>
+            
         </section>
     )
 }
