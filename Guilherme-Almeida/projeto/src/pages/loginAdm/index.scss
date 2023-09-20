@@ -1,0 +1,120 @@
+.pagina-login-adm{
+ 
+    display: flex;
+    
+    background: linear-gradient(180deg, #619853 0%, #325B23 100%);
+
+    width:100vw;
+    height: 100vh;
+    overflow-y: hidden;   
+    overflow-x: hidden;
+    align-items: center;  
+    flex-direction: column;
+
+    .Conteudo{
+        display: flex; 
+        width: 60%;
+        height: 100%;   
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background-color:#C8DFBF;
+        
+        .infs{
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .nome{
+
+            display:flex;
+            flex-direction: column;
+   
+            width: 50%;
+            height: 38px;  
+            padding:10px;
+            border-radius: 10px;
+          }
+           
+          .nome>input{
+           
+              background: none;
+              padding: 10px;
+              width: 100%;
+              height:100%;
+
+              background: #FFF;
+          }
+
+          .senhaAdm{
+              display:flex;
+              flex-direction: column;
+              align-items: center;
+    
+              width: 50%;
+              height: 38px;
+              border-radius: 10px;
+              padding: 10px;
+            
+              
+          }
+
+          .senhaAdm>input{
+              background: none;
+              width: 100%   ;
+              height:100%;
+              padding: 10px;
+              background: #FFF;
+          }
+
+          .botao{
+             
+             padding:20px 40px;
+             flex-shrink: 0;
+             background-color:#619853;
+             border: none;
+             border-radius: 10px;
+          }
+        }
+
+      
+        
+      }
+      .Conteudo>h1{
+        
+        font-size: 50px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode',   Verdana, sans-serif;
+        margin: 0px 370px 50px 370px;
+        color: #3D5745;
+        
+      }
+
+      .nome{
+        width: 30vw;
+
+      }
+
+      .nome>h3{
+        
+        flex-direction: wrap;
+      
+    }       
+
+    .senhaAdm{
+        width: 30vw;
+        margin: 5px;
+    }
+
+    .senhaAdm>h3{
+      
+        flex-direction: wrap;
+       
+
+    }
+  }
+
+
+
+
