@@ -1,11 +1,13 @@
 import './index.scss';
+import { useState } from 'react';
 import Cabecalho from '../../components/cabecalho';
 import Enfeite from '../../components/quadrado-enfeite';
 import SectionDecoration from '../../components/section-decoration';
 import { Link } from 'react-router-dom';
 
-export default function homePage(){
+export default function HomePage(){
 
+    const[avaliacao,setAvaliacao]=useState(3);
 
     return(
 
@@ -65,6 +67,8 @@ export default function homePage(){
 
             <section className='section-produtos'>
 
+                {/* em 768px exibir 3 produtos, 440 exibir 2 produtos,320px exibir apenas 1 */}
+
                 <div className='mais-vendidos'>
 
                     <h3>Mais vendidos</h3>
@@ -73,7 +77,53 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+
+                            <div className='container-avaliacao'>
+
+                                <div className='estrelas'>
+
+                                    <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.5337 0.597589C10.343 0.232396 9.93998 0 9.49742 0C9.05485 0 8.65546 0.232396 8.46116 0.597589L6.14759 4.98987L0.980714 5.6937C0.548942 5.75346 0.189132 6.03233 0.0560025 6.41413C-0.0771272 6.79592 0.0308157 7.21755 0.340252 7.49975L4.08947 10.9226L3.20434 15.7598C3.13238 16.1582 3.31228 16.5632 3.66849 16.7989C4.02471 17.0346 4.49606 17.0645 4.88465 16.8753L9.50101 14.6011L14.1174 16.8753C14.506 17.0645 14.9773 17.0379 15.3335 16.7989C15.6897 16.5599 15.8697 16.1582 15.7977 15.7598L14.909 10.9226L18.6582 7.49975C18.9676 7.21755 19.0792 6.79592 18.9424 6.41413C18.8057 6.03233 18.4495 5.75346 18.0177 5.6937L12.8472 4.98987L10.5337 0.597589Z" fill={avaliacao>=1 ? "#FEC808" : "#958989"}/>
+                                    </svg>
+
+                                    <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.5337 0.597589C10.343 0.232396 9.93998 0 9.49742 0C9.05485 0 8.65546 0.232396 8.46116 0.597589L6.14759 4.98987L0.980714 5.6937C0.548942 5.75346 0.189132 6.03233 0.0560025 6.41413C-0.0771272 6.79592 0.0308157 7.21755 0.340252 7.49975L4.08947 10.9226L3.20434 15.7598C3.13238 16.1582 3.31228 16.5632 3.66849 16.7989C4.02471 17.0346 4.49606 17.0645 4.88465 16.8753L9.50101 14.6011L14.1174 16.8753C14.506 17.0645 14.9773 17.0379 15.3335 16.7989C15.6897 16.5599 15.8697 16.1582 15.7977 15.7598L14.909 10.9226L18.6582 7.49975C18.9676 7.21755 19.0792 6.79592 18.9424 6.41413C18.8057 6.03233 18.4495 5.75346 18.0177 5.6937L12.8472 4.98987L10.5337 0.597589Z" fill={avaliacao>=2 ? "#FEC808" : "#958989"}/>
+                                    </svg>
+
+                                    <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.5337 0.597589C10.343 0.232396 9.93998 0 9.49742 0C9.05485 0 8.65546 0.232396 8.46116 0.597589L6.14759 4.98987L0.980714 5.6937C0.548942 5.75346 0.189132 6.03233 0.0560025 6.41413C-0.0771272 6.79592 0.0308157 7.21755 0.340252 7.49975L4.08947 10.9226L3.20434 15.7598C3.13238 16.1582 3.31228 16.5632 3.66849 16.7989C4.02471 17.0346 4.49606 17.0645 4.88465 16.8753L9.50101 14.6011L14.1174 16.8753C14.506 17.0645 14.9773 17.0379 15.3335 16.7989C15.6897 16.5599 15.8697 16.1582 15.7977 15.7598L14.909 10.9226L18.6582 7.49975C18.9676 7.21755 19.0792 6.79592 18.9424 6.41413C18.8057 6.03233 18.4495 5.75346 18.0177 5.6937L12.8472 4.98987L10.5337 0.597589Z" fill={avaliacao>=3 ? "#FEC808" : "#958989"}/>
+                                    </svg>
+
+                                    <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.5337 0.597589C10.343 0.232396 9.93998 0 9.49742 0C9.05485 0 8.65546 0.232396 8.46116 0.597589L6.14759 4.98987L0.980714 5.6937C0.548942 5.75346 0.189132 6.03233 0.0560025 6.41413C-0.0771272 6.79592 0.0308157 7.21755 0.340252 7.49975L4.08947 10.9226L3.20434 15.7598C3.13238 16.1582 3.31228 16.5632 3.66849 16.7989C4.02471 17.0346 4.49606 17.0645 4.88465 16.8753L9.50101 14.6011L14.1174 16.8753C14.506 17.0645 14.9773 17.0379 15.3335 16.7989C15.6897 16.5599 15.8697 16.1582 15.7977 15.7598L14.909 10.9226L18.6582 7.49975C18.9676 7.21755 19.0792 6.79592 18.9424 6.41413C18.8057 6.03233 18.4495 5.75346 18.0177 5.6937L12.8472 4.98987L10.5337 0.597589Z" fill={avaliacao>=4 ? "#FEC808" : "#958989"}/>
+                                    </svg>
+
+                                    <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.5337 0.597589C10.343 0.232396 9.93998 0 9.49742 0C9.05485 0 8.65546 0.232396 8.46116 0.597589L6.14759 4.98987L0.980714 5.6937C0.548942 5.75346 0.189132 6.03233 0.0560025 6.41413C-0.0771272 6.79592 0.0308157 7.21755 0.340252 7.49975L4.08947 10.9226L3.20434 15.7598C3.13238 16.1582 3.31228 16.5632 3.66849 16.7989C4.02471 17.0346 4.49606 17.0645 4.88465 16.8753L9.50101 14.6011L14.1174 16.8753C14.506 17.0645 14.9773 17.0379 15.3335 16.7989C15.6897 16.5599 15.8697 16.1582 15.7977 15.7598L14.909 10.9226L18.6582 7.49975C18.9676 7.21755 19.0792 6.79592 18.9424 6.41413C18.8057 6.03233 18.4495 5.75346 18.0177 5.6937L12.8472 4.98987L10.5337 0.597589Z" fill={avaliacao>=5 ? "#FEC808" : "#958989"}/>
+                                    </svg>
+
+                                </div>
+                                <span>55 Avaliações</span>
+                            </div>
+
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='/assets/images/image-produto1.png' alt='' />
+                            <div className='desconto-estilizacao'></div>
+                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
+
+                            <span className='preco'>R$17,90</span>
+                        </div>
+
+                        <div>
+
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -81,29 +131,17 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
                         </div>
 
-                        <div>
-
-                            <img src='' alt='' />
-                            <div className='desconto-estilizacao'></div>
-                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
-                            <span className='preco'>R$17,90</span>
-                        </div>
-
-                        <div>
-
-                            <img src='' alt='' />
-                            <div className='desconto-estilizacao'></div>
-                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
-                            <span className='preco'>R$17,90</span>
-                        </div>
-
-                        <button></button>
+                        <button>
+                            <svg width="58" height="14" viewBox="0 0 118 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M116.184 40.5355C118.136 38.5829 118.136 35.4171 116.184 33.4645L84.3638 1.64466C82.4111 -0.307961 79.2453 -0.307961 77.2927 1.64466C75.3401 3.59728 75.3401 6.76311 77.2927 8.71573L105.577 37L77.2927 65.2843C75.3401 67.2369 75.3401 70.4027 77.2927 72.3553C79.2453 74.308 82.4111 74.308 84.3638 72.3553L116.184 40.5355ZM0 42L112.648 42V32L0 32L0 42Z" fill="#3D5745"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
 
@@ -115,7 +153,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -123,7 +161,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -131,7 +169,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -139,7 +177,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -157,7 +195,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -165,7 +203,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -173,7 +211,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -181,7 +219,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -199,7 +237,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -207,7 +245,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -215,7 +253,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -223,7 +261,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -241,7 +279,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -249,7 +287,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -257,7 +295,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -265,7 +303,7 @@ export default function homePage(){
 
                         <div>
 
-                            <img src='' alt='' />
+                            <img src='/assets/images/image-produto1.png' alt='' />
                             <div className='desconto-estilizacao'></div>
                             <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
                             <span className='preco'>R$17,90</span>
@@ -277,8 +315,8 @@ export default function homePage(){
 
                 <div className='ver-tudo'>
 
-                    <h4>Clique para ver mais produtos</h4>
-                    <Link>Ver mais</Link>
+                    <h2>Clique para ver mais produtos</h2>
+                    <Link className='Link ver-mais-button'>Ver mais</Link>
                 </div>
             </section>
         </div>
