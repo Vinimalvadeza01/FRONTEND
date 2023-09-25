@@ -1,0 +1,125 @@
+.cabecalho-adm{
+
+    width:100vw;
+    height:15vh;
+
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow-y: hidden;
+
+    background: #183D0A;
+    gap:10px;
+
+    *{
+        color: #fff;
+    }
+
+    #logo{
+
+        width:auto;
+        height:100%;
+    }
+
+    .container-adm-header{
+
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+
+        height:100%;
+
+        font-size:18px;
+        gap:10px;
+
+        span{
+
+            font-size:inherit;
+        }
+    }
+
+    .container-patinhas-adm{
+
+        display:flex;
+        flex-direction: column;
+
+        height:100%;
+        gap:10px;
+
+        #patinhas{
+
+            height:50%;
+            width:auto;
+    
+            margin:20px 20px 0px 0px;
+        }
+
+        .menu-adm{
+
+            display:flex;
+            flex-direction: row;
+            align-items: center;
+
+            gap:10px;
+
+            h4{
+
+                color:#619853;
+                font-size:20px;
+            }
+        }
+    }
+}
+
+@media(max-width:500px){
+
+    .cabecalho-adm{
+
+        #logo{
+
+            height:90%;
+        }
+    }
+
+    .container-adm-header span{
+
+        font-size:14px !important;
+    }
+
+    .container-patinhas-adm{
+
+        padding:5px;
+
+        #patinhas{
+
+            height:40% !important;
+            margin:10px 10px 0px 0px !important;
+        }
+
+        .menu-adm{
+
+            h4{
+
+                font-size:16px;
+            }
+            svg{
+
+                width:30px;
+                height:20px;
+            }
+        }
+    }
+}
+
+@media(max-width:380px){
+
+    .cabecalho-adm .container-patinhas-adm .menu-adm h4{
+
+        display:none;
+    }
+
+    .cabecalho-adm .container-adm-header svg{
+
+        display:none;
+    }
+}

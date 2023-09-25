@@ -1,0 +1,124 @@
+.page-cadastrar-produto{
+
+    width:100vw;
+    height:100vh;
+
+    overflow-x:hidden;
+
+    background-color: #EBFBE9;
+
+    .infs-produto{
+
+        display:flex;
+        flex-direction: row;
+
+        width:100%;
+        height:100%;
+        
+        .formulario-images{
+
+            width:50%;
+
+            padding:30px;
+
+            label{
+
+                background-size:contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+                
+                border: 2px solid #3D5745;
+                border-radius:10px;
+
+                cursor:pointer;
+
+                .alterar-label-hover{
+                    
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    width:100%;
+                    height:100%;
+    
+                    position:absolute;
+                    top:0;
+                    left:0;
+    
+                    background-color:#0000005b;
+    
+                    opacity:0;
+                    transition: opacity 0.3s;
+                }
+            }
+            
+            label:hover .alterar-label-hover{
+
+                opacity:1;
+            }
+
+            input{
+                display:none;
+            }
+
+            .image-principal{
+                
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                position:relative;
+
+                width:100%;
+                height:70%;
+
+                padding:20px;
+                margin-bottom:20px;
+
+                >div{
+
+                    display:flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    width:100%;
+                }
+
+                h6{
+
+                    font-size:18px;
+                    margin-bottom:10px;
+                }
+            }
+
+            .image-principal:hover div{
+
+                opacity:1;
+            }
+            
+            .container-images-secundarias{
+
+                display:flex;
+                flex-direction: row;
+                justify-content: space-around;
+
+                width:100%;
+
+                >label{
+
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    position:relative;
+
+                    width:140px;
+                    height:110px;
+                }
+            }
+        }
+    }
+}
+
+
