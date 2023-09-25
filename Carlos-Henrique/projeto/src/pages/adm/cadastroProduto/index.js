@@ -7,6 +7,11 @@ export default function CadastrarProduto(){
     const[imagePrevia,setImagePrevia]=useState('');
     const[corButtonImagePrevia,setCorButtonImagePrevia]=useState('#E1FFA1');
 
+    const[imageSec1,setImageSec1]=useState('');
+    const[imageSec2,setImageSec2]=useState('');
+    const[imageSec3,setImageSec3]=useState('');
+    const[imageSec4,setImageSec4]=useState('');
+
     function previaImagem(e){
 
         let arquivo=e.target.files[0];
@@ -54,7 +59,7 @@ export default function CadastrarProduto(){
                     
                     <div className='container-images-secundarias'>
 
-                        <label className='imagem-secundaria' for='input-imagem-secundaria'> 
+                        <label className='imagem-secundaria' for='input-imagem-secundaria' style={{backgroundImage:`url(${imageSec1})`,backgroundColor:`${corButtonImagePrevia}`}}> 
 
                             <input id='input-imagem-secundaria' type='file'/>
                             <svg width="118" height="99" viewBox="0 0 818 699" fill="none" xmlns="http://www.w3.org/2000/svg">
