@@ -36,6 +36,7 @@ export default function CadastrarProduto(){
     const[corButtonDesconto,setCorButtonDesconto]=useState('#F9F9F9');
     const[corFonteButtonDesconto,setCorFonteButtonDesconto]=useState('#3D5745');
 
+    // Função que irá receber as imagens e renderizar elas para mostrar a prévia
     function previaImagem(e,input){
 
         let arquivo=e.target.files[0];
@@ -71,9 +72,13 @@ export default function CadastrarProduto(){
         lerArquivo.readAsDataURL(arquivo);
     }
 
+    // Altera a cor de alguns inputs type button ao serem clicados, da parte infs-adicionais
     function alterarInputsButton(input){
 
         if(input==='Sim'){
+
+            const dataHoje=new Date();
+            const lerData = dataHoje.toISOString();
 
             setCorButton1('#619853');
             setCorButton2('#F9F9F9');
@@ -82,6 +87,7 @@ export default function CadastrarProduto(){
             setCorFonteButton2('#3D5745');
 
             setSelecionarLancamento(false);
+            setLancamento(lerData);
 
             setCorButton3('#F9F9F9');
             setCorFonteButton3('#3D5745');
@@ -96,6 +102,7 @@ export default function CadastrarProduto(){
             setCorFonteButton2('#F9F9F9');
 
             setSelecionarLancamento(true);
+            setLancamento('');
         }
 
         else if(input==='Sem-lançamento'){

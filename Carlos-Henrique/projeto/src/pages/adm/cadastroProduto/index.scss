@@ -163,6 +163,9 @@
 
         .container2-infs{
 
+            display:flex;
+            flex-direction: column;
+
             width:50%;
             padding-top:30px;
 
@@ -259,7 +262,7 @@
                 >form,>div{
 
                     display:flex;
-                    flex-direction:column
+                    flex-direction:column;
                 }
                 
                 // Aplicado somente para o botão "ativar desconto"
@@ -278,7 +281,7 @@
 
                     transition:background-color 0.3s,color 0.3s;
                 }
-
+                
                 .Selecao-disponivel {
                     .input-container{
 
@@ -323,23 +326,86 @@
 
     .page-cadastrar-produto{
 
-        // .infs-produto{
+        .infs-produto{
 
-        //     flex-direction: column;
-        //     justify-content: center;
+            flex-direction: column;
 
-        //     .formulario-images{
+            .formulario-images{
 
-        //         width:100%;
-        //         height:50%;
-        //     }
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
 
-        //     .container2-infs{
+                width:100%;
+                height:50%;
 
-        //         width:100%;
-        //         height:50%;
-        //     }
-        // }
+                .image-principal{
+
+                    height:60%;
+                    width: 100%;
+
+                    margin-bottom: 10px;
+                }
+
+                .container-images-secundarias{
+
+                    height:40%;
+                }
+            }
+
+            .container2-infs{
+
+                flex-direction: row;
+                width:100%;
+                padding:20px;
+                gap:5%;
+                
+                h2{
+
+                    font-size:20px;
+                    text-align: center;
+                }
+
+                label,input,button,span,#input-preco,.informacoes .container-selects select{
+
+                    font-size:14px !important;
+                }
+
+                .produto{
+
+                    width:25%;
+                }
+
+                .informacoes,.infs-adicionais{
+
+                    width:35%;
+
+                    button{
+
+                        width:100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:600px){
+
+    .page-cadastrar-produto .infs-produto .container2-infs{
+
+        flex-wrap: wrap;
+
+        .produto{
+
+            width:45%;
+        }
+
+        .informacoes,.infs-adicionais{
+
+            width:50%;
+        }
     }
 }
 
