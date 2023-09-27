@@ -27,7 +27,7 @@
 
             label{
 
-                background-color: #E1FFA1;
+                background-color: #e3ffe8;
                 background-size:contain;
                 background-repeat: no-repeat;
                 background-position: center center;
@@ -59,7 +59,6 @@
 
             .label-com-imagem{
 
-                background-color: #F9F9F9 !important;
                 svg{
 
                     display: none;
@@ -165,6 +164,7 @@
         .container2-infs{
 
             width:50%;
+            padding-top:30px;
 
             h2{
 
@@ -178,6 +178,10 @@
                 flex-direction: column;
 
                 margin-bottom: 20px;
+                max-width:60%;
+
+                border-radius: 10px;
+                border:1px solid #3D5745;
             }
 
             label{
@@ -190,18 +194,41 @@
 
             input{
 
-                max-width: 50%;
+                max-width: 100%;
                 
                 padding:10px 5px;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
 
                 color:#3D5745;
-                background-color: #E1FFA1;
+                font-size:18px;
+
+                background-color: #F9F9F9;
                 border:1px solid #3D5745;
+                border-radius: 5px;
+            }
+
+            .input-container{
+
+                display:flex;
+                flex-direction: row;
+                align-items: center;
+
+                gap:10px;
+
+                span{
+
+                    font-size:18px;
+                    font-weight: 800;
+                }
+            }
+
+            .informacoes,.infs-adicionais,.produto{
+
+                background-color: #EEF1DC;
+                padding:30px;
             }
 
             .informacoes{
-
                 .container-selects{
 
                     display: flex;
@@ -212,10 +239,79 @@
                     select{
 
                         padding:10px 5px;
-                        max-width: 40%;
-                        background-color: #E1FFA1;
+                        margin-bottom:20px;
+                        width: 50%;
 
+                        font-size:18px;
+                        background-color: #F9F9F9;
                         border:1px solid #3D5745;
+
+                        option:hover{
+
+                            background-color: #3D5745;
+                        }
+                    }
+                }
+            }
+
+            .infs-adicionais{
+
+                >form,>div{
+
+                    display:flex;
+                    flex-direction:column
+                }
+                
+                // Aplicado somente para o botão "ativar desconto"
+                button{
+
+                    align-self: center;
+                    width:50%;
+                    padding:10px;
+                    margin-bottom:20px;
+                    border-radius: 5px;
+
+                    font-size:18px;
+                    color:#fff;
+                    background-color: #619853;
+                    border: 1px solid #3D5745;
+
+                    transition:background-color 0.3s,color 0.3s;
+                }
+
+                .Selecao-disponivel {
+                    .input-container{
+
+                        input{
+    
+                            width:50%;
+
+                            transition: background-color 0.3s, color 0.3s;
+                        }    
+                    }
+
+                    .selecionar-data{
+
+                        display:flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        input{
+
+                            width:50%;
+
+                            transition: background-color 0.3s, color 0.3s;
+                        }
+                    }
+                }
+
+                .form-desconto{
+
+                    align-items: center;
+
+                    #input-desconto{
+
+                        width:40%;
                     }
                 }
             }

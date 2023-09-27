@@ -4,12 +4,34 @@ import { useState } from 'react';
 
 export default function CadastrarProduto(){
 
+
+    // Variáveis para inputs de imagem
     const[imagePrevia,setImagePrevia]=useState('');
 
     const[imageSec1,setImageSec1]=useState('');
     const[imageSec2,setImageSec2]=useState('');
     const[imageSec3,setImageSec3]=useState('');
     const[imageSec4,setImageSec4]=useState('');
+
+    // Variáveis para inputs que conterão as informações do produto
+    const[desconto,setDesconto]=useState(Number(0));
+
+    // Variáveis para mostrar campos em informações adicionais
+    const[selecionarLancamento,setSelecionarLancamento]=useState(false);
+    const[mostrarFormDesconto,setMostrarFormDesconto]=useState(false);
+
+    // Variáveis para alterar a cor dos botões em informações adicionais
+    const[corButton1,setCorButton1]=useState('#F9F9F9');
+    const[corButton2,setCorButton2]=useState('#F9F9F9');
+
+    const[corFonteButton1,setCorFonteButton1]=useState('#3D5745');
+    const[corFonteButton2,setCorFonteButton2]=useState('#3D5745');
+
+    const[corButton3,setCorButton3]=useState('#F9F9F9');
+    const[corFonteButton3,setCorFonteButton3]=useState('#3D5745');
+
+    const[corButtonDesconto,setCorButtonDesconto]=useState('#F9F9F9');
+    const[corFonteButtonDesconto,setCorFonteButtonDesconto]=useState('#3D5745');
 
     function previaImagem(e,input){
 
@@ -46,7 +68,46 @@ export default function CadastrarProduto(){
         lerArquivo.readAsDataURL(arquivo);
     }
 
-    
+    function alterarInputsButton(input){
+
+        if(input==='Sim'){
+
+            setCorButton1('#619853');
+            setCorButton2('#F9F9F9');
+            
+            setCorFonteButton1('#F9F9F9');
+            setCorFonteButton2('#3D5745');
+
+            setSelecionarLancamento(false);
+
+            setCorButton3('#F9F9F9');
+            setCorFonteButton3('#3D5745');
+        }
+
+        else if(input==='Não'){
+
+            setCorButton1('#F9F9F9');
+            setCorButton2('#619853');
+
+            setCorFonteButton1('#3D5745');
+            setCorFonteButton2('#F9F9F9');
+
+            setSelecionarLancamento(true);
+        }
+
+        else if(input==='Sem-lançamento'){
+
+            setCorButton3('#619853');
+            setCorFonteButton3('#F9F9F9');
+        }
+
+        else if(input==='Desconto'){
+
+            setCorButtonDesconto('#619853');
+            setCorFonteButtonDesconto('#F9F9F9');
+        }
+    }
+
     return(
 
         <div className='page-cadastrar-produto'>
@@ -93,7 +154,7 @@ export default function CadastrarProduto(){
                                 </svg>
 
                                 <div className='alterar-label-hover'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="4em" viewBox="0 0 448 512">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
                                         <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" fill="#d6d6d6"/>
                                     </svg>
                                 </div>
@@ -107,7 +168,7 @@ export default function CadastrarProduto(){
                                 </svg>
 
                                 <div className='alterar-label-hover'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="4em" viewBox="0 0 448 512">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
                                         <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" fill="#d6d6d6"/>
                                     </svg>
                                 </div>
@@ -121,7 +182,7 @@ export default function CadastrarProduto(){
                                 </svg>
 
                                 <div className='alterar-label-hover'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="4em" viewBox="0 0 448 512">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
                                         <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" fill="#d6d6d6"/>
                                     </svg>
                                 </div>
@@ -135,7 +196,7 @@ export default function CadastrarProduto(){
                                 </svg>
 
                                 <div className='alterar-label-hover'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="4em" viewBox="0 0 448 512">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
                                         <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" fill="#d6d6d6"/>
                                     </svg>
                                 </div>
@@ -191,7 +252,7 @@ export default function CadastrarProduto(){
 
                         <label for='input-preco'>Preço:</label>
 
-                        <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+                        <div className='input-container'>
 
                             <input id='input-preco' type='number'/>
                             <span>R$</span>
@@ -207,36 +268,52 @@ export default function CadastrarProduto(){
 
                         <form className='Selecao-disponivel'>
 
-                            <label>Disponível?</label>
+                            <label>O Produto estará disponível?</label>
 
-                            <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+                            <div  className='input-container'>
 
-                                <input type='button' value='Sim'/>
-                                <input type='button' value='Não'/>
+                                <input type='button' value='Sim' onClick={() => alterarInputsButton('Sim')} style={{backgroundColor:`${corButton1}`,color:`${corFonteButton1}`}}/>
+                                <input type='button' value='Não' onClick={() => { alterarInputsButton('Não')}} style={{backgroundColor:`${corButton2}`,color:`${corFonteButton2}`}}/>
                                 {/* Ao clicar em não irá para a div: selecionar-data */}
                             </div>
 
-                            
-                            <div className='selecionar-data'>
+                            {selecionarLancamento ? 
+                                <div className='selecionar-data'>
 
-                                <label for='input-data'>Selecione uma data para lançamento</label>
-                                <input id='input-data' type='date'/>
+                                    <label for='input-data'>Selecione uma data para lançamento</label>
+                                    <input id='input-data' type='date'/>
 
-                                <button>Não desejo lançar</button>
-                                {/* Ao clicar nesse botão voltará para a div de cima (sim ou não) e terá o botão não selecionado com cor diferente*/}
-                            </div>
+                                    <input value='Não desejo lançá-lo agora' type='button' onClick={() => {alterarInputsButton('Sem-lançamento')}} style={{backgroundColor:`${corButton3}`,color:`${corFonteButton3}`}}/>
+                                </div>
+                            : ''
+                            }
                             
                         </form>
                         
-                        <button>Ativar Desconto</button>
+                        <button onClick={() => {setMostrarFormDesconto(true); alterarInputsButton('Desconto')}} style={{backgroundColor:`${corButtonDesconto}`,color:`${corFonteButtonDesconto}`}}>Ativar Desconto</button>
                         {/* Ao clicar nesse botão, irá aparecer essa div para adicionar desconto */}
+                        
+                        {mostrarFormDesconto ? 
 
-                        <label for='input-desconto'>Digite o valor do Desconto:</label>
-                        <div style={{display:"flex",flexDirection:"row",gap:"5px"}}>
+                            <form className='form-desconto'>
+                                <label for='input-desconto'>Digite o valor do Desconto:</label>
+                                <div className='input-container'>
 
-                            <input id='input-desconto' type='number'/>
-                            <span>%</span>
-                        </div>
+                                    <input value={desconto} id='input-desconto' onChange={(e) => {
+
+                                        setDesconto(e.target.value);
+
+                                        if(e.target.value.length>2){
+                                            setDesconto(e.target.value.slice(0,2));
+                                        }
+                                    }}/>
+                                    <span>%</span>
+                                </div>
+                            </form>
+                        : ''
+                        }
+                        
+                        
                     </div>
                 </div>
             </main>
