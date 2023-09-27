@@ -1,9 +1,9 @@
 import './index.scss';
 import Cabecalho from '../../../components/cabecalho-adm';
+import InputMask from "react-input-mask";
 import { useState } from 'react';
 
 export default function CadastrarProduto(){
-
 
     // Variáveis para inputs de imagem
     const[imagePrevia,setImagePrevia]=useState('');
@@ -14,6 +14,9 @@ export default function CadastrarProduto(){
     const[imageSec4,setImageSec4]=useState('');
 
     // Variáveis para inputs que conterão as informações do produto
+    const[preco,setPreco]=useState(Number('0,00'));
+    const[estoque,setEstoque]=useState(Number());
+    const[lancamento,setLancamento]=useState('');
     const[desconto,setDesconto]=useState(Number(0));
 
     // Variáveis para mostrar campos em informações adicionais
@@ -99,6 +102,8 @@ export default function CadastrarProduto(){
 
             setCorButton3('#619853');
             setCorFonteButton3('#F9F9F9');
+
+            setLancamento('');
         }
 
         else if(input==='Desconto'){
@@ -215,7 +220,7 @@ export default function CadastrarProduto(){
                         <span id='previa-id'></span>
 
                         <label>Nome:</label>
-                        <input type='text'/>
+                        <input type='text' maxLength="100"/>
                         
                     </form>
 
@@ -245,21 +250,30 @@ export default function CadastrarProduto(){
                         </div>
 
                         <label for='input-marca'>Marca do Produto:</label>
-                        <input id='input-marca' type='text'/>
+                        <input id='input-marca' type='text' maxLength="100"/>
 
                         <label for='input-peso'>Peso do Produto:</label>
-                        <input id='input-peso' type='text'/>
+                        <input id='input-peso' type='text' maxLength="5"/>
 
                         <label for='input-preco'>Preço:</label>
 
                         <div className='input-container'>
 
-                            <input id='input-preco' type='number'/>
+                            <InputMask mask="999,99" maskChar='' placeholder='0,00' id='input-preco' type='text' value={preco} onChange={(e) => {setPreco(e.target.value)}}/>
+
                             <span>R$</span>
                         </div>
 
                         <label for='input-estoque'>Quantidade em Estoque:</label>
-                        <input id='input-estoque' type='number'/>
+                        <input id='input-estoque' type='number' value={estoque} max="100" onChange={(e) => { 
+                        
+                        setEstoque(e.target.value);
+
+                        if(e.target.value.length>3){
+                            setEstoque(e.target.value.slice(0,3));
+                        }
+
+                        }}/>
                     </form>
 
                     <div className='infs-adicionais'>
@@ -281,7 +295,7 @@ export default function CadastrarProduto(){
                                 <div className='selecionar-data'>
 
                                     <label for='input-data'>Selecione uma data para lançamento</label>
-                                    <input id='input-data' type='date'/>
+                                    <input id='input-data' type='date' value={lancamento} onChange={(e) => {setLancamento(e.target.value); setCorButton3('#F9F9F9');setCorFonteButton3('#3D5745')}}/>
 
                                     <input value='Não desejo lançá-lo agora' type='button' onClick={() => {alterarInputsButton('Sem-lançamento')}} style={{backgroundColor:`${corButton3}`,color:`${corFonteButton3}`}}/>
                                 </div>
