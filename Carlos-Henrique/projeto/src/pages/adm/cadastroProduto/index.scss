@@ -409,4 +409,20 @@
     }
 }
 
+@media(max-width:510px){
+
+    .page-cadastrar-produto .infs-produto .container2-infs{
+
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: nowrap;
+        width:100%;
+
+        .produto,.informacoes,.infs-adicionais{
+
+            width:100%;
+        }
+    }
+}
+
 
