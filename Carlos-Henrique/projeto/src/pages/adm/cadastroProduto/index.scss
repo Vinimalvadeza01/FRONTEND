@@ -265,7 +265,7 @@
                     flex-direction:column;
                 }
                 
-                // Aplicado somente para o botão "ativar desconto"
+                // Aplicado apenas para o botão "ativar desconto"
                 button{
 
                     align-self: center;
@@ -281,7 +281,26 @@
 
                     transition:background-color 0.3s,color 0.3s;
                 }
-                
+
+                #botao-cadastro{
+
+                    width:100%;
+
+                    padding:15px;
+                    margin-bottom:0px;
+                    margin-top:20px;
+
+                    background-color: #258532;
+
+                    font-size:20px;
+                }
+
+                #botao-cadastro:hover{
+
+                    background: #3fb950;
+                    transition:0.5s;
+                }
+
                 .Selecao-disponivel {
                     .input-container{
 
@@ -395,16 +414,17 @@
 
     .page-cadastrar-produto .infs-produto .container2-infs{
 
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
 
         .produto{
 
-            width:45%;
+            width:100%;
         }
 
         .informacoes,.infs-adicionais{
 
-            width:50%;
+            width:100%;
         }
     }
 }
@@ -423,6 +443,23 @@
             width:100%;
         }
     }
+}
+
+@media(max-width:380px){
+
+    .page-cadastrar-produto .infs-produto .formulario-images .image-principal{
+
+        #icon-imagem{
+
+            width:68px;
+            height:49px;
+        }
+
+        h6{
+
+            font-size:14px;
+        }
+    } 
 }
 
 

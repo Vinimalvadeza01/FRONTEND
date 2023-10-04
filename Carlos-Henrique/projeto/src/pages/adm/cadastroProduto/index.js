@@ -1,6 +1,9 @@
 import './index.scss';
+
 import Cabecalho from '../../../components/cabecalho-adm';
 import InputMask from "react-input-mask";
+import axios from 'axios';
+
 import { useState } from 'react';
 
 export default function CadastrarProduto(){
@@ -14,10 +17,24 @@ export default function CadastrarProduto(){
     const[imageSec4,setImageSec4]=useState('');
 
     // Variáveis para inputs que conterão as informações do produto
-    const[preco,setPreco]=useState(Number('0,00'));
+    const[nome,setNome]=useState('');
+
+    const[categoria,setCategoria]=useState(Number(''));
+    const[animal,setAnimal]=useState(Number(''));
+    const[marca,setMarca]=useState('');
+    const[peso,setPeso]=useState('');
+    const[preco,setPreco]=useState(Number(''));
     const[estoque,setEstoque]=useState(Number());
+
+    const[disponivel,setDisponivel]=useState('');
     const[lancamento,setLancamento]=useState('');
     const[desconto,setDesconto]=useState(Number(0));
+
+    // Por enquanto o login não está pronto e por isso não dará para colocar o usuário logado, colocar 1 apenas para exemplo
+    const[admUser,setAdmUser]=useState(Number(1));
+
+    // Variável que mostrará o erro
+    const[erro,setErro]=useState('Testando mensagem de erro');
 
     // Variáveis para mostrar campos em informações adicionais
     const[selecionarLancamento,setSelecionarLancamento]=useState(false);
@@ -35,6 +52,45 @@ export default function CadastrarProduto(){
 
     const[corButtonDesconto,setCorButtonDesconto]=useState('#F9F9F9');
     const[corFonteButtonDesconto,setCorFonteButtonDesconto]=useState('#3D5745');
+
+    async function cadastrarProduto(){
+
+        try{
+
+            const url='http://localhost:5000/produto/inserir';
+
+            const tirarVirgulaPreco=preco.replace(',', '.');
+
+            let infsProduto={
+
+                nome: nome,
+                categoria:categoria,
+                animal:animal,
+                marca:marca,
+                peso:peso,
+                preco:tirarVirgulaPreco,
+                desconto:desconto,
+                disponivel:disponivel,
+                lancamento:lancamento,
+                estoque:estoque,
+                adm:admUser
+            }
+
+            if(infsProduto.disponivel!=='2099-01-01 00:00:00'){
+
+                setLancamento(lancamento+' 00:00:00');
+            }
+
+            let resp=await axios.post(url, infsProduto);
+        }
+
+        catch(err){
+
+            setErro(err.data.response.erro);
+        }
+    }
+
+    function cadastrarImagem(){}
 
     // Função que irá receber as imagens e renderizar elas para mostrar a prévia
     function previaImagem(e,input){
@@ -137,7 +193,7 @@ export default function CadastrarProduto(){
                         {!imagePrevia ? 
                             <div>
                                 <h6>ADICIONAR IMAGEM PRINCIPAL</h6>
-                                <svg width="118" height="99" viewBox="0 0 818 699" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg id='icon-imagem' width="118" height="99" viewBox="0 0 818 699" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M715.75 75.0456C729.809 75.0456 741.312 86.2593 741.312 99.9651V598.043L733.324 587.92L516.043 313.805C508.854 304.616 497.51 299.321 485.688 299.321C473.865 299.321 462.681 304.616 455.332 313.805L322.727 481.078L273.998 414.574C266.809 404.762 255.305 398.999 242.844 398.999C230.382 398.999 218.879 404.762 211.689 414.729L83.877 589.166L76.6875 598.822V598.355V99.9651C76.6875 86.2593 88.1906 75.0456 102.25 75.0456H715.75ZM102.25 0.287109C45.8527 0.287109 0 44.9864 0 99.9651V598.355C0 653.333 45.8527 698.033 102.25 698.033H715.75C772.147 698.033 818 653.333 818 598.355V99.9651C818 44.9864 772.147 0.287109 715.75 0.287109H102.25ZM230.062 299.321C240.133 299.321 250.105 297.387 259.41 293.63C268.714 289.873 277.168 284.367 284.289 277.425C291.41 270.483 297.059 262.241 300.913 253.171C304.766 244.101 306.75 234.38 306.75 224.563C306.75 214.745 304.766 205.024 300.913 195.954C297.059 186.884 291.41 178.642 284.289 171.7C277.168 164.758 268.714 159.252 259.41 155.495C250.105 151.738 240.133 149.804 230.062 149.804C219.992 149.804 210.02 151.738 200.715 155.495C191.411 159.252 182.957 164.758 175.836 171.7C168.715 178.642 163.066 186.884 159.212 195.954C155.359 205.024 153.375 214.745 153.375 224.563C153.375 234.38 155.359 244.101 159.212 253.171C163.066 262.241 168.715 270.483 175.836 277.425C182.957 284.367 191.411 289.873 200.715 293.63C210.02 297.387 219.992 299.321 230.062 299.321Z" fill="#619853"/>
                                 </svg>
                             </div>
@@ -227,7 +283,7 @@ export default function CadastrarProduto(){
                         <span id='previa-id'></span>
 
                         <label>Nome:</label>
-                        <input type='text' maxLength="100"/>
+                        <input type='text' maxLength="100" value={nome} onChange={(e) => {setNome(e.target.value)}}/>
                         
                     </form>
 
@@ -237,36 +293,39 @@ export default function CadastrarProduto(){
 
                         <div className='container-selects'>
 
-                            <select id='categoria' name='Categoria'>
-                                <option>Categoria</option>
-                                <option>Brinquedos</option>
-                                <option>Casinhas</option>
-                                <option>Higiene</option>
-                                <option>Rações</option>
+                            <select id='categoria' name='Categoria' onChange={(e) => {setCategoria(e.target.value)}}>
+                                <option value={null}>Categoria</option>
+                                <option value={1}>Acessórios</option>
+                                <option value={2}>Brinquedos</option>
+                                <option value={3}>Casinhas</option>
+                                <option value={4}>Higiene</option>
+                                <option value={5}>Rações</option>
+                                <option value={6}>Roupas e Cobertores</option>
                             </select>
 
-                            <select>
+                            <select name='Animal' onChange={(e) => {setAnimal(e.target.value)}}>
 
-                                <option>Animal</option>
-                                <option>Cachorro</option>
-                                <option>Gato</option>
-                                <option>Peixes</option>
-                                <option>Pássaro</option>
-                                <option>Outros Animais</option>
+                                <option value={null}>Animal</option>
+                                <option value={1}>Cachorro</option>
+                                <option value={2}>Gato</option>
+                                <option value={3}>Pássaro</option>
+                                <option value={4}>Peixes</option>
+                                <option value={5}>Outros Animais</option>
                             </select>
                         </div>
 
                         <label for='input-marca'>Marca do Produto:</label>
-                        <input id='input-marca' type='text' maxLength="100"/>
+                        <input id='input-marca' type='text' maxLength="100" value={marca} onChange={(e) => {setMarca(e.target.value)}}/>
 
                         <label for='input-peso'>Peso do Produto:</label>
-                        <input id='input-peso' type='text' maxLength="5"/>
+                        <input id='input-peso' type='text' maxLength="5" value={peso} onChange={(e) => {setPeso(e.target.value)}}/>
 
                         <label for='input-preco'>Preço:</label>
 
                         <div className='input-container'>
 
-                            <InputMask mask="999,99" maskChar='' placeholder='0,00' id='input-preco' type='text' value={preco} onChange={(e) => {setPreco(e.target.value)}}/>
+                            {/* Substituir a vírgula por . na hora de adicionar o produto */}
+                            <input placeholder='0,00' id='input-preco' type='text' value={preco} onChange={(e) => {setPreco(e.target.value)}}/>
 
                             <span>R$</span>
                         </div>
@@ -293,8 +352,24 @@ export default function CadastrarProduto(){
 
                             <div  className='input-container'>
 
-                                <input type='button' value='Sim' onClick={() => alterarInputsButton('Sim')} style={{backgroundColor:`${corButton1}`,color:`${corFonteButton1}`}}/>
-                                <input type='button' value='Não' onClick={() => { alterarInputsButton('Não')}} style={{backgroundColor:`${corButton2}`,color:`${corFonteButton2}`}}/>
+                                <input type='button' value='Sim' onClick={(e) => {
+
+                                    alterarInputsButton('Sim'); 
+                                    setDisponivel(true)}
+                                } 
+
+                                    // Estilização para o botão "Sim"
+                                    style={{backgroundColor:`${corButton1}`,color:`${corFonteButton1}`}}/>
+
+                                <input type='button' value='Não' onClick={() => {
+                                    
+                                    alterarInputsButton('Não');
+                                    setDisponivel(false)}
+                                } 
+
+                                    // Estilização para o botão "Não"
+                                    style={{backgroundColor:`${corButton2}`,color:`${corFonteButton2}`}}/>
+
                                 {/* Ao clicar em não irá para a div: selecionar-data */}
                             </div>
 
@@ -304,7 +379,7 @@ export default function CadastrarProduto(){
                                     <label for='input-data'>Selecione uma data para lançamento</label>
                                     <input id='input-data' type='date' value={lancamento} onChange={(e) => {setLancamento(e.target.value); setCorButton3('#F9F9F9');setCorFonteButton3('#3D5745')}}/>
 
-                                    <input value='Não desejo lançá-lo agora' type='button' onClick={() => {alterarInputsButton('Sem-lançamento')}} style={{backgroundColor:`${corButton3}`,color:`${corFonteButton3}`}}/>
+                                    <input value='Não desejo lançá-lo agora' type='button' onClick={() => {alterarInputsButton('Sem-lançamento'); setLancamento('2099-01-01 00:00:00')}} style={{backgroundColor:`${corButton3}`,color:`${corFonteButton3}`}}/>
                                 </div>
                             : ''
                             }
@@ -332,9 +407,9 @@ export default function CadastrarProduto(){
                                 </div>
                             </form>
                         : ''
-                        }
-                        
-                        
+                        } 
+
+                        <button id='botao-cadastro' onClick={cadastrarProduto}>Cadastrar Produto</button>
                     </div>
                 </div>
             </main>
