@@ -59,7 +59,14 @@ export default function CadastrarProduto(){
 
             const url='http://localhost:5000/produto/inserir';
 
-            const tirarVirgulaPreco=preco.replace(',', '.');
+            let tirarVirgulaPreco=preco.replace(',', '.');
+
+            let adicionarHorario=lancamento;
+
+            if(lancamento!=='2099-01-01 00:00:00'){
+
+                adicionarHorario=lancamento+' 00:00:00';
+            }
 
             let infsProduto={
 
@@ -71,22 +78,19 @@ export default function CadastrarProduto(){
                 preco:tirarVirgulaPreco,
                 desconto:desconto,
                 disponivel:disponivel,
-                lancamento:lancamento,
+                lancamento:adicionarHorario,
                 estoque:estoque,
                 adm:admUser
             }
 
-            if(infsProduto.disponivel!=='2099-01-01 00:00:00'){
+            console.log(infsProduto);
 
-                setLancamento(lancamento+' 00:00:00');
-            }
-
-            let resp=await axios.post(url, infsProduto);
+            let resp=await axios.post(url,infsProduto);
         }
 
         catch(err){
 
-            setErro(err.data.response.erro);
+            setErro(err.response.data.erro);
         }
     }
 
@@ -410,6 +414,8 @@ export default function CadastrarProduto(){
                         } 
 
                         <button id='botao-cadastro' onClick={cadastrarProduto}>Cadastrar Produto</button>
+
+                        <p id='mensagem-erro'>{erro}</p>
                     </div>
                 </div>
             </main>

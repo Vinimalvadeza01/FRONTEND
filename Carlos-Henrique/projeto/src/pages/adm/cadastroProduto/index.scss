@@ -287,7 +287,7 @@
                     width:100%;
 
                     padding:15px;
-                    margin-bottom:0px;
+                    margin-bottom:20px;
                     margin-top:20px;
 
                     background-color: #258532;
@@ -299,6 +299,14 @@
 
                     background: #3fb950;
                     transition:0.5s;
+                }
+
+                #mensagem-erro{
+
+                    font-size: 20px;
+                    font-weight: 700;
+                    text-align: center;
+                    color:rgb(224, 54, 54);
                 }
 
                 .Selecao-disponivel {
