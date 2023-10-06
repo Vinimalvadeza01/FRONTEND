@@ -23,10 +23,10 @@ export default function CadastrarProduto(){
     const[animal,setAnimal]=useState(Number(''));
     const[marca,setMarca]=useState('');
     const[peso,setPeso]=useState('');
-    const[preco,setPreco]=useState(Number(''));
+    const[preco,setPreco]=useState(Number(0));
     const[estoque,setEstoque]=useState(Number());
 
-    const[disponivel,setDisponivel]=useState('');
+    const[disponivel,setDisponivel]=useState(undefined);
     const[lancamento,setLancamento]=useState('');
     const[desconto,setDesconto]=useState(Number(0));
 
@@ -59,11 +59,11 @@ export default function CadastrarProduto(){
 
             const url='http://localhost:5000/produto/inserir';
 
-            let tirarVirgulaPreco=preco.replace(',', '.');
+            let tirarVirgulaPreco= preco!==undefined ?? preco.replace(',', '.');
 
             let adicionarHorario=lancamento;
 
-            if(lancamento!=='2099-01-01 00:00:00'){
+            if(lancamento!=='2099-01-01 00:00:00'&&lancamento!==''){
 
                 adicionarHorario=lancamento+' 00:00:00';
             }
@@ -83,9 +83,9 @@ export default function CadastrarProduto(){
                 adm:admUser
             }
 
-            console.log(infsProduto);
-
             let resp=await axios.post(url,infsProduto);
+            
+            setErro('');
         }
 
         catch(err){
