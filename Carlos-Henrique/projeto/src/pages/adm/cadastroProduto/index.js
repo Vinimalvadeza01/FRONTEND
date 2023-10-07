@@ -5,6 +5,7 @@ import InputMask from "react-input-mask";
 import axios from 'axios';
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function CadastrarProduto(){
 
@@ -34,7 +35,10 @@ export default function CadastrarProduto(){
     const[admUser,setAdmUser]=useState(Number(1));
 
     // Variável que mostrará o erro
-    const[erro,setErro]=useState('Testando mensagem de erro');
+    const[erro,setErro]=useState('');
+
+    // Navigate
+    const navigate=useNavigate();
 
     // Variáveis para mostrar campos em informações adicionais
     const[selecionarLancamento,setSelecionarLancamento]=useState(false);
@@ -57,6 +61,7 @@ export default function CadastrarProduto(){
 
         try{
 
+            
             const url='http://localhost:5000/produto/inserir';
 
             let tirarVirgulaPreco= preco!==undefined ?? preco.replace(',', '.');
@@ -86,6 +91,7 @@ export default function CadastrarProduto(){
             let resp=await axios.post(url,infsProduto);
             
             setErro('');
+            navigate('/adm/produto-cadastrado');
         }
 
         catch(err){
