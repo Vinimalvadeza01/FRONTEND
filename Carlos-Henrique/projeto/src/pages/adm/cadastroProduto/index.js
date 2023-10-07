@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 export default function CadastrarProduto(){
 
     // Variáveis para inputs de imagem
-    const[imagePrevia,setImagePrevia]=useState('');
+    const[imageProduto,setImageProduto]=useState('');
 
     const[imageSec1,setImageSec1]=useState('');
     const[imageSec2,setImageSec2]=useState('');
@@ -33,6 +33,9 @@ export default function CadastrarProduto(){
 
     // Por enquanto o login não está pronto e por isso não dará para colocar o usuário logado, colocar 1 apenas para exemplo
     const[admUser,setAdmUser]=useState(Number(1));
+
+    // Variáveis para informações da imagem
+    const[idProduto,setIdProduto]=useState(Number(undefined));
 
     // Variável que mostrará o erro
     const[erro,setErro]=useState('');
@@ -61,20 +64,19 @@ export default function CadastrarProduto(){
 
         try{
 
-            
             const url='http://localhost:5000/produto/inserir';
-
+    
             let tirarVirgulaPreco= preco!==undefined ?? preco.replace(',', '.');
-
+    
             let adicionarHorario=lancamento;
-
+    
             if(lancamento!=='2099-01-01 00:00:00'&&lancamento!==''){
-
+    
                 adicionarHorario=lancamento+' 00:00:00';
             }
-
+    
             let infsProduto={
-
+    
                 nome: nome,
                 categoria:categoria,
                 animal:animal,
@@ -89,29 +91,125 @@ export default function CadastrarProduto(){
             }
 
             let resp=await axios.post(url,infsProduto);
-            
+                
             setErro('');
-            navigate('/adm/produto-cadastrado');
+            setIdProduto(resp.data.insertId); 
         }
-
+    
         catch(err){
 
             setErro(err.response.data.erro);
         }
+        
+        
     }
 
-    function cadastrarImagem(){}
+    async function cadastrarImagem(){
+
+
+        if(imageProduto!==''){
+
+            // try{
+
+                // Haverá um for para adicionar todas as imagens, por isso é criado um contador para ver quantas serão adicionadas
+                let contador=0;
+                
+                if(imageSec1!==''){
+        
+                    contador=contador+1;
+                }
+        
+                if(imageSec2!==''){
+        
+                    contador=contador+1
+                }
+        
+                if(imageSec3!==''){
+        
+                    contador=contador+1
+                }
+        
+                if(imageSec4!==''){
+        
+                    contador=contador+1
+                }
+        
+                for(let cont=contador;contador>=0;cont--){
+        
+                    const formData = new FormData();
+        
+                    let imagemParaInserir='';
+        
+                    if(cont===4){
+        
+                        imagemParaInserir=imageSec4;
+                    }
+        
+                    else if(cont===3){
+        
+                        imagemParaInserir=imageSec3;
+                    }
+        
+                    else if(cont===2){
+        
+                        imagemParaInserir=imageSec2;
+                    }
+        
+                    else if(cont===1){
+        
+                        imagemParaInserir=imageSec1;
+                    }
+        
+                    else if(cont===0){
+        
+                        imagemParaInserir=imageProduto;
+                    }
+        
+                    formData.append('imagemProduto',imagemParaInserir);
+        
+                    console.log(formData);
+                    const resp=await axios.post(`http://localhost:5000/imagem/${idProduto}/${cont}/inserir`, formData, {
+                    
+                        headers:{
+        
+                            "Content-Type":"multipart/form-data"
+                        },
+                    });
+                    console.log(resp);
+                }
+        
+                navigate('/adm/produto-cadastrado');
+            // }
+
+            // catch(err){
+    
+            //     setErro(err.response.data.erro);
+            // }
+        }
+    
+        else{
+
+            setErro('A imagem principal do produto é obrigatória!');
+        }
+    }
+
+    function previaImagem(input){
+
+
+    }
 
     // Função que irá receber as imagens e renderizar elas para mostrar a prévia
-    function previaImagem(e,input){
+    function previaImagemm(e,input){
 
         let arquivo=e.target.files[0];
         let lerArquivo = new FileReader();
-
-        lerArquivo.onload = () => {
+        let criarCaminhoImagem='';
+        
             
             if(input===0){
-                setImagePrevia(lerArquivo.result);
+
+                criarCaminhoImagem= URL.createObjectURL(imageProduto);
+                setImageProduto(criarCaminhoImagem);
             }
 
             else if(input===1){
@@ -133,9 +231,7 @@ export default function CadastrarProduto(){
 
                 setImageSec4(lerArquivo.result);
             }
-        };
-
-        lerArquivo.readAsDataURL(arquivo);
+    
     }
 
     // Altera a cor de alguns inputs type button ao serem clicados, da parte infs-adicionais
@@ -196,11 +292,11 @@ export default function CadastrarProduto(){
 
                 <form className='formulario-images'>
 
-                    <label className={imagePrevia!=='' ? 'label-com-imagem image-principal' : 'image-principal'} style={{backgroundImage:`url(${imagePrevia})`}} for='input-imagem-principal' > 
+                    <label onClick={previaImagem} className={imageProduto!=='' ? 'label-com-imagem image-principal' : 'image-principal'} style={{backgroundImage:`url(${imageProduto})`}} for='input-imagem-principal'> 
 
-                        <input id='input-imagem-principal' type='file' accept='image/*' onChange={(e) => {previaImagem(e,0)}}/>
+                        <input id='input-imagem-principal' type='file' accept='image/*'/>
 
-                        {!imagePrevia ? 
+                        {!imageProduto ? 
                             <div>
                                 <h6>ADICIONAR IMAGEM PRINCIPAL</h6>
                                 <svg id='icon-imagem' width="118" height="99" viewBox="0 0 818 699" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -419,7 +515,7 @@ export default function CadastrarProduto(){
                         : ''
                         } 
 
-                        <button id='botao-cadastro' onClick={cadastrarProduto}>Cadastrar Produto</button>
+                        <button id='botao-cadastro' onClick={() => {cadastrarProduto(); cadastrarImagem()}}>Cadastrar Produto</button>
 
                         <p id='mensagem-erro'>{erro}</p>
                     </div>
