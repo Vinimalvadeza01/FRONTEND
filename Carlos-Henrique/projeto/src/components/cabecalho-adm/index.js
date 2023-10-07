@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import './index.scss';
 import {Link} from 'react-router-dom';
 
 export default function CabecalhoAdm(){
+
+    const[mostrarMenu,setMostrarMenu]=useState(false);
 
     return(
 
@@ -23,7 +26,7 @@ export default function CabecalhoAdm(){
             <div className='container-patinhas-adm'>
                 <img src='/assets/images/patinhas.png' alt='patinhas de enfeite' id='patinhas' />
 
-                <button className='menu-adm'>
+                <button className='mostrar-menu-adm' onClick={() => {setMostrarMenu(true)}}>
 
                     <h4>Menu</h4>
                     <svg width="35" height="25" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,6 +34,43 @@ export default function CabecalhoAdm(){
                     </svg>
                 </button>
             </div>
+            
+            <nav className={mostrarMenu ? 'menu-adm mostrar' : 'menu-adm esconder'}>
+
+                <div id='mensagem-boas-vindas-usuario'>Bem-vindo <br/> @user
+                
+                    <button className='botao-fechar-menu' onClick={() => {setMostrarMenu(false)}}>
+                        <svg width="18" height="36" viewBox="0 0 88 116" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M86.3001 13.5974C88.8895 10.0762 88.477 4.84631 85.3606 1.92065C82.2443 -1.005 77.6156 -0.53897 75.0262 2.98217L44 45.0546L12.9738 2.98217C10.3845 -0.53897 5.75573 -1.005 2.63936 1.92065C-0.477012 4.84631 -0.889473 10.0762 1.69986 13.5974L34.4447 58L1.69986 102.403C-0.889473 105.924 -0.477012 111.154 2.63936 114.079C5.75573 117.005 10.3845 116.539 12.9738 113.018L44 70.9454L75.0262 113.018C77.6156 116.539 82.2443 117.005 85.3606 114.079C88.477 111.154 88.8895 105.924 86.3001 102.403L53.5553 58L86.3001 13.5974Z" fill="#183D0A"/>
+                        </svg>
+                    </button>
+                </div>
+                <hr/>
+
+                <button className='button-meu-historico'>
+                    <span>Meu Histórico</span>
+                    
+                    <svg width="12" height="20" viewBox="0 0 38 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M36.1453 35.9497C38.6182 33.4898 38.6182 29.4949 36.1453 27.035L10.8218 1.84548C9.00169 0.0349857 6.29129 -0.496356 3.91722 0.487609C1.54315 1.47157 0 3.75437 0 6.31268V56.6917C0 59.2303 1.54315 61.5328 3.91722 62.5167C6.29129 63.5007 9.00169 62.9497 10.8218 61.1589L36.1453 35.9694V35.9497Z"/>
+                    </svg>
+
+                    <div className='container-meu-historico'>
+
+                        <Link className='Link botao-historico' to='/adm/consulta'>Ver Tudo</Link>
+                        <Link className='Link botao-historico' to='/adm/consulta'>Produtos Cadastrados</Link>
+                        <Link className='Link botao-historico' to='/adm/consulta'>Alterações Feitas</Link>
+                        <Link className='Link botao-historico' to='/adm/consulta'>Registros excluídos</Link>
+                    </div>
+                </button>
+
+                <Link to='/adm/consulta' className='Link botao-menu-adm'>
+                    <span>Histórico Completo</span>
+                </Link>
+
+                <Link to='/adm/graficos' className='Link botao-menu-adm'>
+                    <span>Análise de gráficos</span>
+                </Link>
+            </nav>
         </header>
     );
 }
