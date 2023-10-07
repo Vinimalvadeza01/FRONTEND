@@ -54,6 +54,11 @@
     
                     opacity:0;
                     transition: opacity 0.3s;
+
+                    svg{
+
+                        display:block !important;
+                    }
                 }
             }
 
@@ -215,13 +220,26 @@
                 display:flex;
                 flex-direction: row;
                 align-items: center;
-
+                
                 gap:10px;
 
                 span{
 
                     font-size:18px;
                     font-weight: 800;
+                }
+            }
+
+            .container-preco{
+
+                #input-preco-total{
+
+                    width:40%;
+                }
+
+                #input-preco-centavos{
+
+                    width:20%;
                 }
             }
 
