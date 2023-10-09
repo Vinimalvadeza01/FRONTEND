@@ -3,10 +3,14 @@ import './index.scss';
 import Cabecalho from '../../../components/cabecalho-adm';
 import axios from 'axios';
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function CadastrarProduto(){
+
+    // Arrays para guardar listagem
+    const[categorias,setCategorias]=useState([]);
+    const[animais,setAnimais]=useState([]);
 
     // Variáveis para inputs de imagem
     const[imageProduto,setImageProduto]=useState('');
@@ -66,6 +70,46 @@ export default function CadastrarProduto(){
 
     const[corButtonDesconto,setCorButtonDesconto]=useState('#F9F9F9');
     const[corFonteButtonDesconto,setCorFonteButtonDesconto]=useState('#3D5745');
+
+    async function listarCategorias(){
+
+        try{
+
+            const url='http://localhost:5000/categoria/listar';
+
+            let respAPI=await axios.get(url);
+
+            setCategorias(respAPI.data);
+        }
+
+        catch(err){
+
+            alert(err.response.data.erro);
+        }
+    }
+
+    async function listarAnimais(){
+
+        try{
+
+            const url='http://localhost:5000/animal/listar';
+
+            let respAPI=await axios.get(url);
+
+            setAnimais(respAPI.data);
+        }
+
+        catch(err){
+
+            alert(err.response.data.erro);
+        }
+    }
+
+    useEffect(()=> {
+
+        listarCategorias();
+        listarAnimais();
+    },[]);
 
     async function cadastrarProduto(){
 
@@ -413,23 +457,18 @@ export default function CadastrarProduto(){
                         <div className='container-selects'>
 
                             <select id='categoria' name='Categoria' onChange={(e) => {setCategoria(e.target.value)}}>
-                                <option value={null}>Categoria</option>
-                                <option value={1}>Acessórios</option>
-                                <option value={2}>Brinquedos</option>
-                                <option value={3}>Casinhas</option>
-                                <option value={4}>Higiene</option>
-                                <option value={5}>Rações</option>
-                                <option value={6}>Roupas e Cobertores</option>
+                                <option value={null}>Categorias</option>
+                                {categorias.map(item =>
+                                    <option value={item.ID}>{item.Categoria}</option>
+                                )};
                             </select>
 
                             <select name='Animal' onChange={(e) => {setAnimal(e.target.value)}}>
 
                                 <option value={null}>Animal</option>
-                                <option value={1}>Cachorro</option>
-                                <option value={2}>Gato</option>
-                                <option value={3}>Pássaro</option>
-                                <option value={4}>Peixes</option>
-                                <option value={5}>Outros Animais</option>
+                                {animais.map(item =>
+                                    <option value={item.ID}>{item.Animal}</option>
+                                )};
                             </select>
                         </div>
 
