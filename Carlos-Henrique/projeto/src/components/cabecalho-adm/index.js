@@ -64,7 +64,11 @@ export default function CabecalhoAdm(){
                 </button>
 
                 <Link to='/adm/consulta' className='Link botao-menu-adm'>
-                    <span>Histórico Completo</span>
+                    <span>Consultar informações</span>
+                </Link>
+
+                <Link to='/adm/cadastrar-produto' className='Link botao-menu-adm'>
+                    <span>Cadastrar produto</span>
                 </Link>
 
                 <Link to='/adm/graficos' className='Link botao-menu-adm'>
