@@ -14,24 +14,37 @@ function Cadastro(){
     const [senha, setSenha]= useState('');
     const [cpf, setCpf]= useState('');
     const [datanasc, setDatanasc]= useState('');
-    const [erro, setErro]= useState('')
+    const [erro, setErro]= useState('');
+    const [consenha, setConsenha]= useState('');
+    
+
+ 
+
 
     const navigate = useNavigate()
 
 
     async function entrarClick(){
 
-        let response = await axios.post ('http://localhost:5000/cliente',{ nome: Nome,
-        email: email,
-        senha: senha,
-        cpf: cpf,
-        datanasc: datanasc 
-    });
-        if (response==401) {
-            setErro(response.data.erro)
+        try{
+
+            const Extraircpf= cpf.match(/\d+\.\d+/g);
+            const Extrairdtn= datanasc.replace(/\//g, '-');
+
+            console.log(Extrairdtn);
+            let response = await axios.post ('http://localhost:5000/cliente',{ nome: Nome,
+            email: email,
+            senha: senha,
+            cpf: Extraircpf,
+            datanasc: Extrairdtn
+            });
+
+            navigate('/');
         }
-        else{
-            navigate('./')
+        
+        catch(err){
+
+            setErro(err.response.data.erro);
         }
     }
   
@@ -40,7 +53,7 @@ function Cadastro(){
         <section className='Page-Cadastro'>
             <Cabecalho/>
             <div className='Conteudo'>
-                    <h1>CRIAR SUA CONTA</h1>
+                    <h1 className='Titulo'>CRIAR SUA CONTA</h1>
                     <div className="Nome">
                         <label className="nm">Nome Completo</label>
                         <input className="input1" type="text" placeholder="Digite seu nome completo" value={Nome} onChange={e => setNome (e.target.value)}/>
@@ -60,7 +73,11 @@ function Cadastro(){
                     
                     <div className="Senha">
                         <label className="snh">Senha</label>
-                        <input className="input3" type="text" placeholder="Digite sua senha" value={senha} onChange={e =>setSenha (e.target.value)}/> 
+                        <input className="input3" type="password" placeholder="Digite sua senha"  value={senha} onChange={e =>setSenha (e.target.value)}/> 
+                    </div>  
+                    <div className="CSenha">
+                        <label className="confirmar"> Confirmar a Senha</label>
+                        <input className="input6" type="password" placeholder="Confirme a senha"  value={consenha} onChange={e =>setConsenha (e.target.value)}/> 
                     </div>  
                     
                     <div className="CPF">
