@@ -116,14 +116,21 @@ export default function CadastrarProduto(){
         try{
 
             const url='http://localhost:5000/produto/inserir';
-            let alterarCentavos='';
+
+            let alterarCentavos=precoCentavos;
+            let alterarTotal=precoTotal;
     
+            if(alterarTotal===undefined){
+
+                alterarTotal='0';
+            }
+
             if(precoCentavos===undefined){
 
                 alterarCentavos='00';
             }
 
-            let arrumarPreco= precoTotal+'.'+alterarCentavos;
+            let arrumarPreco= alterarTotal+'.'+alterarCentavos;
             
             let adicionarHorario=lancamento;
     
