@@ -69,7 +69,7 @@ export default function CabecalhoAdm(){
 
                 <Link to='/adm/cadastrar-produto' className='Link botao-menu-adm'>
                     <span>Cadastrar produto</span>
-                </Link>
+                </Link> 
 
                 <Link to='/adm/graficos' className='Link botao-menu-adm'>
                     <span>Análise de gráficos</span>
