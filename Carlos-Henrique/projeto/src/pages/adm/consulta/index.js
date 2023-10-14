@@ -2,6 +2,7 @@ import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
 import InputMask from 'react-input-mask';
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function PageConsultaAdm(){
 
@@ -20,6 +21,9 @@ export default function PageConsultaAdm(){
     const[semLancamento,setSemLancamento]=useState(false);
 
     const[dataEspecifica,setDataEspecifica]=useState('');
+
+    // Variável para guardar o valor dos produtos
+    const[produtos,setProdutos]=useState([]);
 
     // Para evitar que certos inputs sejam marcados ao mesmo tempo
     function alterarEstadoInputs(input){
@@ -72,8 +76,37 @@ export default function PageConsultaAdm(){
 
             setDataEspecifica('');
         }
+    }
 
+    async function listarProdutos(){
 
+        const url='http://localhost:5000/produto/consulta/adm';
+
+        let lancamentoEspecifico=false;
+
+        if(dataEspecifica!==''){
+
+            lancamentoEspecifico=true;
+        }
+
+        let filtros = {
+
+            semEstoque:semEstoque,
+            naoDisponivel:naoLancados,
+            semLancamento:semLancamento,
+            lancamentoEspecifico:lancamentoEspecifico,
+            dataEspecifica:dataEspecifica,
+
+            vendas:maisVendidos,
+            avaliacao:melhorAvaliados,
+            qtdFavoritos:maisFavoritados,
+            qtdEstoque:menorEstoque,
+            lancamento:maisRecentes
+        };
+
+        const resp=await axios.get(url,filtros);
+
+        setProdutos(resp.data);
     }
 
     return(
@@ -180,7 +213,7 @@ export default function PageConsultaAdm(){
                                 setNaoLancados(false);
                                 setSemLancamento(false)}}/>
 
-                            <button>Procurar</button>
+                            <input value='Procurar' type='button' onClick={listarProdutos} id='botao-procurar'/>
                         </div>
                         
 
@@ -191,9 +224,7 @@ export default function PageConsultaAdm(){
                 <table className='listagem-produtos'>
 
                     <thead>
-
                         <tr>
-
                             <th>ID</th>
                             <th>Capa</th>
                             <th>Nome</th>
@@ -211,7 +242,46 @@ export default function PageConsultaAdm(){
                         </tr>
                     </thead>
 
-                    <tbody></tbody>
+                    <tbody>
+
+                        {produtos.map(item => 
+                        
+                            <tr>
+
+                                <td>{item.ID}</td>
+
+                                <td>
+                                    <img src={item.Capa}/>
+                                </td>
+
+                                <td>{item.Nome}</td>
+
+                                <td>{item.Categoria}</td>
+
+                                <td>{item.Animal}</td>
+
+                                <td>{item.Vendas}</td>
+
+                                <td>{item.Estoque}</td>
+
+                                <td>{item.Preço}R$</td>
+
+                                <td>{item.Desconto===0 ? 'Sem desconto' : item.Desconto+'%'}</td>
+
+                                <td>{item.Disponível===1 ? 'Sim' : 'Não'}</td>
+
+                                <td>{item.Lançamento==='2099-01-01' ? 'Não disponível' : item.Lançamento}</td>
+
+                                <td>{item.Avaliação}</td>
+
+                                <td>{item.Adm}</td>
+                                
+                                <td>
+
+                                    <button>Ver produto</button>
+                                </td>
+                            </tr>)}
+                    </tbody>
                 </table>
             </section>
 
