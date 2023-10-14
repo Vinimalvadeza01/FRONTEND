@@ -1,7 +1,80 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
+import InputMask from 'react-input-mask';
+import { useState } from 'react';
 
-export default function pageConsultaAdm(){
+export default function PageConsultaAdm(){
+
+    // Variáveis para definir os valores para API e alterar o estado dos inputs de check para checked
+    const[semFiltro,setSemFiltro]=useState(true);
+
+    const[maisVendidos,setMaisVendidos]=useState(false);
+    const[melhorAvaliados,setMelhorAvaliados]=useState(false);
+    const[maisFavoritados,setMaisFavoritados]=useState(false);
+
+    const[semEstoque,setSemEstoque]=useState(false);
+    const[menorEstoque,setMenorEstoque]=useState(false);
+
+    const[maisRecentes,setMaisRecentes]=useState(false);
+    const[naoLancados,setNaoLancados]=useState(false);
+    const[semLancamento,setSemLancamento]=useState(false);
+
+    const[dataEspecifica,setDataEspecifica]=useState('');
+
+    // Para evitar que certos inputs sejam marcados ao mesmo tempo
+    function alterarEstadoInputs(input){
+
+        // Para quando clicar no input de "Sem filtro" desmarcar todos os outros
+        if(input===0){
+
+            setSemFiltro(true);
+
+            setMaisVendidos(false);
+            setMelhorAvaliados(false);
+            setMaisFavoritados(false);
+            setSemEstoque(false);
+            setMenorEstoque(false);
+            setMaisRecentes(false);
+            setNaoLancados(false);
+            setSemLancamento(false);
+            setDataEspecifica('');
+        }
+
+        // Para desmarcar o input de "Sem filtro" quando clicar nos outros
+        else if(input>0){
+
+            setSemFiltro(false);
+        }
+
+        // Para não haver conflito nos filtros de estoque
+        if(input===4){
+
+            setMenorEstoque(false);
+        }
+
+        else if(input===5){
+
+            setSemEstoque(false);
+        }
+
+        // Evitar conflitos nos filtros de data
+        if(input===6){
+
+            setNaoLancados(false);
+            setSemLancamento(false);
+
+            setDataEspecifica('');
+        }
+
+        else if(input===7||input===8){
+
+            setMaisRecentes(false);
+
+            setDataEspecifica('');
+        }
+
+
+    }
 
     return(
 
@@ -19,26 +92,127 @@ export default function pageConsultaAdm(){
 
                         <h4>Filtros Gerais</h4>
 
-                        <input type='checkbox'/>
+                        <div>
+                            <input type='checkbox' id='sem-filtro' checked={semFiltro ? 'checked' : ''} onChange={(e) => {
+                                alterarEstadoInputs(0)}}/>
+                            <label for='sem-filtro'>Sem filtro</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='mais-vendidos' checked={maisVendidos ? 'checked' : ''} onChange={(e) => {
+                                setMaisVendidos(e.target.checked); 
+                                alterarEstadoInputs(1)}}/>
+                            <label for='mais-vendidos'>Mais vendidos</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='melhor-avaliados' checked={melhorAvaliados ? 'checked' : ''} onChange={(e) => {
+                                setMelhorAvaliados(e.target.checked); 
+                                alterarEstadoInputs(2)}}/>
+                            <label for='melhor-avaliados'>Melhor avaliados</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='mais-favoritados' checked={maisFavoritados ? 'checked' : ''} onChange={(e) => {
+                                setMaisFavoritados(e.target.checked); 
+                                alterarEstadoInputs(3)}}/>
+                            <label for='mais-favoritados'>Mais favoritados</label>
+                        </div>
+
                     </div>
 
                     <div className='filtros-estoque'>
 
                         <h4>Filtros de Estoque</h4>
+
+                        <div>
+                            <input type='checkbox' id='sem-estoque' checked={semEstoque ? 'checked' : ''} onChange={(e) => {
+                                setSemEstoque(e.target.checked); 
+                                alterarEstadoInputs(4)}}/>
+                            <label for='sem-estoque'>Fora de estoque</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='menor-quantidade' checked={menorEstoque ? 'checked' : ''} onChange={(e) => {
+                                setMenorEstoque(e.target.checked); 
+                                alterarEstadoInputs(5)}}/>
+                            <label for='menor-quantidade'>Menor quantidade em estoque</label>
+                        </div>
+
                     </div>
 
                     <div className='filtros-data'>
 
                         <h4>Filtros por data</h4>
+
+                        <div>
+                            <input type='checkbox' id='recentes' checked={maisRecentes ? 'checked' : ''} onChange={(e) => {
+                                setMaisRecentes(e.target.checked); 
+                                alterarEstadoInputs(6)}}/>
+                            <label for='recentes'>Cadastrados recentemente</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='nao-lancados' checked={naoLancados ? 'checked' : ''} onChange={(e) => {
+                                setNaoLancados(e.target.checked); 
+                                alterarEstadoInputs(7)}}/>
+                            <label for='nao-lancados'>Não lançados</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='sem-data-lancamento' checked={semLancamento ? 'checked' : ''} onChange={(e) => {
+                                setSemLancamento(e.target.checked); 
+                                alterarEstadoInputs(8)}}/>
+                            <label for='sem-data-lancamento'>Sem data de lançamento</label>
+                        </div>
                     </div>
 
-                    <div className='filtros-selects'>
+                    <div className='filtros-especificos'>
 
                         <h4>Filtros específicos</h4>
+
+                        <label for='data-especifica'>Por data específica</label>
+
+                        <div>
+                            <InputMask mask="99/99/9999" maskChar=" " id='data-especifica' value={dataEspecifica} onChange={(e) => {
+                                setDataEspecifica(e.target.value);
+                                setMaisRecentes(false);
+                                setNaoLancados(false);
+                                setSemLancamento(false)}}/>
+
+                            <button>Procurar</button>
+                        </div>
+                        
+
+                        {/* Adicionar filtros por adm, animal e categoria na API e aqui*/}
                     </div>
                 </form>
 
-                <table className='listagem-produtos'></table>
+                <table className='listagem-produtos'>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Capa</th>
+                            <th>Nome</th>
+                            <th>Categoria</th>
+                            <th>Animal</th>
+                            <th>Vendas</th>
+                            <th>Estoque</th>
+                            <th>Preço</th>
+                            <th>Desconto</th>
+                            <th>Disponível</th>
+                            <th>Data de Lançamento</th>
+                            <th>Avaliação</th>
+                            <th>Cadastrado por</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+                </table>
             </section>
 
             <section className='section-clientes'></section>
