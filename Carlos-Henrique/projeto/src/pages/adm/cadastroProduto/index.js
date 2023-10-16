@@ -131,13 +131,6 @@ export default function CadastrarProduto(){
             }
 
             let arrumarPreco= alterarTotal+'.'+alterarCentavos;
-            
-            let adicionarHorario=lancamento;
-    
-            if(lancamento!=='2099-01-01 00:00:00'&&lancamento!==''){
-    
-                adicionarHorario=lancamento+' 00:00:00';
-            }
     
             let infsProduto={
     
@@ -149,7 +142,7 @@ export default function CadastrarProduto(){
                 preco:Number(arrumarPreco),
                 desconto:desconto,
                 disponivel:disponivel,
-                lancamento:adicionarHorario,
+                lancamento:lancamento,
                 estoque:estoque,
                 adm:admUser
             }
@@ -565,7 +558,7 @@ export default function CadastrarProduto(){
                                     <label for='input-data'>Selecione uma data para lançamento</label>
                                     <input id='input-data' type='date' value={lancamento} onChange={(e) => {setLancamento(e.target.value); setCorButton3('#F9F9F9');setCorFonteButton3('#3D5745')}}/>
 
-                                    <input value='Não desejo lançá-lo agora' type='button' onClick={() => {alterarInputsButton('Sem-lançamento'); setLancamento('2099-01-01 00:00:00')}} style={{backgroundColor:`${corButton3}`,color:`${corFonteButton3}`}}/>
+                                    <input value='Não desejo lançá-lo agora' type='button' onClick={() => {alterarInputsButton('Sem-lançamento'); setLancamento('2099-01-01')}} style={{backgroundColor:`${corButton3}`,color:`${corFonteButton3}`}}/>
                                 </div>
                             : ''
                             }

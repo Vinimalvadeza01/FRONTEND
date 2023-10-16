@@ -80,43 +80,53 @@ export default function PageConsultaAdm(){
 
     async function listarProdutos(){
 
-        const url='http://localhost:5000/produto/consulta/adm';
+        try{
 
-        let lancamentoEspecifico=false;
+            const url='http://localhost:5000/produto/consulta/adm';
 
-        if(dataEspecifica!==''){
+            let lancamentoEspecifico=false;
 
-            lancamentoEspecifico=true;
-        }
+            if(dataEspecifica!==''){
 
-        let filtros = {
+                lancamentoEspecifico=true;
+            }
 
-            semEstoque:semEstoque,
-            naoDisponivel:naoLancados,
-            semLancamento:semLancamento,
-            lancamentoEspecifico:lancamentoEspecifico,
-            dataEspecifica:dataEspecifica,
+            let filtros = {
 
-            vendas:maisVendidos,
-            avaliacao:melhorAvaliados,
-            qtdFavoritos:maisFavoritados,
-            qtdEstoque:menorEstoque,
-            lancamento:maisRecentes
+                semEstoque:semEstoque,
+
+                maisVendidos:maisVendidos,
+                melhorAvaliados:melhorAvaliados,
+                maisFavoritados:maisFavoritados,
+                
+
+                menorEstoque:menorEstoque,
+                
+                maisRecentes:maisRecentes,
+                naoLancados:naoLancados,
+                semLancamento:setSemLancamento,
+                
+                lancamentoEspecifico:lancamentoEspecifico,
+                dataEspecifica:dataEspecifica
         };
 
-        console.log(filtros);
-        const resp=await axios.get(url,filtros);
-        console.log(resp);
+            const resp=await axios.post(url,filtros);
 
-        setProdutos(resp.data);
+            setProdutos(resp.data);
+        }
+
+        catch(err){
+
+            alert('Ocorreu um erro ao tentar listar os produtos, tente novamente mais tarde');
+        }
     }
 
     // Chamada da API ao carregar a página
     useEffect(() => {
 
-        listarProdutos();
+         listarProdutos();
 
-    }, [semFiltro,maisVendidos,melhorAvaliados,maisFavoritados,semEstoque,menorEstoque,maisRecentes,naoLancados,semLancamento,dataEspecifica]);
+    }, [semFiltro,maisVendidos,melhorAvaliados,maisFavoritados,semEstoque,menorEstoque,maisRecentes,naoLancados,semLancamento]);
 
     return(
 
@@ -216,7 +226,7 @@ export default function PageConsultaAdm(){
                             <label for='data-especifica'>Por data específica</label>
 
                             <div>
-                                <InputMask mask="99/99/9999" maskChar=" " id='data-especifica' value={dataEspecifica} onChange={(e) => {
+                                <input type='date' id='data-especifica' value={dataEspecifica} onChange={(e) => {
                                     setDataEspecifica(e.target.value);
                                     setMaisRecentes(false);
                                     setNaoLancados(false);
@@ -248,6 +258,7 @@ export default function PageConsultaAdm(){
                             <th>Disponível</th>
                             <th>Data de Lançamento</th>
                             <th>Avaliação</th>
+                            <th>Favoritos</th>
                             <th>Cadastrado por</th>
                             <th>Ações</th>
                         </tr>
@@ -284,6 +295,8 @@ export default function PageConsultaAdm(){
                                 <td>{item.Lançamento==='2099-01-01' ? 'Não disponível' : item.Lançamento}</td>
 
                                 <td>{item.Avaliação}</td>
+
+                                <td>{item.Favoritos}</td>
 
                                 <td>{item.Adm}</td>
                                 

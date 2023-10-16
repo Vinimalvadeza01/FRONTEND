@@ -153,6 +153,9 @@
             border-spacing: 0;
 
             width:100%;
+            max-height:40vh;
+
+            overflow-y: scroll;
 
             background-color: #EEF1DC;
             border:1px solid #3D5745;
@@ -170,6 +173,15 @@
                 padding:10px;
                 border: 1px solid #3D5745;
                 text-align:center;
+
+                button{
+
+                    padding:5px;
+
+                    background-color: #619853;
+                    border-radius:5px;
+                    color:#fff;
+                }
             }
         }
     }
