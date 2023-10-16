@@ -84,7 +84,7 @@ export default function CadastrarProduto(){
 
         catch(err){
 
-            alert(err.response.data.erro);
+            alert('Não foi possível listar as categorias, recarregue a página e tente novamente');
         }
     }
 
@@ -101,7 +101,7 @@ export default function CadastrarProduto(){
 
         catch(err){
 
-            alert(err.response.data.erro);
+            alert('Não foi possível listar os animais, recarregue a página e tente novamente');
         }
     }
 

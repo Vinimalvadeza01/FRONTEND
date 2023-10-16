@@ -1,7 +1,7 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
 import InputMask from 'react-input-mask';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function PageConsultaAdm(){
@@ -104,10 +104,19 @@ export default function PageConsultaAdm(){
             lancamento:maisRecentes
         };
 
+        console.log(filtros);
         const resp=await axios.get(url,filtros);
+        console.log(resp);
 
         setProdutos(resp.data);
     }
+
+    // Chamada da API ao carregar a página
+    useEffect(() => {
+
+        listarProdutos();
+
+    }, [semFiltro,maisVendidos,melhorAvaliados,maisFavoritados,semEstoque,menorEstoque,maisRecentes,naoLancados,semLancamento,dataEspecifica]);
 
     return(
 
@@ -121,108 +130,110 @@ export default function PageConsultaAdm(){
 
                     <h3>Filtros</h3>
 
-                    <div className='filtros-gerais'>
+                    <div className='container-filtro'>
 
-                        <h4>Filtros Gerais</h4>
+                        <div className='filtros-gerais'>
 
-                        <div>
-                            <input type='checkbox' id='sem-filtro' checked={semFiltro ? 'checked' : ''} onChange={(e) => {
-                                alterarEstadoInputs(0)}}/>
-                            <label for='sem-filtro'>Sem filtro</label>
+                            <h4>Filtros Gerais</h4>
+
+                            <div>
+                                <input type='checkbox' id='sem-filtro' checked={semFiltro ? 'checked' : ''} onChange={(e) => {
+                                    alterarEstadoInputs(0)}}/>
+                                <label for='sem-filtro'>Sem filtro</label>
+                            </div>
+
+                            <div>
+                                <input type='checkbox' id='mais-vendidos' checked={maisVendidos ? 'checked' : ''} onChange={(e) => {
+                                    setMaisVendidos(e.target.checked); 
+                                    alterarEstadoInputs(1)}}/>
+                                <label for='mais-vendidos'>Mais vendidos</label>
+                            </div>
+
+                            <div>
+                                <input type='checkbox' id='melhor-avaliados' checked={melhorAvaliados ? 'checked' : ''} onChange={(e) => {
+                                    setMelhorAvaliados(e.target.checked); 
+                                    alterarEstadoInputs(2)}}/>
+                                <label for='melhor-avaliados'>Melhor avaliados</label>
+                            </div>
+
+                            <div>
+                                <input type='checkbox' id='mais-favoritados' checked={maisFavoritados ? 'checked' : ''} onChange={(e) => {
+                                    setMaisFavoritados(e.target.checked); 
+                                    alterarEstadoInputs(3)}}/>
+                                <label for='mais-favoritados'>Mais favoritados</label>
+                            </div>
                         </div>
 
-                        <div>
-                            <input type='checkbox' id='mais-vendidos' checked={maisVendidos ? 'checked' : ''} onChange={(e) => {
-                                setMaisVendidos(e.target.checked); 
-                                alterarEstadoInputs(1)}}/>
-                            <label for='mais-vendidos'>Mais vendidos</label>
+                        <div className='filtros-estoque'>
+
+                            <h4>Filtros de Estoque</h4>
+
+                            <div>
+                                <input type='checkbox' id='sem-estoque' checked={semEstoque ? 'checked' : ''} onChange={(e) => {
+                                    setSemEstoque(e.target.checked); 
+                                    alterarEstadoInputs(4)}}/>
+                                <label for='sem-estoque'>Fora de estoque</label>
+                            </div>
+
+                            <div>
+                                <input type='checkbox' id='menor-quantidade' checked={menorEstoque ? 'checked' : ''} onChange={(e) => {
+                                    setMenorEstoque(e.target.checked); 
+                                    alterarEstadoInputs(5)}}/>
+                                <label for='menor-quantidade'>Menor quantidade em estoque</label>
+                            </div>
                         </div>
 
-                        <div>
-                            <input type='checkbox' id='melhor-avaliados' checked={melhorAvaliados ? 'checked' : ''} onChange={(e) => {
-                                setMelhorAvaliados(e.target.checked); 
-                                alterarEstadoInputs(2)}}/>
-                            <label for='melhor-avaliados'>Melhor avaliados</label>
+                        <div className='filtros-data'>
+
+                            <h4>Filtros por data</h4>
+
+                            <div>
+                                <input type='checkbox' id='recentes' checked={maisRecentes ? 'checked' : ''} onChange={(e) => {
+                                    setMaisRecentes(e.target.checked); 
+                                    alterarEstadoInputs(6)}}/>
+                                <label for='recentes'>Cadastrados recentemente</label>
+                            </div>
+
+                            <div>
+                                <input type='checkbox' id='nao-lancados' checked={naoLancados ? 'checked' : ''} onChange={(e) => {
+                                    setNaoLancados(e.target.checked); 
+                                    alterarEstadoInputs(7)}}/>
+                                <label for='nao-lancados'>Não lançados</label>
+                            </div>
+
+                            <div>
+                                <input type='checkbox' id='sem-data-lancamento' checked={semLancamento ? 'checked' : ''} onChange={(e) => {
+                                    setSemLancamento(e.target.checked); 
+                                    alterarEstadoInputs(8)}}/>
+                                <label for='sem-data-lancamento'>Sem data de lançamento</label>
+                            </div>
                         </div>
 
-                        <div>
-                            <input type='checkbox' id='mais-favoritados' checked={maisFavoritados ? 'checked' : ''} onChange={(e) => {
-                                setMaisFavoritados(e.target.checked); 
-                                alterarEstadoInputs(3)}}/>
-                            <label for='mais-favoritados'>Mais favoritados</label>
+                        <div className='filtros-especificos'>
+
+                            <h4>Filtros específicos</h4>
+
+                            <label for='data-especifica'>Por data específica</label>
+
+                            <div>
+                                <InputMask mask="99/99/9999" maskChar=" " id='data-especifica' value={dataEspecifica} onChange={(e) => {
+                                    setDataEspecifica(e.target.value);
+                                    setMaisRecentes(false);
+                                    setNaoLancados(false);
+                                    setSemLancamento(false)}}/>
+
+                                <input value='Procurar' type='button' onClick={listarProdutos} id='botao-procurar'/>
+                            </div>
+
+                            {/* Adicionar filtros por adm, animal e categoria na API e aqui*/}
                         </div>
-
-                    </div>
-
-                    <div className='filtros-estoque'>
-
-                        <h4>Filtros de Estoque</h4>
-
-                        <div>
-                            <input type='checkbox' id='sem-estoque' checked={semEstoque ? 'checked' : ''} onChange={(e) => {
-                                setSemEstoque(e.target.checked); 
-                                alterarEstadoInputs(4)}}/>
-                            <label for='sem-estoque'>Fora de estoque</label>
-                        </div>
-
-                        <div>
-                            <input type='checkbox' id='menor-quantidade' checked={menorEstoque ? 'checked' : ''} onChange={(e) => {
-                                setMenorEstoque(e.target.checked); 
-                                alterarEstadoInputs(5)}}/>
-                            <label for='menor-quantidade'>Menor quantidade em estoque</label>
-                        </div>
-
-                    </div>
-
-                    <div className='filtros-data'>
-
-                        <h4>Filtros por data</h4>
-
-                        <div>
-                            <input type='checkbox' id='recentes' checked={maisRecentes ? 'checked' : ''} onChange={(e) => {
-                                setMaisRecentes(e.target.checked); 
-                                alterarEstadoInputs(6)}}/>
-                            <label for='recentes'>Cadastrados recentemente</label>
-                        </div>
-
-                        <div>
-                            <input type='checkbox' id='nao-lancados' checked={naoLancados ? 'checked' : ''} onChange={(e) => {
-                                setNaoLancados(e.target.checked); 
-                                alterarEstadoInputs(7)}}/>
-                            <label for='nao-lancados'>Não lançados</label>
-                        </div>
-
-                        <div>
-                            <input type='checkbox' id='sem-data-lancamento' checked={semLancamento ? 'checked' : ''} onChange={(e) => {
-                                setSemLancamento(e.target.checked); 
-                                alterarEstadoInputs(8)}}/>
-                            <label for='sem-data-lancamento'>Sem data de lançamento</label>
-                        </div>
-                    </div>
-
-                    <div className='filtros-especificos'>
-
-                        <h4>Filtros específicos</h4>
-
-                        <label for='data-especifica'>Por data específica</label>
-
-                        <div>
-                            <InputMask mask="99/99/9999" maskChar=" " id='data-especifica' value={dataEspecifica} onChange={(e) => {
-                                setDataEspecifica(e.target.value);
-                                setMaisRecentes(false);
-                                setNaoLancados(false);
-                                setSemLancamento(false)}}/>
-
-                            <input value='Procurar' type='button' onClick={listarProdutos} id='botao-procurar'/>
-                        </div>
-                        
-
-                        {/* Adicionar filtros por adm, animal e categoria na API e aqui*/}
                     </div>
                 </form>
 
-                <table className='listagem-produtos'>
+                <h3 id='titulo-listagem'>Listagem de Produtos</h3>
 
+                <table className='listagem-produtos'>
+                    
                     <thead>
                         <tr>
                             <th>ID</th>
