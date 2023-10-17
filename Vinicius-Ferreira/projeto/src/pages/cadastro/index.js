@@ -12,50 +12,24 @@ function Cadastro(){
     const [senha, setSenha]= useState('');
     const [cpf, setCpf]= useState('');
     const [datanasc, setDatanasc]= useState('');
-    const [erro, setErro]= useState('teste')
+    const [erro, setErro]= useState('')
 
     const navigate = useNavigate()
 
 
     async function entrarClick(){
 
-        try {
-
-            if (datanasc === '') {
-                setErro('A data de nascimento é obrigatória.');
-                return;
-            }
-
-            const url='http://localhost:5000/cliente';
-
-            const dataParts = datanasc.split('/'); // Divide a data em partes
-
-            if (dataParts.length !== 3) {
-                setErro('A data de nascimento deve estar no formato DD/MM/AAAA.');
-                return;
-            }
-
-            const dataFormatada = dataParts[2] + '-' + dataParts[1] + '-' + dataParts[0]; // Formato "AAAA-MM-DD";
-            const formatarCPF = cpf.replace(/\D/g, '');
-
-            console.log(dataFormatada);
-
-            let cliente={
-
-                nome: Nome,
-                email: email,
-                cpf: formatarCPF,
-                nasc: dataFormatada,
-                senha: senha
-            }
-
-            console.log(cliente);
-
-            let response = await axios.post(url,cliente);
+        let response = await axios.post ('http://localhost:5000/cliente',{ nome: Nome,
+        email: email,
+        senha: senha,
+        cpf: cpf,
+        datanasc: datanasc 
+    });
+        if (response==401) {
+            setErro(response.data.erro)
         }
-
-        catch(err){
-            console.log(err);
+        else{
+            navigate('./')
         }
     }
   
@@ -63,7 +37,7 @@ function Cadastro(){
         <section className='Page-Cadastro'>
             <Cabecalho/>
             <div className='Conteudo'>
-                    <h1>CRIAR SUA CONTA</h1>
+                    <h1 className='Titulo'>CRIAR SUA CONTA</h1>
                     <div className="Nome">
                         <label className="nm">Nome Completo</label>
                         <input className="input1" type="text" placeholder="Digite seu nome completo" value={Nome} onChange={e => setNome (e.target.value)}/>
@@ -83,7 +57,7 @@ function Cadastro(){
                     
                     <div className="Senha">
                         <label className="snh">Senha</label>
-                        <input className="input3" type="password" placeholder="Digite sua senha" value={senha} onChange={e =>setSenha (e.target.value)}/> 
+                        <input className="input3" type="text" placeholder="Digite sua senha" value={senha} onChange={e =>setSenha (e.target.value)}/> 
                     </div>  
                     
                     <div className="CPF">

@@ -84,7 +84,7 @@ export default function CadastrarProduto(){
 
         catch(err){
 
-            alert(err.response.data.erro);
+            alert('Não foi possível listar as categorias, recarregue a página e tente novamente');
         }
     }
 
@@ -101,7 +101,7 @@ export default function CadastrarProduto(){
 
         catch(err){
 
-            alert(err.response.data.erro);
+            alert('Não foi possível listar os animais, recarregue a página e tente novamente');
         }
     }
 
@@ -116,21 +116,21 @@ export default function CadastrarProduto(){
         try{
 
             const url='http://localhost:5000/produto/inserir';
-            let alterarCentavos='';
+
+            let alterarCentavos=precoCentavos;
+            let alterarTotal=precoTotal;
     
+            if(alterarTotal===undefined){
+
+                alterarTotal='0';
+            }
+
             if(precoCentavos===undefined){
 
                 alterarCentavos='00';
             }
 
-            let arrumarPreco= precoTotal+'.'+alterarCentavos;
-            
-            let adicionarHorario=lancamento;
-    
-            if(lancamento!=='2099-01-01 00:00:00'&&lancamento!==''){
-    
-                adicionarHorario=lancamento+' 00:00:00';
-            }
+            let arrumarPreco= alterarTotal+'.'+alterarCentavos;
     
             let infsProduto={
     
@@ -142,7 +142,7 @@ export default function CadastrarProduto(){
                 preco:Number(arrumarPreco),
                 desconto:desconto,
                 disponivel:disponivel,
-                lancamento:adicionarHorario,
+                lancamento:lancamento,
                 estoque:estoque,
                 adm:admUser
             }
@@ -558,7 +558,7 @@ export default function CadastrarProduto(){
                                     <label for='input-data'>Selecione uma data para lançamento</label>
                                     <input id='input-data' type='date' value={lancamento} onChange={(e) => {setLancamento(e.target.value); setCorButton3('#F9F9F9');setCorFonteButton3('#3D5745')}}/>
 
-                                    <input value='Não desejo lançá-lo agora' type='button' onClick={() => {alterarInputsButton('Sem-lançamento'); setLancamento('2099-01-01 00:00:00')}} style={{backgroundColor:`${corButton3}`,color:`${corFonteButton3}`}}/>
+                                    <input value='Não desejo lançá-lo agora' type='button' onClick={() => {alterarInputsButton('Sem-lançamento'); setLancamento('2099-01-01')}} style={{backgroundColor:`${corButton3}`,color:`${corFonteButton3}`}}/>
                                 </div>
                             : ''
                             }
