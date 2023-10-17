@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Alef&family=Aoboshi+One&family=Inter&family=Josefin+Sans&family=Merriweather+Sans&family=Righteous&display=swap');
+
+// Fontes a ser usadas:
+// font-family: 'Alef', sans-serif;
+// font-family: 'Aoboshi One', serif;
+// font-family: 'Inter', sans-serif;
+// font-family: 'Josefin Sans', sans-serif;
+// font-family: 'Merriweather Sans', sans-serif;
+// font-family: 'Righteous', cursive;
+
+*{
+
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+// Títulos com fonte righteous automático
+h1,h2,h3,h4,h5,h6{
+
+  font-family: 'Righteous', cursive;
+}
+
+// Colocar uma classe .Link para todas as tags links do react-router-dom
+a,button,.Link,input[type=button]{
+
+  cursor:pointer;
+}
+
+.Link{
+
+  text-decoration: none;
+  color:#fff;
+}
+
+input{
+
+  border:none;
+}
+
+textarea:focus, input:focus, select:focus {
+  box-shadow: 0 0 0 0;
+  border: 0 none;
+  outline: 0;
+} 
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button{
+
+  -webkit-appearance: none;
+  margin:0;
+}
