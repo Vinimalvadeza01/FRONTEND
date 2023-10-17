@@ -11,7 +11,7 @@
     .center{
         background-color: #EBFBE9;
         width: 60%;
-        height: 110vh;
+        height: 120vh;
         align-items: center;
 
         .menu-alt{
@@ -79,7 +79,7 @@
 
         }
 
-        .info{
+         .info{
 
             width: 100%;
             display: flex;
@@ -91,6 +91,7 @@
                 display: flex;
                 flex-direction: column;
                 padding: 10px;
+                padding-left: 20px;
                 font-size: 18px;
 
                 label{
@@ -99,10 +100,10 @@
                 }
 
                 .input1{
-                    width: 50%;
+                    width: 100%;
                     height: 30px;
                     font-size: 18px;
-                    padding-left: 5px;
+                    padding-left: 20px;
                     border-radius: 5px;
 
                 }
@@ -112,6 +113,7 @@
                 display: flex;
                 flex-direction: column;
                 padding: 10px;
+                padding-left: 20px;
                 font-size: 18px;
 
                 label{
@@ -120,10 +122,10 @@
                 }
 
                 .input2{
-                    width: 50%;
+                    width: 100%;
                     height: 30px;
                     font-size: 18px;
-                    padding-left: 5px;
+                    padding-left: 20px;
                     border-radius: 5px;
 
                 }
@@ -133,6 +135,7 @@
                 display: flex;
                 flex-direction: column;
                 padding: 10px;
+                padding-left: 20px;
                 font-size: 18px;
 
 
@@ -142,10 +145,10 @@
                 }
 
                 .input3{
-                    width: 100%;
+                    width: 40%;
                     height: 30px;
                     font-size: 18px;
-                    padding-left: 5px;
+                    padding-left: 20px;
                     border-radius: 5px;
 
                 }
@@ -155,8 +158,9 @@
                 display: flex;
                 flex-direction: column;
                 padding: 10px;
+                padding-left: 20px;
                 font-size: 18px;
-                align-items: center;
+
 
                 label{
                     padding-bottom: 4px;
@@ -164,10 +168,10 @@
                 }
 
                 .input4{
-                    width: 70%;
+                    width: 40%;
                     height: 30px;
                     font-size: 18px;
-                    padding-left: 5px;
+                    padding-left: 20px;
                     border-radius: 5px;
 
                 }
