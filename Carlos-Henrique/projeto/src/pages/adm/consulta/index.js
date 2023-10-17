@@ -1,6 +1,5 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
-import InputMask from 'react-input-mask';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -79,12 +78,13 @@ export default function PageConsultaAdm(){
     }
 
     async function listarProdutos(){
-
+         
         try{
 
             const url='http://localhost:5000/produto/consulta/adm';
 
             let lancamentoEspecifico=false;
+            let formatarData='';
 
             if(dataEspecifica!==''){
 
@@ -93,21 +93,16 @@ export default function PageConsultaAdm(){
 
             let filtros = {
 
-                semEstoque:semEstoque,
-
                 maisVendidos:maisVendidos,
                 melhorAvaliados:melhorAvaliados,
                 maisFavoritados:maisFavoritados,
                 
-
+                semEstoque:semEstoque,
                 menorEstoque:menorEstoque,
                 
                 maisRecentes:maisRecentes,
                 naoLancados:naoLancados,
-                semLancamento:setSemLancamento,
-                
-                lancamentoEspecifico:lancamentoEspecifico,
-                dataEspecifica:dataEspecifica
+                semLancamento:semLancamento,
         };
 
             const resp=await axios.post(url,filtros);
@@ -223,18 +218,6 @@ export default function PageConsultaAdm(){
 
                             <h4>Filtros específicos</h4>
 
-                            <label for='data-especifica'>Por data específica</label>
-
-                            <div>
-                                <input type='date' id='data-especifica' value={dataEspecifica} onChange={(e) => {
-                                    setDataEspecifica(e.target.value);
-                                    setMaisRecentes(false);
-                                    setNaoLancados(false);
-                                    setSemLancamento(false)}}/>
-
-                                <input value='Procurar' type='button' onClick={listarProdutos} id='botao-procurar'/>
-                            </div>
-
                             {/* Adicionar filtros por adm, animal e categoria na API e aqui*/}
                         </div>
                     </div>
@@ -292,7 +275,7 @@ export default function PageConsultaAdm(){
 
                                 <td>{item.Disponível===1 ? 'Sim' : 'Não'}</td>
 
-                                <td>{item.Lançamento==='2099-01-01' ? 'Não disponível' : item.Lançamento}</td>
+                                <td>{item.Lançamento.substr(0, 10)}</td>
 
                                 <td>{item.Avaliação}</td>
 
