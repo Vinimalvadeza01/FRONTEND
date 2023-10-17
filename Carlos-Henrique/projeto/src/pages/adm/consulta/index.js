@@ -93,13 +93,11 @@ export default function PageConsultaAdm(){
 
             let filtros = {
 
-                semEstoque:semEstoque,
-
                 maisVendidos:maisVendidos,
                 melhorAvaliados:melhorAvaliados,
                 maisFavoritados:maisFavoritados,
                 
-
+                semEstoque:semEstoque,
                 menorEstoque:menorEstoque,
                 
                 maisRecentes:maisRecentes,
@@ -228,6 +226,7 @@ export default function PageConsultaAdm(){
                             <div>
                                 <input type='date' id='data-especifica' value={dataEspecifica} onChange={(e) => {
                                     setDataEspecifica(e.target.value);
+                                    setSemFiltro(false);
                                     setMaisRecentes(false);
                                     setNaoLancados(false);
                                     setSemLancamento(false)}}/>
@@ -292,7 +291,7 @@ export default function PageConsultaAdm(){
 
                                 <td>{item.Disponível===1 ? 'Sim' : 'Não'}</td>
 
-                                <td>{item.Lançamento==='2099-01-01' ? 'Não disponível' : item.Lançamento}</td>
+                                <td>{}</td>
 
                                 <td>{item.Avaliação}</td>
 
