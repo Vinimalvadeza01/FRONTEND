@@ -5,8 +5,6 @@ import { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
-
-
 function Cadastro(){
 
     const [Nome, setNome]= useState('');
@@ -14,28 +12,53 @@ function Cadastro(){
     const [senha, setSenha]= useState('');
     const [cpf, setCpf]= useState('');
     const [datanasc, setDatanasc]= useState('');
-    const [erro, setErro]= useState('')
+    const [erro, setErro]= useState('teste')
 
     const navigate = useNavigate()
 
 
     async function entrarClick(){
 
-        let response = await axios.post ('http://localhost:5000/cliente',{ nome: Nome,
-        email: email,
-        senha: senha,
-        cpf: cpf,
-        datanasc: datanasc 
-    });
-        if (response==401) {
-            setErro(response.data.erro)
+        try {
+
+            if (datanasc === '') {
+                setErro('A data de nascimento é obrigatória.');
+                return;
+            }
+
+            const url='http://localhost:5000/cliente';
+
+            const dataParts = datanasc.split('/'); // Divide a data em partes
+
+            if (dataParts.length !== 3) {
+                setErro('A data de nascimento deve estar no formato DD/MM/AAAA.');
+                return;
+            }
+
+            const dataFormatada = dataParts[2] + '-' + dataParts[1] + '-' + dataParts[0]; // Formato "AAAA-MM-DD";
+            const formatarCPF = cpf.replace(/\D/g, '');
+
+            console.log(dataFormatada);
+
+            let cliente={
+
+                nome: Nome,
+                email: email,
+                cpf: formatarCPF,
+                nasc: dataFormatada,
+                senha: senha
+            }
+
+            console.log(cliente);
+
+            let response = await axios.post(url,cliente);
         }
-        else{
-            navigate('./')
+
+        catch(err){
+            console.log(err);
         }
     }
   
-
     return(
         <section className='Page-Cadastro'>
             <Cabecalho/>
@@ -49,7 +72,7 @@ function Cadastro(){
                     <div className="e-mail">
                         <label className="email">E-mail</label>
                         <InputMask
-                             mask="(99) 9999-9999"
+                             mask="(99) 99999-9999"
                              className='input1'
                              type="text"
                              placeholder="(99) 9999-9999"
@@ -60,7 +83,7 @@ function Cadastro(){
                     
                     <div className="Senha">
                         <label className="snh">Senha</label>
-                        <input className="input3" type="text" placeholder="Digite sua senha" value={senha} onChange={e =>setSenha (e.target.value)}/> 
+                        <input className="input3" type="password" placeholder="Digite sua senha" value={senha} onChange={e =>setSenha (e.target.value)}/> 
                     </div>  
                     
                     <div className="CPF">
@@ -84,9 +107,11 @@ function Cadastro(){
                     <div>
                     <button className="botao" onClick={entrarClick}>Confirmar</button>
                     </div>
-                    <div>
+                    <p id='mensagem-erro'>
                         {erro}
-                    </div>
+                    </p>
+
+                   
             </div>
             
         </section>
