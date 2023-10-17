@@ -3,7 +3,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import './index.scss';
 import { useState } from 'react';
 import Cabecalho from '../../components/cabecalho';
-
+import Rodape from '../../components/rodape'
 
 
 export default function Login() { 
@@ -71,9 +71,8 @@ export default function Login() {
         </div>
         </div>
         </section>  
-
-    </div>
+          <Rodape/>
+          </div>
   );
 
   }
-

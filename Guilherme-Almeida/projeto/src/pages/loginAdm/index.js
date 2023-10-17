@@ -21,17 +21,17 @@ function App() {
             </div>
                 <h1>VegLogin</h1>
                 
-            <div className="nome">
-
-              <label>Nome de Administrador</label>
-              <input type="text" placeholder="Digite o nome de Administrador"></input>          
+                
+            <div className="nome">              
+            <label>Nome de Administrador</label>
+              <input type="text" placeholder="Digite o nome de Administrador"/>      
             </div>  
 
             
             <div className="senhaAdm">
           
           <label>Senha</label>
-            <input type="password" placeholder="Digite a senha"></input>          
+            <input type="password" placeholder="Digite a senha"/>        
             </div>
             <div> 
             <button className="botao">Entrar</button>          

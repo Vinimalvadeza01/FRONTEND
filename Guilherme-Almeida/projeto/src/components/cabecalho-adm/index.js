@@ -8,7 +8,7 @@ export default function CabecalhoAdm() {
 
     return (
 
-        <header className='cabecalho'>
+        <header className='cabecalho-adm'>
 
             <img src='/assets/images/logo.png' alt='logo' id='logo' />
 
