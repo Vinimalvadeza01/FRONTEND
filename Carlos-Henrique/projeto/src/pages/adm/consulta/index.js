@@ -284,7 +284,6 @@ export default function PageConsultaAdm(){
                                 <td>{item.Adm}</td>
                                 
                                 <td>
-
                                     <button>Ver produto</button>
                                 </td>
                             </tr>)}
