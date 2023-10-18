@@ -1,9 +1,35 @@
+import axios from 'axios'
 import './index.scss';
+import {useNavigate} from 'react-router-dom'
 import CabecalhoAdm from '../../components/cabecalho-adm';
 import SectionDecoration from '../../components/section-decoration';
+import { useState } from 'react';
 
+export default function LoginAdm (){
+  const[usuario, setUsuario] = useState('');
+  const[senhaAdm, setSenhaAdm] = useState('');
+  const[erro, setErro] = useState ('');
 
-function App() {
+  const navigate = useNavigate ();
+
+  async function entrarClick(){
+
+    try{ 
+      const r =  await axios.post('http://localhost:5000/adm/login', {
+        usuario: usuario  ,
+        senhaAdm: senhaAdm 
+      });
+
+      
+      navigate('/')
+    } 
+     
+    catch (err){  
+
+      setErro(err.response.data.erro);
+    }
+
+}
     return (
       <div className="pagina-login-adm">
         
@@ -24,27 +50,30 @@ function App() {
                 
             <div className="nome">              
             <label>Nome de Administrador</label>
-              <input type="text" placeholder="Digite o nome de Administrador"/>      
+              <input type="text" placeholder="Digite o nome de Administrador" value={usuario} onChange={e => setUsuario(e.target.value)}/>      
             </div>  
 
             
             <div className="senhaAdm">
           
           <label>Senha</label>
-            <input type="password" placeholder="Digite a senha"/>        
+            <input type="password" placeholder="Digite a senha" value={senhaAdm} onChange={e => setSenhaAdm(e.target.value)}/>        
             </div>
             <div> 
-            <button className="botao">Entrar</button>          
+            <button className="botao" onClick={entrarClick}>Entrar</button>          
             </div>
-          </div>
+            <div className='form-entrar-invalido'>
+          <span> {erro} </span>
 
-          <div></div>
+          <div id='alinhar-between'></div>
+          </div>
+          </div>
+          
         </section>  
        <div className="Rotape"></div>
   
       </div>
-    );
-  }
-  
-  export default App;
+    )
+    };
+
   
