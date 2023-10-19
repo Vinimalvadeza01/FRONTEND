@@ -1,5 +1,6 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
+import CardProduto from '../../../components/consultaProduto';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -251,42 +252,44 @@ export default function PageConsultaAdm(){
 
                         {produtos.map(item => 
                         
-                            <tr>
+                            <CardProduto nome={item.Nome}/>
+                            // <tr>
 
-                                <td>{item.ID}</td>
+                            //     <td>{item.ID}</td>
 
-                                <td>
-                                    <img src={item.Capa}/>
-                                </td>
+                            //     <td>
+                            //         <img src={item.Capa}/>
+                            //     </td>
 
-                                <td>{item.Nome}</td>
+                            //     <td>{item.Nome}</td>
 
-                                <td>{item.Categoria}</td>
+                            //     <td>{item.Categoria}</td>
 
-                                <td>{item.Animal}</td>
+                            //     <td>{item.Animal}</td>
 
-                                <td>{item.Vendas}</td>
+                            //     <td>{item.Vendas}</td>
 
-                                <td>{item.Estoque}</td>
+                            //     <td>{item.Estoque}</td>
 
-                                <td>{item.Preço}R$</td>
+                            //     <td>{item.Preço}R$</td>
 
-                                <td>{item.Desconto===0 ? 'Sem desconto' : item.Desconto+'%'}</td>
+                            //     <td>{item.Desconto===0 ? 'Sem desconto' : item.Desconto+'%'}</td>
 
-                                <td>{item.Disponível===1 ? 'Sim' : 'Não'}</td>
+                            //     <td>{item.Disponível===1 ? 'Sim' : 'Não'}</td>
 
-                                <td>{item.Lançamento.substr(0, 10)}</td>
+                            //     <td>{item.Lançamento.substr(0, 10)}</td>
 
-                                <td>{item.Avaliação}</td>
+                            //     <td>{item.Avaliação}</td>
 
-                                <td>{item.Favoritos}</td>
+                            //     <td>{item.Favoritos}</td>
 
-                                <td>{item.Adm}</td>
+                            //     <td>{item.Adm}</td>
                                 
-                                <td>
-                                    <button>Ver produto</button>
-                                </td>
-                            </tr>)}
+                            //     <td>
+                            //         <button>Ver produto</button>
+                            //     </td>
+                            // </tr>
+                            )}
                     </tbody>
                 </table>
             </section>
