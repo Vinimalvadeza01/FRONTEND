@@ -142,46 +142,26 @@
             }
         }
 
-        #titulo-listagem{
-
-            font-size:24px;
-        }
-
-        .listagem-produtos{
-
-            border-collapse: separate;
-            border-spacing: 0;
+        .secao-listar-produtos{
 
             width:100%;
-            max-height:40vh;
+            max-height:60vh;
 
             overflow-y: scroll;
 
-            background-color: #EEF1DC;
-            border:1px solid #3D5745;
+            #titulo-listagem{
 
-            thead tr th{
-
-                padding:10px;
-                border: 1px solid #3D5745;
-                font-size:16px;
+                font-size:24px;
             }
 
-            tbody tr td{
+            .container-listar-produtos{
 
-                font-size:14px;
-                padding:10px;
-                border: 1px solid #3D5745;
-                text-align:center;
+                display:flex;
+                flex-direction: row;
 
-                button{
+                width:100%;
 
-                    padding:5px;
-
-                    background-color: #619853;
-                    border-radius:5px;
-                    color:#fff;
-                }
+                gap:30px;
             }
         }
     }

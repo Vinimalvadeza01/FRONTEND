@@ -224,74 +224,25 @@ export default function PageConsultaAdm(){
                     </div>
                 </form>
 
-                <h3 id='titulo-listagem'>Listagem de Produtos</h3>
+                <section className='secao-listar-produtos'>
 
-                <table className='listagem-produtos'>
-                    
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Capa</th>
-                            <th>Nome</th>
-                            <th>Categoria</th>
-                            <th>Animal</th>
-                            <th>Vendas</th>
-                            <th>Estoque</th>
-                            <th>Preço</th>
-                            <th>Desconto</th>
-                            <th>Disponível</th>
-                            <th>Data de Lançamento</th>
-                            <th>Avaliação</th>
-                            <th>Favoritos</th>
-                            <th>Cadastrado por</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
+                    <h3 id='titulo-listagem'>Listagem de Produtos</h3>
 
-                    <tbody>
+                    <div className='container-listar-produtos'>
 
                         {produtos.map(item => 
-                        
-                            <CardProduto nome={item.Nome}/>
-                            // <tr>
-
-                            //     <td>{item.ID}</td>
-
-                            //     <td>
-                            //         <img src={item.Capa}/>
-                            //     </td>
-
-                            //     <td>{item.Nome}</td>
-
-                            //     <td>{item.Categoria}</td>
-
-                            //     <td>{item.Animal}</td>
-
-                            //     <td>{item.Vendas}</td>
-
-                            //     <td>{item.Estoque}</td>
-
-                            //     <td>{item.Preço}R$</td>
-
-                            //     <td>{item.Desconto===0 ? 'Sem desconto' : item.Desconto+'%'}</td>
-
-                            //     <td>{item.Disponível===1 ? 'Sim' : 'Não'}</td>
-
-                            //     <td>{item.Lançamento.substr(0, 10)}</td>
-
-                            //     <td>{item.Avaliação}</td>
-
-                            //     <td>{item.Favoritos}</td>
-
-                            //     <td>{item.Adm}</td>
-                                
-                            //     <td>
-                            //         <button>Ver produto</button>
-                            //     </td>
-                            // </tr>
-                            )}
-                    </tbody>
-                </table>
+                            
+                            <CardProduto 
+                                Capa={item.Capa} Nome={item.Nome} ID={item.ID} 
+                                Categoria={item.Categoria} Animal={item.Animal} 
+                                Preço={item.Preço} 
+                                Disponível={item.Disponível} Desconto={item.Desconto} 
+                                Vendas={item.Vendas} Estoque={item.Estoque}
+                                Lançamento={item.Lançamento}
+                                Avaliação={item.Avaliação} Favoritos={item.Favoritos}/>)}
+                    </div>
+                </section>
+            
             </section>
 
             <section className='section-clientes'></section>
