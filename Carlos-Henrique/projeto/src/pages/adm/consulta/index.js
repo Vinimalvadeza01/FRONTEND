@@ -107,7 +107,7 @@ export default function PageConsultaAdm(){
         };
 
             const resp=await axios.post(url,filtros);
-
+        console.log(resp.data);
             setProdutos(resp.data);
         }
 

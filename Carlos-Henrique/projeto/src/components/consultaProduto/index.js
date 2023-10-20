@@ -9,11 +9,10 @@ export default function cardProduto(props){
 
             <div className='infs1'>
 
-                <img src=''/>
+                <img src={`http://localhost:5000/${props.Capa}`}/>
 
                 <div className='container-infs1'>
 
-                    <img src={props.Capa} />
                     <h5>{props.Nome}</h5>
                     <p>ID:{props.ID}</p>
                 </div>
