@@ -13,9 +13,9 @@ export default function cardProduto(props){
 
                 <div className='container-infs1'>
 
-                    <img src={props.item.Capa} />
-                    <h5>{props.item.Nome}</h5>
-                    <p>ID:{props.item.Id}</p>
+                    <img src={props.Capa} />
+                    <h5>{props.Nome}</h5>
+                    <p>ID:{props.ID}</p>
                 </div>
 
                 <hr/>
@@ -25,8 +25,8 @@ export default function cardProduto(props){
 
                 <div className='container-infs2'>
 
-                    <p> <span>Categoria:</span> {props.item.Categoria}</p>
-                    <p> <span>Animal:</span> {props.item.Animal}</p>
+                    <p> <span>Categoria:</span> {props.Categoria}</p>
+                    <p> <span>Animal:</span> {props.Animal}</p>
                 </div>
 
                 <hr/>
@@ -36,7 +36,7 @@ export default function cardProduto(props){
 
                 <div className='container-infs3'>
  
-                    <p> <span>Preço:</span> {props.item.Preço}R$</p>
+                    <p> <span>Preço:</span> {props.Preço}R$</p>
 
                 </div>
 
@@ -47,8 +47,8 @@ export default function cardProduto(props){
 
                 <div className='container-infs4'>
 
-                    <p> <span>Disponível:</span> {props.item.Disponível===1 ? 'Sim' : 'Não'}</p>
-                    <p> <span>Desconto:</span> {props.item.Desconto+'%'}</p>
+                    <p> <span>Disponível:</span> {props.Disponível===1 ? 'Sim' : 'Não'}</p>
+                    <p> <span>Desconto:</span> {props.Desconto+'%'}</p>
                 </div>
             </div>
 
@@ -56,8 +56,8 @@ export default function cardProduto(props){
 
                 <div className='container-infs5'>
                     
-                    <p> <span>Quantidade de Vendas:</span> {props.item.Vendas}</p>
-                    <p> <span>Quantidade em Estoque:</span> {props.item.Estoque}</p>
+                    <p> <span>Quantidade de Vendas:</span> {props.Vendas}</p>
+                    <p> <span>Quantidade em Estoque:</span> {props.Estoque}</p>
                 </div>
 
                 <hr/>
@@ -65,7 +65,7 @@ export default function cardProduto(props){
 
             <div className='infs6'>
 
-                <p> <span>Data de Lançamento:</span> {props.item.Lançamento.substr(0, 10)}</p>
+                <p> <span>Data de Lançamento:</span> {props.Lançamento.substr(0, 10)}</p>
 
                 <hr/>
             </div>
@@ -74,9 +74,9 @@ export default function cardProduto(props){
 
                 <div className='container-infs7'>
 
-                    <p> <span>Avaliação:</span> {props.item.Avaliação}</p>
+                    <p> <span>Avaliação:</span> {props.Avaliação}</p>
 
-                    <p> <span>Favoritos:</span> {props.item.Favoritos}</p>
+                    <p> <span>Favoritos:</span> {props.Favoritos}</p>
                 </div>
 
                 <hr/>
@@ -84,7 +84,7 @@ export default function cardProduto(props){
 
             <div className='infs8'>
 
-                <p> <span>Cadastrado por:</span> {props.item.Adm}</p>
+                <p> <span>Cadastrado por:</span> {props.Adm}</p>
             </div>
 
             <Link>Ver Produto</Link>
