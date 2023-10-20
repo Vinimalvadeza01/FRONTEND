@@ -4,6 +4,7 @@ import './index.scss';
 import Login from './pages/login';
 import Cadastro from './pages/cadastro';
 import {BrowserRouter,Routes, Route} from 'react-router-dom';
+import HomeDm from './pages/homeDm';
 
 
 
@@ -15,6 +16,7 @@ root.render(
       <Routes>
         <Route path="/login" exact={true} element={<Login/>}></Route>
         <Route path="/Cadastro" element={<Cadastro/>}></Route>
+        <Route path="/PaginaAdministrador" element={<HomeDm/>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
