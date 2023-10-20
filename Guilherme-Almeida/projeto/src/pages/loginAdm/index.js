@@ -4,6 +4,8 @@ import {useNavigate} from 'react-router-dom'
 import CabecalhoAdm from '../../components/cabecalho-adm';
 import SectionDecoration from '../../components/section-decoration';
 import { useState } from 'react';
+import  Rodape from '../../components/rodape'
+
 
 export default function LoginAdm (){
   const[usuario, setUsuario] = useState('');
@@ -35,6 +37,7 @@ export default function LoginAdm (){
         
         <CabecalhoAdm/>
         
+        <div className='container-page'>
         <section className='Conteudo'>
 
           <SectionDecoration/>
@@ -70,8 +73,8 @@ export default function LoginAdm (){
           </div>
           
         </section>  
-       <div className="Rotape"></div>
-  
+        </div>
+          <Rodape/>
       </div>
     )
     };
