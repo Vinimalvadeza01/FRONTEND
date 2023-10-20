@@ -2,7 +2,6 @@
     background: linear-gradient(180deg, #619853 0%, #325B23 100%);
     max-width:100vw;
     min-height:100vh;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,9 +9,8 @@
 
     .center{
         background-color: #EBFBE9;
-        width: 100%;
-        max-width:700px;
-        height: 87vh;
+        width: 60%;
+        height: 100%;
         align-items: center;
 
         .menu-alt{
@@ -92,7 +90,7 @@
 
          .info{
 
-            width: 100%;
+
             display: flex;
             flex-direction: column;
 
