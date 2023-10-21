@@ -239,7 +239,10 @@ export default function PageConsultaAdm(){
                                 Disponível={item.Disponível} Desconto={item.Desconto} 
                                 Vendas={item.Vendas} Estoque={item.Estoque}
                                 Lançamento={item.Lançamento}
-                                Avaliação={item.Avaliação} Favoritos={item.Favoritos}/>)}
+                                Avaliação={item.Avaliação} Favoritos={item.Favoritos}
+                                Adm={item.Adm}
+                                
+                                caminho={`/adm/produto/${item.ID}`}/>)}
                     </div>
                 </section>
             

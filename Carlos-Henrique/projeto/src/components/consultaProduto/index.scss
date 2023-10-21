@@ -1,4 +1,88 @@
 .card-produto{
 
-    
+    max-width:350px;
+    flex-grow:1;
+    overflow-x:hidden;
+
+    background-color:#EEF1DC;
+    border:1px solid #3D5745;
+    border-radius:10px;
+
+    p{
+
+        font-size:16px;
+        span{
+
+            font-weight:600;
+        }
+    }
+
+    >div{
+
+        display:flex;
+        flex-direction:column;
+
+        width:100%;
+
+        hr{
+
+            border:1px solid #3D5745;
+            width:100%;
+        }
+
+        >div{
+
+            display:flex;
+            flex-direction: row;
+            align-items: center;
+
+            gap:10px;
+            padding:5px;
+ 
+            img{
+
+                width:30%;
+                max-width:90px;
+                height:auto;
+
+                border-radius:20px;
+            }
+
+            .sub-container{
+
+                display:flex;
+                flex-direction: column;
+
+                gap:10px;
+
+                h5{
+
+                    font-size:18px;
+                }
+
+                p{
+
+                    font-size:16px;
+                }
+            }
+        }
+    }
+
+    .redirecionar-produto{
+
+        align-items: center;
+
+        padding:5px 0px;
+
+        .Link-redirecionar{
+
+            padding:10px 20px;
+
+            background-color: #619853;
+            border-radius:5px;
+
+            color:#fff;
+            font-size:18px;
+        }
+    }
 }

@@ -9,12 +9,15 @@ export default function cardProduto(props){
 
             <div className='infs1'>
 
-                <img src={`http://localhost:5000/${props.Capa}`}/>
-
                 <div className='container-infs1'>
 
-                    <h5>{props.Nome}</h5>
-                    <p>ID:{props.ID}</p>
+                    <img src={`http://localhost:5000/${props.Capa}`}/>
+
+                    <div className='sub-container'>
+
+                        <h5>{props.Nome}</h5>
+                        <p>ID:{props.ID}</p>
+                    </div>
                 </div>
 
                 <hr/>
@@ -49,14 +52,16 @@ export default function cardProduto(props){
                     <p> <span>Disponível:</span> {props.Disponível===1 ? 'Sim' : 'Não'}</p>
                     <p> <span>Desconto:</span> {props.Desconto+'%'}</p>
                 </div>
+
+                <hr/>
             </div>
 
             <div className='infs5'>
 
                 <div className='container-infs5'>
                     
-                    <p> <span>Quantidade de Vendas:</span> {props.Vendas}</p>
-                    <p> <span>Quantidade em Estoque:</span> {props.Estoque}</p>
+                    <p> <span>Vendas:</span> {props.Vendas}</p>
+                    <p> <span>Estoque:</span> {props.Estoque}</p>
                 </div>
 
                 <hr/>
@@ -64,7 +69,10 @@ export default function cardProduto(props){
 
             <div className='infs6'>
 
-                <p> <span>Data de Lançamento:</span> {props.Lançamento.substr(0, 10)}</p>
+                <div className='container-infs6'>
+
+                    <p> <span>Data de Lançamento:</span> {props.Lançamento.substr(0, 10)==='2099-01-01' ? 'Sem lançamento' : props.Lançamento.substr(0,10)}</p>
+                </div>
 
                 <hr/>
             </div>
@@ -83,10 +91,18 @@ export default function cardProduto(props){
 
             <div className='infs8'>
 
-                <p> <span>Cadastrado por:</span> {props.Adm}</p>
+                <div className='container-infs8'>
+
+                    <p> <span>Cadastrado por:</span> {props.Adm}</p>
+                </div>
+
+                <hr/>
             </div>
 
-            <Link>Ver Produto</Link>
+            <div className='redirecionar-produto'>
+
+                <Link className='Link Link-redirecionar' to={props.caminho}>Ver Detalhes do Produto</Link>
+            </div>
         </div>
     );
 }
