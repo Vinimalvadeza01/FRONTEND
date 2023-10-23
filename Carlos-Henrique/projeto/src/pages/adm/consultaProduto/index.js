@@ -1,6 +1,6 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
-import CardProduto from '../../../components/card-produto';
+import CardProduto from '../../../components/card-produto-adm';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
