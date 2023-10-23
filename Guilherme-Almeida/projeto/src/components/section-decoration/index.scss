@@ -8,11 +8,14 @@
     width:100%;
 
     margin-bottom:20px;
+    
 
     .retangulo-decoration{
 
-        width:30%;
+        width:40%;
         height:100%;
+
+        min-height:50px;
 
         border-radius:0 0 600px 0;
         background-color: #E1FFA1;
@@ -24,6 +27,8 @@
         margin-right:10px;
 
         height:90%;
+        min-height:50px;
+
         width:auto;
     }
 }

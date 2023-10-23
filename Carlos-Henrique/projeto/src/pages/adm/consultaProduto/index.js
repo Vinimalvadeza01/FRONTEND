@@ -1,10 +1,10 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
-import CardProduto from '../../../components/consultaProduto';
+import CardProduto from '../../../components/card-produto';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function PageConsultaAdm(){
+export default function PageConsultaProdutosAdm(){
 
     // Variáveis para definir os valores para API e alterar o estado dos inputs de check para checked
     const[semFiltro,setSemFiltro]=useState(true);
@@ -126,7 +126,7 @@ export default function PageConsultaAdm(){
 
     return(
 
-        <div className='page-consulta-adm'>
+        <div className='page-consulta-produto'>
 
             <CabecalhoAdm/>
 
@@ -239,7 +239,10 @@ export default function PageConsultaAdm(){
                                 Disponível={item.Disponível} Desconto={item.Desconto} 
                                 Vendas={item.Vendas} Estoque={item.Estoque}
                                 Lançamento={item.Lançamento}
-                                Avaliação={item.Avaliação} Favoritos={item.Favoritos}/>)}
+                                Avaliação={item.Avaliação} Favoritos={item.Favoritos}
+                                Adm={item.Adm}
+                                
+                                caminho={`/adm/produto/${item.ID}`}/>)}
                     </div>
                 </section>
             
