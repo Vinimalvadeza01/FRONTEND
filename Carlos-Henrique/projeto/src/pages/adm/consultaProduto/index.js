@@ -1,5 +1,6 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
+import CardProduto from '../../../components/card-produto-adm';
 import CardProduto from '../../../components/card-produto';
 import SelectionConsulta from '../../../components/selectionConsulta';
 import { useEffect, useState } from 'react';
