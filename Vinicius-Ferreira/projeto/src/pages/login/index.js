@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {Link, useNavigate} from 'react-router-dom'
 import './index.scss';
+import  storage from 'local-storage'
 import { useState } from 'react';
 import Cabecalho from '../../components/cabecalho';
 import Rodape from '../../components/rodape'
@@ -18,8 +19,9 @@ export default function Login() {
     async function entrarClick(){
 
       try{ 
-        const r =  await axios.post('http://localhost:5000/usuario/login', {
-          emailCPF: emailCPF,
+         const r =  await axios.post('http://localhost:5000/usuario/login', {
+          
+        emailCPF: emailCPF,
           senha: senha 
         });
 
