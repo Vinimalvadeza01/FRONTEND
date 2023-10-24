@@ -1,4 +1,40 @@
 .card-cliente-adm{
 
-    
+    width:300px;
+    background-color: #EEF1DC;
+    border: 1px solid #3D5745;
+
+    >div{
+
+        display:flex;
+        flex-direction:column;
+
+        padding:10px;
+
+        h4,h5{
+
+            font-size:18px;
+            margin-right:5px;
+            font-weight: 400;
+
+            span{
+
+                font-size:18px;
+                font-weight: 600;
+                font-family: 'Righteous', cursive;
+            }
+        }
+
+        span{
+
+            font-weight:600;
+            font-size:16px;
+            margin-right:5px;
+        }
+
+        p{
+
+            font-size:18px;
+        }
+    }
 }
