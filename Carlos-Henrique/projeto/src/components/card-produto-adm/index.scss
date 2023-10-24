@@ -1,8 +1,8 @@
-.card-produto{
+.card-produto-adm{
 
-    max-width:350px;
-    flex-grow:1;
-    overflow-x:hidden;
+    max-width:300px;
+    flex-grow: 1;
+    overflow:hidden;
 
     background-color:#EEF1DC;
     border:1px solid #3D5745;
@@ -42,7 +42,6 @@
             img{
 
                 width:30%;
-                max-width:90px;
                 height:auto;
 
                 border-radius:20px;

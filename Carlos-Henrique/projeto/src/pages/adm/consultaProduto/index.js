@@ -29,6 +29,11 @@ export default function PageConsultaProdutosAdm(){
     // Para evitar que certos inputs sejam marcados ao mesmo tempo
     function alterarEstadoInputs(input){
 
+        if(!maisVendidos && !melhorAvaliados && !maisFavoritados && !semEstoque && !menorEstoque && !maisRecentes && !naoLancados && !semLancamento){
+
+            setSemFiltro(true)
+        }
+
         // Para quando clicar no input de "Sem filtro" desmarcar todos os outros
         if(input===0){
 
@@ -133,107 +138,105 @@ export default function PageConsultaProdutosAdm(){
 
             <SelectionConsulta tipoConsulta='Produtos' consulta1='clientes' consulta2='pedidos'/>
 
-            <section className='section-produtos'>
+            <form className='filtros'>
 
-                <form className='filtros'>
+                <h3>Filtros</h3>
 
-                    <h3>Filtros</h3>
+                <div className='container-filtro'>
 
-                    <div className='container-filtro'>
+                    <div className='filtros-gerais'>
 
-                        <div className='filtros-gerais'>
+                        <h4>Filtros Gerais</h4>
 
-                            <h4>Filtros Gerais</h4>
-
-                            <div>
-                                <input type='checkbox' id='sem-filtro' checked={semFiltro ? 'checked' : ''} onChange={(e) => {
-                                    alterarEstadoInputs(0)}}/>
-                                <label for='sem-filtro'>Sem filtro</label>
-                            </div>
-
-                            <div>
-                                <input type='checkbox' id='mais-vendidos' checked={maisVendidos ? 'checked' : ''} onChange={(e) => {
-                                    setMaisVendidos(e.target.checked); 
-                                    alterarEstadoInputs(1)}}/>
-                                <label for='mais-vendidos'>Mais vendidos</label>
-                            </div>
-
-                            <div>
-                                <input type='checkbox' id='melhor-avaliados' checked={melhorAvaliados ? 'checked' : ''} onChange={(e) => {
-                                    setMelhorAvaliados(e.target.checked); 
-                                    alterarEstadoInputs(2)}}/>
-                                <label for='melhor-avaliados'>Melhor avaliados</label>
-                            </div>
-
-                            <div>
-                                <input type='checkbox' id='mais-favoritados' checked={maisFavoritados ? 'checked' : ''} onChange={(e) => {
-                                    setMaisFavoritados(e.target.checked); 
-                                    alterarEstadoInputs(3)}}/>
-                                <label for='mais-favoritados'>Mais favoritados</label>
-                            </div>
+                        <div>
+                            <input type='checkbox' id='sem-filtro' checked={semFiltro ? 'checked' : ''} onChange={(e) => {
+                                alterarEstadoInputs(0)}}/>
+                            <label for='sem-filtro'>Sem filtro</label>
                         </div>
 
-                        <div className='filtros-estoque'>
-
-                            <h4>Filtros de Estoque</h4>
-
-                            <div>
-                                <input type='checkbox' id='sem-estoque' checked={semEstoque ? 'checked' : ''} onChange={(e) => {
-                                    setSemEstoque(e.target.checked); 
-                                    alterarEstadoInputs(4)}}/>
-                                <label for='sem-estoque'>Fora de estoque</label>
-                            </div>
-
-                            <div>
-                                <input type='checkbox' id='menor-quantidade' checked={menorEstoque ? 'checked' : ''} onChange={(e) => {
-                                    setMenorEstoque(e.target.checked); 
-                                    alterarEstadoInputs(5)}}/>
-                                <label for='menor-quantidade'>Menor quantidade em estoque</label>
-                            </div>
+                        <div>
+                            <input type='checkbox' id='mais-vendidos' checked={maisVendidos ? 'checked' : ''} onChange={(e) => {
+                                setMaisVendidos(e.target.checked); 
+                                alterarEstadoInputs(1)}}/>
+                            <label for='mais-vendidos'>Mais vendidos</label>
                         </div>
 
-                        <div className='filtros-data'>
-
-                            <h4>Filtros por data</h4>
-
-                            <div>
-                                <input type='checkbox' id='recentes' checked={maisRecentes ? 'checked' : ''} onChange={(e) => {
-                                    setMaisRecentes(e.target.checked); 
-                                    alterarEstadoInputs(6)}}/>
-                                <label for='recentes'>Cadastrados recentemente</label>
-                            </div>
-
-                            <div>
-                                <input type='checkbox' id='nao-lancados' checked={naoLancados ? 'checked' : ''} onChange={(e) => {
-                                    setNaoLancados(e.target.checked); 
-                                    alterarEstadoInputs(7)}}/>
-                                <label for='nao-lancados'>Não lançados</label>
-                            </div>
-
-                            <div>
-                                <input type='checkbox' id='sem-data-lancamento' checked={semLancamento ? 'checked' : ''} onChange={(e) => {
-                                    setSemLancamento(e.target.checked); 
-                                    alterarEstadoInputs(8)}}/>
-                                <label for='sem-data-lancamento'>Sem data de lançamento</label>
-                            </div>
+                        <div>
+                            <input type='checkbox' id='melhor-avaliados' checked={melhorAvaliados ? 'checked' : ''} onChange={(e) => {
+                                setMelhorAvaliados(e.target.checked); 
+                                alterarEstadoInputs(2)}}/>
+                            <label for='melhor-avaliados'>Melhor avaliados</label>
                         </div>
 
-                        <div className='filtros-especificos'>
-
-                            <h4>Filtros específicos</h4>
-
-                            {/* Adicionar filtros por adm, animal e categoria na API e aqui*/}
+                        <div>
+                            <input type='checkbox' id='mais-favoritados' checked={maisFavoritados ? 'checked' : ''} onChange={(e) => {
+                                setMaisFavoritados(e.target.checked); 
+                                alterarEstadoInputs(3)}}/>
+                            <label for='mais-favoritados'>Mais favoritados</label>
                         </div>
                     </div>
-                </form>
 
-                <section className='secao-listar-produtos'>
+                    <div className='filtros-estoque'>
 
-                    <h3 id='titulo-listagem'>Listagem de Produtos</h3>
+                        <h4>Filtros de Estoque</h4>
 
-                    <div className='container-listar-produtos'>
+                        <div>
+                            <input type='checkbox' id='sem-estoque' checked={semEstoque ? 'checked' : ''} onChange={(e) => {
+                                setSemEstoque(e.target.checked); 
+                                alterarEstadoInputs(4)}}/>
+                            <label for='sem-estoque'>Fora de estoque</label>
+                        </div>
 
-                        {produtos.map(item => 
+                        <div>
+                            <input type='checkbox' id='menor-quantidade' checked={menorEstoque ? 'checked' : ''} onChange={(e) => {
+                                setMenorEstoque(e.target.checked); 
+                                alterarEstadoInputs(5)}}/>
+                            <label for='menor-quantidade'>Menor quantidade em estoque</label>
+                        </div>
+                    </div>
+
+                    <div className='filtros-data'>
+
+                        <h4>Filtros por data</h4>
+
+                        <div>
+                            <input type='checkbox' id='recentes' checked={maisRecentes ? 'checked' : ''} onChange={(e) => {
+                                setMaisRecentes(e.target.checked); 
+                                alterarEstadoInputs(6)}}/>
+                            <label for='recentes'>Cadastrados recentemente</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='nao-lancados' checked={naoLancados ? 'checked' : ''} onChange={(e) => {
+                                setNaoLancados(e.target.checked); 
+                                alterarEstadoInputs(7)}}/>
+                            <label for='nao-lancados'>Não lançados</label>
+                        </div>
+
+                        <div>
+                            <input type='checkbox' id='sem-data-lancamento' checked={semLancamento ? 'checked' : ''} onChange={(e) => {
+                                setSemLancamento(e.target.checked); 
+                                alterarEstadoInputs(8)}}/>
+                            <label for='sem-data-lancamento'>Sem data de lançamento</label>
+                        </div>
+                    </div>
+
+                    <div className='filtros-especificos'>
+
+                        <h4>Filtros específicos</h4>
+
+                        {/* Adicionar filtros por adm, animal e categoria na API e aqui*/}
+                    </div>
+                </div>
+            </form>
+
+            <section className='secao-listar-produtos'>
+
+                <h3 id='titulo-listagem'>Listagem de Produtos</h3>
+
+                <div className='container-listar-produtos'>
+
+                {produtos.map(item => 
                             
                             <CardProduto 
                                 Capa={item.Capa} Nome={item.Nome} ID={item.ID} 
@@ -244,16 +247,10 @@ export default function PageConsultaProdutosAdm(){
                                 Lançamento={item.Lançamento}
                                 Avaliação={item.Avaliação} Favoritos={item.Favoritos}
                                 Adm={item.Adm}
-                                
+                                    
                                 caminho={`/adm/produto/${item.ID}`}/>)}
-                    </div>
-                </section>
-            
+                </div>
             </section>
-
-            <section className='section-clientes'></section>
-
-            <section className='section-pedidos'></section>
         </div>
     );
 }

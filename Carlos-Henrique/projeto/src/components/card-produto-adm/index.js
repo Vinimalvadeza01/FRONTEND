@@ -5,7 +5,7 @@ export default function cardProduto(props){
 
     return(
 
-        <div className='card-produto'>
+        <div className='card-produto-adm'>
 
             <div className='infs1'>
 
