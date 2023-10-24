@@ -1,6 +1,7 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
 import CardProduto from '../../../components/card-produto';
+import SelectionConsulta from '../../../components/selectionConsulta';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -129,6 +130,8 @@ export default function PageConsultaProdutosAdm(){
         <div className='page-consulta-produto'>
 
             <CabecalhoAdm/>
+
+            <SelectionConsulta tipoConsulta='Produtos' consulta1='clientes' consulta2='pedidos'/>
 
             <section className='section-produtos'>
 

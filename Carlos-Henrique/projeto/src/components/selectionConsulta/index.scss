@@ -1,0 +1,81 @@
+.section-selecionar-consulta{
+
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+    width:100vw;
+    min-height:20vh;
+
+    padding:10px;
+
+    .conteudo{
+
+        display:flex;
+        flex-direction:row;
+
+        width:60%;
+        height:100%;
+
+        padding:10px;
+
+        background-color:#EEF1DC;
+        border:1px solid #3D5745;
+        border-radius:10px;
+
+        .consulta-feita{
+
+            width:40%;
+            text-align:center;
+
+            h3{
+
+                font-size:20px;
+            }
+
+            h2{
+
+                font-size:24px;
+            }
+        }
+
+        .outras-consultas{
+
+            display:flex;
+            flex-direction:column;
+            align-items: center;
+            justify-content: space-evenly;
+
+            width:60%;
+
+            h3{
+
+                font-size:20px; 
+                margin-bottom:10px;
+            }
+
+            .container-outras-consultas{
+
+                display:flex;
+                flex-direction:row;
+                flex-wrap: wrap;
+                justify-content: center;
+
+                width:100%;
+                gap:10px;
+
+                .link-consulta{
+
+                    padding:10px 40px;
+
+                    background-color:#619853;
+                    border-radius:5px;
+
+                    color:#fff;
+                    text-align:center;
+                    font-size:18px;
+                }
+            }
+        }
+    }
+}
