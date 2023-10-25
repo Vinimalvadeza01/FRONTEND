@@ -48,6 +48,7 @@ export default function Perfil(){
                     
                     />
                 </div>
+
                 <div className='email-celular'>
                     <label>E-mail ou número de celular</label>
                     <InputMask
@@ -58,6 +59,7 @@ export default function Perfil(){
                     type='text'
                     />
                 </div>
+
                 <div className='cpf'>
                     <label>CPF</label>
                     <InputMask
@@ -69,6 +71,7 @@ export default function Perfil(){
 
                     />
                 </div>
+                
                 <div className='nascimento'>
                     <label>Data de Nascimento</label>
                     <InputMask
