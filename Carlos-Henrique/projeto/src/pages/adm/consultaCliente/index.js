@@ -1,6 +1,5 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
-import CardProduto from '../../../components/card-cliente-adm';
 import SelectionConsulta from '../../../components/selectionConsulta';
 import InputMask from 'react-input-mask';
 import { useEffect, useState } from 'react';
@@ -22,9 +21,9 @@ export default function PageConsultaClientesAdm(){
     const[semEndereco,setSemEndereco]=useState(false);
     const[porEstado,setPorEstado]=useState(false);
     const[estado,setEstado]=useState('');
-    const[idEstado,setIDEstado]=useState('');
+    const[idEstado,setIdEstado]=useState('0');
     const[porCidade,setPorCidade]=useState(false);
-    const[cidade,setCidade]=useState(false);
+    const[cidade,setCidade]=useState('');
 
     const[clienteEspecifico,setClienteEspecifico]=useState(false);
     const[anoNascimento,setAnoNascimento]=useState(false);
@@ -108,9 +107,24 @@ export default function PageConsultaClientesAdm(){
             }
         }
 
+        if(input===9){
+
+            if(e.target.value==='todos'){
+
+                setPorCidade(false);
+                setCidade(null);
+            }
+
+            else{
+
+                setPorCidade(true);
+                setCidade(e.target.value);
+            }
+        }
+
         if(input===10){
 
-            {ano.length==4 ? setPorAno(true) : setPorAno(false)};
+            {ano.length===4 ? setPorAno(true) : setPorAno(false)};
         }
     }
 
@@ -157,15 +171,25 @@ export default function PageConsultaClientesAdm(){
 
     async function listarEstados(){
 
-        const url='https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome';
+        try{
+            const url='https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome';
 
-        let resp=await axios.get(url);
-        setEstados(resp.data);
+            let resp=await axios.get(url);
+
+            setEstados(resp.data);
+        }
+
+        catch(err){
+
+            alert('Ocorreu um erro ao listar os estados e as cidades, estes filtros não estarão funcionando');
+        }
     }
+
+
 
     async function listarCidades(){
 
-        const url='https://servicodados.ibge.gov.br/api/v1/localidades/estados/'+{idEstado}+'/distritos';
+        const url=`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/distritos`;
 
         let resp=await axios.get(url);
 
@@ -176,6 +200,8 @@ export default function PageConsultaClientesAdm(){
 
         consultarClientes();
         listarEstados();
+        listarCidades();
+        
     }, [semFiltro,ordemAlfabetica,maisRecentes,maisAntigos,maisPedidos,umPedido,semPedido,semEndereco,porEstado,estado,porCidade,cidade,porAno]);
 
     return(
@@ -267,6 +293,8 @@ export default function PageConsultaClientesAdm(){
                                 <label for='por-estado'>Por estado:</label>
                                 <select onChange={(e) => {
                                         alterarEstadoInputs(8,e);
+                                        const estadoSelecionado = estados.find(item => item.sigla === e.target.value);
+                                        setIdEstado(estadoSelecionado ? estadoSelecionado.id : '0');
                                     }}>
 
                                     <option value='todos'>Todos</option>
@@ -278,14 +306,13 @@ export default function PageConsultaClientesAdm(){
                             <div className='filtros-select-text'>
                                 <label for='por-cidade'>Por cidade:</label>
                                 <select onChange={(e) => {
-                                        setCidade(e.target.value); 
-                                        alterarEstadoInputs(9);
+                                        alterarEstadoInputs(9,e);
                                     }}>
 
-                                    <option>Selecionar</option>
+                                    <option value='todos'>Selecionar</option>
                                     {cidades.map(item => 
                                         
-                                        <option></option>)}
+                                        <option>{item.nome}</option>)}
                                 </select>
                             </div>
                         </div>
