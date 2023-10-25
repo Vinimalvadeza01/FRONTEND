@@ -57,3 +57,16 @@ input[type="checkbox"]{
 
   cursor:pointer;
 }
+
+//barrar entrada
+// export default function Index(){
+//     const navigate = useNavigate();
+
+//     useEffect(() => {
+//       if (!storage('usuario-logado')) {
+//         navigate('/login')
+//       }
+//     }, [])
+  
+  
+//   }

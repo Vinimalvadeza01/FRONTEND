@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './index.scss';
 
 export default function cardProduto(props){
@@ -7,101 +6,43 @@ export default function cardProduto(props){
 
         <div className='card-produto'>
 
-            <div className='infs1'>
+            <div>
 
-                <div className='container-infs1'>
+                <img src={'http://localhost:5000/'+props.capa} alt='' />
 
-                    <img src={`http://localhost:5000/${props.Capa}`}/>
+                <div className='desconto-estilizacao'></div>
+                <h6>{props.nome}</h6>
 
-                    <div className='sub-container'>
+                <div className='container-avaliacao'>
 
-                        <h5>{props.Nome}</h5>
-                        <p>ID:{props.ID}</p>
+                    <div className='estrelas'>
+
+                        <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5337 0.597589C10.343 0.232396 9.93998 0 9.49742 0C9.05485 0 8.65546 0.232396 8.46116 0.597589L6.14759 4.98987L0.980714 5.6937C0.548942 5.75346 0.189132 6.03233 0.0560025 6.41413C-0.0771272 6.79592 0.0308157 7.21755 0.340252 7.49975L4.08947 10.9226L3.20434 15.7598C3.13238 16.1582 3.31228 16.5632 3.66849 16.7989C4.02471 17.0346 4.49606 17.0645 4.88465 16.8753L9.50101 14.6011L14.1174 16.8753C14.506 17.0645 14.9773 17.0379 15.3335 16.7989C15.6897 16.5599 15.8697 16.1582 15.7977 15.7598L14.909 10.9226L18.6582 7.49975C18.9676 7.21755 19.0792 6.79592 18.9424 6.41413C18.8057 6.03233 18.4495 5.75346 18.0177 5.6937L12.8472 4.98987L10.5337 0.597589Z" fill={props.avaliacao>=1 ? "#FEC808" : "#958989"}/>
+                        </svg>
+
+                        <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5337 0.597589C10.343 0.232396 9.93998 0 9.49742 0C9.05485 0 8.65546 0.232396 8.46116 0.597589L6.14759 4.98987L0.980714 5.6937C0.548942 5.75346 0.189132 6.03233 0.0560025 6.41413C-0.0771272 6.79592 0.0308157 7.21755 0.340252 7.49975L4.08947 10.9226L3.20434 15.7598C3.13238 16.1582 3.31228 16.5632 3.66849 16.7989C4.02471 17.0346 4.49606 17.0645 4.88465 16.8753L9.50101 14.6011L14.1174 16.8753C14.506 17.0645 14.9773 17.0379 15.3335 16.7989C15.6897 16.5599 15.8697 16.1582 15.7977 15.7598L14.909 10.9226L18.6582 7.49975C18.9676 7.21755 19.0792 6.79592 18.9424 6.41413C18.8057 6.03233 18.4495 5.75346 18.0177 5.6937L12.8472 4.98987L10.5337 0.597589Z" fill={props.avaliacao>=2 ? "#FEC808" : "#958989"}/>
+                        </svg>
+
+                        <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5337 0.597589C10.343 0.232396 9.93998 0 9.49742 0C9.05485 0 8.65546 0.232396 8.46116 0.597589L6.14759 4.98987L0.980714 5.6937C0.548942 5.75346 0.189132 6.03233 0.0560025 6.41413C-0.0771272 6.79592 0.0308157 7.21755 0.340252 7.49975L4.08947 10.9226L3.20434 15.7598C3.13238 16.1582 3.31228 16.5632 3.66849 16.7989C4.02471 17.0346 4.49606 17.0645 4.88465 16.8753L9.50101 14.6011L14.1174 16.8753C14.506 17.0645 14.9773 17.0379 15.3335 16.7989C15.6897 16.5599 15.8697 16.1582 15.7977 15.7598L14.909 10.9226L18.6582 7.49975C18.9676 7.21755 19.0792 6.79592 18.9424 6.41413C18.8057 6.03233 18.4495 5.75346 18.0177 5.6937L12.8472 4.98987L10.5337 0.597589Z" fill={props.avaliacao>=3 ? "#FEC808" : "#958989"}/>
+                        </svg>
+
+                        <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5337 0.597589C10.343 0.232396 9.93998 0 9.49742 0C9.05485 0 8.65546 0.232396 8.46116 0.597589L6.14759 4.98987L0.980714 5.6937C0.548942 5.75346 0.189132 6.03233 0.0560025 6.41413C-0.0771272 6.79592 0.0308157 7.21755 0.340252 7.49975L4.08947 10.9226L3.20434 15.7598C3.13238 16.1582 3.31228 16.5632 3.66849 16.7989C4.02471 17.0346 4.49606 17.0645 4.88465 16.8753L9.50101 14.6011L14.1174 16.8753C14.506 17.0645 14.9773 17.0379 15.3335 16.7989C15.6897 16.5599 15.8697 16.1582 15.7977 15.7598L14.909 10.9226L18.6582 7.49975C18.9676 7.21755 19.0792 6.79592 18.9424 6.41413C18.8057 6.03233 18.4495 5.75346 18.0177 5.6937L12.8472 4.98987L10.5337 0.597589Z" fill={props.avaliacao>=4 ? "#FEC808" : "#958989"}/>
+                        </svg>
+
+                        <svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.5337 0.597589C10.343 0.232396 9.93998 0 9.49742 0C9.05485 0 8.65546 0.232396 8.46116 0.597589L6.14759 4.98987L0.980714 5.6937C0.548942 5.75346 0.189132 6.03233 0.0560025 6.41413C-0.0771272 6.79592 0.0308157 7.21755 0.340252 7.49975L4.08947 10.9226L3.20434 15.7598C3.13238 16.1582 3.31228 16.5632 3.66849 16.7989C4.02471 17.0346 4.49606 17.0645 4.88465 16.8753L9.50101 14.6011L14.1174 16.8753C14.506 17.0645 14.9773 17.0379 15.3335 16.7989C15.6897 16.5599 15.8697 16.1582 15.7977 15.7598L14.909 10.9226L18.6582 7.49975C18.9676 7.21755 19.0792 6.79592 18.9424 6.41413C18.8057 6.03233 18.4495 5.75346 18.0177 5.6937L12.8472 4.98987L10.5337 0.597589Z" fill={props.savaliacao>=5 ? "#FEC808" : "#958989"}/>
+                        </svg>
+
                     </div>
-                </div>
-
-                <hr/>
-            </div>
-
-            <div className='infs2'>
-
-                <div className='container-infs2'>
-
-                    <p> <span>Categoria:</span> {props.Categoria}</p>
-                    <p> <span>Animal:</span> {props.Animal}</p>
-                </div>
-
-                <hr/>
-            </div>
-
-            <div className='infs3'>
-
-                <div className='container-infs3'>
- 
-                    <p> <span>Preço:</span> {props.Preço}R$</p>
-
-                </div>
-
-                <hr/>
-            </div>
-
-            <div className='infs4'>
-
-                <div className='container-infs4'>
-
-                    <p> <span>Disponível:</span> {props.Disponível===1 ? 'Sim' : 'Não'}</p>
-                    <p> <span>Desconto:</span> {props.Desconto+'%'}</p>
-                </div>
-
-                <hr/>
-            </div>
-
-            <div className='infs5'>
-
-                <div className='container-infs5'>
                     
-                    <p> <span>Vendas:</span> {props.Vendas}</p>
-                    <p> <span>Estoque:</span> {props.Estoque}</p>
+                    <span>{props.avaliacoes}</span>
                 </div>
 
-                <hr/>
-            </div>
-
-            <div className='infs6'>
-
-                <div className='container-infs6'>
-
-                    <p> <span>Data de Lançamento:</span> {props.Lançamento.substr(0, 10)==='2099-01-01' ? 'Sem lançamento' : props.Lançamento.substr(0,10)}</p>
-                </div>
-
-                <hr/>
-            </div>
-
-            <div className='infs7'>
-
-                <div className='container-infs7'>
-
-                    <p> <span>Avaliação:</span> {props.Avaliação}</p>
-
-                    <p> <span>Favoritos:</span> {props.Favoritos}</p>
-                </div>
-
-                <hr/>
-            </div>
-
-            <div className='infs8'>
-
-                <div className='container-infs8'>
-
-                    <p> <span>Cadastrado por:</span> {props.Adm}</p>
-                </div>
-
-                <hr/>
-            </div>
-
-            <div className='redirecionar-produto'>
-
-                <Link className='Link Link-redirecionar' to={props.caminho}>Ver Detalhes do Produto</Link>
+                <span className='preco'>{props.preco}</span>
             </div>
         </div>
     );
