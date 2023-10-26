@@ -97,6 +97,7 @@ export default function PageConsultaClientesAdm(){
             if(e.target.value==='todos'){
 
                 setPorEstado(false);
+                setPorCidade(false);
                 setEstado(null);
             }
 
@@ -124,7 +125,17 @@ export default function PageConsultaClientesAdm(){
 
         if(input===10){
 
-            {ano.length===4 ? setPorAno(true) : setPorAno(false)};
+            if(ano.length===4){
+
+                setPorAno(true);
+
+                consultarClientes();
+            }
+
+            else{
+
+                setPorAno(false);
+            }
         }
     }
 
@@ -133,9 +144,6 @@ export default function PageConsultaClientesAdm(){
         try{
         
             const url=`http://localhost:5000/cliente/adm/consulta`;
-
-            let dataInicial=ano+'-01-01';
-            let dataFinal=ano+'-12-31';
 
             let filtros={
 
@@ -154,8 +162,7 @@ export default function PageConsultaClientesAdm(){
                 cidade:cidade,
 
                 anoNascimento:porAno,
-                dataInicio:dataInicial,
-                dataFinal:dataFinal
+                ano:ano
             };
 
             const resp = await axios.post(url, filtros);
@@ -165,7 +172,7 @@ export default function PageConsultaClientesAdm(){
 
         catch(err){
 
-            alert(err.response.data.erro);
+            alert('Ocorreu um erro ao listar os clientes, tente novamente mais tarde');
         }
     }
 
@@ -185,15 +192,21 @@ export default function PageConsultaClientesAdm(){
         }
     }
 
-
-
     async function listarCidades(){
 
-        const url=`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/distritos`;
+        try{
 
-        let resp=await axios.get(url);
+            const url=`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios?orderBy=nome`;
 
-        setCidades(resp.data);
+            let resp=await axios.get(url);
+    
+            setCidades(resp.data);
+        }
+
+        catch(err){
+
+            alert('Não foi possível listar as cidades');
+        }
     }
 
     useEffect(() => {
@@ -323,10 +336,16 @@ export default function PageConsultaClientesAdm(){
 
                             <div className='filtros-select-text'>
                                 <label for='por-ano'>Por ano de nascimento</label>
-                                <InputMask mask='9999' maskChar=' ' type='text' id='por-ano' onChange={(e) => {
-                                    setAno(e.target.value);
-                                    alterarEstadoInputs(10);
-                                    }}/>
+
+                                <div>
+
+                                    <InputMask mask='9999' maskChar=' ' type='text' id='por-ano' onChange={(e) => {
+                                        setAno(e.target.value);
+                                        }}/>
+
+                                    <input type='button' value='Procurar' onClick={() => {alterarEstadoInputs(10)}}/>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -342,7 +361,15 @@ export default function PageConsultaClientesAdm(){
                             Nascimento={item.Nascimento}
                             Pedidos={item.Pedidos}
                             Senha={item.Senha}
-                            ID_Endereco={item.ID_Endereco}
+                            Endereco={item.Endereco}
+                            
+                            CEP={item.CEP}
+                            Estado={item.Estado}
+                            Cidade={item.Cidade}
+                            Bairro={item.Bairro}
+                            Rua={item.Rua}
+                            Número={item.Número}
+                            Complemento={item.Complemento}
                         />)}
                 </div>
             </section>
