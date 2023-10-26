@@ -46,8 +46,25 @@ export default function CardClienteAdm(props){
 
             <div className='infs7'>
 
-                <p> <span>Endereço:</span>{!props.ID_Endereco ? 'Não confirmado' : 'Ver detalhes'}</p>
+                <p> <span>Endereço:</span>{!props.ID_Endereco ? 'Não confirmado' : <button>Ver detalhes</button>}</p>
                 <hr/>
+            </div>
+
+            <div className='infs-endereco'>
+
+                <div className='infs1'>
+
+                    <p> <span>CEP:</span> {props.CEP}</p>
+
+                    <hr/>
+                </div>
+
+                <div className='infs2'></div>
+                <div className='infs3'></div>
+                <div className='infs4'></div>
+                <div className='infs5'></div>
+                <div className='infs6'></div>
+                <div className='infs7'></div>
             </div>
         </div>
     );
