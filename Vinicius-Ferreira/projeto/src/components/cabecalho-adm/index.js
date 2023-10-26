@@ -47,24 +47,29 @@ export default function CabecalhoAdm(){
                 </div>
                 <hr/>
 
-                <Link to='/adm/cadastrar-produto' className='Link botao-menu-adm'>
-                    <span>Cadastrar produtos</span>
-                </Link>
-
-                <button className='button-consulta'>
-                    <span>Consultar Informações</span>
+                <button className='button-meu-historico'>
+                    <span>Meu Histórico</span>
                     
                     <svg width="12" height="20" viewBox="0 0 38 63" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M36.1453 35.9497C38.6182 33.4898 38.6182 29.4949 36.1453 27.035L10.8218 1.84548C9.00169 0.0349857 6.29129 -0.496356 3.91722 0.487609C1.54315 1.47157 0 3.75437 0 6.31268V56.6917C0 59.2303 1.54315 61.5328 3.91722 62.5167C6.29129 63.5007 9.00169 62.9497 10.8218 61.1589L36.1453 35.9694V35.9497Z"/>
                     </svg>
 
-                    <div className='container-consulta'>
+                    <div className='container-meu-historico'>
 
-                        <Link className='Link botao-historico' to='/adm/consulta/produtos'>Produtos</Link>
-                        <Link className='Link botao-historico' to='/adm/consulta/clientes'>Clientes</Link>
-                        <Link className='Link botao-historico' to='/adm/consulta/pedidos'>Pedidos</Link>
+                        <Link className='Link botao-historico' to='/adm/consulta'>Ver Tudo</Link>
+                        <Link className='Link botao-historico' to='/adm/consulta'>Produtos Cadastrados</Link>
+                        <Link className='Link botao-historico' to='/adm/consulta'>Alterações Feitas</Link>
+                        <Link className='Link botao-historico' to='/adm/consulta'>Registros excluídos</Link>
                     </div>
                 </button>
+
+                <Link to='/adm/consulta' className='Link botao-menu-adm'>
+                    <span>Consultar informações</span>
+                </Link>
+
+                <Link to='/adm/cadastrar-produto' className='Link botao-menu-adm'>
+                    <span>Cadastrar produto</span>
+                </Link> 
 
                 <Link to='/adm/graficos' className='Link botao-menu-adm'>
                     <span>Análise de gráficos</span>

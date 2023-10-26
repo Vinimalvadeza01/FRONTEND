@@ -1,6 +1,5 @@
 import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
-import CardProduto from '../../../components/card-cliente-adm';
 import SelectionConsulta from '../../../components/selectionConsulta';
 import InputMask from 'react-input-mask';
 import { useEffect, useState } from 'react';
@@ -22,8 +21,9 @@ export default function PageConsultaClientesAdm(){
     const[semEndereco,setSemEndereco]=useState(false);
     const[porEstado,setPorEstado]=useState(false);
     const[estado,setEstado]=useState('');
+    const[idEstado,setIdEstado]=useState('0');
     const[porCidade,setPorCidade]=useState(false);
-    const[cidade,setCidade]=useState(false);
+    const[cidade,setCidade]=useState('');
 
     const[clienteEspecifico,setClienteEspecifico]=useState(false);
     const[anoNascimento,setAnoNascimento]=useState(false);
@@ -31,8 +31,10 @@ export default function PageConsultaClientesAdm(){
     const[ano,setAno]=useState('');
 
     const[clientes,setClientes]=useState([]);
+    const[estados,setEstados]=useState([]);
+    const[cidades,setCidades]=useState([]);
 
-    function alterarEstadoInputs(input){
+    function alterarEstadoInputs(input, e){
 
         if(input===0){
 
@@ -56,7 +58,7 @@ export default function PageConsultaClientesAdm(){
 
             setSemFiltro(false);
         }
-
+    
         if(input===2){
 
             setMaisAntigos(false);
@@ -67,6 +69,11 @@ export default function PageConsultaClientesAdm(){
             setMaisRecentes(false);
         }
 
+        if(input===4||input===5){
+
+            setSemPedido(false);
+        }
+
         if(input===6){
 
             setMaisPedidos(false);
@@ -75,63 +82,126 @@ export default function PageConsultaClientesAdm(){
 
         if(input===7){
 
-            setEstado('');
-            setCidade('');
-        }
-
-        if(input===8){
-
-            setPorEstado(true);
-        }
-
-        if(input===9){
-
-            setPorEstado(true);
+            setEstado(null);
+            setCidade(null);
+            setPorEstado(false);
         }
 
         if(input===8||input===9){
 
             setSemEndereco(false);
         }
+
+        if(input===8){
+
+            if(e.target.value==='todos'){
+
+                setPorEstado(false);
+                setEstado(null);
+            }
+
+            else{
+
+                setPorEstado(true);
+                setEstado(e.target.value);
+            }
+        }
+
+        if(input===9){
+
+            if(e.target.value==='todos'){
+
+                setPorCidade(false);
+                setCidade(null);
+            }
+
+            else{
+
+                setPorCidade(true);
+                setCidade(e.target.value);
+            }
+        }
+
+        if(input===10){
+
+            {ano.length===4 ? setPorAno(true) : setPorAno(false)};
+        }
     }
 
     async function consultarClientes(){
 
-        const url=`http://localhost:5000/cliente/adm/consulta`;
+        try{
+        
+            const url=`http://localhost:5000/cliente/adm/consulta`;
 
-        let dataInicial=ano+'-01-01';
-        let dataFinal=ano+'-12-31';
+            let dataInicial=ano+'-01-01';
+            let dataFinal=ano+'-12-31';
 
-        let filtros={
+            let filtros={
 
-            ordemAlfabetica:ordemAlfabetica,
-            nascimentoMaisVelhos:maisRecentes,
-            nascimentoMaisNovos:maisAntigos,
+                ordemAlfabetica:ordemAlfabetica,
+                nascimentoMaisVelhos:maisRecentes,
+                nascimentoMaisNovos:maisAntigos,
 
-            maisPedidos:maisPedidos,
-            umPedido:umPedido,
-            semPedidos:semPedido,
+                maisPedidos:maisPedidos,
+                umPedido:umPedido,
+                semPedidos:semPedido,
 
-            semEndereco:semEndereco,
-            estadoEspecifico:porEstado,
-            estado:estado,
-            cidadeEspecifica:porCidade,
-            cidade:cidade,
+                semEndereco:semEndereco,
+                estadoEspecifico:porEstado,
+                estado:estado,
+                cidadeEspecifica:porCidade,
+                cidade:cidade,
 
-            anoNascimento:porAno,
-            dataInicio:dataInicial,
-            dataFinal:dataFinal
-        };
+                anoNascimento:porAno,
+                dataInicio:dataInicial,
+                dataFinal:dataFinal
+            };
 
-        const resp = await axios.post(url, filtros);
+            const resp = await axios.post(url, filtros);
 
-        console.log(resp);
-        setClientes(resp.data);
+            setClientes(resp.data);
+        }
+
+        catch(err){
+
+            alert(err.response.data.erro);
+        }
+    }
+
+    async function listarEstados(){
+
+        try{
+            const url='https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome';
+
+            let resp=await axios.get(url);
+
+            setEstados(resp.data);
+        }
+
+        catch(err){
+
+            alert('Ocorreu um erro ao listar os estados e as cidades, estes filtros não estarão funcionando');
+        }
+    }
+
+
+
+    async function listarCidades(){
+
+        const url=`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/distritos`;
+
+        let resp=await axios.get(url);
+
+        setCidades(resp.data);
     }
 
     useEffect(() => {
 
         consultarClientes();
+        listarEstados();
+        listarCidades();
+        
     }, [semFiltro,ordemAlfabetica,maisRecentes,maisAntigos,maisPedidos,umPedido,semPedido,semEndereco,porEstado,estado,porCidade,cidade,porAno]);
 
     return(
@@ -170,15 +240,15 @@ export default function PageConsultaClientesAdm(){
                             <div>
                                 <input type='checkbox' id='mais-recentes' checked={maisRecentes ? 'checked' : ''} onChange={(e) => {
                                     setMaisRecentes(e.target.checked);
-                                alterarEstadoInputs(2)}}/>
-                                <label for='mais-recentes'>Por data de cadastro (Mais Recentes)</label>
+                                    alterarEstadoInputs(2)}}/>
+                                <label for='mais-recentes'>Por data de nascimento (Mais Novos)</label>
                             </div>
 
                             <div>
                                 <input type='checkbox' id='mais-antigos' checked={maisAntigos ? 'checked' : ''} onChange={(e) => {
                                     setMaisAntigos(e.target.checked);
                                     alterarEstadoInputs(3)}}/>
-                                <label for='mais-antigos'>Por data de cadastro (Mais Antigos)</label>
+                                <label for='mais-antigos'>Por data de nascimento (Mais Velhos)</label>
                             </div>
                         </div>
 
@@ -222,22 +292,27 @@ export default function PageConsultaClientesAdm(){
                             <div className='filtros-select-text'>
                                 <label for='por-estado'>Por estado:</label>
                                 <select onChange={(e) => {
-                                        setEstado(e.target.value);
-                                        alterarEstadoInputs(8);
+                                        alterarEstadoInputs(8,e);
+                                        const estadoSelecionado = estados.find(item => item.sigla === e.target.value);
+                                        setIdEstado(estadoSelecionado ? estadoSelecionado.id : '0');
                                     }}>
 
-                                    <option>Selecionar</option>
+                                    <option value='todos'>Todos</option>
+                                    {estados.map(item => 
+                                        <option value={item.sigla}>{item.sigla}</option>)}
                                 </select>
                             </div>
 
                             <div className='filtros-select-text'>
                                 <label for='por-cidade'>Por cidade:</label>
                                 <select onChange={(e) => {
-                                        setCidade(e.target.value); 
-                                        alterarEstadoInputs(9);
+                                        alterarEstadoInputs(9,e);
                                     }}>
 
-                                    <option>Selecionar</option>
+                                    <option value='todos'>Selecionar</option>
+                                    {cidades.map(item => 
+                                        
+                                        <option>{item.nome}</option>)}
                                 </select>
                             </div>
                         </div>
@@ -250,8 +325,8 @@ export default function PageConsultaClientesAdm(){
                                 <label for='por-ano'>Por ano de nascimento</label>
                                 <InputMask mask='9999' maskChar=' ' type='text' id='por-ano' onChange={(e) => {
                                     setAno(e.target.value);
-                                    alterarEstadoInputs(10)
-                                    setPorAno(e.target.value)}}/>
+                                    alterarEstadoInputs(10);
+                                    }}/>
                             </div>
                         </div>
                     </div>

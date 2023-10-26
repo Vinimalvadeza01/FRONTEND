@@ -72,10 +72,10 @@
     .menu-adm{
 
         position:absolute;
-        left:85%;
+        left:80%;
 
         height:100vh;
-        width:15vw;
+        width:20vw;
 
         padding:20px 0px;
 
@@ -119,11 +119,11 @@
             margin-bottom:10px;
         }
 
-        .button-consulta{
+        .button-meu-historico{
 
             position: relative;
 
-            .container-consulta{
+            .container-meu-historico{
 
                 opacity:0;
                 visibility: hidden;
@@ -154,9 +154,9 @@
             }
         }
 
-        .button-consulta:hover{
+        .button-meu-historico:hover{
 
-            .container-consulta{
+            .container-meu-historico{
 
                 opacity:1;
                 visibility: visible;
