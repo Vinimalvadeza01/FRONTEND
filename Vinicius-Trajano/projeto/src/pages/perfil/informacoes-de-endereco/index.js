@@ -20,7 +20,7 @@ export default function endereco() {
 
                 <div className='endereco-menu'>
 
-                    <Link className='link'>Informações de Usuário</Link>
+                    <Link to="../../perfil" className='link'>Informações de Usuário</Link>
                     <Link className='link-p'>Informações de Endereco</Link>
                     <Link className='link'>Favoritos</Link>
                     <Link className='link'>Meus Pedidos</Link>
@@ -102,6 +102,49 @@ export default function endereco() {
                         </div>
 
                     </div>
+
+                    <div className='endereco-ec'>
+
+                    <div className='estado'>
+
+                        <label>Estado</label>
+                        
+                            <InputMask
+                            mask=''
+                            maskChar=''
+                            placeholder="Nome do estado"
+                            type='text'
+
+                            />    
+
+                    </div>
+
+
+                    <div className='cidade'>
+
+                        <label>Cidade</label>
+                        
+                            <InputMask
+                            mask=''
+                            maskChar=''
+                            placeholder="Nome da cidade"
+                            type='text'
+
+                            />    
+
+                    </div>
+
+                    
+                  
+
+                    </div>
+
+                    <div className='butt'>
+
+                    <button>Confirmar</button>
+
+                    </div>
+                    
 
                 
 

@@ -9,6 +9,7 @@
     overflow-x: hidden;
 
 
+
     .endereco-conteiner{
 
         background-color: #EBFBE9;
@@ -96,6 +97,8 @@
             width:100%;
             padding:20px;
 
+            
+
             input{
 
                 width: 100%;
@@ -118,7 +121,7 @@
                 display: flex;
                 flex-direction: row;
                 padding: 15px;
-                justify-content: space-evenly;
+                justify-content: space-between;
                 
 
                 .numero{
@@ -138,10 +141,49 @@
                 }
             }
 
+            .endereco-ec{
+
+                display: flex;
+                flex-direction: row;
+                padding: 15px;
+                justify-content: space-between;
+
+                .estado{
+                    width: 30%;
+                }
+
+                .cidade{
+                    width: 30%;
+                }
+
+            }
+
+            .butt{
+                align-self: center;
+                
+            button{
+                background-color: #619853;
+                width: 180px;
+                height: 60px;
+                border: none;
+                color: white;
+                font-family: 'Josefin Sans';
+                font-size: 18px;
+                border-radius: 10px;
+                align-self: center;
+                
+            }
+                    
+          
+            }
+
+
+
 
         }
 
     }
 
+    
 
 }
