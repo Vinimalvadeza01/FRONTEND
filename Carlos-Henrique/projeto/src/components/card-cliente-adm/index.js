@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './index.scss';
 import {useState} from 'react';
 
@@ -112,12 +113,19 @@ export default function CardClienteAdm(props){
                     <div className='infs7'>
 
                         <p> <span>Complemento:</span> {!props.Complemento ? 'Sem complemento': props.Complemento}</p>
+                    
+                        <hr/>
                     </div>
 
                 </div>
 
                 : ''
             }
+
+            <div className='redirecionar-cliente'>
+
+                <Link className='Link link-redirecionar' to={props.caminho}>Ver detalhes do cliente</Link>
+            </div>
             
         </div>
     );
