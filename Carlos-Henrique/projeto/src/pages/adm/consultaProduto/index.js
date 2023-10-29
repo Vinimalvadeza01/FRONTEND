@@ -10,6 +10,8 @@ export default function PageConsultaProdutosAdm(){
 
     // Variáveis para definir os valores para API e alterar o estado dos inputs de check para checked
 
+    const[produto,setProduto]=useState('');
+
     const[maisVendidos,setMaisVendidos]=useState(false);
     const[melhorAvaliados,setMelhorAvaliados]=useState(false);
     const[maisFavoritados,setMaisFavoritados]=useState(false);
@@ -160,6 +162,9 @@ export default function PageConsultaProdutosAdm(){
 
             let filtros = {
 
+                produtoEspecifico:true,
+                produto:produto,
+
                 maisVendidos:maisVendidos,
                 melhorAvaliados:melhorAvaliados,
                 maisFavoritados:maisFavoritados,
@@ -256,7 +261,7 @@ export default function PageConsultaProdutosAdm(){
          listarAnimais();
          listarAdministradores();
 
-    }, [maisVendidos,melhorAvaliados,maisFavoritados,maisRecentes,naoLancados,semLancamento,semEstoque,menorEstoque,porCategoria,categoria,porAnimal,animal,porAdm,administrador]);
+    }, [produto,maisVendidos,melhorAvaliados,maisFavoritados,maisRecentes,naoLancados,semLancamento,semEstoque,menorEstoque,porCategoria,categoria,porAnimal,animal,porAdm,administrador]);
 
     return(
 
@@ -275,7 +280,7 @@ export default function PageConsultaProdutosAdm(){
 
                     <div className='container-search'>
 
-                        <input type='text'/>
+                        <input type='text' value={produto} onChange={(e) =>{setProduto(e.target.value)}}/>
                         <svg  id='icon-lupa' width="20" height="20" viewBox="0 0 30 30" fill="#3D5745" xmlns="http://www.w3.org/2000/svg">
                             <path d="M24.3762 12.1857C24.3762 14.8748 23.5031 17.3588 22.0323 19.3741L29.4507 26.7969C30.1831 27.5292 30.1831 28.7185 29.4507 29.4508C28.7182 30.1831 27.5287 30.1831 26.7962 29.4508L19.3779 22.028C17.3622 23.5044 14.8777 24.3714 12.1881 24.3714C5.45534 24.3714 0 18.9172 0 12.1857C0 5.45428 5.45534 0 12.1881 0C18.9208 0 24.3762 5.45428 24.3762 12.1857ZM12.1881 20.622C13.2962 20.622 14.3934 20.4038 15.4171 19.9798C16.4409 19.5558 17.3711 18.9344 18.1546 18.1511C18.9381 17.3677 19.5597 16.4377 19.9837 15.4141C20.4078 14.3906 20.626 13.2936 20.626 12.1857C20.626 11.0778 20.4078 9.98083 19.9837 8.9573C19.5597 7.93376 18.9381 7.00375 18.1546 6.22038C17.3711 5.437 16.4409 4.81559 15.4171 4.39162C14.3934 3.96766 13.2962 3.74945 12.1881 3.74945C11.08 3.74945 9.98278 3.96766 8.95905 4.39162C7.93531 4.81559 7.00512 5.437 6.22159 6.22038C5.43806 7.00375 4.81653 7.93376 4.39248 8.9573C3.96844 9.98083 3.75018 11.0778 3.75018 12.1857C3.75018 13.2936 3.96844 14.3906 4.39248 15.4141C4.81653 16.4377 5.43806 17.3677 6.22159 18.1511C7.00512 18.9344 7.93531 19.5558 8.95905 19.9798C9.98278 20.4038 11.08 20.622 12.1881 20.622Z" fill="3D5745" />
                         </svg>
