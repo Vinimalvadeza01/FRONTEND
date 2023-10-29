@@ -14,6 +14,57 @@
         width:100%;
         padding:10px;
 
+        .container-pesquisa{
+
+            display:flex;
+            flex-direction: column;
+
+            width:40%;
+
+            margin-bottom:10px;
+            padding:10px;
+
+            background-color:#EEF1DC;
+            border:1px solid #3D5745;
+            border-radius:10px;
+
+            label{
+
+                font-size:20px;
+                margin-bottom:5px;
+            }
+
+            p{
+
+                font-size:16px;
+                margin-bottom:10px;
+            }
+
+            .container-search{
+
+                display:flex;
+                flex-direction: row;
+
+                width:100%;
+                height:30px;
+
+                padding:5px;
+
+                background-color: #fff;
+                border:1px solid #3D5745;
+
+                input{
+
+                    flex-grow:1;
+                    height:100%;
+
+                    padding:5px;
+
+                    background-color: transparent;
+                }
+            }
+        }
+
         .filtros{
 
             display:flex;
@@ -64,6 +115,11 @@
                     transition:0.3s;
                 }
 
+                .filtros-especificos{
+
+                    padding:10px;
+                }
+
                 >div{
     
                     display:flex;
@@ -84,8 +140,11 @@
                         display:flex;
                         flex-direction: column;
 
-                        padding:10px;
     
+                        >div{
+                            width:100%;
+                        }
+
                         input,select{
     
                             padding:0px 5px;

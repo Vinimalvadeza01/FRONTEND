@@ -10,6 +10,57 @@
 
         padding:10px;
 
+        .container-pesquisa{
+
+            display:flex;
+            flex-direction: column;
+
+            width:40%;
+
+            margin-bottom:10px;
+            padding:10px;
+
+            background-color:#EEF1DC;
+            border:1px solid #3D5745;
+            border-radius:10px;
+
+            label{
+
+                font-size:20px;
+                margin-bottom:5px;
+            }
+
+            p{
+
+                font-size:16px;
+                margin-bottom:10px;
+            }
+
+            .container-search{
+
+                display:flex;
+                flex-direction: row;
+
+                width:100%;
+                height:30px;
+
+                padding:5px;
+
+                background-color: #fff;
+                border:1px solid #3D5745;
+
+                input{
+
+                    flex-grow:1;
+                    height:100%;
+
+                    padding:5px;
+
+                    background-color: transparent;
+                }
+            }
+        }
+
         .filtros{
 
             display:flex;
@@ -40,6 +91,25 @@
                 width:100%;
                 gap:20px;
     
+                .filtros-gerais div input[type=button]{
+
+                    width:70%;
+                    padding:10px 0px;
+
+                    background-color: #619853;
+                    border-radius:5px;
+
+                    color:#fff;
+                    font-size:18px;
+                }
+
+                .filtros-gerais div input[type=button]:hover{
+
+                    background-color: #E1FFA1;
+                    color:#3D5745;
+                    transition:0.3s;
+                }
+
                 >div{
     
                     display:flex;
@@ -70,7 +140,7 @@
         
                         width:100%;
         
-                        input{
+                        input[type=checkbox]{
         
                             appearance:none;
         
