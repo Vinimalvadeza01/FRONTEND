@@ -2,10 +2,8 @@ import axios from 'axios'
 import './index.scss';
 import {useNavigate} from 'react-router-dom'
 import CabecalhoAdm from '../../components/cabecalho-adm';
-import storage from 'local-storage'
 import SectionDecoration from '../../components/section-decoration';
 import { useEffect, useState } from 'react';
-import  Rodape from '../../components/rodape'
 import Storage  from '../../components/storage';
 
 export default function LoginAdm (){
@@ -15,47 +13,23 @@ export default function LoginAdm (){
 
   const navigate = useNavigate ();
 
-  function Storage(){
-    const navigate = useNavigate();
-
-    useEffect(() => {
-      if (!storage('usuario-logado')) {
-        navigate('/login')
-      }
-    }, []);
-  }
-
-  useEffect(() =>{
-    if(storage('usuario-logado')){
-      navigate('/admin')
-    }
-  }, [])
-
-  useEffect(() => {
-    const adminUsernameSalvo = localStorage.getItem('adminUsername');
-    if(adminUsernameSalvo) {
-        setUsuario(adminUsernameSalvo);
-    }
-  }, [])
-
   async function entrarClick(){
 
+    const url = 'http://localhost:5000/adm/login';
+    
+    const user={
 
+      adm: usuario,
+      senha: senhaAdm 
+    };
 
     try{ 
-      const r =  await axios.post('http://localhost:5000/adm/login', {
-        usuario: usuario  ,
-        senhaAdm: senhaAdm 
-      });
-        localStorage.setItem('adminUsername'. usuario);
-        navigate('/');
+      const r =  await axios.post(url, user);
+      ;
+ 
         } catch (err) {
           setErro(err.response.data.erro);
         } 
- 
-        
- 
-
 }
     return (
       <div className="pagina-login-adm">
@@ -93,13 +67,13 @@ export default function LoginAdm (){
             <div className='form-entrar-invalido'>
           <span> {erro} </span>
 
-          <div id='alinhar-between'></div>
           </div>
           </div>
           
+          <div id='alinhar-between'></div>
         </section>  
         </div>
-          <Rodape/>
+  
       </div>
     )
     };
