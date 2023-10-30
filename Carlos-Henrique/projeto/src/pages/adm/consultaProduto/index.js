@@ -131,6 +131,7 @@ export default function PageConsultaProdutosAdm(){
 
             const url='http://localhost:5000/produto/consulta/adm';
 
+            let produtoEspecifico=true;
             let lancamentoEspecifico=false;
             const formatarData=dataEspecifica.split('/');
             let dataFormatada='';
@@ -138,6 +139,11 @@ export default function PageConsultaProdutosAdm(){
             const ano=formatarData[2];
             const mes=formatarData[1];
             const dia=formatarData[0];
+
+            if(produto.length<1){
+
+                produtoEspecifico=false;
+            }
 
             if(dataEspecifica!==''){
 
@@ -162,7 +168,7 @@ export default function PageConsultaProdutosAdm(){
 
             let filtros = {
 
-                produtoEspecifico:true,
+                produtoEspecifico:produtoEspecifico,
                 produto:produto,
 
                 maisVendidos:maisVendidos,
@@ -443,6 +449,14 @@ export default function PageConsultaProdutosAdm(){
                                         
                                 caminho={`/adm/produto/${item.ID}`}/>)}
                     </div>
+
+                    {produtos.length<1 ? 
+                        <div className='container-sem-resultados'>
+
+                            <h2>Sem resultados</h2>
+                        </div> 
+
+                    : <div></div>}
                 </section>
             </section>
         </div>
