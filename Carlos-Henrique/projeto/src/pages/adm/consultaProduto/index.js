@@ -431,7 +431,7 @@ export default function PageConsultaProdutosAdm(){
 
                 <section className='secao-listar-produtos'>
 
-                    <h3 id='titulo-listagem'>Listagem de Produtos</h3>
+                    <h3 id='titulo-listagem'>{produtos.length<1 ? 'Sem resultados' : 'Resultados encontrados: '+produtos.length}</h3>
 
                     <div className='container-listar-produtos'>
 
@@ -449,14 +449,6 @@ export default function PageConsultaProdutosAdm(){
                                         
                                 caminho={`/adm/produto/${item.ID}`}/>)}
                     </div>
-
-                    {produtos.length<1 ? 
-                        <div className='container-sem-resultados'>
-
-                            <h2>Sem resultados</h2>
-                        </div> 
-
-                    : <div></div>}
                 </section>
             </section>
         </div>

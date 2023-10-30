@@ -12,6 +12,7 @@ import axios from 'axios';
 
 export default function HomePage(){
 
+    const[produtosExibidos,setProdutosExibidos]=useState(4);
     const[produtosMaisVendidos,setProdutosMaisVendidos]=useState([]);
     
     const[avaliacao,setAvaliacao]=useState(3);
@@ -25,6 +26,7 @@ export default function HomePage(){
             const resp=await axios.get(url);
 
             setProdutosMaisVendidos(resp.data);
+            
        }
        catch(err){}
     }
@@ -100,32 +102,12 @@ export default function HomePage(){
 
                     <div className='produtos'>
 
-                        {produtosMaisVendidos.map(item => <CardProduto />)}
-
-                        <div>
-
-                            <img src='/assets/images/image-produto1.png' alt='' />
-                            <div className='desconto-estilizacao'></div>
-                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
-
-                            <span className='preco'>R$17,90</span>
-                        </div>
-
-                        <div>
-
-                            <img src='/assets/images/image-produto1.png' alt='' />
-                            <div className='desconto-estilizacao'></div>
-                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
-                            <span className='preco'>R$17,90</span>
-                        </div>
-
-                        <div>
-
-                            <img src='/assets/images/image-produto1.png' alt='' />
-                            <div className='desconto-estilizacao'></div>
-                            <h6>PESTCO SEM GLÚTEN ABÓBORA E COCO 150G</h6>
-                            <span className='preco'>R$17,90</span>
-                        </div>
+                        {produtosMaisVendidos.slice(produtosExibidos-4, produtosExibidos).map(item => 
+                            <CardProduto 
+                                capa={item.Capa}
+                                nome={item.Nome}
+                                avaliacao={item.Avaliação}
+                                avaliacoes={item.Avaliações}/>)}
 
                         <button>
                             <svg width="58" height="14" viewBox="0 0 118 74" fill="none" xmlns="http://www.w3.org/2000/svg">
