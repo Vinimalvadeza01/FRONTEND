@@ -129,7 +129,7 @@ export default function PageConsultaProdutosAdm(){
          
         try{
 
-            const url='http://localhost:5000/produto/consulta/adm';
+            const url='http://localhost:5000/produto/adm/consulta';
 
             let produtoEspecifico=true;
             let lancamentoEspecifico=false;
@@ -338,7 +338,7 @@ export default function PageConsultaProdutosAdm(){
                                 <input type='checkbox' id='recentes' checked={maisRecentes ? 'checked' : ''} onChange={(e) => {
                                     setMaisRecentes(e.target.checked); 
                                     alterarEstadoInputs(4)}}/>
-                                <label for='recentes'>Cadastrados recentemente</label>
+                                <label for='recentes'>Lançados Recentemente</label>
                             </div>
 
                             <div>

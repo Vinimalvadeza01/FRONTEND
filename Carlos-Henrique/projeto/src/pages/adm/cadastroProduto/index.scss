@@ -200,7 +200,7 @@
                 margin-bottom: 10px;
             }
 
-            input,#input-preco{
+            input,#input-preco,textarea{
 
                 max-width: 100%;
                 
@@ -213,6 +213,12 @@
                 background-color: #F9F9F9;
                 border:1px solid #3D5745;
                 border-radius: 5px;
+            }
+
+            textarea{
+
+                overflow:auto;
+                resize: none;
             }
 
             .input-container{

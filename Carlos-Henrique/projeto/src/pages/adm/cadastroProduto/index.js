@@ -34,6 +34,7 @@ export default function CadastrarProduto(){
     const[categoria,setCategoria]=useState(Number(''));
     const[animal,setAnimal]=useState(Number(''));
     const[marca,setMarca]=useState('');
+    const[descricao,setDescricao]=useState('');
     const[peso,setPeso]=useState('');
 
     const[precoTotal,setPrecoTotal]=useState(undefined);
@@ -138,6 +139,7 @@ export default function CadastrarProduto(){
                 categoria:categoria,
                 animal:animal,
                 marca:marca,
+                descricao:descricao,
                 peso:peso,
                 preco:Number(arrumarPreco),
                 desconto:desconto,
@@ -442,9 +444,6 @@ export default function CadastrarProduto(){
                         
                         <h2>Produto</h2>
 
-                        <label for='previa-id'>ID:</label>
-                        <span id='previa-id'></span>
-
                         <label>Nome:</label>
                         <input type='text' maxLength="100" value={nome} onChange={(e) => {setNome(e.target.value)}}/>
                         
@@ -474,6 +473,9 @@ export default function CadastrarProduto(){
 
                         <label for='input-marca'>Marca do Produto:</label>
                         <input id='input-marca' type='text' maxLength="100" value={marca} onChange={(e) => {setMarca(e.target.value)}}/>
+
+                        <label for='input-desc'>Descrição do Produto:</label>
+                        <textarea id='input-desc' wrap='hard' cols="30" rows="8" maxLength='176' value={descricao} onChange={(e) => {setDescricao(e.target.value)}}></textarea>
 
                         <label for='input-peso'>Peso do Produto:</label>
                         <input id='input-peso' type='text' maxLength="5" value={peso} onChange={(e) => {setPeso(e.target.value)}}/>
