@@ -1,16 +1,12 @@
 import './index.scss';
 import SectionDecoration from '../../components/section-decoration';
 import Cabecalho from '../../components/cabecalho';
-import Endereco from '../endereco/inex';
-import { useState } from 'react';
 
 
 
 export default function ConfirmarEnd() {
 
 
-    const [IrParaEndereco, setIrParaEndereco] = useState('');
-    const [VoltaPagina, setVoltaPagina] = useState('');
 
 
     
@@ -28,10 +24,8 @@ export default function ConfirmarEnd() {
 
             <div className='botoes'>
               <div className='botao01'>
-                <button onClick={() =>{setIrParaEndereco}} className='conf'>CONFIRMAR</button>
               </div>
               <div className='botao02'>
-                <button onClick={() =>{setVoltaPagina}} className='depois'>ADICIONÁ-LAS <br/> MAIS TARDE</button>
               </div>
             </div>
           </div>
