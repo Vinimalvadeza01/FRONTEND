@@ -1,0 +1,137 @@
+.Page-Endereco{
+    background: linear-gradient(180deg, #619853 0%, #325B23 100%);
+    max-width:100vw;
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+
+    
+        .conteudo{
+            display: flex;    
+            width: 90%;
+            height: 83vh;
+          flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            justify-self: center;
+            background-color:#C8DFBF;
+
+            .titulo{
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+                font-size: 50px;
+            }
+            
+            .invisivel{
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+                height: 40vh;
+                background-color: #C8DFBF;
+                justify-content: space-between;
+
+                .inputum{
+                    display: flex; 
+                    flex-direction: column;
+                    .cep{
+                        display: flex;
+                        
+                        .incep{
+                            display: flex;
+                            width: 10vw;
+                            height: 30vh;
+                        }
+                    }
+                }
+
+
+                .inputdois{
+                    display: flex; 
+                    flex-direction: column;
+                    .rua{
+
+
+                    }
+                }
+
+
+                .inputtres{
+                    display: flex; 
+                    flex-direction: column;
+                    .bairro{
+
+
+                    }
+                }
+
+
+                .complementos{
+                    display: flex; 
+                    flex-direction: row;
+                justify-content: space-around;
+                    .numero{
+                        display: flex; 
+                        flex-direction: column;
+
+                        .num{
+
+                        }
+                    }
+                
+                    .complement{
+                        display: flex; 
+                        flex-direction: column;
+
+                        .comp{
+
+                        }
+                    }
+                
+                }
+
+
+                .endereco-ec{
+                    display: flex; 
+                    flex-direction: row;
+                    justify-content: space-around;
+                    .input01{
+                        display: flex;  
+                        flex-direction: column;
+                        .estado{
+                            display: flex;
+                        }
+                    }
+                }
+            
+                    .input02{
+                        display: flex;
+                        flex-direction: column;
+                        .cidade{
+                            display: flex;
+                        }
+                }
+            
+                .butt{
+                    display: flex;  
+                    align-items: center;
+                    justify-content: center;
+                   
+                    .bt{
+                        display: flex;
+                        background-color: #619853;
+                        height: 2vh;
+                        width: 10vw;
+                        align-self: center;
+                        justify-content: center;
+                    }   
+                }
+            }
+
+    }
+
+
+}

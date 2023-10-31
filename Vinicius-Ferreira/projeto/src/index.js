@@ -6,7 +6,7 @@ import Cadastro from './pages/cadastro';
 import {BrowserRouter,Routes, Route} from 'react-router-dom';
 import HomeDm from './pages/homeDm';
 import ConfirmarEnd from './pages/ConfiEndereco';
-import Endereco from './pages/endereco/inex';
+import Endereco from './pages/endereco/index';
 
 
 
