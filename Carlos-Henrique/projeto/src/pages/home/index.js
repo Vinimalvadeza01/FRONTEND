@@ -12,7 +12,7 @@ import axios from 'axios';
 
 export default function HomePage(){
 
-    const[produtosExibidos,setProdutosExibidos]=useState(4);
+    const[produtosExibidos,setProdutosExibidos]=useState(5);
     const[produtosMaisVendidos,setProdutosMaisVendidos]=useState([]);
 
     const[animarProdutos,setAnimarProdutos]=useState('');
@@ -102,15 +102,15 @@ export default function HomePage(){
 
                     <div className={'produtos '+animarProdutos}>
 
-                        {produtosExibidos!==4 ? 
-                            <button onClick={() => {setProdutosExibidos(produtosExibidos-4)}}>
+                        {produtosExibidos!==5 ? 
+                            <button onClick={() => {setProdutosExibidos(produtosExibidos-5)}}>
                                 <svg width="58" height="14" viewBox="0 0 118 74" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.46439 33.4645C-0.488228 35.4171 -0.488228 38.5829 1.46439 40.5355L33.2842 72.3553C35.2368 74.308 38.4026 74.308 40.3553 72.3553C42.3079 70.4027 42.3079 67.2369 40.3553 65.2843L12.071 37L40.3553 8.71573C42.3079 6.76311 42.3079 3.59728 40.3553 1.64466C38.4026 -0.307961 35.2368 -0.307961 33.2842 1.64466L1.46439 33.4645ZM117.648 32L4.99992 32V42L117.648 42V32Z" fill="#3D5745"/>
                                 </svg>
                             </button>
                         :   ''}
 
-                        {produtosMaisVendidos.slice(produtosExibidos-4, produtosExibidos).map(item => 
+                        {produtosMaisVendidos.slice(produtosExibidos-5, produtosExibidos).map(item => 
                             <CardProduto 
                                 capa={item.Capa}
                                 nome={item.Nome}
@@ -118,8 +118,15 @@ export default function HomePage(){
                                 avaliacoes={item.Avaliações}
                                 preco={item.Preço}/>)}
 
-                        {produtosExibidos!==12 && (produtosExibidos-produtosMaisVendidos.length)<3? 
-                            <button onClick={() => {setProdutosExibidos(produtosExibidos+4);setAnimarProdutos('deslizar-produtos')}} style={{animation:`${animarProdutos}`}}>
+                        {produtosExibidos!==15 && (produtosExibidos-produtosMaisVendidos.length)<4 && produtosMaisVendidos.length>=produtosExibidos? 
+                            <button onClick={() => {
+                                        setProdutosExibidos(produtosExibidos+5); 
+                                        setAnimarProdutos('deslizar-produtos')
+                                        setAnimarProdutos('');
+
+                                    }} 
+                                    style={{animation:`${animarProdutos}`}}>
+
                                 <svg width="58" height="14" viewBox="0 0 118 74" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M116.184 40.5355C118.136 38.5829 118.136 35.4171 116.184 33.4645L84.3638 1.64466C82.4111 -0.307961 79.2453 -0.307961 77.2927 1.64466C75.3401 3.59728 75.3401 6.76311 77.2927 8.71573L105.577 37L77.2927 65.2843C75.3401 67.2369 75.3401 70.4027 77.2927 72.3553C79.2453 74.308 82.4111 74.308 84.3638 72.3553L116.184 40.5355ZM0 42L112.648 42V32L0 32L0 42Z" fill="#3D5745"/>
                                 </svg>

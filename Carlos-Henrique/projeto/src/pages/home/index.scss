@@ -161,6 +161,15 @@
                 
                 gap:30px;
                 width:100%;
+
+                clip:rect(-10px,45px,110px,-10px);
+
+                button{
+
+                    width:58px;
+                    height:14px;
+                    align-self: center;
+                }
             }
         }
 
