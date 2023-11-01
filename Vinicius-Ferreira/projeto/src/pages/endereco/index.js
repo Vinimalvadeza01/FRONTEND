@@ -1,7 +1,7 @@
 import Cabecalho from '../../components/cabecalho'
 import './index.scss'
 import InputMask from 'react-input-mask'
-
+import SectionDecoration from '../../components/section-decoration';
 
 export default function Endereco(){
 
@@ -9,10 +9,10 @@ export default function Endereco(){
 <section className='Page-Endereco'>
 <Cabecalho/>
     <div className='conteudo'>
+        <SectionDecoration/>
         <h1 className='titulo'>Informações de Endereço</h1>
 
         <div className='invisivel'>
-    
     <div className='inputum'>
             <label className='cep'>CEP</label>
             <InputMask
@@ -27,6 +27,7 @@ export default function Endereco(){
     <div className='inputdois'>
             <label className='rua'>Rua</label>
             <InputMask
+            className='inrua'
             mask=''
             maskChar=''
             placeholder="Informe sua rua"
@@ -37,6 +38,7 @@ export default function Endereco(){
             <label className='bairro'>Bairro</label>
             <InputMask
             mask=''
+            className='inbairro'
             maskChar=''
             placeholder="Informe seu bairro"
             type='text'
@@ -49,6 +51,7 @@ export default function Endereco(){
             <label className='num'>Nº</label>
             <InputMask
             mask=''
+            className='innumero'
             maskChar=''
             placeholder="número da casa"
             type='Number'
@@ -59,6 +62,7 @@ export default function Endereco(){
             
             <label className='comp'>Complemento</label>
             <InputMask
+            className='incomplemento'
             mask=''
             maskChar=''
             placeholder="Informações extras"
@@ -76,6 +80,7 @@ export default function Endereco(){
             
                 <InputMask
                 mask=''
+                className='inestado'
                 maskChar=''
                 placeholder="Nome do estado"
                 type='text'
@@ -89,6 +94,7 @@ export default function Endereco(){
             
                 <InputMask
                 mask=''
+                className='incidade'
                 maskChar=''
                 placeholder="Nome da cidade"
                 type='text'
