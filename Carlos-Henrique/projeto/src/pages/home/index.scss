@@ -1,17 +1,3 @@
-@keyframes deslizar-produtos {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-100%);
-    }
-  }
-  
-.deslizar-produtos {
-    animation: deslizar-produtos 1s forwards;
-    animation-iteration-count: 1;
-}
-
 .page-home{
 
     width:100vw;
@@ -154,21 +140,38 @@
                 }
             }
 
-            .produtos{
+            .container-produtos{
 
                 display: flex;
                 flex-direction: row;
                 
-                gap:30px;
+                gap:10px;
                 width:100%;
-
-                clip:rect(-10px,45px,110px,-10px);
 
                 button{
 
                     width:58px;
                     height:14px;
                     align-self: center;
+                }
+
+                .listagem-produtos{
+
+                    display:flex;
+                    flex-direction: row;
+
+                    width:90%;
+                    gap:30px;
+
+                    overflow-x: auto;
+                    overflow-y:hidden;
+
+                    scroll-behavior: smooth;
+                }
+
+                .listagem-produtos::-webkit-scrollbar{
+
+                    display:none;
                 }
             }
         }
@@ -183,7 +186,8 @@
 
             .ver-mais-button{
 
-                width:100%;
+                width:30%;
+                align-self: center;
 
                 padding:20px 0;
 
@@ -197,7 +201,7 @@
 
             .ver-mais-button:hover{
                 
-                width:110%;
+                width:40%;
 
                 background-color: #E1FFA1;
                 color:#1D5745;
@@ -281,5 +285,15 @@
                 }
             } 
         }
+    }
+
+    .page-home .section-produtos .ver-tudo .ver-mais-button{
+
+        width:50%;
+    }
+
+    .page-home .section-produtos .ver-tudo .ver-mais-button:hover{
+
+        width:60%;
     }
 }

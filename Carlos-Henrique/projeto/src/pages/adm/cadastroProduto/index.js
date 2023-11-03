@@ -40,7 +40,7 @@ export default function CadastrarProduto(){
     const[precoTotal,setPrecoTotal]=useState(undefined);
     const[precoCentavos,setPrecoCentavos]=useState(undefined);
 
-    const[estoque,setEstoque]=useState(Number());
+    const[estoque,setEstoque]=useState(Number(0));
 
     const[disponivel,setDisponivel]=useState(undefined);
     const[lancamento,setLancamento]=useState('');

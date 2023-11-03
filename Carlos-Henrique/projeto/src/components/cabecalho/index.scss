@@ -6,7 +6,6 @@
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-    overflow-y: hidden;
 
     background: #183D0A;
 
@@ -101,11 +100,82 @@
 
             .Link-menu{
 
+                position:relative;
                 font-size:20px;
+                padding:5px;
 
                 svg{
 
                     margin-left:5px;
+                    fill:#fff;
+                }
+
+                .produtos{
+
+                    display:flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+
+                    width:350px;
+                    padding:10px;
+                    gap:20px;
+
+                    visibility: hidden;
+                    position:absolute;
+                    opacity: 0;
+                    height:0;
+
+                    left:0;
+
+                    background-color:#c3e2be;
+                    transition: opacity 0.4s, height 0.4s, visibility 0.4s;
+
+                    *{
+
+                        color:#3D5745;
+                    }
+
+                    .card-produto{
+
+                        width:150px;
+                        height:220px;
+
+                        h6{
+
+                            font-size:14px;
+                        }
+
+                        .container-avaliacao{
+
+                            display:none;
+                        }
+                    }
+                }
+            }
+
+            .Link-menu:hover{
+
+                background-color:#c3e2be;
+
+                transition:0.4s;
+
+                span{
+
+                    color:#3D5745 !important;
+                    transition:color 0.4s;
+                }
+                
+                svg{
+
+                    fill:#3D5745;
+                    transition:fill 0.4s;
+                }
+
+                .produtos{
+
+                    visibility:visible;
+                    opacity:1;
+                    height:auto;
                 }
             }
         }
@@ -141,6 +211,7 @@
             .header-menu{
 
                 width:120%;
+                margin-left:80px;
                 .Link-menu{
 
                     font-size:16px;
@@ -181,7 +252,12 @@
     } 
 }
 
-@media(max-width:700px){
+@media(max-width:710px){
+
+    .cabecalho #logo{
+
+        height:80%;
+    }
 
     .cabecalho .container-header {
 
@@ -221,6 +297,11 @@
         .mobile-menu{
 
             display:block;
+            padding:5px;
+
+            background-color: #619853;
+            border-radius: 5px;
+            font-size:16px;
         }
 
         #patinhas{
@@ -234,15 +315,17 @@
 
     .cabecalho{
 
-        >img{
+        #logo{
 
-            height:70% !important;
+            height:70%;
         }
 
         .container-header{
 
             flex-grow:0;
             padding:10px 0;
+
+            align-items: flex-start;
         }
 
         .container-infs{
@@ -252,7 +335,7 @@
     
             .pesquisa{
     
-                width:80%;
+                width:80% !important;
     
                 input{
     
@@ -275,6 +358,13 @@
 
         .container-para-mobile{
 
+            flex-grow: 1;
+            
+            .mobile-menu{
+
+                font-size: 12px;
+            }
+
             #patinhas{
     
                 height:30%;
@@ -283,7 +373,7 @@
     }   
 }
 
-@media(max-width:360px){
+@media(max-width:400px){
 
     .cabecalho .container-header .container-infs{
         .pesquisa {
