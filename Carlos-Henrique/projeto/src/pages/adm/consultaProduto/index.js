@@ -60,16 +60,11 @@ export default function PageConsultaProdutosAdm(){
 
         // Evitar conflitos nos filtros de data
             if(input===4){
-
-                setNaoLancados(false);
-                setSemLancamento(false);
         
-                 setDataEspecifica('');
+                setDataEspecifica('');
             }
         
             else if(input===5||input===6){
-        
-                setMaisRecentes(false);
         
                 setDataEspecifica('');
             }
@@ -189,7 +184,7 @@ export default function PageConsultaProdutosAdm(){
                 porAdministrador:porAdm,
                 adm:administrador,
 
-                lancamentoEspecifico: lancamentoEspecifico,
+                cadastroEspecifico: lancamentoEspecifico,
                 dataEspecifica:dataFormatada
         };
         
@@ -338,7 +333,7 @@ export default function PageConsultaProdutosAdm(){
                                 <input type='checkbox' id='recentes' checked={maisRecentes ? 'checked' : ''} onChange={(e) => {
                                     setMaisRecentes(e.target.checked); 
                                     alterarEstadoInputs(4)}}/>
-                                <label for='recentes'>Lançados Recentemente</label>
+                                <label for='recentes'>Cadastrados Recentemente</label>
                             </div>
 
                             <div>
@@ -403,7 +398,7 @@ export default function PageConsultaProdutosAdm(){
 
                             <h4>Filtros específicos</h4>
 
-                            <label>Procurar por data específica</label>
+                            <label>Procurar por data de cadastro específica</label>
 
                             <div className='input-data-especifica'>
 
@@ -443,6 +438,7 @@ export default function PageConsultaProdutosAdm(){
                                 Preço={item.Preço} 
                                 Disponível={item.Disponível} Desconto={item.Desconto} 
                                 Vendas={item.Vendas} Estoque={item.Estoque}
+                                Cadastro={item.Cadastro}
                                 Lançamento={item.Lançamento}
                                 Avaliação={item.Avaliação} Favoritos={item.Favoritos}
                                 Adm={item.Adm}

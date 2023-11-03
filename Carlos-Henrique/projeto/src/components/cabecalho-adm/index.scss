@@ -72,10 +72,10 @@
     .menu-adm{
 
         position:absolute;
-        left:85%;
+        left:80%;
 
-        height:100vh;
-        width:15vw;
+        height:100%;
+        width:20vw;
 
         padding:20px 0px;
 
@@ -122,6 +122,11 @@
         .button-consulta{
 
             position: relative;
+
+            >svg{
+
+                transform: rotate(90deg);
+            }
 
             .container-consulta{
 
