@@ -441,6 +441,7 @@ export default function PageConsultaProdutosAdm(){
                                 Cadastro={item.Cadastro}
                                 Lançamento={item.Lançamento}
                                 Avaliação={item.Avaliação} Favoritos={item.Favoritos}
+                                Avaliações={item.Avaliações}
                                 Adm={item.Adm}
                                         
                                 caminho={`/adm/produto/${item.ID}`}/>)}

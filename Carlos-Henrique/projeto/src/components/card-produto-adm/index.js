@@ -103,6 +103,16 @@ export default function cardProduto(props){
 
                 <div className='container-infs9'>
 
+                    <p> <span>Quantidade de Avaliações:</span> {props.Avaliações}</p>
+                </div>
+
+                <hr/>
+            </div>
+
+            <div className='infs10'>
+
+                <div className='container-infs10'>
+
                     <p> <span>Cadastrado por:</span> {props.Adm}</p>
                 </div>
 
