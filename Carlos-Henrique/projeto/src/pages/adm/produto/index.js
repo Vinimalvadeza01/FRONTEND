@@ -14,18 +14,22 @@ export default function PageProdutoAdm(){
 
     // Variáveis que guardam informações que podem ser alteradas, com exceção da variável "cadastro"
     const[nome,setNome]=useState('');
+    const[marca,setMarca]=useState('');
     const[descricao,setDescricao]=useState('');
+    const[peso,setPeso]=useState('');
     const[categoria,setCategoria]=useState('');
     const[animal,setAnimal]=useState('');
     const[lancamento,setLancamento]=useState('');
-    const[cadastro,setCadastro]=useState('');
+    const[cadastro,setCadastro]=useState('');    
     const[disponivel,setDisponivel]=useState(Boolean);
-    const[preco,setPreco]=useState('');
+    const[precoFormatado,setPrecoFormatado]=useState('');
+    const[precoInteiro,setPrecoInteiro]=useState(Number());
+    const[precoCentavos,setPrecoCentavos]=useState(Number());
     const[precoComDesconto,setPrecoComDesconto]=useState('');
     const[desconto,setDesconto]=useState('');
     const[estoque,setEstoque]=useState('');
 
-    const[alterarProduto,setAlterarProduto]=useState(true);
+    const[produtoEmAlteracao,setProdutoEmAlteracao]=useState(true);
     const[corInputs,setCorInputs]=useState('transparent');
     const[borderInputs,setBorderInputs]=useState('none');
 
@@ -40,7 +44,9 @@ export default function PageProdutoAdm(){
         setInfsProduto(resp.data);
 
         setNome(resp.data.Nome);
+        setMarca(infsProduto.Marca);
         setDescricao(resp.data.Descrição);
+        setPeso(resp.data.Peso);
         setCategoria(resp.data.Categoria);
         setAnimal(resp.data.Animal);
         setDisponivel(resp.data.Disponível);
@@ -65,7 +71,7 @@ export default function PageProdutoAdm(){
 
         // Formatar o preço
         const formatarPreco=resp.data.Preço.toString().replace('.', ',')+'R$';
-        setPreco(formatarPreco);
+        setPrecoFormatado(formatarPreco);
 
         // Preço com desconto
         const calcDesconto=resp.data.Preço*(1+(resp.data.Desconto/100));
@@ -87,14 +93,38 @@ export default function PageProdutoAdm(){
         }
     }
 
+    async function alterarProduto(){
+
+        const url=`http://localhost:5000/produto/alterar/${id}`;
+
+        const produto={
+
+            nome:nome,
+            categoria:"2",
+            animal:"1",
+            marca:marca,
+            descricao:descricao,
+            peso:peso,
+            lancamento:lancamento,
+            disponivel:false,
+            desconto:desconto,
+            preco:preco,
+            estoque:estoque
+        };
+
+        const resp=await axios.put(url);
+    }
+
     function cancelarAlteracao(){
 
-        setAlterarProduto(true); 
+        setProdutoEmAlteracao(true); 
         setCorInputs('transparent'); 
         setBorderInputs('none');
 
         setNome(infsProduto.Nome);
+        setMarca(infsProduto.Marca);
         setDescricao(infsProduto.Descrição);
+        setPeso(resp.data.Peso);
         setCategoria(infsProduto.Categoria);
         setAnimal(infsProduto.Animal);
         setDisponivel(infsProduto.Disponível);
@@ -202,21 +232,36 @@ export default function PageProdutoAdm(){
 
                         <div> 
                             <label>Nome:</label> 
-                            <input  type='text' value={nome} readOnly={alterarProduto} 
+                            <input  type='text' value={nome} readOnly={produtoEmAlteracao} 
                                     onChange={(e) => {setNome(e.target.value)}}
+                                    style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
+                        </div>
+
+                        <div>
+                            <label>Marca:</label>
+                            <input  type='text' value={marca} readOnly={produtoEmAlteracao}
+                                    onChange={(e) => {setMarca(e.target.value)}}
                                     style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
                         </div>
 
                         <div id='div-desc'>
                             <label>Descrição:</label>
-                            <textarea   value={descricao} readOnly={alterarProduto} 
+                            <textarea   value={descricao} readOnly={produtoEmAlteracao} 
                                         wrap='hard' cols="30" rows="8" maxLength='176' 
                                         onChange={(e) => {setDescricao(e.target.value)}}
                                         style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
                         </div>
+
+                        <div>
+                            <label>Peso:</label>
+                            <input  type='text' value={peso} readOnly={produtoEmAlteracao} 
+                                    onChange={(e) => {setDescricao(e.target.value)}}
+                                    style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
+                        </div>
+
                         <div>
                             <label>Categoria:</label>
-                            {alterarProduto ? <input type='text' value={categoria} readOnly className='sem-fundo'/>
+                            {produtoEmAlteracao ? <input type='text' value={categoria} readOnly className='sem-fundo'/>
                             : <select   onChange={(e) => {setCategoria(e.target.value)}} 
                                         style={{background:`${corInputs}`, border:`${borderInputs}`}}></select>}
 
@@ -224,7 +269,7 @@ export default function PageProdutoAdm(){
 
                         <div>
                             <label>Animal:</label>
-                            {alterarProduto ? <input type='text' value={animal} readOnly className='sem-fundo'/>
+                            {produtoEmAlteracao ? <input type='text' value={animal} readOnly className='sem-fundo'/>
                             : <select 
                                         onChange={(e) => {setAnimal(e.target.value)}}
                                         style={{background:`${corInputs}`, border:`${borderInputs}`}}></select>}
@@ -233,7 +278,7 @@ export default function PageProdutoAdm(){
                         <div> 
                             <label>{infsProduto.Disponível ? 'Data em que foi lançado:' : 'Data prevista para lançamento:'}</label> 
                             <InputMask  mask='99/99/9999' maskChar=' ' 
-                                        type='text' value={lancamento} readOnly={alterarProduto}
+                                        type='text' value={lancamento} readOnly={produtoEmAlteracao}
                                         onChange={(e) => {setLancamento(e.target.value)}}
                                         style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
                         </div>
@@ -241,19 +286,31 @@ export default function PageProdutoAdm(){
                         <div> 
                             <label>Disponível:</label> 
                             <input type='text' value={disponivel ? 'Sim' : 'Não'} readOnly className='sem-fundo'/>
-                            {alterarProduto ? '' : <button>{infsProduto.Disponível ? 'Deixar indisponível' : 'Deixar disponível'}</button>}
+                            {produtoEmAlteracao ? '' : <button>{infsProduto.Disponível ? 'Deixar indisponível' : 'Deixar disponível'}</button>}
                         </div>
 
                         <div> 
                             <label>Preço:</label> 
-                            <input  type='text' value={preco} readOnly={alterarProduto}
-                                    onChange={(e) => {setPreco(e.target.value)}}
-                                    style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
+                            {produtoEmAlteracao ? 
+                                <input  value={precoFormatado} readOnly={produtoEmAlteracao}
+                                        style={{background:`${corInputs}`}}/>
+
+                            : <div >
+                                <input  type='number'
+                                        onChange={(e) => {setPrecoInteiro(e.target.value)}}
+                                        style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
+                                                                
+                                <input  type='number'
+                                        onChange={(e) => {setPrecoCentavos(e.target.value)}}
+                                        style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
+                              </div>
+                            }
+                            
                         </div>
 
                         <div> 
                             <label>Desconto:</label> 
-                            <InputMask  mask='99%' maskChar=' ' type='text' value={desconto} readOnly={alterarProduto}
+                            <InputMask  mask='99%' maskChar=' ' type='text' value={desconto} readOnly={produtoEmAlteracao}
                                         onChange={(e) => {setDesconto(e.target.value)}}
                                         style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
                         </div>
@@ -265,7 +322,7 @@ export default function PageProdutoAdm(){
 
                         <div> 
                             <label>Estoque:</label> 
-                            <input  type='text' value={estoque} readOnly={alterarProduto}
+                            <input  type='text' value={estoque} readOnly={produtoEmAlteracao}
                                     onChange={(e) => {setEstoque(e.target.value)}}
                                     style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
                         </div>
@@ -283,16 +340,16 @@ export default function PageProdutoAdm(){
 
                 <div className='container-buttons'>
 
-                    {alterarProduto ? 
+                    {produtoEmAlteracao ? 
                         <div className='botoes1'>
-                            <button className='botao-alterar' onClick={() => {setAlterarProduto(false); setCorInputs('#E1FFA1'); setBorderInputs('1px solid #3D5745');}}>ALTERAR INFORMAÇÕES</button>
+                            <button className='botao-alterar' onClick={() => {setProdutoEmAlteracao(false); setCorInputs('#E1FFA1'); setBorderInputs('1px solid #3D5745');}}>ALTERAR INFORMAÇÕES</button>
                             <button className='botao-excluir'>EXCLUIR PRODUTO</button>
                         </div>
 
                     :   
                         <div className='botoes2'>
-                            <button onClick={cancelarAlteracao}>CANCELAR</button>
                             <button>FINALIZAR ALTERAÇÕES</button>
+                            <button onClick={cancelarAlteracao}>CANCELAR</button>
                         </div>
                         }
                 </div>

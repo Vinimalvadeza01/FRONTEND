@@ -151,14 +151,22 @@
             }
         }
 
-        .container-buttons button:first-child{
+        .container-buttons >div{
+            
+            display:flex;
+            flex-direction: row;
+            
+            gap:10px;
 
-            background-color: #619853;
-        }
+            button:first-child{
 
-        .container-buttons button:last-child{
+                background-color: #619853;
+            }
 
-            background-color:#EF4040;
+            button:last-child{
+
+                background-color: #EF4040;
+            }
         }
     }
 }

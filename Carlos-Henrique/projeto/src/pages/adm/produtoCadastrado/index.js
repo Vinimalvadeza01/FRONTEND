@@ -3,8 +3,27 @@ import './index.scss';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
 
 import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-export default function pageProdutoCadastrado(props){
+export default function pageProdutoCadastrado(){
+
+    const[id,setId]=useState('');
+
+    async function consultarUltimoProduto(){
+
+        const url=`http://localhost:5000/produto/ultimoProduto`;
+
+        const resp=await axios.get(url);
+
+        console.log(resp.data[0].ID_PRODUTO);
+        setId(resp.data[0].ID_PRODUTO);
+    }
+
+    useEffect(() => {
+
+        consultarUltimoProduto();
+    },[]);
 
     return(
 
@@ -32,7 +51,7 @@ export default function pageProdutoCadastrado(props){
                     </Link>
 
                     {/* Colocar o caminho quando for feita a página de consulta */}
-                    <Link to={props.caminho} className='Link redirecionar-page'>Ver produto cadastrado
+                    <Link to={`/adm/produto/${id}`} className='Link redirecionar-page'>Ver produto cadastrado
 
                         <svg width="22" height="29" viewBox="0 0 27 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4.5 0C2.01797 0 0 1.90586 0 4.25V29.75C0 32.0941 2.01797 34 4.5 34H22.5C24.982 34 27 32.0941 27 29.75V10.625H18C16.7555 10.625 15.75 9.67539 15.75 8.5V0H4.5ZM18 0V8.5H27L18 0ZM7.875 17H19.125C19.7437 17 20.25 17.4781 20.25 18.0625C20.25 18.6469 19.7437 19.125 19.125 19.125H7.875C7.25625 19.125 6.75 18.6469 6.75 18.0625C6.75 17.4781 7.25625 17 7.875 17ZM7.875 21.25H19.125C19.7437 21.25 20.25 21.7281 20.25 22.3125C20.25 22.8969 19.7437 23.375 19.125 23.375H7.875C7.25625 23.375 6.75 22.8969 6.75 22.3125C6.75 21.7281 7.25625 21.25 7.875 21.25ZM7.875 25.5H19.125C19.7437 25.5 20.25 25.9781 20.25 26.5625C20.25 27.1469 19.7437 27.625 19.125 27.625H7.875C7.25625 27.625 6.75 27.1469 6.75 26.5625C6.75 25.9781 7.25625 25.5 7.875 25.5Z" fill="white"/>
