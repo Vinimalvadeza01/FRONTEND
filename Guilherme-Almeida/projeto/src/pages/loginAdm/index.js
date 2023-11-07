@@ -1,38 +1,49 @@
-import axios from 'axios'
 import './index.scss';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate}   from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar'
 import CabecalhoAdm from '../../components/cabecalho-adm';
 import SectionDecoration from '../../components/section-decoration';
-import { useEffect, useState } from 'react';
-import Storage  from '../../components/storage';
+import { useRef, useState } from 'react';
+import storage from 'local-storage'
 
 export default function LoginAdm (){
   const[usuario, setUsuario] = useState('');
   const[senhaAdm, setSenhaAdm] = useState('');
   const[erro, setErro] = useState ('');
+  const[carregando, setCarregando] = useState(false)
 
-  const navigate = useNavigate ();
+
+  const navigate = useNavigate();
+  const ref = useRef();
+
 
   async function entrarClick(){
-
-    const url = 'http://localhost:5000/adm/login';
-    
-    const user={
-
-      adm: usuario,
-      senha: senhaAdm 
-    };
+    ref.current.continuosStart();
+    setCarregando(true)
+  
 
     try{ 
-      const r =  await axios.post(url, user);
-      ;
+      const r = await LoginAdm(usuario, senhaAdm);
+      console.log(r) 
+     //storage('usuario-logado', r);
+
+      setTimeout(() => {
+          navigate('/adm/cadastrar-produto');
+      }, 3000);
+      
  
         } catch (err) {
-          setErro(err.response.data.erro);
+          ref.current.complete();
+          setCarregando(false);
+
+              if(err.response.status ===  401) {
+                setErro(err.response.data.erro);
+              }
         } 
 }
     return (
       <div className="pagina-login-adm">
+        <LoadingBar color='#f11946' ref={ref} />
         
         <CabecalhoAdm/>
         
@@ -62,7 +73,7 @@ export default function LoginAdm (){
             <input type="password" placeholder="Digite a senha" value={senhaAdm} onChange={e => setSenhaAdm(e.target.value)}/>        
             </div>
             <div> 
-            <button className="botao" onClick={entrarClick}>Entrar</button>          
+            <button className="botao" onClick={entrarClick} disabled={carregando}>Entrar</button>          
             </div>
             <div className='form-entrar-invalido'>
           <span> {erro} </span>
