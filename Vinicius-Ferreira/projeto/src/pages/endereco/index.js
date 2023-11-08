@@ -33,7 +33,7 @@ async function listarCidades(){
 
     try{
 
-        const url='https//servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios?orderBy=nome;
+        const url='https//servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios?orderBy=nome';
 
         let resp=await axios.get(url);
 
@@ -75,9 +75,9 @@ async function listarCidades(){
 
 
 
-  return (
+  return(
     <section className='Page-Endereco'>
-      <Cabecalho />
+      <Cabecalho/>
       <div className='conteudo'>
         <h1 className='titulo'>Informações de Endereço</h1>
 
@@ -184,4 +184,3 @@ async function listarCidades(){
       </div>
     </section>
   );
-}
