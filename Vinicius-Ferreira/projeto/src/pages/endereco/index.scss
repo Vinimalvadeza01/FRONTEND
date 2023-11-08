@@ -19,13 +19,14 @@
           flex-direction: column;
             justify-self: center;
             background-color:#C8DFBF;
+
             .titulo{
                 display: flex;
                 width: 100%;
                 align-items: center;
                 justify-content: center;
                 font-size: 50px;
-                padding-bottom:20px ;
+                padding-top: 100px;
             }
             
             .invisivel{
@@ -42,10 +43,10 @@
                     display: flex; 
                     flex-direction: column;
                     justify-content: space-between;
-                    width:50%;
+                    width:70%;
                         .cep{   
                             display: flex;
-                            font-size: 110%;
+                            font-size: 25px;
                             padding: 10px 5px;
                         }
                      .incep{
@@ -64,14 +65,14 @@
                 .inputdois{
                     display: flex; 
                     flex-direction: column;
-                    width:50%;
+                    width:70%;
 
-                        .rua{
+                        .Rua{
                             display: flex;
-                            font-size: 120%;
+                            font-size: 25px;
                             padding: 10px 5px;
                         }
-                     .inrua{
+                     .rua{
                         display: flex;
                         font-size: 20px;
                         height: 4vh;
@@ -87,14 +88,14 @@
                 .inputtres{
                     display: flex; 
                     flex-direction: column;
-                      width: 50%;
+                      width: 70%;
 
-                    .bairro{
+                    .Bairro{
                         display: flex;
-                            font-size: 110%;
+                            font-size: 25px;
                             padding:10px 5px;
                     }
-                  .inbairro{
+                  .bairro{
                       display: flex;
                       border-radius: 9px;
                       font-size: 20px;
@@ -106,116 +107,120 @@
                 }
 
                 .complementos{
-                    display: flex; 
-                    flex-direction: row;
-                justify-content: space-around;
-                .num{
                     display: flex;
-                            font-size: 110%;
-                            padding-bottom: 10px;
-                }        
-            
-                .numero{
-                        display: flex; 
-                        flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    justify-content: space-evenly;
+                    width: 100%;
+                    .endereco-ec{
                         display: flex;
-                        font-size: 110%;
-                        padding: 10px 5px;
-                        .innumero{
-                            width: 90%;
-                            border-radius: 9px;
-                            padding-left: 10px;
-                            font-size:20px;
-                            height: 3.6vh;
-                        }
-                    }
-                
-                    .complement{
-                        display: flex; 
                         flex-direction: column;
-                        .comp{
-                            display: flex;
-                            font-size: 110%;
-                            padding: 10px 5px;
-                        }
-                        .incomplemento{
-                            width: 90%;
-                            border-radius: 9px;
-                            padding-left: 10px;
-                            font-size:20px;
-                            height: 3.6vh;
-                        }
-                    }
-                
-                }
-
-
-                .endereco-ec{
-                    display: flex; 
-                    flex-direction: row;
-                    justify-content: space-around;
-
-                    .estado{
-                        display: flex;
-                            font-size: 110%;
-                            padding-bottom: 10px;
-                    }
-                    
                     .input01{
-                        display: flex;  
+                        display: flex; 
                         flex-direction: column;
-                        padding: 10px 5px;
-                        .inestado{
-                            width: 90%;
-                            border-radius: 9px;
-                            padding-left: 10px;
-                            font-size:20px;
-                            height: 3.6vh;
+                            .estado{
+                                padding-bottom: 5px;
+                                display: flex;
+                            font-size: 20px;
+                            }
+
+                            .est{
+                                width: 50%;
+                                border-radius: 9px;
+                                font-size:20px;
+                                height: 3.6vh;
+                                width: 15vw;
+                            }
+                        
                         }
+                    
+                        .input02{
+                            display: flex; 
+                            flex-direction: column;
+                            padding-top: 20px;
+                                .numero{
+                                display: flex;
+                                font-size: 20px;
+                                padding-bottom: 5px;
+                                }
+    
+                                .nm{
+                                    width: 50%;
+                                    border-radius: 9px;
+                                    font-size:20px;
+                                    height: 3.6vh;
+                                    width: 15vw;
+                                }
+                            
+                            }   
                     }
-                }
-            
-                    .input02{
+
+
+                    .endereco-nc{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                   .input03{
                         display: flex;
                         flex-direction: column;
                         width: 50%;
 
                         .cidade{
                             display: flex;
-                            font-size: 110%;
-                            padding: 10px 5px;
-                        }
-                        .incidade{
-                            width: 90%;
-                            border-radius: 9px;
-                            padding-left: 10px;
-                            font-size:20px;
-                            height: 3.6vh;
-                        }
-                }
-            
-                .butt{
-                    display: flex;  
-                    padding-top: 20px;
-                    width: 20%;
-                    align-items: center;
-                     justify-content: center;
-                    .bt{
+                            font-size: 20px;
+                            padding-bottom: 5px;
 
+                        }
+
+                            .cd{
+                                width: 50%;
+                                border-radius: 9px;
+                                font-size:20px;
+                                height: 3.6vh;
+                                width: 15vw;
+                            }
+                   }
+                    
+                    .input04{
                         display: flex;
-                        background-color: #619853;
-                        height: 5vh;
-                        font-family: 'Josefin Sans', sans-serif;
-                        font-size: 20px;
-                        border-radius: 10px;
-                       align-items: center;
-                       justify-content: center;
+                        flex-direction: column;
                         width: 100%;
-                    }   
+                        padding-top: 20px;
+
+                        .complement{
+                            display: flex;
+                            font-size: 20px;
+                            padding-bottom: 5px;
+                        }
+
+                            .cmp{
+                                width: 50%;
+                                border-radius: 9px;
+                                font-size:20px;
+                                height: 3.6vh;
+                                width: 15vw;
+                            }
+                        
+                    }    
+                    }
+
+           
+            
+                } 
+                .button{
+                    display: flex;
+                    background-color: #619853;
+                    width: 15%;
+                    height: 10%;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 9px;
+                    .bot{
+                        display: flex;
+                        font-size: 20px;
+                        color: #fff;
+                    }
                 }
             }
-
+        }
     }
-
-
-}
