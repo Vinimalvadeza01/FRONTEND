@@ -201,7 +201,7 @@ export default function PageConsultaProdutosAdm(){
             }
 
             else{
-                alert(err.response.data.erro);
+                alert('Ocorreu um erro no sistema e não foi possível listar os produtos');
             }
         }
     }

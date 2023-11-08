@@ -12,6 +12,9 @@ export default function PageProdutoAdm(){
     const[imagesProduto,setImagesProduto]=useState([]);
     const[imagePrincipal,setImagePrincipal]=useState('');
 
+    const[categorias,setCategorias]=useState([]);
+    const[animais,setAnimais]=useState([]);
+
     // Variáveis que guardam informações que podem ser alteradas, com exceção da variável "cadastro"
     const[nome,setNome]=useState('');
     const[marca,setMarca]=useState('');
@@ -32,6 +35,8 @@ export default function PageProdutoAdm(){
     const[produtoEmAlteracao,setProdutoEmAlteracao]=useState(true);
     const[corInputs,setCorInputs]=useState('transparent');
     const[borderInputs,setBorderInputs]=useState('none');
+
+    const[erro,setErro]=useState('');
 
     const {id}=useParams();
 
@@ -79,6 +84,12 @@ export default function PageProdutoAdm(){
         formatarPrecoDesconto=formatarPrecoDesconto.replace('.', ',');
 
         setPrecoComDesconto(formatarPrecoDesconto+'R$');
+
+        // Para as variáveis de preço inteiro e centavos
+        const dividirPreco=resp.data.Preço.split('.');
+
+        setPrecoInteiro(dividirPreco[0]);
+        setPrecoCentavos(dividirPreco[1]);
     }
 
     async function consultarImagensProduto(){
@@ -95,24 +106,54 @@ export default function PageProdutoAdm(){
 
     async function alterarProduto(){
 
-        const url=`http://localhost:5000/produto/alterar/${id}`;
+        try{
 
-        const produto={
+            let preco=precoInteiro+'.'+precoCentavos;
+            let formatarDesconto=desconto.slice(0,2);
+            let formatarDataLancamento=lancamento.split('/');
 
-            nome:nome,
-            categoria:"2",
-            animal:"1",
-            marca:marca,
-            descricao:descricao,
-            peso:peso,
-            lancamento:lancamento,
-            disponivel:false,
-            desconto:desconto,
-            preco:preco,
-            estoque:estoque
-        };
+            if(formatarDesconto.length<3){
 
-        const resp=await axios.put(url);
+                throw new Error('Data Inválida');
+            }
+
+            const ano=formatarDataLancamento[2];
+            const mes=formatarDataLancamento[1];
+            const dia=formatarDataLancamento[0];
+
+            const dataFormatada=`${ano}-${mes}-${dia}`
+
+            const url=`http://localhost:5000/produto/alterar/${id}`;
+
+            const produto={
+
+                nome:nome,
+                categoria:categoria,
+                animal:animal,
+                marca:marca,
+                descricao:descricao,
+                peso:peso,
+                lancamento:dataFormatada,
+                disponivel:disponivel,
+                desconto:formatarDesconto,
+                preco:preco,
+                estoque:estoque
+            };
+
+            const resp=await axios.put(url);
+        }
+        
+        catch(err){
+
+            if(err.message){
+
+                setErro(err.message);
+            }
+
+            else{
+                setErro(err.response.data.erro);
+            }
+        }
     }
 
     function cancelarAlteracao(){
@@ -124,7 +165,7 @@ export default function PageProdutoAdm(){
         setNome(infsProduto.Nome);
         setMarca(infsProduto.Marca);
         setDescricao(infsProduto.Descrição);
-        setPeso(resp.data.Peso);
+        setPeso(infsProduto.Peso);
         setCategoria(infsProduto.Categoria);
         setAnimal(infsProduto.Animal);
         setDisponivel(infsProduto.Disponível);
@@ -147,13 +188,48 @@ export default function PageProdutoAdm(){
         setLancamento(`${dia2}/${mes2}/${ano2}`);
 
         const formatarPreco=infsProduto.Preço.toString().replace('.', ',')+'R$';
-        setPreco(formatarPreco);
+        setPrecoFormatado(formatarPreco);
+    }
+
+    async function listarCategorias(){
+
+        try{
+            const url=`http://localhost:5000/categoria/listar`;
+
+            const resp=await axios.get(url);
+
+            setCategorias(resp.data);
+        }
+
+        catch(err){
+
+            alert('Ocorreu um erro ao listar as categorias, este filtro não irá funcionar');
+        }
+    }
+
+    async function listarAnimais(){
+
+        try{
+
+            const url='http://localhost:5000/animal/listar';
+
+            let respAPI=await axios.get(url);
+
+            setAnimais(respAPI.data);
+        }
+
+        catch(err){
+
+            alert('Não foi possível listar os animais, recarregue a página e tente novamente');
+        }
     }
 
     useEffect(() => {
 
         consultarInfsProduto();
         consultarImagensProduto();
+        listarCategorias();
+        listarAnimais();
     },[]);
 
     return(
@@ -262,17 +338,26 @@ export default function PageProdutoAdm(){
                         <div>
                             <label>Categoria:</label>
                             {produtoEmAlteracao ? <input type='text' value={categoria} readOnly className='sem-fundo'/>
-                            : <select   onChange={(e) => {setCategoria(e.target.value)}} 
-                                        style={{background:`${corInputs}`, border:`${borderInputs}`}}></select>}
+                            :   <select onChange={(e) => {setCategoria(e.target.value)}} 
+                                        style={{background:`${corInputs}`, border:`${borderInputs}`}}>
+
+                                        {categorias.map(item => 
+                                            <option value={item.ID} selected={infsProduto.Categoria_ID===item.ID}>{item.Categoria}</option>)}
+                                </select>}
 
                         </div>
 
                         <div>
                             <label>Animal:</label>
                             {produtoEmAlteracao ? <input type='text' value={animal} readOnly className='sem-fundo'/>
-                            : <select 
+                            :   <select 
                                         onChange={(e) => {setAnimal(e.target.value)}}
-                                        style={{background:`${corInputs}`, border:`${borderInputs}`}}></select>}
+                                        style={{background:`${corInputs}`, border:`${borderInputs}`}}>
+                                
+                                        {animais.map(item => 
+                                                    <option value={item.ID} selected={infsProduto.Animal_ID===item.ID}>{item.Animal}</option>)}
+                                </select>
+                            }
                         </div>
 
                         <div> 
@@ -286,23 +371,48 @@ export default function PageProdutoAdm(){
                         <div> 
                             <label>Disponível:</label> 
                             <input type='text' value={disponivel ? 'Sim' : 'Não'} readOnly className='sem-fundo'/>
-                            {produtoEmAlteracao ? '' : <button>{infsProduto.Disponível ? 'Deixar indisponível' : 'Deixar disponível'}</button>}
+                            {produtoEmAlteracao ? '' : <button onClick={() => { 
+                                if(infsProduto.Disponível){
+
+                                    setDisponivel(false);
+                                }
+
+                                else{
+
+                                    setDisponivel(true);
+                                }
+
+                            }}>{infsProduto.Disponível ? 'Deixar indisponível' : 'Deixar disponível'}</button>}
                         </div>
 
-                        <div> 
+                        <div className='div-preco'> 
                             <label>Preço:</label> 
                             {produtoEmAlteracao ? 
                                 <input  value={precoFormatado} readOnly={produtoEmAlteracao}
                                         style={{background:`${corInputs}`}}/>
 
-                            : <div >
-                                <input  type='number'
-                                        onChange={(e) => {setPrecoInteiro(e.target.value)}}
-                                        style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
-                                                                
-                                <input  type='number'
-                                        onChange={(e) => {setPrecoCentavos(e.target.value)}}
-                                        style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
+                            : <div>
+                                <div>
+                                    <input  value={precoInteiro} type='number'
+                                            onChange={(e) => {
+                                                setPrecoInteiro(e.target.value);                                     if(e.target.value.length>3){
+                                                if(e.target.value.length>3){
+                                                    setPrecoInteiro(e.target.value.slice(0,3));
+                                                };
+                                            }}}
+                                            style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
+                                                                    
+                                    <input  value={precoCentavos} type='number'
+                                            onChange={(e) => {
+                                                setPrecoCentavos(e.target.value);                                     
+                                                if(e.target.value.length>2){
+                                                    setPrecoCentavos(e.target.value.slice(0,2));
+                                                };
+                                            }}
+                                            style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
+                                </div>
+                                
+                                <span>R$</span>
                               </div>
                             }
                             
@@ -326,8 +436,6 @@ export default function PageProdutoAdm(){
                                     onChange={(e) => {setEstoque(e.target.value)}}
                                     style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
                         </div>
-
-                        <button>ATIVAR DESCONTO</button>
                     </div>
                 </div>
             </div>
@@ -342,7 +450,7 @@ export default function PageProdutoAdm(){
 
                     {produtoEmAlteracao ? 
                         <div className='botoes1'>
-                            <button className='botao-alterar' onClick={() => {setProdutoEmAlteracao(false); setCorInputs('#E1FFA1'); setBorderInputs('1px solid #3D5745');}}>ALTERAR INFORMAÇÕES</button>
+                            <button className='botao-alterar' onClick={() => {setProdutoEmAlteracao(false); setCorInputs('#EBFBE9'); setBorderInputs('1px solid #3D5745');}}>ALTERAR INFORMAÇÕES</button>
                             <button className='botao-excluir'>EXCLUIR PRODUTO</button>
                         </div>
 
