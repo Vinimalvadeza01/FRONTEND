@@ -1,7 +1,7 @@
 import './index.scss';
 import axios from 'axios';
 import {useState,useEffect} from 'react';
-import { useParams,useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
 import InputMask from 'react-input-mask';
 
@@ -24,7 +24,7 @@ export default function PageProdutoAdm(){
     const[animal,setAnimal]=useState('');
     const[lancamento,setLancamento]=useState('');
     const[cadastro,setCadastro]=useState('');    
-    const[disponivel,setDisponivel]=useState(Boolean);
+    const[disponivel,setDisponivel]=useState('');
     const[precoFormatado,setPrecoFormatado]=useState('');
     const[precoInteiro,setPrecoInteiro]=useState(Number());
     const[precoCentavos,setPrecoCentavos]=useState(Number());
@@ -39,7 +39,6 @@ export default function PageProdutoAdm(){
     const[erro,setErro]=useState('');
 
     const {id}=useParams();
-    const navigate=useNavigate();
 
     async function consultarInfsProduto(){
 
@@ -50,7 +49,7 @@ export default function PageProdutoAdm(){
         setInfsProduto(resp.data);
 
         setNome(resp.data.Nome);
-        setMarca(infsProduto.Marca);
+        setMarca(resp.data.Marca);
         setDescricao(resp.data.Descrição);
         setPeso(resp.data.Peso);
         setCategoria(resp.data.Categoria_ID);
@@ -80,10 +79,10 @@ export default function PageProdutoAdm(){
         setPrecoFormatado(formatarPreco);
 
         // Preço com desconto
-        const calcDesconto=resp.data.Preço*(1+(resp.data.Desconto/100));
+        const calcDesconto=resp.data.Preço-(resp.data.Preço*(resp.data.Desconto/100));
         let formatarPrecoDesconto=calcDesconto.toString();
         formatarPrecoDesconto=formatarPrecoDesconto.replace('.', ',');
-
+        formatarPrecoDesconto=formatarPrecoDesconto.slice(0,5);
         setPrecoComDesconto(formatarPrecoDesconto+'R$');
 
         // Para as variáveis de preço inteiro e centavos
@@ -111,6 +110,7 @@ export default function PageProdutoAdm(){
 
             let preco=precoInteiro+'.'+precoCentavos;
 
+            let formatarDesconto=desconto.toString().slice(0,2);
             let formatarDataLancamento=lancamento.split('/');
 
             if(formatarDataLancamento.length<3){
@@ -139,6 +139,14 @@ export default function PageProdutoAdm(){
 
             const dataFormatada=`${ano}-${mes}-${dia}`
 
+            if(infsProduto.Disponível){
+
+                if(dataFormatada!==infsProduto.Lançamento.substr(0,10)){
+
+                    throw new Error('Você não pode alterar a data de lançamento com o produto disponível');
+                };
+            }
+
             const url=`http://localhost:5000/produto/alterar/${id}`;
 
             const produto={
@@ -151,8 +159,8 @@ export default function PageProdutoAdm(){
                 peso:peso,
                 lancamento:dataFormatada,
                 disponivel:disponivel,
-                desconto:desconto,
-                preco:preco,
+                desconto:Number(formatarDesconto),
+                preco:Number(preco),
                 estoque:estoque
             };
 
@@ -162,16 +170,14 @@ export default function PageProdutoAdm(){
         }
         
         catch(err){
-
-            console.log(err);
             
-            if(err.message){
+            if(err.response){
 
-                setErro(err.message);
+                setErro(err.response.data.erro);
             }
 
             else{
-                setErro(err.response.data.erro);
+                setErro(err.message);
             }
         }
     }
@@ -217,7 +223,7 @@ export default function PageProdutoAdm(){
             const url=`http://localhost:5000/categoria/listar`;
 
             const resp=await axios.get(url);
-            console.log(resp.data);
+
             setCategorias(resp.data);
         }
 
@@ -392,6 +398,16 @@ export default function PageProdutoAdm(){
                             <label>Disponível:</label> 
                             <input type='text' value={disponivel ? 'Sim' : 'Não'} readOnly className='sem-fundo'/>
                             {produtoEmAlteracao ? '' : <button onClick={() => { 
+
+                                const hoje=new Date();
+                                const converterData=hoje.toISOString();
+                                const extrairData=converterData.split('T');
+                                const formatarData=extrairData[0].split('-');  
+
+                                const ano=formatarData[0];
+                                const mes=formatarData[1];
+                                const dia=formatarData[2];
+
                                 if(infsProduto.Disponível){
 
                                     setDisponivel(false);
@@ -400,6 +416,7 @@ export default function PageProdutoAdm(){
                                 else{
 
                                     setDisponivel(true);
+                                    setLancamento(`${dia}/${mes}/${ano}`);
                                 }
 
                             }}>{infsProduto.Disponível ? 'Deixar indisponível' : 'Deixar disponível'}</button>}
