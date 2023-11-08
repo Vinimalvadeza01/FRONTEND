@@ -2,11 +2,11 @@ import './index.scss';
 
 import CabecalhoAdm from '../../../components/cabecalho-adm';
 
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function pageProdutoCadastrado(){
+export default function PageProdutoCadastrado(){
 
     const[id,setId]=useState('');
 

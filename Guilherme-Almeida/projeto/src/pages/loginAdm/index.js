@@ -18,13 +18,12 @@ export default function LoginAdm (){
 
 
   async function entrarClick(){
-    ref.current.continuosStart();
+    ref.current.continuousStart();;
     setCarregando(true)
   
-
     try{ 
-      const r = await LoginAdm(usuario, senhaAdm);
-      console.log(r) 
+      const r = LoginAdm(usuario, senhaAdm);
+
      //storage('usuario-logado', r);
 
       setTimeout(() => {
@@ -36,9 +35,10 @@ export default function LoginAdm (){
           ref.current.complete();
           setCarregando(false);
 
-              if(err.response.status ===  401) {
+          console.log(err);
+          if(err.response.status=== 401){
                 setErro(err.response.data.erro);
-              }
+          }
         } 
 }
     return (
