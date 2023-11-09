@@ -31,9 +31,6 @@
 
             width:50%;
 
-            background-color: #EEF1DC;
-            border: 1px solid #3D5745;
-
             .infs-nao-alteraveis:last-child div{
 
                 border-bottom:none !important;
@@ -50,6 +47,9 @@
 
                 display:flex;
                 flex-direction: column;
+
+                background-color: #EEF1DC;
+                border: 1px solid #3D5745;
 
                 gap:5px;
                 margin-bottom:20px;

@@ -293,7 +293,7 @@ export default function PageProdutoAdm(){
                 </div>
 
                 <div className='container-infs'>
-
+                    
                     <div className='infs-nao-alteraveis'>
 
                         <h3>Informações Estáticas</h3>
