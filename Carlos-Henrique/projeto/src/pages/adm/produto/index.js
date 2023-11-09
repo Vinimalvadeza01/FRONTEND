@@ -121,7 +121,6 @@ export default function PageProdutoAdm(){
             const mes=formatarDataLancamento[1].replace(' ');
             const dia=formatarDataLancamento[0].replace(' ');
 
-            console.log(ano.length);
             if(ano===undefined || ano.length>4){
 
                 throw new Error('Ano inválido');
@@ -294,7 +293,7 @@ export default function PageProdutoAdm(){
 
                 <div className='container-infs'>
                     
-                    <div className='infs-nao-alteraveis'>
+                    <form className='infs-nao-alteraveis'>
 
                         <h3>Informações Estáticas</h3>
 
@@ -329,14 +328,12 @@ export default function PageProdutoAdm(){
                         </div>
 
                         <div> 
-                            <label>Quantidade de Favoritos:</label> 
+                            <label>Favoritos:</label> 
                             <input type='text' value={infsProduto.Favoritos} readOnly/>
                         </div>
+                    </form>
 
-                        <hr/>
-                    </div>
-
-                    <div className='infs'>
+                    <form className='infs'>
 
                         <h3>Informações do Produto</h3>
 
@@ -395,7 +392,7 @@ export default function PageProdutoAdm(){
                         </div>
 
                         <div> 
-                            <label>{infsProduto.Disponível ? 'Data em que foi lançado:' : 'Data prevista para lançamento:'}</label> 
+                            <label>{infsProduto.Disponível ? 'Lançado em:' : 'Prévia para lançamento:'}</label> 
                             <InputMask  mask='99/99/9999' maskChar=' ' 
                                         type='text' value={lancamento} readOnly={produtoEmAlteracao}
                                         onChange={(e) => {setLancamento(e.target.value)}}
@@ -485,7 +482,7 @@ export default function PageProdutoAdm(){
                         <div id='mensagem-erro'>
                             <span id='mensagem-erro'>{erro}</span>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 

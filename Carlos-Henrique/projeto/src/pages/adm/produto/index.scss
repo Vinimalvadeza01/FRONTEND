@@ -18,18 +18,21 @@
         flex-direction: row;
 
         width:100%;
-        padding:10px;
 
         overflow-x: hidden;
 
         .container-imagens{
 
-
+            width:50%;
         }
 
         .container-infs{
 
+            display:flex;
+            flex-direction: column;
+
             width:50%;
+            padding:10px;
 
             .infs-nao-alteraveis:last-child div{
 
@@ -43,21 +46,23 @@
             }
 
             // Infs alteráveis e não alteráveis
-            >div{
+            >form{
 
                 display:flex;
                 flex-direction: column;
+
+                max-width:60%;
 
                 background-color: #EEF1DC;
                 border: 1px solid #3D5745;
 
                 gap:5px;
-                margin-bottom:20px;
+                padding:10px;
+                margin-bottom:10px;
 
                 h3{
 
                     font-size:24px;
-                    margin:10px;
                 }
 
                 #div-desc{
@@ -127,7 +132,7 @@
 
                     input,textarea{
 
-                        flex-grow: 1;
+                        width:100%;
                         padding:5px;
 
                         font-size:16px;
