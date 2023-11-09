@@ -1,7 +1,7 @@
 import Cabecalho from '../../components/cabecalho';
 import './index.scss';
 import InputMask from 'react-input-mask';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function Endereco() {
@@ -33,7 +33,7 @@ async function listarCidades(){
 
     try{
 
-        const url='https//servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios?orderBy=nome;
+        const url='https//servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios?orderBy=nome';
 
         let resp=await axios.get(url);
 
@@ -45,10 +45,10 @@ async function listarCidades(){
         alert('Não foi possível listar as cidades');
     }
 } 
-  }
+  
 
   async function cadastrarEndereco() {
-    const dadosEndereco = {
+    let dadosEndereco = await axios.post ('http:'{
       cep,
       rua,
       bairro,
@@ -56,7 +56,7 @@ async function listarCidades(){
       estado,
       numero,
       completo,
-    };
+    };)
 
     try {
       const response = await axios.post('urldaapinossa', dadosEndereco);
@@ -126,7 +126,7 @@ async function listarCidades(){
                 <label className='estado'>Estado</label>
                 <InputMask
                   mask=''
-                  value={estado}
+                  value={listarEstados}
                   onChange={(e) => setEstado(e.target.value)}
                   className='est'
                   maskChar=''
@@ -152,7 +152,7 @@ async function listarCidades(){
                     <label className='cidade'>Cidade</label>
                     <InputMask
                   mask=''
-                  value={cidade}
+                  value={listarCidades}
                   onChange={(e) => setCidade(e.target.value)}
                   className='cd'
                   maskChar=''
@@ -183,5 +183,4 @@ async function listarCidades(){
         </div>
       </div>
     </section>
-  );
-}
+ );}
