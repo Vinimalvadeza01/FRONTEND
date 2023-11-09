@@ -75,9 +75,9 @@ async function listarCidades(){
 
 
 
-  return (
+  return(
     <section className='Page-Endereco'>
-      <Cabecalho />
+      <Cabecalho/>
       <div className='conteudo'>
         <h1 className='titulo'>Informações de Endereço</h1>
 
@@ -183,4 +183,5 @@ async function listarCidades(){
         </div>
       </div>
     </section>
- );}
+  );
+}

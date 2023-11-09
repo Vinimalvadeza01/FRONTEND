@@ -24,7 +24,7 @@ export default function PageProdutoAdm(){
     const[animal,setAnimal]=useState('');
     const[lancamento,setLancamento]=useState('');
     const[cadastro,setCadastro]=useState('');    
-    const[disponivel,setDisponivel]=useState(Boolean);
+    const[disponivel,setDisponivel]=useState('');
     const[precoFormatado,setPrecoFormatado]=useState('');
     const[precoInteiro,setPrecoInteiro]=useState(Number());
     const[precoCentavos,setPrecoCentavos]=useState(Number());
@@ -49,11 +49,11 @@ export default function PageProdutoAdm(){
         setInfsProduto(resp.data);
 
         setNome(resp.data.Nome);
-        setMarca(infsProduto.Marca);
+        setMarca(resp.data.Marca);
         setDescricao(resp.data.Descrição);
         setPeso(resp.data.Peso);
-        setCategoria(resp.data.Categoria);
-        setAnimal(resp.data.Animal);
+        setCategoria(resp.data.Categoria_ID);
+        setAnimal(resp.data.Animal_ID);
         setDisponivel(resp.data.Disponível);
         setDesconto(resp.data.Desconto);
         setEstoque(resp.data.Estoque);
@@ -79,10 +79,10 @@ export default function PageProdutoAdm(){
         setPrecoFormatado(formatarPreco);
 
         // Preço com desconto
-        const calcDesconto=resp.data.Preço*(1+(resp.data.Desconto/100));
+        const calcDesconto=resp.data.Preço-(resp.data.Preço*(resp.data.Desconto/100));
         let formatarPrecoDesconto=calcDesconto.toString();
         formatarPrecoDesconto=formatarPrecoDesconto.replace('.', ',');
-
+        formatarPrecoDesconto=formatarPrecoDesconto.slice(0,5);
         setPrecoComDesconto(formatarPrecoDesconto+'R$');
 
         // Para as variáveis de preço inteiro e centavos
@@ -109,10 +109,11 @@ export default function PageProdutoAdm(){
         try{
 
             let preco=precoInteiro+'.'+precoCentavos;
-            let formatarDesconto=desconto.slice(0,2);
+
+            let formatarDesconto=desconto.toString().slice(0,2);
             let formatarDataLancamento=lancamento.split('/');
 
-            if(formatarDesconto.length<3){
+            if(formatarDataLancamento.length<3){
 
                 throw new Error('Data Inválida');
             }
@@ -121,7 +122,30 @@ export default function PageProdutoAdm(){
             const mes=formatarDataLancamento[1];
             const dia=formatarDataLancamento[0];
 
+            if(ano===undefined){
+
+                throw new Error('Ano inválido');
+            }
+
+            if(mes===undefined){
+
+                throw new Error('Mês inválido');
+            }
+
+            if(dia===undefined){
+
+                throw new Error('Dia inválido');
+            }
+
             const dataFormatada=`${ano}-${mes}-${dia}`
+
+            if(infsProduto.Disponível){
+
+                if(dataFormatada!==infsProduto.Lançamento.substr(0,10)){
+
+                    throw new Error('Você não pode alterar a data de lançamento com o produto disponível');
+                };
+            }
 
             const url=`http://localhost:5000/produto/alterar/${id}`;
 
@@ -135,23 +159,25 @@ export default function PageProdutoAdm(){
                 peso:peso,
                 lancamento:dataFormatada,
                 disponivel:disponivel,
-                desconto:formatarDesconto,
-                preco:preco,
+                desconto:Number(formatarDesconto),
+                preco:Number(preco),
                 estoque:estoque
             };
 
-            const resp=await axios.put(url);
+            const resp=await axios.put(url,produto,id);
+
+            window.location.reload();
         }
         
         catch(err){
+            
+            if(err.response){
 
-            if(err.message){
-
-                setErro(err.message);
+                setErro(err.response.data.erro);
             }
 
             else{
-                setErro(err.response.data.erro);
+                setErro(err.message);
             }
         }
     }
@@ -166,8 +192,8 @@ export default function PageProdutoAdm(){
         setMarca(infsProduto.Marca);
         setDescricao(infsProduto.Descrição);
         setPeso(infsProduto.Peso);
-        setCategoria(infsProduto.Categoria);
-        setAnimal(infsProduto.Animal);
+        setCategoria(infsProduto.Categoriai_ID);
+        setAnimal(infsProduto.Animal_ID);
         setDisponivel(infsProduto.Disponível);
         setDesconto(infsProduto.Desconto);
         setEstoque(infsProduto.Estoque);
@@ -331,13 +357,13 @@ export default function PageProdutoAdm(){
                         <div>
                             <label>Peso:</label>
                             <input  type='text' value={peso} readOnly={produtoEmAlteracao} 
-                                    onChange={(e) => {setDescricao(e.target.value)}}
+                                    onChange={(e) => {setPeso(e.target.value)}}
                                     style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
                         </div>
 
                         <div>
                             <label>Categoria:</label>
-                            {produtoEmAlteracao ? <input type='text' value={categoria} readOnly className='sem-fundo'/>
+                            {produtoEmAlteracao ? <input type='text' value={infsProduto.Categoria} readOnly className='sem-fundo'/>
                             :   <select onChange={(e) => {setCategoria(e.target.value)}} 
                                         style={{background:`${corInputs}`, border:`${borderInputs}`}}>
 
@@ -349,7 +375,7 @@ export default function PageProdutoAdm(){
 
                         <div>
                             <label>Animal:</label>
-                            {produtoEmAlteracao ? <input type='text' value={animal} readOnly className='sem-fundo'/>
+                            {produtoEmAlteracao ? <input type='text' value={infsProduto.Animal} readOnly className='sem-fundo'/>
                             :   <select 
                                         onChange={(e) => {setAnimal(e.target.value)}}
                                         style={{background:`${corInputs}`, border:`${borderInputs}`}}>
@@ -372,6 +398,16 @@ export default function PageProdutoAdm(){
                             <label>Disponível:</label> 
                             <input type='text' value={disponivel ? 'Sim' : 'Não'} readOnly className='sem-fundo'/>
                             {produtoEmAlteracao ? '' : <button onClick={() => { 
+
+                                const hoje=new Date();
+                                const converterData=hoje.toISOString();
+                                const extrairData=converterData.split('T');
+                                const formatarData=extrairData[0].split('-');  
+
+                                const ano=formatarData[0];
+                                const mes=formatarData[1];
+                                const dia=formatarData[2];
+
                                 if(infsProduto.Disponível){
 
                                     setDisponivel(false);
@@ -380,6 +416,7 @@ export default function PageProdutoAdm(){
                                 else{
 
                                     setDisponivel(true);
+                                    setLancamento(`${dia}/${mes}/${ano}`);
                                 }
 
                             }}>{infsProduto.Disponível ? 'Deixar indisponível' : 'Deixar disponível'}</button>}
@@ -436,6 +473,10 @@ export default function PageProdutoAdm(){
                                     onChange={(e) => {setEstoque(e.target.value)}}
                                     style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
                         </div>
+
+                        <div>
+                            <span>{erro}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -456,7 +497,7 @@ export default function PageProdutoAdm(){
 
                     :   
                         <div className='botoes2'>
-                            <button>FINALIZAR ALTERAÇÕES</button>
+                            <button onClick={() => {alterarProduto();}}>FINALIZAR ALTERAÇÕES</button>
                             <button onClick={cancelarAlteracao}>CANCELAR</button>
                         </div>
                         }
