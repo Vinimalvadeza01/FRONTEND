@@ -117,22 +117,22 @@ export default function PageProdutoAdm(){
 
                 throw new Error('Data Inválida');
             }
+            const ano=formatarDataLancamento[2].replace(' ');
+            const mes=formatarDataLancamento[1].replace(' ');
+            const dia=formatarDataLancamento[0].replace(' ');
 
-            const ano=formatarDataLancamento[2];
-            const mes=formatarDataLancamento[1];
-            const dia=formatarDataLancamento[0];
-
-            if(ano===undefined){
+            console.log(ano.length);
+            if(ano===undefined || ano.length>4){
 
                 throw new Error('Ano inválido');
             }
 
-            if(mes===undefined){
+            if(mes===undefined || mes.length>2){
 
                 throw new Error('Mês inválido');
             }
 
-            if(dia===undefined){
+            if(dia===undefined|| dia.length>2){
 
                 throw new Error('Dia inválido');
             }
@@ -145,6 +145,14 @@ export default function PageProdutoAdm(){
 
                     throw new Error('Você não pode alterar a data de lançamento com o produto disponível');
                 };
+            }
+
+            let hoje=new Date();
+            hoje=hoje.toISOString();
+
+            if(dataFormatada<hoje.substr(0,10)){
+
+                throw new Error('A data de lançamento não pode ser uma data que já se passou');
             }
 
             const url=`http://localhost:5000/produto/alterar/${id}`;
@@ -164,7 +172,7 @@ export default function PageProdutoAdm(){
                 estoque:estoque
             };
 
-            const resp=await axios.put(url,produto,id);
+            await axios.put(url,produto,id);
 
             window.location.reload();
         }
@@ -474,8 +482,8 @@ export default function PageProdutoAdm(){
                                     style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
                         </div>
 
-                        <div>
-                            <span>{erro}</span>
+                        <div id='mensagem-erro'>
+                            <span id='mensagem-erro'>{erro}</span>
                         </div>
                     </div>
                 </div>

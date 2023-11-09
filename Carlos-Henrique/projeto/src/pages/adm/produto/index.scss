@@ -18,16 +18,18 @@
         flex-direction: row;
 
         width:100%;
-        padding:20px;
+        padding:10px;
+
+        overflow-x: hidden;
 
         .container-imagens{
 
-            width:60%;
+
         }
 
         .container-infs{
 
-            width:40%;
+            width:50%;
 
             background-color: #EEF1DC;
             border: 1px solid #3D5745;
@@ -49,9 +51,7 @@
                 display:flex;
                 flex-direction: column;
 
-                width:100%;
-
-                gap:5px;
+                // gap:5px;
                 margin-bottom:20px;
 
                 h3{
@@ -74,7 +74,7 @@
 
                     width:100%;
 
-                    gap:10px;
+                    // gap:10px;
 
                     >div{
 
@@ -82,7 +82,7 @@
                         flex-direction: row;
 
                         width:90%;
-                        gap:5px;
+                        // gap:5px;
                     }
 
                     span{
@@ -92,6 +92,21 @@
                     }
                 }
 
+                #mensagem-erro{
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    padding:0px;
+                    
+                    font-size:20px;
+                    font-weight: 600;
+                    color:rgba(224, 53, 53, 0.87);
+                    text-align: center;
+                    border: none;
+                }
+
                 // Divs que guardam labels e inputs
                 >div{
 
@@ -99,25 +114,23 @@
                     flex-direction: row;
                     align-items: center;
 
-                    width:100%;
-
-                    gap:5px;
-                    padding:10px;
+                    // gap:5px;
+                    // padding:5px;
 
                     border-bottom:1px solid #3D5745;
 
                     label{
 
-                        font-size:18px;
+                        font-size:16px;
                         font-weight: 600;
                     }
 
                     input,textarea{
 
                         flex-grow: 1;
-                        padding:5px;
+                        // padding:5px;
 
-                        font-size:18px;
+                        font-size:16px;
                         resize:none;
                     }
 
@@ -134,17 +147,22 @@
 
                         transition: 0.3s;
                     }
+
+                    select{
+
+                        font-size:16px;
+                    }
                 }
 
                 button{
 
                     align-self: center;
+                    flex-grow: 1;
 
                     padding:10px;
-                    width:70%;
 
                     background-color: #619853;
-                    font-size: 18px;
+                    font-size: 16px;
                     color:#fff;
                 }
             }
