@@ -275,20 +275,22 @@ export default function PageProdutoAdm(){
 
                 <div className='container-imagens'>
 
-                    <div className='imagens-secundarias'>
-
-                        {imagesProduto.slice(1,imagesProduto.length).map(item=><div> <h1>Testando</h1></div>)}
-                    </div>
-
                     <div className='imagem-principal'>
                         <div>
                             <img src={`http://localhost:5000/${imagePrincipal}`} alt='imagem não encontrada'/>
                         </div>
                     </div>
 
-                    <button>Alterar Imagem Principal</button>
-                    <button>Adicionar Imagem Secundária</button>
-                    <button>Excluir Imagem Secundária</button>
+                    <div className='imagens-secundarias'>
+
+                        {imagesProduto.slice(1,imagesProduto.length).map(item=><div> <h1>Testando</h1></div>)}
+                    </div>
+ 
+                    <div className='buttons-images'>
+                        <button>Alterar Imagem Principal</button>
+                        <button>Adicionar/Alterar Imagem Secundária</button>
+                        <button>Excluir Imagem Secundária</button>
+                    </div>
                 </div>
 
                 <div className='container-infs'>
