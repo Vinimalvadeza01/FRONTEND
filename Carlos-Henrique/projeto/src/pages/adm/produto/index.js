@@ -9,8 +9,8 @@ export default function PageProdutoAdm(){
 
     const[infsProduto,setInfsProduto]=useState({});
 
-    const[imagesProduto,setImagesProduto]=useState([]);
-    const[imagePrincipal,setImagePrincipal]=useState('');
+    const[imagesSecundariasProduto,setImagesSecundariasProduto]=useState([]);
+    const[imagePrincipal,setImagePrincipal]=useState({});
 
     const[categorias,setCategorias]=useState([]);
     const[animais,setAnimais]=useState([]);
@@ -35,6 +35,11 @@ export default function PageProdutoAdm(){
     const[produtoEmAlteracao,setProdutoEmAlteracao]=useState(true);
     const[corInputs,setCorInputs]=useState('transparent');
     const[borderInputs,setBorderInputs]=useState('none');
+
+    // Variáveis para alterações de imagem
+    const[capaEmAlteracao,setCapaEmAlteracao]=useState(false);
+    const[imageSecAlteracao,setImageSecAlteracao]=useState(false);
+    const[imageSecDeletar,setImageSectDeletar]=useState(false);
 
     const[erro,setErro]=useState('');
 
@@ -103,15 +108,15 @@ export default function PageProdutoAdm(){
     async function consultarImagensProduto(){
 
         try{
-            const url=`http://localhost:5000/imagem/consulta/${id}`;
 
-            const resp=await axios.get(url);
+            const urlCapa=`http://localhost:5000/imagem/consulta/capa/${id}`;
+            const urlSec=`http://localhost:5000/imagem/consulta/${id}`;
 
+            const respCapa=await axios.get(urlCapa);
+            const respSec=await axios.get(urlSec);
 
-            setImagesProduto(resp.data);
-            if(resp.data.length > 0 && resp.data[0].Imagem) {
-                setImagePrincipal(resp.data[0].Imagem);
-            }
+            setImagePrincipal(respCapa.data);
+            setImagesSecundariasProduto(respSec.data); 
         }
 
         catch(err){
@@ -205,6 +210,13 @@ export default function PageProdutoAdm(){
         }
     }
 
+    async function alterarCapa(){
+
+        const url=`http://localhost:5000/imagem/alterar/capa/${id}`;
+
+        const resp=await axios.put(url);
+    }
+
     function cancelarAlteracao(){
 
         setProdutoEmAlteracao(true); 
@@ -291,22 +303,26 @@ export default function PageProdutoAdm(){
 
                 <div className='container-imagens'>
 
-                    <div className='imagem-principal'>
+                    <label className='imagem-principal' for='alterar-capa-produto'>
                         <div>
-                            <img src={`http://localhost:5000/${imagePrincipal}`} alt='imagem não encontrada'/>
+                            <img src={`http://localhost:5000/${imagePrincipal.Imagem}`} alt='imagem não encontrada'/>
                         </div>
-                    </div>
+
+                        <input id='alterar-capa-produto' type='file' accept='image/*' style={{display:"none"}} readOnly/>
+                    </label>
 
                     <div className='imagens-secundarias'>
 
-                        {imagesProduto.slice(1,imagesProduto.length).map(item=><div> <h1>Testando</h1></div>)}
+                        {imagesSecundariasProduto.map(item=><div> <h1>Testando</h1></div>)}
                     </div>
  
-                    <div className='buttons-images'>
-                        <button id='button1'>Alterar Imagem Principal</button>
-                        <button id='button2'>Adicionar/Alterar Imagem Secundária</button>
-                        <button id='button3'>Excluir Imagem Secundária</button>
-                    </div>
+                    {capaEmAlteracao || imageSecAlteracao || imageSecDeletar ? '' 
+                    :                     
+                        <div className='buttons-images'>
+                            <button id='button1' onClick={() => {setCapaEmAlteracao(true)}}>Alterar Imagem Principal</button>
+                            <button id='button2'>Adicionar/Alterar Imagem Secundária</button>
+                            <button id='button3'>Excluir Imagem Secundária</button>
+                        </div>}
                 </div>
 
                 <div className='container-infs'>
