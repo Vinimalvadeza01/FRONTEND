@@ -42,65 +42,81 @@ export default function PageProdutoAdm(){
 
     async function consultarInfsProduto(){
 
-        const url=`http://localhost:5000/produto/adm/consulta/${id}`;
+        try{
 
-        const resp=await axios.get(url);
+            const url=`http://localhost:5000/produto/adm/consulta/${id}`;
 
-        setInfsProduto(resp.data);
+            const resp=await axios.get(url);
 
-        setNome(resp.data.Nome);
-        setMarca(resp.data.Marca);
-        setDescricao(resp.data.Descrição);
-        setPeso(resp.data.Peso);
-        setCategoria(resp.data.Categoria_ID);
-        setAnimal(resp.data.Animal_ID);
-        setDisponivel(resp.data.Disponível);
-        setDesconto(resp.data.Desconto);
-        setEstoque(resp.data.Estoque);
+            setInfsProduto(resp.data);
 
-        // Formatando as datas para que seja melhor legível para o usuário
-        let formatarDataCadastro=resp.data.Cadastro.substr(0,10).split('-');
-        let formatarDataLançamento=resp.data.Lançamento.substr(0,10).split('-');
+            setNome(resp.data.Nome);
+            setMarca(resp.data.Marca);
+            setDescricao(resp.data.Descrição);
+            setPeso(resp.data.Peso);
+            setCategoria(resp.data.Categoria_ID);
+            setAnimal(resp.data.Animal_ID);
+            setDisponivel(resp.data.Disponível);
+            setDesconto(resp.data.Desconto);
+            setEstoque(resp.data.Estoque);
 
-        const ano1=formatarDataCadastro[0];
-        const ano2=formatarDataLançamento[0];
+            // Formatando as datas para que seja melhor legível para o usuário
+            let formatarDataCadastro=resp.data.Cadastro.substr(0,10).split('-');
+            let formatarDataLançamento=resp.data.Lançamento.substr(0,10).split('-');
 
-        const mes1=formatarDataCadastro[1];
-        const mes2=formatarDataLançamento[1];
+            const ano1=formatarDataCadastro[0];
+            const ano2=formatarDataLançamento[0];
 
-        const dia1=formatarDataCadastro[2];
-        const dia2=formatarDataLançamento[2];
+            const mes1=formatarDataCadastro[1];
+            const mes2=formatarDataLançamento[1];
 
-        setCadastro(`${dia1}/${mes1}/${ano1}`);
-        setLancamento(`${dia2}/${mes2}/${ano2}`);
+            const dia1=formatarDataCadastro[2];
+            const dia2=formatarDataLançamento[2];
 
-        // Formatar o preço
-        const formatarPreco=resp.data.Preço.toString().replace('.', ',')+'R$';
-        setPrecoFormatado(formatarPreco);
+            setCadastro(`${dia1}/${mes1}/${ano1}`);
+            setLancamento(`${dia2}/${mes2}/${ano2}`);
 
-        // Preço com desconto
-        const calcDesconto=resp.data.Preço-(resp.data.Preço*(resp.data.Desconto/100));
-        let formatarPrecoDesconto=calcDesconto.toString();
-        formatarPrecoDesconto=formatarPrecoDesconto.replace('.', ',');
-        formatarPrecoDesconto=formatarPrecoDesconto.slice(0,5);
-        setPrecoComDesconto(formatarPrecoDesconto+'R$');
+            // Formatar o preço
+            const formatarPreco=resp.data.Preço.toString().replace('.', ',')+'R$';
+            setPrecoFormatado(formatarPreco);
 
-        // Para as variáveis de preço inteiro e centavos
-        const dividirPreco=resp.data.Preço.split('.');
+            // Preço com desconto
+            const calcDesconto=resp.data.Preço-(resp.data.Preço*(resp.data.Desconto/100));
+            let formatarPrecoDesconto=calcDesconto.toString();
+            formatarPrecoDesconto=formatarPrecoDesconto.replace('.', ',');
+            formatarPrecoDesconto=formatarPrecoDesconto.slice(0,5);
+            setPrecoComDesconto(formatarPrecoDesconto+'R$');
 
-        setPrecoInteiro(dividirPreco[0]);
-        setPrecoCentavos(dividirPreco[1]);
+            // Para as variáveis de preço inteiro e centavos
+            const dividirPreco=resp.data.Preço.split('.');
+
+            setPrecoInteiro(dividirPreco[0]);
+            setPrecoCentavos(dividirPreco[1]);
+        }
+
+        catch(err){
+
+            alert('Ocorreu uma falha no sistema e não foi possível consultar as informações do produto\n'+err.message);
+        }
     }
 
     async function consultarImagensProduto(){
 
-        const url=`http://localhost:5000/imagem/consulta/${id}`;
+        try{
+            const url=`http://localhost:5000/imagem/consulta/${id}`;
 
-        const resp=await axios.get(url);
+            const resp=await axios.get(url);
 
-        setImagesProduto(resp.data);
-        if(resp.data.length > 0 && resp.data[0].Imagem) {
-            setImagePrincipal(resp.data[0].Imagem);
+
+            setImagesProduto(resp.data);
+            if(resp.data.length > 0 && resp.data[0].Imagem) {
+                setImagePrincipal(resp.data[0].Imagem);
+            }
+        }
+
+        catch(err){
+
+            alert('Ocorreu uma falha no sistema e não foi possível listar as imagens do produto\n'+err.message);
         }
     }
 
@@ -236,7 +252,7 @@ export default function PageProdutoAdm(){
 
         catch(err){
 
-            alert('Ocorreu um erro ao listar as categorias, este filtro não irá funcionar');
+            alert('Ocorreu um erro ao listar as categorias, não será possível fazer alterações na categoria do produto');
         }
     }
 
@@ -253,7 +269,7 @@ export default function PageProdutoAdm(){
 
         catch(err){
 
-            alert('Não foi possível listar os animais, recarregue a página e tente novamente');
+            alert('Não foi possível listar os animais, não será possível fazer alterações no tipo de animal do produto');
         }
     }
 
@@ -287,9 +303,9 @@ export default function PageProdutoAdm(){
                     </div>
  
                     <div className='buttons-images'>
-                        <button>Alterar Imagem Principal</button>
-                        <button>Adicionar/Alterar Imagem Secundária</button>
-                        <button>Excluir Imagem Secundária</button>
+                        <button id='button1'>Alterar Imagem Principal</button>
+                        <button id='button2'>Adicionar/Alterar Imagem Secundária</button>
+                        <button id='button3'>Excluir Imagem Secundária</button>
                     </div>
                 </div>
 

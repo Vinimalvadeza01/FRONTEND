@@ -37,13 +37,38 @@
 
                     font-size: 16px;
                     color:#fff;
+                }
+
+                #button1{
+
+                    background-color:  #919853;
+                }
+
+                #button2{
+
                     background-color: #619853;
+                }
+                #button3{
+
+                    background-color: #EF4040;
                 }
             }
 
             .imagem-principal{
 
                 justify-content: center;
+                align-items: center;
+
+                aspect-ratio: 16/9;
+
+                img{
+
+                    height: auto;
+                    width: auto;
+
+                    max-width:80%;
+                    max-height: 80%;
+                }
             }
         }
 
