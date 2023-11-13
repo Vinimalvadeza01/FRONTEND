@@ -19,47 +19,67 @@ export default function Cabecalho() {
 
     async function listarProdutosCachorro(){
 
-        const url=`http://localhost:5000/produto/consulta/header/caes`;
+        try{
+            const url=`http://localhost:5000/produto/consulta/header/caes`;
 
-        const resp=await axios.get(url);
+            const resp=await axios.get(url);
 
-        setProdutosCachorro(resp.data);
+            setProdutosOutros(resp.data);
+        }
+
+        catch(err){}
     }
 
     async function listarProdutosGato(){
 
-        const url=`http://localhost:5000/produto/consulta/header/gatos`;
+        try{
+            const url=`http://localhost:5000/produto/consulta/header/gatos`;
 
-        const resp=await axios.get(url);
+            const resp=await axios.get(url);
 
-        setProdutosGato(resp.data);
+            setProdutosOutros(resp.data);
+        }
+
+        catch(err){}
     }
 
     async function listarProdutosPassaro(){
 
-        const url=`http://localhost:5000/produto/consulta/header/passaros`;
+        try{
+            const url=`http://localhost:5000/produto/consulta/header/passaros`;
 
-        const resp=await axios.get(url);
+            const resp=await axios.get(url);
 
-        setProdutosPassaro(resp.data);
+            setProdutosOutros(resp.data);
+        }
+
+        catch(err){}
     }
 
     async function listarProdutosPeixe(){
 
-        const url=`http://localhost:5000/produto/consulta/header/peixes`;
+        try{
+            const url=`http://localhost:5000/produto/consulta/header/peixes`;
 
-        const resp=await axios.get(url);
+            const resp=await axios.get(url);
 
-        setProdutosPeixe(resp.data);
+            setProdutosOutros(resp.data);
+        }
+
+        catch(err){}
     }
 
     async function listarProdutosOutros(){
 
-        const url=`http://localhost:5000/produto/consulta/header/outros`;
+        try{
+            const url=`http://localhost:5000/produto/consulta/header/outros`;
 
-        const resp=await axios.get(url);
+            const resp=await axios.get(url);
 
-        setProdutosOutros(resp.data);
+            setProdutosOutros(resp.data);
+        }
+
+        catch(err){}
     }
 
     useEffect(() => {

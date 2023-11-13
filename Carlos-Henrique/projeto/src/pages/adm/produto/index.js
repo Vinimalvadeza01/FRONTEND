@@ -9,8 +9,8 @@ export default function PageProdutoAdm(){
 
     const[infsProduto,setInfsProduto]=useState({});
 
-    const[imagesSecundariasProduto,setImagesSecundariasProduto]=useState([]);
-    const[imagePrincipal,setImagePrincipal]=useState({});
+    const[infsImagesSecundariasProduto,setInfsImagesSecundariasProduto]=useState([]);
+    const[infsImagePrincipal,setInfsImagePrincipal]=useState({});
 
     const[categorias,setCategorias]=useState([]);
     const[animais,setAnimais]=useState([]);
@@ -36,10 +36,18 @@ export default function PageProdutoAdm(){
     const[corInputs,setCorInputs]=useState('transparent');
     const[borderInputs,setBorderInputs]=useState('none');
 
-    // Variáveis para alterações de imagem
+    // Variáveis para alterações de imagem:
+
+    // Estado dos botões
     const[capaEmAlteracao,setCapaEmAlteracao]=useState(false);
     const[imageSecAlteracao,setImageSecAlteracao]=useState(false);
     const[imageSecDeletar,setImageSectDeletar]=useState(false);
+
+    // Para prévias de imagem
+    const[previaCapa,setPreviaCapa]=useState('');
+
+    // Para guardar as imagens:
+    const[capa,setCapa]=useState('');
 
     const[erro,setErro]=useState('');
 
@@ -115,8 +123,10 @@ export default function PageProdutoAdm(){
             const respCapa=await axios.get(urlCapa);
             const respSec=await axios.get(urlSec);
 
-            setImagePrincipal(respCapa.data);
-            setImagesSecundariasProduto(respSec.data); 
+            setInfsImagePrincipal(respCapa.data);
+            setInfsImagesSecundariasProduto(respSec.data); 
+
+            setCapa(respCapa.data.Imagem)
         }
 
         catch(err){
@@ -212,9 +222,60 @@ export default function PageProdutoAdm(){
 
     async function alterarCapa(){
 
+        const formData = new FormData();
+    
+        let imagemParaAlterar='';
+
+        imagemParaAlterar=capa;
+
+        formData.append('imagemProduto',imagemParaAlterar);
+
         const url=`http://localhost:5000/imagem/alterar/capa/${id}`;
 
-        const resp=await axios.put(url);
+        const resp=await axios.put(url, formData, {
+                    
+            headers:{
+
+                "Content-Type":"multipart/form-data"
+            }}
+        );
+
+        window.location.reload();
+    }
+
+    function previaImagem(e,input){
+
+        let arquivo=e.target.files[0];
+        let lerArquivo = new FileReader();
+        
+        lerArquivo.onload = () => {    
+            if(input===0){
+
+                setPreviaCapa(lerArquivo.result);
+            }
+
+            // else if(input===1){
+
+            //     setPreviaSec1(lerArquivo.result);
+            // }
+
+            // else if(input===2){
+
+            //     setPreviaSec2(lerArquivo.result);
+            // }
+
+            // else if(input===3){
+
+            //     setPreviaSec3(lerArquivo.result);
+            // }
+
+            // else if(input===4){
+
+            //     setPreviaSec4(lerArquivo.result);
+            // }
+        }
+
+        lerArquivo.readAsDataURL(arquivo);
     }
 
     function cancelarAlteracao(){
@@ -303,25 +364,64 @@ export default function PageProdutoAdm(){
 
                 <div className='container-imagens'>
 
-                    <label className='imagem-principal' for='alterar-capa-produto'>
-                        <div>
-                            <img src={`http://localhost:5000/${imagePrincipal.Imagem}`} alt='imagem não encontrada'/>
-                        </div>
+                    <div className='imagem-principal'>
+                        
+                        {capaEmAlteracao ? 
+                            <label for='alterar-capa-produto' onChange={(e) => {previaImagem(e,0)}}>
 
-                        <input id='alterar-capa-produto' type='file' accept='image/*' style={{display:"none"}} readOnly/>
-                    </label>
+                                {previaCapa!=='' ?
+                                    <img src={previaCapa}/>
+                                :
+                                    <img src={`http://localhost:5000/${capa}`} alt='Imagem Principal' />}
+
+                                <input id='alterar-capa-produto' type='file' accept='image/*' readOnly onChange={(e) => {setCapa(e.target.files[0])}}/>
+
+                                <div className='alterar-label-hover'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                        <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" fill="#d6d6d6"/>
+                                    </svg>
+                                </div>
+                            </label>
+                        :
+                        <div>
+                            <img src={`http://localhost:5000/${capa}`} alt='imagem não encontrada'/>
+                        </div>}
+                    </div>
 
                     <div className='imagens-secundarias'>
 
-                        {imagesSecundariasProduto.map(item=><div> <h1>Testando</h1></div>)}
+                        {infsImagesSecundariasProduto.map(item=><div> <h1>Testando</h1></div>)}
                     </div>
  
-                    {capaEmAlteracao || imageSecAlteracao || imageSecDeletar ? '' 
+                    {capaEmAlteracao || imageSecAlteracao || imageSecDeletar ? 
+                        <div className='div-buttons'>
+
+                            {capaEmAlteracao ?
+                                <div className='buttons-alterar-capa'>
+                                    <button className='button2' onClick={alterarCapa}>Escolher essa capa</button>
+                                    <button className='button3' onClick={() => {setCapaEmAlteracao(false); window.location.reload();}}>Cancelar alteração</button>
+                                </div>
+                            : null}
+
+                            {imageSecAlteracao ?
+                                <div className='buttons-alterar-images-sec'>
+                                    <button className='button2'>Escolher essas imagens</button>
+                                    <button className='button3' onClick={() => {setImageSecAlteracao(false); window.location.reload();}}>Cancelar alteração</button>
+                                </div>
+                            : null}
+
+                            {imageSecDeletar ? 
+                                <div className='buttons-deletar-images-sec'>
+                                    <button className='button1'>Deletar essas imagens</button>
+                                    <button className='button3' onClick={() => {setImageSectDeletar(false); window.location.reload();}}>Cancelar</button>
+                                </div>
+                            : null}
+                        </div> 
                     :                     
-                        <div className='buttons-images'>
-                            <button id='button1' onClick={() => {setCapaEmAlteracao(true)}}>Alterar Imagem Principal</button>
-                            <button id='button2'>Adicionar/Alterar Imagem Secundária</button>
-                            <button id='button3'>Excluir Imagem Secundária</button>
+                        <div className='buttons-images-acoes div-buttons'>
+                            <button className='button1' onClick={() => {setCapaEmAlteracao(true)}}>Alterar Imagem Principal</button>
+                            <button className='button2' onClick={() => {setImageSecAlteracao(true)}}>Adicionar/Alterar Imagem Secundária</button>
+                            <button className='button3' onClick={() => {setImageSectDeletar(true)}}>Excluir Imagem Secundária</button>
                         </div>}
                 </div>
 
