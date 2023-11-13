@@ -20,9 +20,9 @@ export default function favoritos(){
 
                 <div className='fav-menu'>
                     <Link to="../../perfil" className='link'>Informações de Usuário</Link>
-                    <Link className='link-p'>Informações de Endereco</Link>
-                    <Link className='link'>Favoritos</Link>
-                    <Link className='link'>Meus Pedidos</Link>
+                    <Link to='' className='link'>Informações de Endereco</Link>
+                    <Link className='link-p'>Favoritos</Link>
+                    <Link to="../../pedidos" className='link'>Meus Pedidos</Link>
                     <Link className='link'> Trocar de Conta</Link>
                     <Link className='link'>Sair</Link>
                 </div>
@@ -39,16 +39,21 @@ export default function favoritos(){
                         <div className='favoritos'>
 
                             <table>
-                                <tr>
-                                    <th>Produto</th>
-                                    <th>Produto</th>
-                                    <th>Produto</th>
-                                    <th>Produto</th>
-                                </tr>
-                                <tr>
-                                    <td>dasda</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Produto</th>
+                                        <th>Produto</th>
+                                        <th>Produto</th>
+                                        <th>Produto</th>
+                                    </tr>
+                                </thead>
 
+                                <tbody>
+                                    <tr>
+                                        <td>dasda</td>
+                                        <td>diasjdiasj</td>
+                                    </tr>
+                                </tbody>
                             </table>
 
                         </div>

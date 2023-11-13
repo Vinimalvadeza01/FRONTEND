@@ -20,7 +20,7 @@ root.render(
         <Route path='/perfil/favoritos' element={<Favoritos/>}></Route>
 
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> 
     
   </React.StrictMode>
 );

@@ -58,14 +58,14 @@
             height: 30%;
             display: flex;
             justify-content: center;
-            padding-top: 50px;
+            margin-top: 50px;
 
             .lista-fav{
                 text-align: center;
                 background-color: #EEF1DC;
                 width: 80%;
                 height: 100%;
-                padding: 30px;
+                padding: 10px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -77,8 +77,11 @@
                     margin-top: 20px;
 
                     table{
-                        display: flex;
-                        flex-direction: column;
+
+                        width:100%;
+                        tr{
+                            
+                        }
 
                         
                     }
