@@ -34,5 +34,35 @@
 
             font-size:18px;
         }
+
+        button{
+
+            background-color: #3D5745;
+            border-radius:5px;
+            
+            font-size:16px;
+            color:#fff;
+
+            padding:5px;
+        }
+    }
+
+    .redirecionar-cliente{
+
+        align-items: center;
+
+        padding:5px;
+
+        .link-redirecionar{
+
+            padding:10px 20px;
+
+            background-color: #619853;
+            border-radius:5px;
+
+            color:#fff;
+            font-size:18px;
+            text-align: center;
+        }
     }
 }

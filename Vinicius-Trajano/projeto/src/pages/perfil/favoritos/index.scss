@@ -1,4 +1,7 @@
 .pag-favoritos{
+
+
+
     background: linear-gradient(180deg, #619853 0%, #325B23 100%);
     max-width:100vw;
     min-height:100vh;
@@ -6,6 +9,7 @@
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
+
 
     .conteiner-favoritos{
 
@@ -98,39 +102,39 @@
 
             // Caso lista vazia
             // .lista-fav{
-            //     text-align: center;
-            //     background-color: #EEF1DC;
-            //     width: 80%;
-            //     height: 100%;
-            //     padding: 30px;
-            //     display: flex;
-            //     flex-direction: column;
-            //     align-items: center;
+            // //     text-align: center;
+            // //     background-color: #EEF1DC;
+            // //     width: 80%;
+            // //     height: 100%;
+            // //     padding: 30px;
+            // //     display: flex;
+            // //     flex-direction: column;
+            // //     align-items: center;
 
-            //     h4{
-            //         color: #3D5745;
-            //         font-size: 20px;
-            //         padding: 5px;
-            //     }
+            // //     h4{
+            // //         color: #3D5745;
+            // //         font-size: 20px;
+            // //         padding: 5px;
+            // //     }
 
-            //     hr{
-            //         height: 3px;
-            //         width: 70%;
-            //         background-color: #3D5745;
-            //     }
+            // //     hr{
+            // //         height: 3px;
+            // //         width: 70%;
+            // //         background-color: #3D5745;
+            // //     }
 
-            //     button{
+            // //     button{
 
-            //         background-color: #619853;
-            //         width: 180px;
-            //         height: 50px;
-            //         border: none;
-            //         color: white;
-            //         font-family: 'Josefin Sans';
-            //         font-size: 25px;
-            //         border-radius: 10px;
+            // //         background-color: #619853;
+            // //         width: 180px;
+            // //         height: 50px;
+            // //         border: none;
+            // //         color: white;
+            // //         font-family: 'Josefin Sans';
+            // //         font-size: 25px;
+            // //         border-radius: 10px;
                     
-            //     }
+            // //     }
             // }
         
 
@@ -139,4 +143,61 @@
 
 
     }
+
+    .conteiner-fav{
+
+
+        background-color: #EBFBE9;
+        width: 60%;
+        height: 100%;
+
+        
+        .fav-cont-menu{
+
+            padding: 20px;
+
+
+            .fav-menu{
+
+                background-color: #EEF1DC;
+                display: flex;
+                flex-direction: column;
+                text-align: justify;
+                justify-content: center;
+                border:1px solid #3D5745;
+                border-radius: 10px;
+                padding: 10px;
+                padding-bottom: 5px;
+                max-width: 60%;
+    
+                .link{
+                    color: #3D5745;
+                    padding: 7px;
+                    padding-left: 25px;
+    
+                }
+                .link-p{
+                    background-color: #D2E1B2;
+                    color: #3BA73D;
+                    border: 1px solid #183D0A
+    
+                }
+            }
+
+
+        }
+
+        .fav-vazio{
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #EEF1DC;
+            width: 80%;
+
+        }
+
+    }
+    
+
 }

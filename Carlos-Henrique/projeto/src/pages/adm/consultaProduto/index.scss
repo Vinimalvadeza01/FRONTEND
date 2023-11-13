@@ -6,161 +6,270 @@
     background-color: #EBFBE9;
     overflow-x: hidden;
 
-
-    .filtros{
-
-        display:flex;
-        flex-direction: column;
-
-        width:100%;
+    .container-page{
 
         padding:10px;
-        margin-bottom:20px;
 
-        background-color:#EEF1DC;
-        border:1px solid #3D5745;
-        border-radius: 10px;
-
-        h3{
-
-            font-size:24px;
-            margin-bottom:20px;
-        }
-
-        .container-filtro{
+        .container-pesquisa{
 
             display:flex;
-            flex-direction: row;
-            justify-content: space-around;
-            flex-wrap:wrap;
+            flex-direction: column;
 
-            width:100%;
-            gap:20px;
+            width:40%;
 
-            >div{
+            margin-bottom:10px;
+            padding:10px;
+
+            background-color:#EEF1DC;
+            border:1px solid #3D5745;
+            border-radius:10px;
+
+            label{
+
+                font-size:20px;
+                margin-bottom:5px;
+            }
+
+            p{
+
+                font-size:16px;
+                margin-bottom:10px;
+            }
+
+            .container-search{
 
                 display:flex;
-                flex-direction: column;
-    
-                gap:10px;
-                margin-bottom:20px;
-    
-                >div{
-    
-                    display:flex;
-                    flex-direction: row;
-                    align-items: center;
-    
-                    width:100%;
-    
-                    input{
-    
-                        appearance:none;
-    
-                        width:30px;
-                        height:30px;
-    
-                        margin-right:5px;
-    
-                        background-color: transparent;
-                        border:2px solid #3D5745;
-                        border-radius:5px;
-                    }
-    
-                    input:checked{
-    
-                        background-color: #3D5745;
-                        background-image: url("data:image/svg+xml,%3Csvg width='20' height='15' viewBox='0 0 20 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.5815 0.439384C20.1395 1.02523 20.1395 1.97664 19.5815 2.56249L8.15422 14.5606C7.59625 15.1465 6.6901 15.1465 6.13213 14.5606L0.41848 8.56155C-0.139493 7.97571 -0.139493 7.02429 0.41848 6.43845C0.976453 5.8526 1.8826 5.8526 2.44058 6.43845L7.14541 11.3736L17.5639 0.439384C18.1219 -0.146461 19.028 -0.146461 19.586 0.439384H19.5815Z' fill='white'/%3E%3C/svg%3E%0A");
-                        background-position:center;
-                        background-repeat:no-repeat;
-    
-                        transition: background-color 0.3s, background-image 0.3s;
-                    }
-    
-                    label{
-    
-                        font-size:18px;
-                    }
-                }
-                    
-                h4{
-    
-                    font-size:20px;
-                }
-            }
-    
-            .filtros-especificos{
-    
-                >div{
-    
-                    display:flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-    
-                    width:100%;
-                    height:40px;
-    
-                    background-color: #fff;
-                    border:1px solid #3D5745;
-                    border-radius:5px;
-    
-                    input{
-    
-                        height:100%;
-                        width:80%;
-    
-                        padding:10px;
-                        font-size:18px;
-                        border:none;
-                    }
-    
-                    #botao-procurar{
-    
-                        max-width:40%;
-    
-                        background-color: #3D5745;
-                        color:#fff;
-                        font-size:16px;
+                flex-direction: row;
 
-                        padding:5px;
-                        margin:0;
-                    }
-                }
-    
-                label{
-    
-                    font-size: 18px;
+                width:100%;
+                height:30px;
+
+                padding:5px;
+
+                background-color: #fff;
+                border:1px solid #3D5745;
+
+                input{
+
+                    flex-grow:1;
+                    height:100%;
+
+                    padding:5px;
+
+                    background-color: transparent;
                 }
             }
         }
-    }
 
-    .secao-listar-produtos{
-
-        display:flex;
-        flex-direction: column;
-            
-        width:100%;
-        overflow-x:hidden; 
-
-        #titulo-listagem{
-
-            font-size:24px;
-
-            margin-bottom:20px;
-        }
-
-        .container-listar-produtos{
+        .filtros{
 
             display:flex;
-            flex-direction: row;
-            flex-wrap:wrap;
+            flex-direction: column;
+    
+            width:95%;
+    
+            padding:10px;
+            margin-bottom:20px;
+    
+            background-color:#EEF1DC;
+            border:1px solid #3D5745;
+            border-radius: 10px;
+    
+            h3{
+    
+                font-size:24px;
+                margin-bottom:20px;
+            }
+    
+            .container-filtro{
+    
+                display:flex;
+                flex-direction: row;
+                justify-content: space-around;
+                flex-wrap:wrap;
+    
+                width:100%;
+                gap:20px;
+    
+                .filtros-gerais div input[type=button]{
 
+                    width:70%;
+                    padding:10px 0px;
+
+                    background-color: #619853;
+                    border-radius:5px;
+
+                    color:#fff;
+                    font-size:18px;
+                }
+
+                .filtros-gerais div input[type=button]:hover{
+
+                    background-color: #E1FFA1;
+                    color:#3D5745;
+                    transition:0.3s;
+                }
+
+                >div{
+    
+                    display:flex;
+                    flex-direction: column;
+        
+                    width:20%;
+                    gap:10px;
+                    margin-bottom:20px;
+        
+                    select,input{
+
+                        width:100%;
+                        padding:10px 5px;
+                        border:1px solid #3D5745;
+                        font-size:18px;
+                    }
+
+                    label{
+
+                        font-size:18px;
+                    }
+
+                    >div{
+        
+                        display:flex;
+                        flex-direction: row;
+                        align-items: center;
+        
+                        width:100%;
+        
+                        input[type=checkbox]{
+        
+                            appearance:none;
+        
+                            width:30px;
+                            height:30px;
+        
+                            margin-right:5px;
+        
+                            background-color: transparent;
+                            border:2px solid #3D5745;
+                            border-radius:5px;
+                        }
+        
+                        input:checked{
+        
+                            background-color: #3D5745;
+                            background-image: url("data:image/svg+xml,%3Csvg width='20' height='15' viewBox='0 0 20 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.5815 0.439384C20.1395 1.02523 20.1395 1.97664 19.5815 2.56249L8.15422 14.5606C7.59625 15.1465 6.6901 15.1465 6.13213 14.5606L0.41848 8.56155C-0.139493 7.97571 -0.139493 7.02429 0.41848 6.43845C0.976453 5.8526 1.8826 5.8526 2.44058 6.43845L7.14541 11.3736L17.5639 0.439384C18.1219 -0.146461 19.028 -0.146461 19.586 0.439384H19.5815Z' fill='white'/%3E%3C/svg%3E%0A");
+                            background-position:center;
+                            background-repeat:no-repeat;
+        
+                            transition: background-color 0.3s, background-image 0.3s;
+                        }
+        
+                        label{
+        
+                            font-size:18px;
+                        }
+                    }
+                        
+                    h4{
+        
+                        font-size:20px;
+                    }
+                }
+        
+                .filtros-especificos{
+        
+                    .input-data-especifica{
+                        
+                        background-color: #fff;
+                        border:1px solid #3D5745;
+
+                        input{
+
+                            width:70%;
+                            background-color: transparent;
+                        }
+
+                        input[type=button]{
+
+                            width:30%;
+                            margin:0px;
+                            background-color: #3D5745;
+                            border-radius:0px;
+                            color:#fff;
+                        }
+                    }
+
+                    >div{
+        
+                        display:flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+        
+                        width:100%;
+                        height:40px;
+        
+                        background-color: #fff;
+                        border:1px solid #3D5745;
+                        border-radius:5px;
+        
+                        input{
+        
+                            height:100%;
+                            width:80%;
+        
+                            padding:10px;
+                            font-size:18px;
+                            border:none;
+                        }
+        
+                        #botao-procurar{
+        
+                            max-width:40%;
+        
+                            background-color: #3D5745;
+                            color:#fff;
+                            font-size:16px;
+    
+                            padding:5px;
+                            margin:0;
+                        }
+                    }
+        
+                    label{
+        
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    
+        .secao-listar-produtos{
+    
+            display:flex;
+            flex-direction: column;
+                
             width:100%;
-
-            overflow-x:hidden;
-
-            gap:10px;
+            overflow-x:hidden; 
+    
+            #titulo-listagem{
+    
+                font-size:24px;
+    
+                margin-bottom:20px;
+            }
+    
+            .container-listar-produtos{
+    
+                display:flex;
+                flex-direction: row;
+                flex-wrap:wrap;
+    
+                width:100%;
+    
+                overflow-x:hidden;
+    
+                gap:10px;
+            }
         }
     }
 }

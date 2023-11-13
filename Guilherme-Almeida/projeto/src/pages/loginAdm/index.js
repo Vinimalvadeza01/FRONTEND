@@ -1,64 +1,49 @@
-import axios from 'axios'
 import './index.scss';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate}   from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar'
 import CabecalhoAdm from '../../components/cabecalho-adm';
-import storage from 'local-storage'
 import SectionDecoration from '../../components/section-decoration';
-import { useEffect, useState } from 'react';
-import  Rodape from '../../components/rodape'
-import Storage  from '../../components/storage';
+import { useRef, useState } from 'react';
+import storage from 'local-storage'
 
 export default function LoginAdm (){
   const[usuario, setUsuario] = useState('');
   const[senhaAdm, setSenhaAdm] = useState('');
   const[erro, setErro] = useState ('');
+  const[carregando, setCarregando] = useState(false)
 
-  const navigate = useNavigate ();
 
-  function Storage(){
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const ref = useRef();
 
-    useEffect(() => {
-      if (!storage('usuario-logado')) {
-        navigate('/login')
-      }
-    }, []);
-  }
-
-  useEffect(() =>{
-    if(storage('usuario-logado')){
-      navigate('/admin')
-    }
-  }, [])
-
-  useEffect(() => {
-    const adminUsernameSalvo = localStorage.getItem('adminUsername');
-    if(adminUsernameSalvo) {
-        setUsuario(adminUsernameSalvo);
-    }
-  }, [])
 
   async function entrarClick(){
-
-
-
+    ref.current.continuousStart();;
+    setCarregando(true)
+  
     try{ 
-      const r =  await axios.post('http://localhost:5000/adm/login', {
-        usuario: usuario  ,
-        senhaAdm: senhaAdm 
-      });
-        localStorage.setItem('adminUsername'. usuario);
-        navigate('/');
-        } catch (err) {
-          setErro(err.response.data.erro);
-        } 
- 
-        
- 
+      const r = LoginAdm(usuario, senhaAdm);
 
+     //storage('usuario-logado', r);
+
+      setTimeout(() => {
+          navigate('/adm/cadastrar-produto');
+      }, 3000);
+      
+ 
+        } catch (err) {
+          ref.current.complete();
+          setCarregando(false);
+
+          console.log(err);
+          if(err.response.status=== 401){
+                setErro(err.response.data.erro);
+          }
+        } 
 }
     return (
       <div className="pagina-login-adm">
+        <LoadingBar color='#f11946' ref={ref} />
         
         <CabecalhoAdm/>
         
@@ -88,18 +73,18 @@ export default function LoginAdm (){
             <input type="password" placeholder="Digite a senha" value={senhaAdm} onChange={e => setSenhaAdm(e.target.value)}/>        
             </div>
             <div> 
-            <button className="botao" onClick={entrarClick}>Entrar</button>          
+            <button className="botao" onClick={entrarClick} disabled={carregando}>Entrar</button>          
             </div>
             <div className='form-entrar-invalido'>
           <span> {erro} </span>
 
-          <div id='alinhar-between'></div>
           </div>
           </div>
           
+          <div id='alinhar-between'></div>
         </section>  
         </div>
-          <Rodape/>
+  
       </div>
     )
     };

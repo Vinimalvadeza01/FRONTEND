@@ -1,16 +1,81 @@
 import './index.scss';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import CardProduto from '../card-produto';
+import axios from 'axios';
 
 export default function Cabecalho() {
 
     const [valorPesquisa, setValorPesquisa] = useState('');
 
-    return (
+    // Arrays para guardar os produtos das consultas da API
+    const [produtosCachorro,setProdutosCachorro]=useState([]);
+    const [produtosGato,setProdutosGato]=useState([]);
+    const [produtosPassaro,setProdutosPassaro]=useState([]);
+    const [produtosPeixe,setProdutosPeixe]=useState([]);
+    const [produtosOutros,setProdutosOutros]=useState([]);
+
+    const[mostrarMenu,setMostrarMenu]=useState(false);
+
+    async function listarProdutosCachorro(){
+
+        const url=`http://localhost:5000/produto/consulta/header/caes`;
+
+        const resp=await axios.get(url);
+
+        setProdutosCachorro(resp.data);
+    }
+
+    async function listarProdutosGato(){
+
+        const url=`http://localhost:5000/produto/consulta/header/gatos`;
+
+        const resp=await axios.get(url);
+
+        setProdutosGato(resp.data);
+    }
+
+    async function listarProdutosPassaro(){
+
+        const url=`http://localhost:5000/produto/consulta/header/passaros`;
+
+        const resp=await axios.get(url);
+
+        setProdutosPassaro(resp.data);
+    }
+
+    async function listarProdutosPeixe(){
+
+        const url=`http://localhost:5000/produto/consulta/header/peixes`;
+
+        const resp=await axios.get(url);
+
+        setProdutosPeixe(resp.data);
+    }
+
+    async function listarProdutosOutros(){
+
+        const url=`http://localhost:5000/produto/consulta/header/outros`;
+
+        const resp=await axios.get(url);
+
+        setProdutosOutros(resp.data);
+    }
+
+    useEffect(() => {
+
+        listarProdutosCachorro();
+        listarProdutosGato();
+        listarProdutosPassaro();
+        listarProdutosPeixe();
+        listarProdutosOutros();
+    },[]);
+
+    return(
 
         <header className='cabecalho'>
 
-            <Link to='/'>
+            <Link to='/' id='redirecionar-page-home'>
                 <img src='/assets/images/logo.png' alt='logo' id='logo'/>
             </Link>
 
@@ -40,7 +105,6 @@ export default function Cabecalho() {
 
                                 <label for='Link-user'>Não possui uma conta? Faça Login</label>
                             </Link>
-                            
                         </div>
                         
                         <div className='carrinho'>
@@ -59,45 +123,105 @@ export default function Cabecalho() {
 
                 <nav className='header-menu'>
 
-                    <button className='Link-menu'>
+                    <Link className='Link-menu Link' to='/produtos'>
                         
                         <span>Cachorro</span>
                         <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.5874 12.3655C9.36832 13.2115 10.6365 13.2115 11.4175 12.3655L19.4141 3.7022C19.9889 3.07953 20.1576 2.15228 19.8452 1.3401C19.5328 0.527919 18.8081 0 17.996 0L2.00264 0.0067686C1.19673 0.0067686 0.465785 0.534688 0.153415 1.34687C-0.158954 2.15905 0.0159727 3.08629 0.584486 3.70897L8.58115 12.3723L8.5874 12.3655Z" fill="white"/>
+                            <path d="M8.5874 12.3655C9.36832 13.2115 10.6365 13.2115 11.4175 12.3655L19.4141 3.7022C19.9889 3.07953 20.1576 2.15228 19.8452 1.3401C19.5328 0.527919 18.8081 0 17.996 0L2.00264 0.0067686C1.19673 0.0067686 0.465785 0.534688 0.153415 1.34687C-0.158954 2.15905 0.0159727 3.08629 0.584486 3.70897L8.58115 12.3723L8.5874 12.3655Z"/>
                         </svg>
-                    </button>
+
+                        <div className='produtos'>
+                            {produtosCachorro.map(item=> 
+                                <CardProduto
+                                    id={item.ID}
+                                    capa={item.Capa}
+                                    nome={item.Nome}
+                                    avaliacao={item.Avaliação}
+                                    avaliacoes={item.Avaliações}
+                                    preco={item.Preço}
+                                />)}
+                        </div>
+                        
+                    </Link>
                     
-                    <button className='Link-menu'>
+                    <Link className='Link-menu Link' to='/produtos'>
                         <span>Gato</span>
                         <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.5874 12.3655C9.36832 13.2115 10.6365 13.2115 11.4175 12.3655L19.4141 3.7022C19.9889 3.07953 20.1576 2.15228 19.8452 1.3401C19.5328 0.527919 18.8081 0 17.996 0L2.00264 0.0067686C1.19673 0.0067686 0.465785 0.534688 0.153415 1.34687C-0.158954 2.15905 0.0159727 3.08629 0.584486 3.70897L8.58115 12.3723L8.5874 12.3655Z" fill="white"/>
+                            <path d="M8.5874 12.3655C9.36832 13.2115 10.6365 13.2115 11.4175 12.3655L19.4141 3.7022C19.9889 3.07953 20.1576 2.15228 19.8452 1.3401C19.5328 0.527919 18.8081 0 17.996 0L2.00264 0.0067686C1.19673 0.0067686 0.465785 0.534688 0.153415 1.34687C-0.158954 2.15905 0.0159727 3.08629 0.584486 3.70897L8.58115 12.3723L8.5874 12.3655Z"/>
                         </svg>
-                    </button>
 
-                    <button className='Link-menu'>
+                        <div className='produtos'>
+                            {produtosGato.map(item=> 
+                                <CardProduto
+                                    id={item.ID}
+                                    capa={item.Capa}
+                                    nome={item.Nome}
+                                    avaliacao={item.Avaliação}
+                                    avaliacoes={item.Avaliações}
+                                    preco={item.Preço}
+                                />)}
+                        </div>
+                    </Link>
+
+                    <Link className='Link-menu Link' to='/produtos'>
 
                         <span>Peixes</span>
                         <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.5874 12.3655C9.36832 13.2115 10.6365 13.2115 11.4175 12.3655L19.4141 3.7022C19.9889 3.07953 20.1576 2.15228 19.8452 1.3401C19.5328 0.527919 18.8081 0 17.996 0L2.00264 0.0067686C1.19673 0.0067686 0.465785 0.534688 0.153415 1.34687C-0.158954 2.15905 0.0159727 3.08629 0.584486 3.70897L8.58115 12.3723L8.5874 12.3655Z" fill="white"/>
+                            <path d="M8.5874 12.3655C9.36832 13.2115 10.6365 13.2115 11.4175 12.3655L19.4141 3.7022C19.9889 3.07953 20.1576 2.15228 19.8452 1.3401C19.5328 0.527919 18.8081 0 17.996 0L2.00264 0.0067686C1.19673 0.0067686 0.465785 0.534688 0.153415 1.34687C-0.158954 2.15905 0.0159727 3.08629 0.584486 3.70897L8.58115 12.3723L8.5874 12.3655Z"/>
                         </svg>
-                    </button>
 
-                    <button className='Link-menu'>
+                        <div className='produtos'>
+                            {produtosPeixe.map(item=> 
+                                <CardProduto
+                                    id={item.ID}
+                                    capa={item.Capa}
+                                    nome={item.Nome}
+                                    avaliacao={item.Avaliação}
+                                    avaliacoes={item.Avaliações}
+                                    preco={item.Preço}
+                                />)}
+                        </div>
+                    </Link>
+
+                    <Link className='Link-menu Link' to='/produtos'>
 
                         <span>Pássaros</span>
                         <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.5874 12.3655C9.36832 13.2115 10.6365 13.2115 11.4175 12.3655L19.4141 3.7022C19.9889 3.07953 20.1576 2.15228 19.8452 1.3401C19.5328 0.527919 18.8081 0 17.996 0L2.00264 0.0067686C1.19673 0.0067686 0.465785 0.534688 0.153415 1.34687C-0.158954 2.15905 0.0159727 3.08629 0.584486 3.70897L8.58115 12.3723L8.5874 12.3655Z" fill="white"/>
+                            <path d="M8.5874 12.3655C9.36832 13.2115 10.6365 13.2115 11.4175 12.3655L19.4141 3.7022C19.9889 3.07953 20.1576 2.15228 19.8452 1.3401C19.5328 0.527919 18.8081 0 17.996 0L2.00264 0.0067686C1.19673 0.0067686 0.465785 0.534688 0.153415 1.34687C-0.158954 2.15905 0.0159727 3.08629 0.584486 3.70897L8.58115 12.3723L8.5874 12.3655Z"/>
                         </svg>
-                    </button>
 
-                    <button className='Link-menu'>
+                        <div className='produtos'>
+                            {produtosPassaro.map(item=> 
+                                <CardProduto
+                                    id={item.ID}
+                                    capa={item.Capa}
+                                    nome={item.Nome}
+                                    avaliacao={item.Avaliação}
+                                    avaliacoes={item.Avaliações}
+                                    preco={item.Preço}
+                                />)}
+                        </div>
+                    </Link>
+
+                    <Link className='Link-menu Link' to='/produtos'>
 
                         <span>Outros Animais</span>
                         <svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8.5874 12.3655C9.36832 13.2115 10.6365 13.2115 11.4175 12.3655L19.4141 3.7022C19.9889 3.07953 20.1576 2.15228 19.8452 1.3401C19.5328 0.527919 18.8081 0 17.996 0L2.00264 0.0067686C1.19673 0.0067686 0.465785 0.534688 0.153415 1.34687C-0.158954 2.15905 0.0159727 3.08629 0.584486 3.70897L8.58115 12.3723L8.5874 12.3655Z" fill="white"/>
+                            <path d="M8.5874 12.3655C9.36832 13.2115 10.6365 13.2115 11.4175 12.3655L19.4141 3.7022C19.9889 3.07953 20.1576 2.15228 19.8452 1.3401C19.5328 0.527919 18.8081 0 17.996 0L2.00264 0.0067686C1.19673 0.0067686 0.465785 0.534688 0.153415 1.34687C-0.158954 2.15905 0.0159727 3.08629 0.584486 3.70897L8.58115 12.3723L8.5874 12.3655Z"/>
                         </svg>
-                    </button>
 
+                        <div className='produtos'>
+                            {produtosOutros.map(item=> 
+                                <CardProduto
+                                    id={item.ID}
+                                    capa={item.Capa}
+                                    nome={item.Nome}
+                                    avaliacao={item.Avaliação}
+                                    avaliacoes={item.Avaliações}
+                                    preco={item.Preço}
+                                />)}
+                        </div>
+                    </Link>
                 </nav>
             </div>
 
@@ -105,13 +229,9 @@ export default function Cabecalho() {
                 <img src='/assets/images/patinhas.png' alt='patinhas de enfeite' id='patinhas' />
 
                 <button className='mobile-menu'>
-                    <svg width="35" height="25" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 2.5C0 1.11719 1.27679 0 2.85714 0H37.1429C38.7232 0 40 1.11719 40 2.5C40 3.88281 38.7232 5 37.1429 5H2.85714C1.27679 5 0 3.88281 0 2.5ZM0 15C0 13.6172 1.27679 12.5 2.85714 12.5H37.1429C38.7232 12.5 40 13.6172 40 15C40 16.3828 38.7232 17.5 37.1429 17.5H2.85714C1.27679 17.5 0 16.3828 0 15ZM40 27.5C40 28.8828 38.7232 30 37.1429 30H2.85714C1.27679 30 0 28.8828 0 27.5C0 26.1172 1.27679 25 2.85714 25H37.1429C38.7232 25 40 26.1172 40 27.5Z" fill="#619853"/>
-                    </svg>
+                    Ver Produtos
                 </button>
             </div>
-            
-
         </header>
     );
 }

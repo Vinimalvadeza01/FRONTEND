@@ -4,6 +4,8 @@ import Cabecalho from '../../../components/cabecalho';
 import Rodape from '../../../components/rodape';
 import SectionDecoration from '../../../components/section-decoration';
 
+
+
 export default function favoritos(){
 
     return(
@@ -11,6 +13,7 @@ export default function favoritos(){
         <div className='pag-favoritos'>
 
             <Cabecalho/>
+
 
             <div className='conteiner-favoritos'>
                 <SectionDecoration/>
@@ -50,10 +53,27 @@ export default function favoritos(){
 
                         </div>
 
-                    </div>
+                     {/* <div className='fav-vazio'>
+
+                        <div className='vaz-text'>
+
+                            <h4>Sua lista está vazia</h4>
+                            <hr/>
+                            <h4>Procure algo para adicionar</h4>
+                            <button>Ir para loja</button>
+
+
+                        </div>
+
+                    </div> */}
+
+                    
+
+
+
+                </div>
                     
                 </div>
-
 
 
 
@@ -63,7 +83,11 @@ export default function favoritos(){
 
 
             <Rodape/>
+        
             
         </div>
     )
+
+           
+    
 }

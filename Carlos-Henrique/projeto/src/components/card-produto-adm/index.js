@@ -67,11 +67,11 @@ export default function cardProduto(props){
                 <hr/>
             </div>
 
-            <div className='infs6'>
-
+            <div className='infs6'> 
+            
                 <div className='container-infs6'>
 
-                    <p> <span>Data de Lançamento:</span> {props.Lançamento.substr(0, 10)==='2099-01-01' ? 'Sem lançamento' : props.Lançamento.substr(0,10)}</p>
+                    <p> <span>Data de Cadastro:</span> {props.Cadastro.substr(0,10)}</p>
                 </div>
 
                 <hr/>
@@ -81,9 +81,7 @@ export default function cardProduto(props){
 
                 <div className='container-infs7'>
 
-                    <p> <span>Avaliação:</span> {props.Avaliação}</p>
-
-                    <p> <span>Favoritos:</span> {props.Favoritos}</p>
+                    <p> <span>Data de Lançamento:</span> {props.Lançamento.substr(0, 10)==='2099-01-01' ? 'Sem lançamento' : props.Lançamento.substr(0,10)}</p>
                 </div>
 
                 <hr/>
@@ -92,6 +90,28 @@ export default function cardProduto(props){
             <div className='infs8'>
 
                 <div className='container-infs8'>
+
+                    <p> <span>Avaliação:</span> {props.Avaliação}</p>
+
+                    <p> <span>Favoritos:</span> {props.Favoritos}</p>
+                </div>
+
+                <hr/>
+            </div>
+
+            <div className='infs9'>
+
+                <div className='container-infs9'>
+
+                    <p> <span>Quantidade de Avaliações:</span> {props.Avaliações}</p>
+                </div>
+
+                <hr/>
+            </div>
+
+            <div className='infs10'>
+
+                <div className='container-infs10'>
 
                     <p> <span>Cadastrado por:</span> {props.Adm}</p>
                 </div>

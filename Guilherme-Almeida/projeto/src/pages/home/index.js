@@ -2,7 +2,6 @@ import './index.scss';
 import Cabecalho from '../../components/cabecalho';
 import Enfeite from '../../components/quadrado-enfeite';
 import SectionDecoration from '../../components/section-decoration';
-import CabecalhoAdm from '../../components/cabecalho-adm';
 import { Link } from 'react-router-dom';
 
 export default function homePage(){
@@ -12,7 +11,7 @@ export default function homePage(){
 
         <div className='page-home'>
 
-            <CabecalhoAdm/>
+            <Cabecalho/>
 
             <SectionDecoration/>
 
