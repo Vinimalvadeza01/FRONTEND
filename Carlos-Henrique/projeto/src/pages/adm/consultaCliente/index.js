@@ -386,26 +386,30 @@ export default function PageConsultaClientesAdm(){
 
                 <div className='listagem-clientes'>
 
-                    {clientes.map(item => 
-                        <CardClienteAdm
-                            Nome={item.Nome} ID={item.ID}
-                            Email={item.Email}
-                            CPF={item.CPF}
-                            Nascimento={item.Nascimento}
-                            Pedidos={item.Pedidos}
-                            Senha={item.Senha}
-                            Endereco={item.Endereco}
-                            
-                            CEP={item.CEP}
-                            Estado={item.Estado}
-                            Cidade={item.Cidade}
-                            Bairro={item.Bairro}
-                            Rua={item.Rua}
-                            Número={item.Número}
-                            Complemento={item.Complemento}
+                    <h3 id='titulo-listagem'>{clientes.length<1 ? 'Sem resultados' : 'Resultados encontrados: '+clientes.length}</h3>
+                    
+                    <div className='container-listar-clientes'>
+                        {clientes.map(item => 
+                            <CardClienteAdm
+                                Nome={item.Nome} ID={item.ID}
+                                Email={item.Email}
+                                CPF={item.CPF}
+                                Nascimento={item.Nascimento}
+                                Pedidos={item.Pedidos}
+                                Senha={item.Senha}
+                                Endereco={item.Endereco}
+                                
+                                CEP={item.CEP}
+                                Estado={item.Estado}
+                                Cidade={item.Cidade}
+                                Bairro={item.Bairro}
+                                Rua={item.Rua}
+                                Número={item.Número}
+                                Complemento={item.Complemento}
 
-                            caminho={`/adm/cliente/${item.ID}`}
-                        />)}
+                                caminho={`/adm/cliente/${item.ID}`}
+                            />)}
+                    </div>
                 </div>
             </section>
         </div>

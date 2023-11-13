@@ -243,10 +243,24 @@
         .listagem-clientes{
 
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
 
-            width:100%;
-            gap:10px;
+            >h3{
+
+                font-size:24px;
+    
+                margin-bottom:20px;
+            }
+
+            .container-listagem-clientes{
+
+                width:100%;
+
+                display:flex;
+                flex-direction: row;
+
+                gap:10px;
+            }
         }
     }
 }
