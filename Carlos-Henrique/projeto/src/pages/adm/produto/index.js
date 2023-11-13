@@ -9,8 +9,8 @@ export default function PageProdutoAdm(){
 
     const[infsProduto,setInfsProduto]=useState({});
 
-    const[imagesProduto,setImagesProduto]=useState([]);
-    const[imagePrincipal,setImagePrincipal]=useState('');
+    const[infsImagesSecundariasProduto,setInfsImagesSecundariasProduto]=useState([]);
+    const[infsImagePrincipal,setInfsImagePrincipal]=useState({});
 
     const[categorias,setCategorias]=useState([]);
     const[animais,setAnimais]=useState([]);
@@ -36,71 +36,102 @@ export default function PageProdutoAdm(){
     const[corInputs,setCorInputs]=useState('transparent');
     const[borderInputs,setBorderInputs]=useState('none');
 
+    // Variáveis para alterações de imagem:
+
+    // Estado dos botões
+    const[capaEmAlteracao,setCapaEmAlteracao]=useState(false);
+    const[imageSecAlteracao,setImageSecAlteracao]=useState(false);
+    const[imageSecDeletar,setImageSectDeletar]=useState(false);
+
+    // Para prévias de imagem
+    const[previaCapa,setPreviaCapa]=useState('');
+
+    // Para guardar as imagens:
+    const[capa,setCapa]=useState('');
+
     const[erro,setErro]=useState('');
 
     const {id}=useParams();
 
     async function consultarInfsProduto(){
 
-        const url=`http://localhost:5000/produto/adm/consulta/${id}`;
+        try{
 
-        const resp=await axios.get(url);
+            const url=`http://localhost:5000/produto/adm/consulta/${id}`;
 
-        setInfsProduto(resp.data);
+            const resp=await axios.get(url);
 
-        setNome(resp.data.Nome);
-        setMarca(resp.data.Marca);
-        setDescricao(resp.data.Descrição);
-        setPeso(resp.data.Peso);
-        setCategoria(resp.data.Categoria_ID);
-        setAnimal(resp.data.Animal_ID);
-        setDisponivel(resp.data.Disponível);
-        setDesconto(resp.data.Desconto);
-        setEstoque(resp.data.Estoque);
+            setInfsProduto(resp.data);
 
-        // Formatando as datas para que seja melhor legível para o usuário
-        let formatarDataCadastro=resp.data.Cadastro.substr(0,10).split('-');
-        let formatarDataLançamento=resp.data.Lançamento.substr(0,10).split('-');
+            setNome(resp.data.Nome);
+            setMarca(resp.data.Marca);
+            setDescricao(resp.data.Descrição);
+            setPeso(resp.data.Peso);
+            setCategoria(resp.data.Categoria_ID);
+            setAnimal(resp.data.Animal_ID);
+            setDisponivel(resp.data.Disponível);
+            setDesconto(resp.data.Desconto);
+            setEstoque(resp.data.Estoque);
 
-        const ano1=formatarDataCadastro[0];
-        const ano2=formatarDataLançamento[0];
+            // Formatando as datas para que seja melhor legível para o usuário
+            let formatarDataCadastro=resp.data.Cadastro.substr(0,10).split('-');
+            let formatarDataLançamento=resp.data.Lançamento.substr(0,10).split('-');
 
-        const mes1=formatarDataCadastro[1];
-        const mes2=formatarDataLançamento[1];
+            const ano1=formatarDataCadastro[0];
+            const ano2=formatarDataLançamento[0];
 
-        const dia1=formatarDataCadastro[2];
-        const dia2=formatarDataLançamento[2];
+            const mes1=formatarDataCadastro[1];
+            const mes2=formatarDataLançamento[1];
 
-        setCadastro(`${dia1}/${mes1}/${ano1}`);
-        setLancamento(`${dia2}/${mes2}/${ano2}`);
+            const dia1=formatarDataCadastro[2];
+            const dia2=formatarDataLançamento[2];
 
-        // Formatar o preço
-        const formatarPreco=resp.data.Preço.toString().replace('.', ',')+'R$';
-        setPrecoFormatado(formatarPreco);
+            setCadastro(`${dia1}/${mes1}/${ano1}`);
+            setLancamento(`${dia2}/${mes2}/${ano2}`);
 
-        // Preço com desconto
-        const calcDesconto=resp.data.Preço-(resp.data.Preço*(resp.data.Desconto/100));
-        let formatarPrecoDesconto=calcDesconto.toString();
-        formatarPrecoDesconto=formatarPrecoDesconto.replace('.', ',');
-        formatarPrecoDesconto=formatarPrecoDesconto.slice(0,5);
-        setPrecoComDesconto(formatarPrecoDesconto+'R$');
+            // Formatar o preço
+            const formatarPreco=resp.data.Preço.toString().replace('.', ',')+'R$';
+            setPrecoFormatado(formatarPreco);
 
-        // Para as variáveis de preço inteiro e centavos
-        const dividirPreco=resp.data.Preço.split('.');
+            // Preço com desconto
+            const calcDesconto=resp.data.Preço-(resp.data.Preço*(resp.data.Desconto/100));
+            let formatarPrecoDesconto=calcDesconto.toString();
+            formatarPrecoDesconto=formatarPrecoDesconto.replace('.', ',');
+            formatarPrecoDesconto=formatarPrecoDesconto.slice(0,5);
+            setPrecoComDesconto(formatarPrecoDesconto+'R$');
 
-        setPrecoInteiro(dividirPreco[0]);
-        setPrecoCentavos(dividirPreco[1]);
+            // Para as variáveis de preço inteiro e centavos
+            const dividirPreco=resp.data.Preço.split('.');
+
+            setPrecoInteiro(dividirPreco[0]);
+            setPrecoCentavos(dividirPreco[1]);
+        }
+
+        catch(err){
+
+            alert('Ocorreu uma falha no sistema e não foi possível consultar as informações do produto\n'+err.message);
+        }
     }
 
     async function consultarImagensProduto(){
 
-        const url=`http://localhost:5000/imagem/consulta/${id}`;
+        try{
 
-        const resp=await axios.get(url);
+            const urlCapa=`http://localhost:5000/imagem/consulta/capa/${id}`;
+            const urlSec=`http://localhost:5000/imagem/consulta/${id}`;
 
-        setImagesProduto(resp.data);
-        if(resp.data.length > 0 && resp.data[0].Imagem) {
-            setImagePrincipal(resp.data[0].Imagem);
+            const respCapa=await axios.get(urlCapa);
+            const respSec=await axios.get(urlSec);
+
+            setInfsImagePrincipal(respCapa.data);
+            setInfsImagesSecundariasProduto(respSec.data); 
+
+            setCapa(respCapa.data.Imagem)
+        }
+
+        catch(err){
+
+            alert('Ocorreu uma falha no sistema e não foi possível listar as imagens do produto\n'+err.message);
         }
     }
 
@@ -117,22 +148,21 @@ export default function PageProdutoAdm(){
 
                 throw new Error('Data Inválida');
             }
+            const ano=formatarDataLancamento[2].replace(' ');
+            const mes=formatarDataLancamento[1].replace(' ');
+            const dia=formatarDataLancamento[0].replace(' ');
 
-            const ano=formatarDataLancamento[2];
-            const mes=formatarDataLancamento[1];
-            const dia=formatarDataLancamento[0];
-
-            if(ano===undefined){
+            if(ano===undefined || ano.length>4){
 
                 throw new Error('Ano inválido');
             }
 
-            if(mes===undefined){
+            if(mes===undefined || mes.length>2){
 
                 throw new Error('Mês inválido');
             }
 
-            if(dia===undefined){
+            if(dia===undefined|| dia.length>2){
 
                 throw new Error('Dia inválido');
             }
@@ -145,6 +175,14 @@ export default function PageProdutoAdm(){
 
                     throw new Error('Você não pode alterar a data de lançamento com o produto disponível');
                 };
+            }
+
+            let hoje=new Date();
+            hoje=hoje.toISOString();
+
+            if(dataFormatada<hoje.substr(0,10)){
+
+                throw new Error('A data de lançamento não pode ser uma data que já se passou');
             }
 
             const url=`http://localhost:5000/produto/alterar/${id}`;
@@ -164,7 +202,7 @@ export default function PageProdutoAdm(){
                 estoque:estoque
             };
 
-            const resp=await axios.put(url,produto,id);
+            await axios.put(url,produto,id);
 
             window.location.reload();
         }
@@ -180,6 +218,64 @@ export default function PageProdutoAdm(){
                 setErro(err.message);
             }
         }
+    }
+
+    async function alterarCapa(){
+
+        const formData = new FormData();
+    
+        let imagemParaAlterar='';
+
+        imagemParaAlterar=capa;
+
+        formData.append('imagemProduto',imagemParaAlterar);
+
+        const url=`http://localhost:5000/imagem/alterar/capa/${id}`;
+
+        const resp=await axios.put(url, formData, {
+                    
+            headers:{
+
+                "Content-Type":"multipart/form-data"
+            }}
+        );
+
+        window.location.reload();
+    }
+
+    function previaImagem(e,input){
+
+        let arquivo=e.target.files[0];
+        let lerArquivo = new FileReader();
+        
+        lerArquivo.onload = () => {    
+            if(input===0){
+
+                setPreviaCapa(lerArquivo.result);
+            }
+
+            // else if(input===1){
+
+            //     setPreviaSec1(lerArquivo.result);
+            // }
+
+            // else if(input===2){
+
+            //     setPreviaSec2(lerArquivo.result);
+            // }
+
+            // else if(input===3){
+
+            //     setPreviaSec3(lerArquivo.result);
+            // }
+
+            // else if(input===4){
+
+            //     setPreviaSec4(lerArquivo.result);
+            // }
+        }
+
+        lerArquivo.readAsDataURL(arquivo);
     }
 
     function cancelarAlteracao(){
@@ -229,7 +325,7 @@ export default function PageProdutoAdm(){
 
         catch(err){
 
-            alert('Ocorreu um erro ao listar as categorias, este filtro não irá funcionar');
+            alert('Ocorreu um erro ao listar as categorias, não será possível fazer alterações na categoria do produto');
         }
     }
 
@@ -246,7 +342,7 @@ export default function PageProdutoAdm(){
 
         catch(err){
 
-            alert('Não foi possível listar os animais, recarregue a página e tente novamente');
+            alert('Não foi possível listar os animais, não será possível fazer alterações no tipo de animal do produto');
         }
     }
 
@@ -268,25 +364,70 @@ export default function PageProdutoAdm(){
 
                 <div className='container-imagens'>
 
+                    <div className='imagem-principal'>
+                        
+                        {capaEmAlteracao ? 
+                            <label for='alterar-capa-produto' onChange={(e) => {previaImagem(e,0)}}>
+
+                                {previaCapa!=='' ?
+                                    <img src={previaCapa}/>
+                                :
+                                    <img src={`http://localhost:5000/${capa}`} alt='Imagem Principal' />}
+
+                                <input id='alterar-capa-produto' type='file' accept='image/*' readOnly onChange={(e) => {setCapa(e.target.files[0])}}/>
+
+                                <div className='alterar-label-hover'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                        <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" fill="#d6d6d6"/>
+                                    </svg>
+                                </div>
+                            </label>
+                        :
+                        <div>
+                            <img src={`http://localhost:5000/${capa}`} alt='imagem não encontrada'/>
+                        </div>}
+                    </div>
+
                     <div className='imagens-secundarias'>
 
-                        {imagesProduto.slice(1,imagesProduto.length).map(item=><div> <h1>Testando</h1></div>)}
+                        {infsImagesSecundariasProduto.map(item=><div> <h1>Testando</h1></div>)}
                     </div>
+ 
+                    {capaEmAlteracao || imageSecAlteracao || imageSecDeletar ? 
+                        <div className='div-buttons'>
 
-                    <div className='imagem-principal'>
-                        <div>
-                            <img src={`http://localhost:5000/${imagePrincipal}`} alt='imagem não encontrada'/>
-                        </div>
-                    </div>
+                            {capaEmAlteracao ?
+                                <div className='buttons-alterar-capa'>
+                                    <button className='button2' onClick={alterarCapa}>Escolher essa capa</button>
+                                    <button className='button3' onClick={() => {setCapaEmAlteracao(false); window.location.reload();}}>Cancelar alteração</button>
+                                </div>
+                            : null}
 
-                    <button>Alterar Imagem Principal</button>
-                    <button>Adicionar Imagem Secundária</button>
-                    <button>Excluir Imagem Secundária</button>
+                            {imageSecAlteracao ?
+                                <div className='buttons-alterar-images-sec'>
+                                    <button className='button2'>Escolher essas imagens</button>
+                                    <button className='button3' onClick={() => {setImageSecAlteracao(false); window.location.reload();}}>Cancelar alteração</button>
+                                </div>
+                            : null}
+
+                            {imageSecDeletar ? 
+                                <div className='buttons-deletar-images-sec'>
+                                    <button className='button1'>Deletar essas imagens</button>
+                                    <button className='button3' onClick={() => {setImageSectDeletar(false); window.location.reload();}}>Cancelar</button>
+                                </div>
+                            : null}
+                        </div> 
+                    :                     
+                        <div className='buttons-images-acoes div-buttons'>
+                            <button className='button1' onClick={() => {setCapaEmAlteracao(true)}}>Alterar Imagem Principal</button>
+                            <button className='button2' onClick={() => {setImageSecAlteracao(true)}}>Adicionar/Alterar Imagem Secundária</button>
+                            <button className='button3' onClick={() => {setImageSectDeletar(true)}}>Excluir Imagem Secundária</button>
+                        </div>}
                 </div>
 
                 <div className='container-infs'>
-
-                    <div className='infs-nao-alteraveis'>
+                    
+                    <form className='infs-nao-alteraveis'>
 
                         <h3>Informações Estáticas</h3>
 
@@ -321,14 +462,12 @@ export default function PageProdutoAdm(){
                         </div>
 
                         <div> 
-                            <label>Quantidade de Favoritos:</label> 
+                            <label>Favoritos:</label> 
                             <input type='text' value={infsProduto.Favoritos} readOnly/>
                         </div>
+                    </form>
 
-                        <hr/>
-                    </div>
-
-                    <div className='infs'>
+                    <form className='infs'>
 
                         <h3>Informações do Produto</h3>
 
@@ -387,7 +526,7 @@ export default function PageProdutoAdm(){
                         </div>
 
                         <div> 
-                            <label>{infsProduto.Disponível ? 'Data em que foi lançado:' : 'Data prevista para lançamento:'}</label> 
+                            <label>{infsProduto.Disponível ? 'Lançado em:' : 'Prévia para lançamento:'}</label> 
                             <InputMask  mask='99/99/9999' maskChar=' ' 
                                         type='text' value={lancamento} readOnly={produtoEmAlteracao}
                                         onChange={(e) => {setLancamento(e.target.value)}}
@@ -474,10 +613,10 @@ export default function PageProdutoAdm(){
                                     style={{background:`${corInputs}`, border:`${borderInputs}`}}/>
                         </div>
 
-                        <div>
-                            <span>{erro}</span>
+                        <div id='mensagem-erro'>
+                            <span id='mensagem-erro'>{erro}</span>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 

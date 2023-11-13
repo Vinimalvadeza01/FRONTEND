@@ -1,6 +1,5 @@
 .page-produto-adm{
 
-    width:100vw;
     min-height:100vh;
 
     background-color: #EBFBE9;
@@ -16,21 +15,130 @@
 
         display:flex;
         flex-direction: row;
+        justify-content: space-between;
 
-        width:100%;
-        padding:20px;
+        overflow-x: hidden;
 
         .container-imagens{
 
-            width:60%;
+            padding:10px;
+
+            >div,.imagem-principal, >div >div{
+
+                display:flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+
+                margin-bottom: 10px;
+                gap:10px;
+
+                button{
+
+                    padding:15px;
+
+                    font-size: 16px;
+                    color:#fff;
+                }
+
+                .button1{
+
+                    background-color:  #919853 !important;
+                }
+
+                .button2{
+
+                    background-color: #619853 !important;
+                }
+                .button3{
+
+                    background-color: #EF4040 !important;
+                }
+            }
+
+            .imagem-principal{
+
+                justify-content: center;
+                align-items: center;
+
+                aspect-ratio:16/9;
+
+                label{
+
+                    display:flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+
+                    position: relative;
+
+                    min-width:100%;
+                    min-height:100%;
+
+                    cursor:pointer;
+                    background-color: #e3ffe8;
+                    border: 1px solid #3D5745;
+
+                    input{
+
+                        display:none;
+                    }
+
+                    opacity:1;
+                    transition:opacity 0.3s;
+
+                    .alterar-label-hover{
+                    
+                        display:flex;
+                        justify-content: center;
+                        align-items: center;
+    
+                        width:100% !important;
+                        height:100% !important;
+        
+                        position:absolute;
+                        top:0;
+                        left:0;
+        
+                        background-color:#0000005b;
+        
+                        opacity:0;
+                        transition: opacity 0.3s;
+    
+                        svg{
+    
+                            display:block !important;
+                        }
+                    }
+                }
+
+                label:hover .alterar-label-hover{
+
+                    opacity:1;
+                }
+
+                img{
+
+                    height: auto;
+                    width: auto;
+
+                    max-width:80%;
+                    max-height: 80%;
+                }
+            }
+
+            .div-buttons >div{
+
+                width:100%;
+                justify-content: space-between;
+            }
         }
 
         .container-infs{
 
-            width:40%;
+            display:flex;
+            flex-direction: column;
 
-            background-color: #EEF1DC;
-            border: 1px solid #3D5745;
+            padding:10px;
 
             .infs-nao-alteraveis:last-child div{
 
@@ -44,20 +152,21 @@
             }
 
             // Infs alteráveis e não alteráveis
-            >div{
+            >form{
 
                 display:flex;
                 flex-direction: column;
 
-                width:100%;
+                background-color: #EEF1DC;
+                border: 1px solid #3D5745;
 
                 gap:5px;
-                margin-bottom:20px;
+                padding:10px;
+                margin-bottom:10px;
 
                 h3{
 
                     font-size:24px;
-                    margin:10px;
                 }
 
                 #div-desc{
@@ -92,6 +201,21 @@
                     }
                 }
 
+                #mensagem-erro{
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    padding:0px;
+                    
+                    font-size:20px;
+                    font-weight: 600;
+                    color:rgba(224, 53, 53, 0.87);
+                    text-align: center;
+                    border: none;
+                }
+
                 // Divs que guardam labels e inputs
                 >div{
 
@@ -99,31 +223,28 @@
                     flex-direction: row;
                     align-items: center;
 
-                    width:100%;
-
                     gap:5px;
-                    padding:10px;
+                    padding:5px;
 
                     border-bottom:1px solid #3D5745;
 
                     label{
 
-                        font-size:18px;
+                        font-size:16px;
                         font-weight: 600;
                     }
 
                     input,textarea{
-
+                        
                         flex-grow: 1;
                         padding:5px;
 
-                        font-size:18px;
+                        font-size:16px;
                         resize:none;
                     }
 
                     textarea{
 
-                        width:100%;
                         border:1px solid #3D5745;
                     }
 
@@ -134,17 +255,22 @@
 
                         transition: 0.3s;
                     }
+
+                    select{
+
+                        font-size:16px;
+                    }
                 }
 
                 button{
 
                     align-self: center;
+                    flex-grow: 1;
 
-                    padding:10px;
-                    width:70%;
+                    // padding:10px;
 
                     background-color: #619853;
-                    font-size: 18px;
+                    font-size: 16px;
                     color:#fff;
                 }
             }

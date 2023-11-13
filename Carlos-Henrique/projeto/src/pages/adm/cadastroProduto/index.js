@@ -133,6 +133,14 @@ export default function CadastrarProduto(){
 
             let arrumarPreco= alterarTotal+'.'+alterarCentavos;
     
+            let hoje=new Date();
+            hoje=hoje.toISOString();
+
+            if(lancamento<hoje.substr(0,10)){
+
+                throw new Error('A data de lançamento não pode ser uma data que já se passou');
+            }
+
             let infsProduto={
     
                 nome: nome,
