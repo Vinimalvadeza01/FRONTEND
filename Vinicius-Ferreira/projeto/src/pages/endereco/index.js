@@ -48,19 +48,22 @@ async function listarCidades(){
   
 
   async function cadastrarEndereco() {
-    let dadosEndereco = await axios.post ('http:'{
-      cep,
-      rua,
-      bairro,
-      cidade,
-      estado,
-      numero,
-      completo,
-    };)
-
+    
     try {
-      const response = await axios.post('urldaapinossa', dadosEndereco);
 
+      let dadosEndereco = ('http:',{
+        cep,
+        rua,
+        bairro,
+        cidade,
+        estado,
+        numero,
+        completo,
+      });
+      
+      const response = await axios.post('urldaapinossa', dadosEndereco);
+      
+    
       if (response.status === 200) {
         alert('Endereço cadastrado com sucesso');
         // Limpar os campos de entrada ou redirecionar para outra página
