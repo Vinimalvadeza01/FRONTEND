@@ -45,9 +45,17 @@ export default function PageProdutoAdm(){
 
     // Para prévias de imagem
     const[previaCapa,setPreviaCapa]=useState('');
+    const[previaSec1,setPreviaSec1]=useState('');
+    const[previaSec2,setPreviaSec2]=useState('');
+    const[previaSec3,setPreviaSec3]=useState('');
+    const[previaSec4,setPreviaSec4]=useState('');
 
     // Para guardar as imagens:
     const[capa,setCapa]=useState('');
+    const[sec1,setSec1]=useState('');
+    const[sec2,setSec2]=useState('');
+    const[sec3,setSec3]=useState('');
+    const[sec4,setSec4]=useState('');
 
     const[erro,setErro]=useState('');
 
@@ -126,7 +134,33 @@ export default function PageProdutoAdm(){
             setInfsImagePrincipal(respCapa.data);
             setInfsImagesSecundariasProduto(respSec.data); 
 
-            setCapa(respCapa.data.Imagem)
+            setCapa(respCapa.data.Imagem);
+
+            let contador=0;
+            for(let item of respSec.data){
+
+                if(contador===0){
+
+                    setSec1(item.Imagem);
+                }
+
+                else if(contador===1){
+
+                    setSec2(item.Imagem);
+                }
+
+                else if(contador===2){
+
+                    setSec3(item.Imagem);
+                }
+
+                else if(contador===3){
+
+                    setSec4(item.Imagem);
+                }
+
+                contador=contador+1;
+            }
         }
 
         catch(err){
@@ -180,7 +214,7 @@ export default function PageProdutoAdm(){
             let hoje=new Date();
             hoje=hoje.toISOString();
 
-            if(dataFormatada<hoje.substr(0,10)){
+            if(dataFormatada<hoje.substr(0,10) && infsProduto.Disponível===false){
 
                 throw new Error('A data de lançamento não pode ser uma data que já se passou');
             }
@@ -254,25 +288,25 @@ export default function PageProdutoAdm(){
                 setPreviaCapa(lerArquivo.result);
             }
 
-            // else if(input===1){
+            else if(input===1){
 
-            //     setPreviaSec1(lerArquivo.result);
-            // }
+                setPreviaSec1(lerArquivo.result);
+            }
 
-            // else if(input===2){
+            else if(input===2){
 
-            //     setPreviaSec2(lerArquivo.result);
-            // }
+                setPreviaSec2(lerArquivo.result);
+            }
 
-            // else if(input===3){
+            else if(input===3){
 
-            //     setPreviaSec3(lerArquivo.result);
-            // }
+                setPreviaSec3(lerArquivo.result);
+            }
 
-            // else if(input===4){
+            else if(input===4){
 
-            //     setPreviaSec4(lerArquivo.result);
-            // }
+                setPreviaSec4(lerArquivo.result);
+            }
         }
 
         lerArquivo.readAsDataURL(arquivo);
@@ -388,9 +422,89 @@ export default function PageProdutoAdm(){
                         </div>}
                     </div>
 
+                    <hr/>
+
                     <div className='imagens-secundarias'>
 
-                        {infsImagesSecundariasProduto.map(item=><div> <h1>Testando</h1></div>)}
+                        <h3>Imagens Secundárias</h3>
+
+                        {imageSecAlteracao ?
+                            <div className='div-labels'>
+                                <label for='alterar-sec1' onChange={(e) => {previaImagem(e,1)}}>
+                                    {sec1==='' ? <h1>Testando</h1>
+                                    :
+                                        previaSec1!=='' ?
+                                            <img src={previaSec1} alt=''/>
+                                        :
+                                            <img src={`http://localhost:5000/${sec1}`} alt=''/>}
+                                    
+                                    <input id='alterar-sec1' type='file' accept='image/*' readOnly onChange={(e) => {setSec1(e.target.files[0])}}/>
+
+                                    <div className='alterar-label-hover'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" fill="#d6d6d6"/>
+                                        </svg>
+                                    </div>
+                                </label>
+
+                                <label for='alterar-sec2' onChange={(e) => {previaImagem(e,2)}}>
+                                    {sec2==='' ? <h1>Testando</h1>
+                                    :
+                                        previaSec2!=='' ?
+                                            <img src={previaSec2} alt=''/>
+                                        :
+                                            <img src={`http://localhost:5000/${sec2}`} alt=''/>}
+                                    
+                                    <input id='alterar-sec2' type='file' accept='image/*' readOnly onChange={(e) => {setSec2(e.target.files[0])}}/>
+
+                                    <div className='alterar-label-hover'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" fill="#d6d6d6"/>
+                                        </svg>
+                                    </div>
+                                </label>
+
+                                <label for='alterar-sec3' onChange={(e) => {previaImagem(e,3)}}>
+                                    {setSec3==='' ? <h1>Testando</h1>
+                                    :
+                                        previaSec3!=='' ?
+                                            <img src={previaSec3} alt=''/>
+                                        :
+                                            <img src={`http://localhost:5000/${sec3}`} alt=''/>}
+                                    
+                                    <input id='alterar-sec3' type='file' accept='image/*' readOnly onChange={(e) => {setSec3(e.target.files[0])}}/>
+
+                                    <div className='alterar-label-hover'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" fill="#d6d6d6"/>
+                                        </svg>
+                                    </div>
+                                </label>
+
+                                <label for='alterar-sec4' onChange={(e) => {previaImagem(e,4)}}>
+                                    {sec4==='' ? <h1>Testando</h1>
+                                    :
+                                        previaSec4!=='' ?
+                                            <img src={previaSec4} alt=''/>
+                                        :
+                                            <img src={`http://localhost:5000/${sec4}`} alt=''/>}
+                                    
+                                    <input id='alterar-sec4' type='file' accept='image/*' readOnly onChange={(e) => {setSec4(e.target.files[0])}}/>
+
+                                    <div className='alterar-label-hover'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="3em" viewBox="0 0 448 512">
+                                            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" fill="#d6d6d6"/>
+                                        </svg>
+                                    </div>
+                                </label>
+                            </div>
+                        :
+                            <div className='container-images-secs'>
+                                {infsImagesSecundariasProduto.map(item=>
+                                    <div className='div-imagem-sec'> 
+                                        <img src={`http://localhost:5000/${item.Imagem}`} alt=''/>
+                                    </div>)}
+                            </div>}
                     </div>
  
                     {capaEmAlteracao || imageSecAlteracao || imageSecDeletar ? 

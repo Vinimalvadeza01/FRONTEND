@@ -27,6 +27,30 @@
 
             padding:10px;
 
+            .alterar-label-hover{
+                    
+                display:flex;
+                justify-content: center;
+                align-items: center;
+
+                width:100% !important;
+                height:100% !important;
+
+                position:absolute;
+                top:0;
+                left:0;
+
+                background-color:#0000005b;
+
+                opacity:0;
+                transition: opacity 0.3s;
+
+                svg{
+
+                    display:block !important;
+                }
+            }
+
             >div,.imagem-principal, >div >div{
 
                 display:flex;
@@ -90,28 +114,10 @@
                     opacity:1;
                     transition:opacity 0.3s;
 
-                    .alterar-label-hover{
-                    
-                        display:flex;
-                        justify-content: center;
-                        align-items: center;
-    
-                        width:100% !important;
-                        height:100% !important;
-        
-                        position:absolute;
-                        top:0;
-                        left:0;
-        
-                        background-color:#0000005b;
-        
-                        opacity:0;
-                        transition: opacity 0.3s;
-    
-                        svg{
-    
-                            display:block !important;
-                        }
+                    img{
+
+                        max-width:80%;
+                        max-height: 80%;
                     }
                 }
 
@@ -130,10 +136,98 @@
                 }
             }
 
-            .div-buttons >div{
+            .imagens-secundarias{
 
-                width:100%;
-                justify-content: space-between;
+                display:flex;
+                flex-direction:column;
+
+                margin-top:10px;
+
+                >h3{
+
+                    font-size:24px;
+                    margin-bottom:10px;
+                }
+
+                .div-labels{
+
+                    display:flex;
+                    flex-direction:row;
+
+                    width:100%;
+                    gap:5%;
+
+                    label{
+
+                        display:flex;
+                        flex-direction:row;
+                        justify-content: center;
+
+                        width:20%;
+                        height:150px;
+
+                        position:relative;
+                        cursor:pointer;
+
+                        background-color: #e3ffe8;
+                        border: 1px solid #3D5745;
+
+                        input{
+
+                            display:none;
+                        }
+
+                        img{
+
+                            height:100%;
+                            width:auto;
+
+                            max-width:100%;
+                        }
+                    }
+
+                    label:hover .alterar-label-hover{
+
+                        opacity:1;
+                    }
+                }
+
+                .container-images-secs{
+
+                    display:flex;
+                    flex-direction:row;
+
+                    width:100%;
+                    gap:5%;
+
+                    .div-imagem-sec {
+
+                        display:flex;
+                        flex-direction: row;
+                        justify-content: center;
+    
+                        width:20%;
+                        height:150px;
+    
+                        >img{
+    
+                            width:auto;
+                            height:100%;
+    
+                            max-width: 100%;
+                        }
+                    }
+                }
+            }
+
+            .div-buttons {
+
+                justify-content: space-around;
+                >div{
+
+                    width:100%;
+                    justify-content: space-between;
+                }
             }
         }
 
@@ -141,6 +235,7 @@
 
             display:flex;
             flex-direction: column;
+            flex-grow:1;
 
             padding:10px;
 
@@ -332,5 +427,14 @@
                 background-color: #EF4040;
             }
         }
+    }
+}
+
+
+@media(max-width:1440px){
+
+    .page-produto-adm .container-page .container-infs{
+
+        flex-grow:0;
     }
 }
