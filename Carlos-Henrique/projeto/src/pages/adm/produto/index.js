@@ -126,11 +126,12 @@ export default function PageProdutoAdm(){
         try{
 
             const urlCapa=`http://localhost:5000/imagem/consulta/capa/${id}`;
-            const urlSec=`http://localhost:5000/imagem/consulta/${id}`;
+            const urlSec=`http://localhost:5000/imagem/consulta/sec/${id}`;
 
             const respCapa=await axios.get(urlCapa);
             const respSec=await axios.get(urlSec);
-
+            console.log(respCapa);
+            console.log(respSec);
             setInfsImagePrincipal(respCapa.data);
             setInfsImagesSecundariasProduto(respSec.data); 
 
