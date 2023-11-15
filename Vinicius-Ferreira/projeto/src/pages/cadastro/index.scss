@@ -1,23 +1,22 @@
 .Page-Cadastro{
+        background: #C8DFBF;
+    max-width:100%;
+    min-height:100vh;
     display: flex;
-    background: linear-gradient(180deg, #619853 0%, #325B23 100%);
-    width:100vw ;
-    height: 100vh;
-    align-items: center;  
     flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
 
 
     .Conteudo{
         display: flex;        
-        width: 50%;
+        width: 200%;
         height: 100%;
         justify-content: center;
-        justify-content: space-evenly;
+        justify-content: space-around;
         flex-direction: column;
         align-items: center;
         justify-self: center;
-        background-color:#C8DFBF;
-        padding: 20px;
        
         .Titulo{
             display: flex;
@@ -32,34 +31,34 @@
             display: flex;
             border-color: blanchedalmond;
             width: 40vw;
-             height: 50px;
+             height: 3vh;
              padding: 10px;
              font-size: 17px;
-             border-radius: 10px;
+             border-radius: 3px ;
 
             
         }
         .input2{
             width: 40vw;
-         height: 50px;
+         height: 3vh;
          padding: 10px;
-         border-radius: 10px;
+         border-radius: 3px;
 
          font-size: 17px;
         }
         .input3{
             width: 40vw;
-         height: 50px;
+         height: 3vh;
 
-         border-radius: 10px;
+         border-radius: 3px;
          padding: 10px;
          font-size: 17px;
         
         }
         .input4{
             width: 40vw;
-         height: 5vh;
-         border-radius: 10px;
+         height: 3vh;
+         border-radius: 3px;
 
          padding: 10px;
          align-items: start;
@@ -71,10 +70,10 @@
             display: flex;
             border-color: blanchedalmond;
             width: 10vw;
-             height: 50px;
+             height: 3vh    ;
              padding: 10px;
              font-size: 17px;
-             border-radius: 10px;
+             border-radius: 3px;
             
         
         }
@@ -83,7 +82,7 @@
             display: flex;
             border-color: blanchedalmond;
             width: 40vw;
-             height: 5vh;
+             height: 3vh;
              padding: 10px;
              font-size: 17px;
              border-radius: 10px;
@@ -119,22 +118,194 @@
         .DatadeNascimento{
             display: flex;
             flex-direction: column;
-            width: 85%;
         }
         
-       
+        
+        .inputum{
+            display: flex; 
+            flex-direction: column;
+            justify-content: space-between;
+            
+                .cep{   
+                    display: flex;  
+                    font-size: 15px;
+                    
+                }
+             .incep{
+                display: flex;
+                border-color: blanchedalmond;
+                width: 40vw;
+                 height: 3vh;
+                 padding: 10px;
+                 font-size: 17px;
+                 border-radius: 3px ;    
+                align-items: center;
+                justify-content: center;
+                }
+        }
 
 
+        .inputdois{
+            display: flex; 
+            flex-direction: column;
+                .Rua{
+                    display: flex;
+                    font-size: 15px;
+                    padding: 0px 5px;
+                }
+             .rua{
+                display: flex;
+                font-size: 20px;
+                height: 3vh;
+                padding-left: 10px;
+                border-radius: 3px;
+                align-items: center;
+                justify-content: center;
+                width: 40vw;
+            }
+        }
+
+
+        .inputtres{
+            display: flex; 
+            flex-direction: column;
+
+            .Bairro{
+                display: flex;
+                    font-size: 15px;
+            }
+          .bairro{
+              display: flex;
+              border-radius: 3px;
+              font-size: 20px;
+              height: 3vh;
+              width: 40vw;
+              padding-left: 10px;
+              align-items: center;
+              justify-content: center;
+                }
+        }
+
+        .complementos{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 25%;
+            justify-content: space-around;
+            .endereco-ec{
+                display: flex;
+                flex-direction: column;
+            .input01{
+                display: flex; 
+                flex-direction: column;
+                    .estado{
+                        padding-bottom: 5px;
+                        display: flex;
+                    font-size: 15px;
+                    }
+
+                    .est{
+                        width: 50%;
+                        border-radius: 3px;
+                        font-size:20px;
+                        padding-left: 10px;
+                        height: 3.6vh;
+                        width: 14vw;
+                    }
+                
+                }
+            
+                .input02{
+                    display: flex; 
+                    flex-direction: column;
+                    padding-top: 10px;
+                        .numero{
+                        display: flex;
+                        font-size: 15px;
+                        padding-bottom: 5px;
+                        }
+
+                        .nm{
+                            width: 50%;
+                            border-radius: 3px;
+                            font-size:20px;
+                            height: 3.6vh;
+                            padding-left: 10px;
+                            width: 14vw;
+                        }
+                    
+                    }   
+            }
+
+
+            .endereco-nc{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                padding-top: 50px;
+           .input03{
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+
+                .cidade{
+                    display: flex;
+                    font-size: 15px;
+                    padding-bottom: 5px;
+                }
+
+                    .cd{
+                        width: 50%;
+                        border-radius: 3px;
+                        font-size:20px;
+                        height: 3.6vh;
+                        padding-left: 10px;
+                        width: 15vw;
+                    }
+           }
+            
+            .input04{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                padding-top: 10px;
+
+                .complement{
+                    display: flex;
+                    font-size: 15px;
+                }
+
+                    .cmp{
+                        width: 50%;
+                        border-radius: 3px;
+                        font-size:20px;
+                        height: 3.6vh;
+                        padding-left: 10px;
+                        width: 15vw;
+                    }
+                
+            }    
+            }
+        }
+
+        .inv{
+            display: flex;
+            padding: 20px 20px;
+        .bt{
+            display: flex;
+            padding:20px;
+            border-radius: 5px;
+            background-color: #619853;
         .botao{
-             width: 110%;
-            padding:20px 40px;
-            height: 7vh;
-            background-color:#619853;
+             width: 100%;
+            height:2vh;
+            color:#ffff;
             border: none;
             font-size: 20px;
-            border-radius: 10px;
+           
          }
-
+        }
+    }
       
         
          @media(max-width:900px){

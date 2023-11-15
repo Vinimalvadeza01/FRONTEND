@@ -13,45 +13,11 @@ export default function Endereco() {
   const [numero, setNumero] = useState('');
   const [completo, setCompleto] = useState('');
 
-  async function listarEstados(){
-
-    try{
-        const url='https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome';
-
-        let resp=await axios.get(url);
-
-        setEstado(resp.data);
-    }
-
-    catch(err){
-
-        alert('Ocorreu um erro ao listar os estados e as cidades, estes filtros não estarão funcionando');
-    }
-}
-
-async function listarCidades(){
-
-    try{
-
-        const url='https//servicodados.ibge.gov.br/api/v1/localidades/estados/${idEstado}/municipios?orderBy=nome';
-
-        let resp=await axios.get(url);
-
-        setCidade(resp.data);
-    }
-
-    catch(err){
-
-        alert('Não foi possível listar as cidades');
-    }
-} 
-  
-
   async function cadastrarEndereco() {
     
     try {
 
-      let dadosEndereco = ('http:',{
+      let dadosEndereco = ('http://localhost:5000/Endereco',{
         cep,
         rua,
         bairro,
@@ -61,7 +27,7 @@ async function listarCidades(){
         completo,
       });
       
-      const response = await axios.post('urldaapinossa', dadosEndereco);
+      const response = await axios.post('http://localhost:5000/Endereco', dadosEndereco);
       
     
       if (response.status === 200) {
@@ -129,7 +95,7 @@ async function listarCidades(){
                 <label className='estado'>Estado</label>
                 <InputMask
                   mask=''
-                  value={listarEstados}
+                  value={estado}
                   onChange={(e) => setEstado(e.target.value)}
                   className='est'
                   maskChar=''
@@ -155,7 +121,7 @@ async function listarCidades(){
                     <label className='cidade'>Cidade</label>
                     <InputMask
                   mask=''
-                  value={listarCidades}
+                  value={cidade}
                   onChange={(e) => setCidade(e.target.value)}
                   className='cd'
                   maskChar=''
@@ -187,4 +153,4 @@ async function listarCidades(){
       </div>
     </section>
   );
-}
+  }  
