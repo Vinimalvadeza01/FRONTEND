@@ -150,6 +150,28 @@
                             display:none;
                         }
                     }
+
+                    .nao-encontrado{
+
+                        display:flex;
+                        flex-direction: column;
+
+                        text-align: center;
+
+                        .container-svg{
+
+                            display:flex;
+                            flex-direction: row;
+                            justify-content: center;
+
+                            width:100%;
+                        }
+
+                        h5{
+
+                            font-size:16px;
+                        }
+                    }
                 }
             }
 
