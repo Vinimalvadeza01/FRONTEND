@@ -1,5 +1,5 @@
 .Page-Endereco{
-    background: linear-gradient(180deg, #619853 0%, #325B23 100%);
+    background-color:#C8DFBF;
     max-width:100vw;
     min-height:100vh;
     display: flex;
@@ -17,8 +17,9 @@
             width: 70%;
             height: 83vh;
           flex-direction: column;
+          background-color: #C8DFBF;
             justify-self: center;
-            background-color:#C8DFBF;
+            
 
             .titulo{
                 display: flex;
@@ -26,7 +27,7 @@
                 align-items: center;
                 justify-content: center;
                 font-size: 50px;
-                padding-top: 100px;
+                padding-top: 30px;
             }
             
             .invisivel{
@@ -34,10 +35,10 @@
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
-                height: 70%;
+                height: 100%;
                 justify-content: center;
                 background-color: #C8DFBF;
-                justify-content: space-between;
+                justify-content: space-around;
 
                 .inputum{
                     display: flex; 
@@ -47,7 +48,7 @@
                         .cep{   
                             display: flex;
                             font-size: 25px;
-                            padding: 10px 5px;
+                            padding: 0px 5px;
                         }
                      .incep{
                         display: flex;
@@ -70,7 +71,7 @@
                         .Rua{
                             display: flex;
                             font-size: 25px;
-                            padding: 10px 5px;
+                            padding: 0px 5px;
                         }
                      .rua{
                         display: flex;
@@ -93,7 +94,7 @@
                     .Bairro{
                         display: flex;
                             font-size: 25px;
-                            padding:10px 5px;
+                            padding:0px 5px;
                     }
                   .bairro{
                       display: flex;
@@ -217,7 +218,6 @@
                     height: 10%;
                     align-items: center;
                     justify-content: center;
-                    border-radius: 9px;
                     .bot{
                         display: flex;
                         font-size: 20px;
@@ -225,5 +225,35 @@
                     }
                 }
             }
-        }
+
+            @media(max-width:840px){
+                .titulo{
+                    font-size: 40px;
+                }
+             }
+             @media(max-width:670px){
+                .titulo{
+                    font-size: 30px;
+                }
+             }
+             @media(max-width:420px){
+                .titulo{
+                    font-size: 20px;
+                }
+                .button{
+                    background-color: #619853;
+                     width: 120%;
+                }
+
+                .complementos{
+                    width: 150%;
+                }
+
+                .invisivel{
+                    justify-content: space-evenly;
+                }
+               
+             }
+     }
+    
     }
