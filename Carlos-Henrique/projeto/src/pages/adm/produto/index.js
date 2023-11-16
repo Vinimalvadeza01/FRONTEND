@@ -1,8 +1,9 @@
 import './index.scss';
 import axios from 'axios';
 import {useState,useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
+import SectionDecoration from '../../../components/section-decoration';
 import InputMask from 'react-input-mask';
 
 export default function PageProdutoAdm(){
@@ -63,10 +64,14 @@ export default function PageProdutoAdm(){
     const[inserirSec3,setInserirSec3]=useState(false);
     const[inserirSec4,setInserirSec4]=useState(false);
 
+    // Erro
     const[erro,setErro]=useState('');
     const[erroImagem,setErroImagem]=useState('');
 
+    const[divExcluir,setDivExcluir]=useState(false);
+
     const {id}=useParams();
+    const navigate=useNavigate();
 
     async function consultarInfsProduto(){
 
@@ -492,6 +497,22 @@ export default function PageProdutoAdm(){
         }
     }
 
+    async function deletarProduto(){
+
+        try{
+            const url=`http://localhost:5000/produto/adm/excluir/${id}`;
+
+            await axios.delete(url);
+
+            navigate('/adm/consulta/produtos');
+        }
+
+        catch(err){
+
+            alert('Não foi possível deletar o produto');
+        }
+    }
+
     function previaImagem(e,input){
 
         let arquivo=e.target.files[0];
@@ -607,6 +628,25 @@ export default function PageProdutoAdm(){
         
         <div className='page-produto-adm'>
 
+            {divExcluir ?
+                <div className='div-excluir'>
+
+                    <div className='acoes-excluir'>
+
+                        <SectionDecoration/>
+
+                        <div className='container-excluir'>
+                            <h2>Tem certeza que deseja excluir este produto ? (Esta ação é IRREVERSÍVEL)</h2>
+
+                            <div className='sub-container-buttons-confirmar'>
+                                <button id='button1-excluir' onClick={deletarProduto}>CONFIRMAR</button>
+                                <button id='button2-excluir' onClick={() => {setDivExcluir(false)}}>CANCELAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            : ''}
+
             <CabecalhoAdm/>
 
             <div className='container-page'>
@@ -640,7 +680,7 @@ export default function PageProdutoAdm(){
                     <div className='div-erro'>
                         <span className='mensagem-erro'>{erroImagem}</span>
                     </div>
-                    
+
                     <hr/>
 
                     <div className='imagens-secundarias'>
@@ -976,7 +1016,7 @@ export default function PageProdutoAdm(){
                     {produtoEmAlteracao ? 
                         <div className='botoes1'>
                             <button className='botao-alterar' onClick={() => {setProdutoEmAlteracao(false); setCorInputs('#EBFBE9'); setBorderInputs('1px solid #3D5745');}}>ALTERAR INFORMAÇÕES</button>
-                            <button className='botao-excluir'>EXCLUIR PRODUTO</button>
+                            <button className='botao-excluir' onClick={() => {setDivExcluir(true)}}>EXCLUIR PRODUTO</button>
                         </div>
 
                     :   

@@ -1,7 +1,5 @@
 .page-produto-adm{
 
-    min-height:100vh;
-
     background-color: #EBFBE9;
     overflow-x: hidden;
 
@@ -9,6 +7,69 @@
 
         width:100%;
         border:1px solid #3D5745;
+    }
+
+    .div-excluir{
+
+        display:flex;
+        align-items: center;
+        justify-content: center;
+
+        width:100%;
+        height:100%;
+
+        position:fixed;
+        background-color: #a0a0a04f;
+        backdrop-filter: blur(2px);
+
+        .acoes-excluir{
+
+            display:flex;
+            flex-direction: column;
+
+            width:60%;
+            height:30%;
+
+            background-color:#C8DFBF;
+            border:1px solid #3D5745;
+
+            .container-excluir{
+
+                padding:20px;
+
+                h2{
+
+                    font-size:24px;
+                    text-align:center;
+                    margin-bottom:20px;
+                }
+
+                .sub-container-buttons-confirmar{
+
+                    display:flex;
+                    flex-direction: row;    
+                    justify-content: space-evenly;
+
+                    >button{
+
+                        padding:10px 20px;
+
+                        color:#fff;
+                        font-size:18px;
+                    }
+
+                    #button1-excluir{
+
+                        background-color: #EF4040;
+                    }
+
+                    #button2-excluir{
+
+                        background-color: #3D5745;
+                    }
+                }
+            }
+        }
     }
 
     .container-page{
