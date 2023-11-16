@@ -248,7 +248,7 @@ export default function CadastrarProduto(){
         
                     formData.append('imagemProduto',imagemParaInserir);
         
-                    await axios.post(`http://localhost:5000/imagem/${id}/${cont}/inserir`, formData, {
+                    const resp=await axios.post(`http://localhost:5000/imagem/${id}/${cont}/inserir`, formData, {
                     
                         headers:{
         
