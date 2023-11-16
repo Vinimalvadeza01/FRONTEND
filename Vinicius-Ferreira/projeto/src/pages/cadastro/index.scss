@@ -10,13 +10,9 @@
 
     .Conteudo{
         display: flex;        
-        width: 200%;
-        height: 100%;
-        justify-content: center;
-        justify-content: space-around;
-        flex-direction: column;
-        align-items: center;
-        justify-self: center;
+        width: 80%;
+        height: 200%;
+        flex-direction: row;
        
         .Titulo{
             display: flex;
@@ -26,7 +22,10 @@
             font-size: 40px;
         }
 
-
+        .Criarconta{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         .input1{
             display: flex;
             border-color: blanchedalmond;
@@ -119,8 +118,13 @@
             display: flex;
             flex-direction: column;
         }
+    }
         
-        
+
+    .Endereco{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
         .inputum{
             display: flex; 
             flex-direction: column;
@@ -189,12 +193,14 @@
         .complementos{
             display: flex;
             align-items: center;
+            flex-direction: column;
             justify-content: center;
             width: 25%;
             justify-content: space-around;
+
             .endereco-ec{
                 display: flex;
-                flex-direction: column;
+                flex-direction:column;
             .input01{
                 display: flex; 
                 flex-direction: column;
@@ -287,25 +293,8 @@
             }    
             }
         }
-
-        .inv{
-            display: flex;
-            padding: 20px 20px;
-        .bt{
-            display: flex;
-            padding:20px;
-            border-radius: 5px;
-            background-color: #619853;
-        .botao{
-             width: 100%;
-            height:2vh;
-            color:#ffff;
-            border: none;
-            font-size: 20px;
-           
-         }
-        }
     }
+     
       
         
          @media(max-width:900px){
@@ -325,5 +314,24 @@
             text-align: center;
             color:rgba(224, 53, 53, 0.87);
         }
+        
     }
+    .inv{
+        display: flex;
+        padding: 20px 20px;
+    .bt{
+        display: flex;
+        padding:20px;
+        border-radius: 5px;
+        background-color: #619853;
+    .botao{
+         width: 100%;
+        height:2vh;
+        color:#ffff;
+        border: none;
+        font-size: 20px;
+       
+     }
+    }
+}
 }

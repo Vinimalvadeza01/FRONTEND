@@ -72,8 +72,9 @@ function Cadastro() {
     return(
         <section className='Page-Cadastro'>
             <Cabecalho/>
+            <h1 className='Titulo'>CRIAR SUA CONTA</h1>
             <div className='Conteudo'>
-                    <h1 className='Titulo'>CRIAR SUA CONTA</h1>
+                   <section className='Criarconta'>
                     <div className="Nome">
                         <label className="nm">Nome Completo</label>
                         <input className="input1" type="text" placeholder="Digite seu nome completo" value={Nome} onChange={e => setNome (e.target.value)}/>
@@ -101,11 +102,24 @@ function Cadastro() {
                         <InputMask className="input4" type="text" placeholder="Digite seu CPF"  mask="999.999.999-99"  Placeholder="999.999.99-99" 
                         value={cpf} onChange={e =>setCpf (e.target.value)}/>
                     </div>  
-                    
+
+                    <div className="DatadeNascimento">
+                    <label className="DataCadastro">Data de Nascimento</label>
+                    <InputMask
+                        mask="99/99/9999"
+                        maskChar=" "
+                        placeholder="DD/MM/AAAA"
+                        className='input5'
+                        type='text'
+                        value={datanasc} 
+                        onChange={e =>setDatanasc (e.target.value)}
+                    />                    
+                    </div>
+                    </section>    
                     
 
 
-               
+                <section className='Endereco'>
                     <div className='inputum'>
             <label className='cep'>CEP</label>
             <InputMask
@@ -144,23 +158,11 @@ function Cadastro() {
               type='text'
             />
           </div>
-
+          
           
 
-          <section className='complementos'>
             <section className='endereco-ec'>
-            <div className="DatadeNascimento">
-                    <label className="DataCadastro">Data de Nascimento</label>
-                    <InputMask
-                        mask="99/99/9999"
-                        maskChar=" "
-                        placeholder="DD/MM/AAAA"
-                        className='input5'
-                        type='text'
-                        value={datanasc} 
-                        onChange={e =>setDatanasc (e.target.value)}
-                    />                    
-                    </div>
+           
 
               <div className='input01'>
                 <label className='estado'>Estado</label>
@@ -187,6 +189,7 @@ function Cadastro() {
               />
               </div>
             </section>
+            <div className='com'>
             <div className='endereco-nc'>
                 <div className='input03'>
                     <label className='cidade'>Cidade</label>
@@ -213,9 +216,15 @@ function Cadastro() {
                 />
                 </div>
             </div>
-          </section>
+            </div>
+           
+            </section>
 
-                        <div className='inv'>
+                   
+            </div>
+       
+            
+            <div className='inv'>
                     <div className='bt'>
                     <button className="botao" onClick={entrarClick}>Confirmar</button>
                     </div>
@@ -224,10 +233,6 @@ function Cadastro() {
                         {erro}
                     </p>
                     </div>
-                   
-            </div>
-       
-            
         </section>
     )
 }
