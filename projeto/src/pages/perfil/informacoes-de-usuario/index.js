@@ -22,7 +22,7 @@ export default function Perfil(){
                     <div className='menu'>
                         <Link className='link-p' >Informações de usuário</Link>
                         <Link to="../../perfil/informacoes-de-endereco" className='link' >Informações de endereço</Link>
-                        <Link className='link' >Favoritos</Link>
+                        <Link to="../../perfil/favoritos" className='link' >Favoritos</Link>
                         <Link className='link' >Meus edidos</Link>
                         <Link className='link' >Trocar de conta</Link>
                         <Link className='link' >Sair</Link>

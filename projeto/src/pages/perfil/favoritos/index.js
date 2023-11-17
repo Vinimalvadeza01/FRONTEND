@@ -20,9 +20,9 @@ export default function favoritos(){
 
                 <div className='fav-menu'>
                     <Link to="../../perfil" className='link'>Informações de Usuário</Link>
-                    <Link to='' className='link'>Informações de Endereco</Link>
+                    <Link to='../../perfil/informacoes-de-endereco' className='link'>Informações de Endereco</Link>
                     <Link className='link-p'>Favoritos</Link>
-                    <Link to="../../pedidos" className='link'>Meus Pedidos</Link>
+                    <Link to="../../perfil/pedidos" className='link'>Meus Pedidos</Link>
                     <Link className='link'> Trocar de Conta</Link>
                     <Link className='link'>Sair</Link>
                 </div>
@@ -42,16 +42,18 @@ export default function favoritos(){
                                 <thead>
                                     <tr>
                                         <th>Produto</th>
-                                        <th>Produto</th>
-                                        <th>Produto</th>
-                                        <th>Produto</th>
+                                        <th>Descrição</th>
+                                        <th>Valor</th>
+                                        <th>Estoque</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <tr>
-                                        <td>dasda</td>
-                                        <td>diasjdiasj</td>
+                                        <td> </td>
+                                        <td>Petisco sem glútem abóbora  e côco 150g</td>
+                                        <td>R$17,90</td>
+                                        <td>40</td>
                                     </tr>
                                 </tbody>
                             </table>

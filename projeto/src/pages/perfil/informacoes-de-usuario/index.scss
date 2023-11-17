@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden;
    
 
     .center{
@@ -93,17 +94,18 @@
 
             display: flex;
             flex-direction: column;
+            padding: 15px;
+            justify-content: space-between;
 
-            >div{
+            
 
 
 
                 input{
 
                     width: 100%;
-                    height: 40px;
                     font-size: 18px;
-                    padding-left: 20px;
+                    padding: 10px;
                     border-radius: 5px;
                     border: 1px solid #3D5745;
                 }
@@ -111,36 +113,29 @@
                 label{
 
                     
-                        padding-bottom: 4px;
-                        font-family: 'Aoboshi One', serif;
+                    font-size: 18px;
+                    font-family: 'Aoboshi One', serif;
                     
                 }
-            }
+            
 
             .Nome{
                 display: flex;
                 flex-direction: column;
-                padding: 10px;
-                padding-left: 20px;
-                font-size: 18px;
 
             }
 
             .email-celular{
                 display: flex;
                 flex-direction: column;
-                padding: 10px;
-                padding-left: 20px;
-                font-size: 18px;
+
 
             }
 
             .cpf{
                 display: flex;
                 flex-direction: column;
-                padding: 10px;
-                padding-left: 20px;
-                font-size: 18px;
+
 
 
             }
@@ -148,15 +143,14 @@
             .nascimento{
                 display: flex;
                 flex-direction: column;
-                padding: 10px;
-                padding-left: 20px;
-                font-size: 18px;
+
 
 
 
             }
             button{
                 background-color: #619853;
+                margin-top: 10px;
                 width: 180px;
                 height: 60px;
                 border: none;
