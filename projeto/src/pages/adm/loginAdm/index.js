@@ -29,7 +29,7 @@ export default function LoginAdm (){
 
      storage('adm-logado', r);
 
-      navigate('/adm/cadastrar-produto');
+      navigate('/adm');
     } 
 
     catch (err) {
