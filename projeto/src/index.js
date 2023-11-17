@@ -19,6 +19,7 @@ import ConsultaAdmClientes from './pages/adm/consultaCliente';
 import Perfil from './pages/perfil/informacoes-de-usuario';
 import Endereco from './pages/perfil/informacoes-de-endereco';
 import Favoritos from './pages/perfil/favoritos';
+import Pedidos from './pages/perfil/pedidos';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -35,6 +36,7 @@ root.render(
         <Route path='/perfil' exact={true} element={<Perfil/>} ></Route>
         <Route path='/perfil/informacoes-de-endereco' element={<Endereco/>} ></Route> 
         <Route path='/perfil/favoritos' element={<Favoritos/>}></Route> 
+        <Route path='perfil/pedidos' element={<Pedidos/>}></Route>
 
         <Route path='/adm/cadastrar-produto' exact={true} element={<CadastrarProduto/>}></Route>
         <Route path='/adm/produto-cadastrado' exact={true} element={<ProdutoCadastrado/>}></Route>
