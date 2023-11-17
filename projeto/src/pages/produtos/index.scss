@@ -1,0 +1,209 @@
+.page-produtos{
+
+    overflow-x:hidden;
+    background-color: #EBFBE9;
+    min-height: 100vh;
+
+    .section-pesquisa{
+
+        display:flex;
+        flex-direction:column;
+
+        .container-search{
+
+            display:flex;
+            flex-direction:row;
+            justify-content: space-evenly;
+
+            width:100%;
+
+            >h4{
+
+                font-size:28px;
+            }
+
+            .sub-container-input{
+
+                display:flex;
+                flex-direction:column;
+
+                width:50%;
+
+                >input{
+
+                    width:100%;
+
+                    padding:10px;
+                    margin-bottom:10px;
+
+                    border: 1px solid #3D5745;
+                    background-color: #BAE2B5;
+                    font-size:16px;
+                }
+
+                >span{
+
+                    font-size:18px;
+                    font-weight:600;
+                    color:#958989;
+                }
+            }
+        }
+    }
+
+    .section-produtos{
+
+        display:flex;
+        flex-direction: row;
+
+        padding:20px;
+        gap:20px;
+
+        .container-filtros-responsivo{
+
+            display:none;
+        }
+
+        .filtros-disp-moveis{
+
+            display:none;
+        }
+
+        .filtros,.filtros-disp-moveis{
+
+            >form{
+
+                display:flex;
+                flex-direction:column;
+
+                gap:10px;
+                margin-bottom:20px;
+
+                h3{
+
+                    font-size:24px;
+                }
+
+                .container-input{
+
+                    display:flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    gap:5px;
+
+                    input{
+
+                        appearance:none;
+
+                        width:30px;
+                        height:30px;
+
+                        border: 2px solid #3D5745;
+                        border-radius: 5px;
+                    }
+
+                    input:checked{
+        
+                        background-color: #3D5745;
+                        background-image: url("data:image/svg+xml,%3Csvg width='20' height='15' viewBox='0 0 20 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19.5815 0.439384C20.1395 1.02523 20.1395 1.97664 19.5815 2.56249L8.15422 14.5606C7.59625 15.1465 6.6901 15.1465 6.13213 14.5606L0.41848 8.56155C-0.139493 7.97571 -0.139493 7.02429 0.41848 6.43845C0.976453 5.8526 1.8826 5.8526 2.44058 6.43845L7.14541 11.3736L17.5639 0.439384C18.1219 -0.146461 19.028 -0.146461 19.586 0.439384H19.5815Z' fill='white'/%3E%3C/svg%3E%0A");
+                        background-position:center;
+                        background-repeat:no-repeat;
+    
+                        transition: background-color 0.3s, background-image 0.3s;
+                    }
+
+                    label{
+
+                        font-size:16px;
+                    }
+                }
+            }
+        }
+
+        .listagem-produtos{
+
+            display:flex;
+            flex-direction: row;
+            flex-wrap:wrap;
+
+            gap:10px;
+        }
+    }
+}
+
+@media(max-width:1024px){
+
+    .page-produtos .section-pesquisa .container-search{
+
+        flex-direction:column;
+
+        padding:20px;
+
+        h4{
+
+            font-size:20px;
+        }
+
+        .sub-container-input{
+            
+            width:100%;
+
+            span{
+
+                font-size:14px;
+            }
+        }
+    }
+
+    .page-produtos .section-produtos .filtros{
+
+        width:40%;
+    }
+}
+
+@media(max-width:820px){
+
+    .page-produtos .section-produtos {
+
+        flex-direction: column;
+        position:relative;
+
+        .container-filtros-responsivo{
+
+            display:flex;
+            flex-direction: row;
+
+            gap:5px;
+
+            h3{
+
+                font-size:24px;
+            }
+        }
+
+        .filtros{
+
+           display:none;
+        }
+
+        .filtros-disp-moveis{
+
+            position:absolute;
+            left:0;
+            top:0;
+
+            background-color: #BAE2B5;
+            padding:10px;
+
+            opacity:1;
+            transition:opacity 0.3s;
+        }
+
+        .listagem-produtos{
+
+            justify-content: space-around;
+        }
+    }
+}
+

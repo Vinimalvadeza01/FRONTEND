@@ -1,0 +1,25 @@
+.quadrado{
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width:100vw;
+    height:10vh;
+
+    margin-top:30px;
+    padding:0px 10px 0px 0px;
+    gap:20px;
+
+    background-color: #325B23;
+
+    #linha1{
+
+        max-width:400px;
+    }
+
+    #linha2{
+
+        max-width:200px;
+    }
+}
