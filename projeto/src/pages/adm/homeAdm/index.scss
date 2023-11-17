@@ -4,4 +4,49 @@
     
     background-color: #EBFBE9;
     overflow-x: hidden;
+
+    .div-selecionar{
+
+        display:flex;
+        flex-direction:column;
+        
+        text-align: center;
+
+        h1{
+
+            font-size:30px;
+            margin-bottom: 10px;
+        }
+
+        h2{
+
+            font-size:24px;
+            margin-bottom:20px;
+        }
+
+        .div-buttons{
+
+            display:flex;
+            flex-direction: row;
+            justify-content: center;
+
+            gap:20px;
+
+            .redirecionar-home-adm{
+
+                padding:15px 20px;
+
+                background-color: #619853;
+                color:#fff;
+                font-size:18px;
+            }
+
+            .redirecionar-home-adm:hover{
+
+                background-color: #E1FFA1;
+                color:#3D5745;
+                transition: 0.3s;
+            }
+        }
+    }
 }
