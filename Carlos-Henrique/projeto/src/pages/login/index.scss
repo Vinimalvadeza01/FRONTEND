@@ -1,0 +1,138 @@
+.Corpo{
+    background: linear-gradient(180deg, #619853 0%, #325B23 100%);
+    width:100vw;
+    min-height:100vh;
+    
+
+  section{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    width:100%;
+    height:80vh;
+
+    .Conteudo{
+        display: flex;        
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        justify-self: center;
+        background-color:#C8DFBF;
+
+        height:100%;
+        width:70%;
+        
+        .credencial{
+
+         display:flex;
+         flex-direction: row;
+         align-items: center;
+
+         width: 40vw;
+         height: 50px;
+          margin: 15px;
+         padding:10px;
+         border-radius: 10px;
+          background: #FFF;
+        }
+        
+        .credencial>input{
+        
+          background: none;
+          padding: 10px;
+          width: 100%;
+          height:100%;
+        }
+        .senha{
+          display:flex;
+          flex-direction: row;
+          align-items: center;
+ 
+          width: 40vw;
+          height: 50px;
+          border-radius: 10px;
+          padding: 10px;
+          background: #FFF;
+        }
+        .senha>input{
+          background: none;
+          width: 100%;
+          height:100%;
+          padding: 10px;
+        }
+        .botao{
+          width: 170px;
+          height: 60px;
+          font-family: "Righteous", cursive;
+          flex-shrink: 0;
+          background-color:#619853;
+          border: none;
+          border-radius: 10px;
+          align-self: center;
+          font-size:larger;
+          font-weight: 400px;
+        }
+  
+        .form-entrar-invalido span{
+
+          font-size: 20px;
+          font-weight: 600;
+          margin: 20px;
+          text-align: center;
+          color:rgba(224, 53, 53, 0.87);
+        }
+
+        .suporte{
+
+          display:flex;
+          flex-direction: column;
+
+          color: #000;
+          font-family: Alef;
+          font-size: 13px;
+
+          margin:   10px 0px 0px 0px;
+          gap:20px;
+
+          width: 40vw;
+          height: 10vh;
+          
+          .esqueceu{
+            margin: 0px ;
+
+          }
+
+          .botao-page-login{
+            margin-bottom: 20px;
+            font-size: 14px;
+            color:#3D5745;
+            text-decoration: underline; 
+          } 
+          .botao-page{
+          margin-bottom: 20px;
+            font-size: 14px;
+            color:#3D5745;
+            text-decoration: underline;
+          
+          }
+      }
+      .Conteudo>h1{
+        display: flex;
+        font-size: 40px;
+        font-family: 'Righteous', cursive;
+        align-self: center;
+        margin: 30px;
+        color: #3D5745;
+        
+      }
+      p{
+        font-size:small;
+        text-decoration:dotted;
+      }
+
+      }
+
+  }
+}
