@@ -15,6 +15,11 @@ import ConsultaAdmProdutos from './pages/adm/consultaProduto';
 import ProdutoAdm from './pages/adm/produto';
 import ConsultaAdmClientes from './pages/adm/consultaCliente';
 
+// Importando páginas do trajanilson
+import Perfil from './pages/perfil/informacoes-de-usuario';
+import Endereco from './pages/perfil/informacoes-de-endereco';
+import Favoritos from './pages/perfil/favoritos';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -25,6 +30,11 @@ root.render(
         <Route path='/Cadastro' exact={true} element={<Cadastro/>}></Route>
         <Route path='/login' exact={true} element={<Login/>}></Route>
         <Route path='/produtos' exact={true} element={<Produtos/>}></Route>
+
+        {/* Páginas do trajanilson */}
+        <Route path='/perfil' exact={true} element={<Perfil/>} ></Route>
+        <Route path='/perfil/informacoes-de-endereco' element={<Endereco/>} ></Route> 
+        <Route path='/perfil/favoritos' element={<Favoritos/>}></Route> 
 
         <Route path='/adm/cadastrar-produto' exact={true} element={<CadastrarProduto/>}></Route>
         <Route path='/adm/produto-cadastrado' exact={true} element={<ProdutoCadastrado/>}></Route>

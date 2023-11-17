@@ -1,0 +1,259 @@
+.Page-Endereco{
+    background-color:#C8DFBF;
+    max-width:100vw;
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+
+    .container-decoration{
+        display: flex;
+        align-items: start;
+    }
+    
+        .conteudo{
+            display: flex;    
+            width: 70%;
+            height: 83vh;
+          flex-direction: column;
+          background-color: #C8DFBF;
+            justify-self: center;
+            
+
+            .titulo{
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+                font-size: 50px;
+                padding-top: 30px;
+            }
+            
+            .invisivel{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                justify-content: center;
+                background-color: #C8DFBF;
+                justify-content: space-around;
+
+                .inputum{
+                    display: flex; 
+                    flex-direction: column;
+                    justify-content: space-between;
+                    width:70%;
+                        .cep{   
+                            display: flex;
+                            font-size: 25px;
+                            padding: 0px 5px;
+                        }
+                     .incep{
+                        display: flex;
+                        width: 100%;
+                        border-radius:9px ;
+                        font-size: 20px;
+                        padding-left: 10px;
+                        height: 4vh;
+                        align-items: center;
+                        justify-content: center;
+                        }
+                }
+
+
+                .inputdois{
+                    display: flex; 
+                    flex-direction: column;
+                    width:70%;
+
+                        .Rua{
+                            display: flex;
+                            font-size: 25px;
+                            padding: 0px 5px;
+                        }
+                     .rua{
+                        display: flex;
+                        font-size: 20px;
+                        height: 4vh;
+                        padding-left: 10px;
+                        border-radius: 9px;
+                        align-items: center;
+                        justify-content: center;
+                
+                    }
+                }
+
+
+                .inputtres{
+                    display: flex; 
+                    flex-direction: column;
+                      width: 70%;
+
+                    .Bairro{
+                        display: flex;
+                            font-size: 25px;
+                            padding:0px 5px;
+                    }
+                  .bairro{
+                      display: flex;
+                      border-radius: 9px;
+                      font-size: 20px;
+                      height: 4vh;
+                      padding-left: 10px;
+                      align-items: center;
+                      justify-content: center;
+                        }
+                }
+
+                .complementos{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    justify-content: space-evenly;
+                    width: 100%;
+                    .endereco-ec{
+                        display: flex;
+                        flex-direction: column;
+                    .input01{
+                        display: flex; 
+                        flex-direction: column;
+                            .estado{
+                                padding-bottom: 5px;
+                                display: flex;
+                            font-size: 20px;
+                            }
+
+                            .est{
+                                width: 50%;
+                                border-radius: 9px;
+                                font-size:20px;
+                                padding-left: 10px;
+                                height: 3.6vh;
+                                width: 15vw;
+                            }
+                        
+                        }
+                    
+                        .input02{
+                            display: flex; 
+                            flex-direction: column;
+                            padding-top: 20px;
+                                .numero{
+                                display: flex;
+                                font-size: 20px;
+                                padding-bottom: 5px;
+                                }
+    
+                                .nm{
+                                    width: 50%;
+                                    border-radius: 9px;
+                                    font-size:20px;
+                                    height: 3.6vh;
+                                    padding-left: 10px;
+                                    width: 15vw;
+                                }
+                            
+                            }   
+                    }
+
+
+                    .endereco-nc{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                   .input03{
+                        display: flex;
+                        flex-direction: column;
+                        width: 50%;
+
+                        .cidade{
+                            display: flex;
+                            font-size: 20px;
+                            padding-bottom: 5px;
+                        }
+
+                            .cd{
+                                width: 50%;
+                                border-radius: 9px;
+                                font-size:20px;
+                                height: 3.6vh;
+                                padding-left: 10px;
+                                width: 15vw;
+                            }
+                   }
+                    
+                    .input04{
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        padding-top: 20px;
+
+                        .complement{
+                            display: flex;
+                            font-size: 20px;
+                            padding-bottom: 5px;
+                        }
+
+                            .cmp{
+                                width: 50%;
+                                border-radius: 9px;
+                                font-size:20px;
+                                height: 3.6vh;
+                                padding-left: 10px;
+                                width: 15vw;
+                            }
+                        
+                    }    
+                    }
+
+           
+            
+                } 
+                .button{
+                    display: flex;
+                    background-color: #619853;
+                    width: 15%;
+                    height: 10%;
+                    align-items: center;
+                    justify-content: center;
+                    .bot{
+                        display: flex;
+                        font-size: 20px;
+                        color: #fff;
+                    }
+                }
+            }
+
+            @media(max-width:840px){
+                .titulo{
+                    font-size: 40px;
+                }
+             }
+             @media(max-width:670px){
+                .titulo{
+                    font-size: 30px;
+                }
+             }
+             @media(max-width:420px){
+                .titulo{
+                    font-size: 20px;
+                }
+                .button{
+                    background-color: #619853;
+                     width: 120%;
+                }
+
+                .complementos{
+                    width: 150%;
+                }
+
+                .invisivel{
+                    justify-content: space-evenly;
+                }
+               
+             }
+     }
+    
+    }

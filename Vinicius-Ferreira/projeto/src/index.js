@@ -7,9 +7,6 @@ import {BrowserRouter,Routes, Route} from 'react-router-dom';
 import HomeDm from './pages/homeDm';
 import Endereco from './pages/endereco/index';
 
-
-
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

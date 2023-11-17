@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import Perfil from './pages/perfil/informacoes-de-usuario';
 import Endereco from './pages/perfil/informacoes-de-endereco';
-
 import Favoritos from './pages/perfil/favoritos';
 
 

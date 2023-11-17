@@ -1,157 +1,339 @@
 .Page-Cadastro{
+        background: #C8DFBF;
+    max-width:100%;
+    min-height:100vh;
     display: flex;
-    background: linear-gradient(180deg, #619853 0%, #325B23 100%);
-    width:100vw ;
-    height: 100vh;
-    align-items: center;  
     flex-direction: column;
-
+    align-items: center;
+    overflow-x: hidden;
+  
+   .inv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+width: 100%;
+    .Titlt{
+    .Titulo{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+    }}
 
     .Conteudo{
         display: flex;        
-        width: 50%;
+        width: 80%;
         height: 100%;
-        justify-content: center;
         flex-direction: column;
-        align-items: center;
-        justify-self: center;
-        background-color:#C8DFBF;
-        padding: 20px;
-       
-        .Titulo{
+       justify-content: space-around;
+
+        .inv2{
             display: flex;
-            width: 100%;
+            flex-direction: row;
             align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
 
 
-        .input1{
+        .Criaconta{
+            display: flex;
+            flex-direction: column;
+
+            .Nome{
+                display: flex;
+                flex-direction: column;
+                padding: 10px 0px ;
+                .nm{
+                    display: flex;
+                    width: 84%;
+                }
+             .input1{
             display: flex;
             border-color: blanchedalmond;
             width: 40vw;
-             height: 50px;
+             height: 7vh;
              padding: 10px;
              font-size: 17px;
-             border-radius: 10px;
-
-            
+             border-radius: 3px ;
         }
+    }
+
+    .e-mail{
+        display: flex;
+        padding: 10px 0px;
+        flex-direction: column;
+        .email{
+            display: flex;
+            width: 84%;
+        }
+        
         .input2{
             width: 40vw;
-         height: 50px;
+         height: 7vh;
          padding: 10px;
-         border-radius: 10px;
-
+         border-radius: 3px;
          font-size: 17px;
         }
+    }
+
+        .Senha{
+            display: flex;
+            padding: 10px 0px;
+            flex-direction: column;
+            .snh{
+                display: flex;
+                width: 84%;
+            }
         .input3{
             width: 40vw;
-         height: 50px;
-
-         border-radius: 10px;
+         height: 7vh;
+         border-radius: 3px;
          padding: 10px;
          font-size: 17px;
-        
+        }
+    }
+
+
+
+    .CPF{
+        display: flex;
+        padding: 10px 0px;
+        flex-direction: column;
+
+         .cpf{
+            display: flex;
+            width: 84%;
+            
         }
         .input4{
             width: 40vw;
-         height: 5vh;
-         border-radius: 10px;
-
+         height: 7vh;
+         border-radius: 3px;
          padding: 10px;
          align-items: start;
          justify-content: start;
          font-size: 17px;
+        }
+    }
 
+    .DatadeNascimento{
+        display: flex;
+        padding-bottom: 50px;
+        flex-direction: column;
+        .DataCadastro{
+            display: flex;
+            width: 100%;
         }
         .input5{
             display: flex;
             border-color: blanchedalmond;
             width: 10vw;
-             height: 50px;
+             height: 7vh;
              padding: 10px;
              font-size: 17px;
-             border-radius: 10px;
-            
-        
-        }
-
-        .input6{
-            display: flex;
-            border-color: blanchedalmond;
-            width: 40vw;
-             height: 5vh;
-             padding: 10px;
-             font-size: 17px;
-             border-radius: 10px;
-
-
-        }
-
-        .email{
-            display: flex;
-            width: 84%;
-        }   
-
-        .nm{
-            width: 84%;
-        }
-
-        .snh{
-            display: flex;
-            width: 84%;
-        }
-
-        .cpf{
-            display: flex;
-            width: 84%;
-            
-        }
-
-        .dataCadastro{
-            display: flex;
-            width: 100%;
-        }
-
-        .DatadeNascimento{
-            display: flex;
-            flex-direction: column;
-            width: 85%;
+             border-radius: 3px;
         }
         
-       
-
-
-        .botao{
-             width: 110%;
-            padding:20px 40px;
-            height: 7vh;
-            background-color:#619853;
-            border: none;
-            font-size: 20px;
-            border-radius: 10px;
-         }
-
-      
-        
-         @media(max-width:900px){
-            .DatadeNascimento{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-         
-            
-         }
-        
-         #mensagem-erro{
-
-            font-size: 20px;
-            font-weight: 600;
-            text-align: center;
-            color:rgba(224, 53, 53, 0.87);
         }
     }
+        .Endereco{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            .inputum{
+                display: flex;
+                padding: 10px 0px;
+                flex-direction: column;
+                .cep{
+                    display: flex;
+                    width: 84%;
+                }
+
+                .incep{
+                    display: flex;
+                    border-color: blanchedalmond;
+                    width: 30vw;
+                     height: 5vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                }
+            }
+
+            .inputdois{
+                display: flex;
+                padding: 10px 0px;
+                flex-direction: column;
+                .Rua{
+                    display: flex;
+                    width: 90%;
+                }
+
+                .rua{
+                    display: flex;
+                    border-color: blanchedalmond;
+                    width: 30vw;
+                     height: 5vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+
+                }
+            }
+
+            .inputtres{
+                display: flex;
+                padding: 10px 0px;
+                flex-direction: column;
+                .Bairro{
+                    display: flex;
+                    width: 84%;
+                }
+
+                .bairro{
+                    display: flex;
+                    border-color: blanchedalmond;
+                    width: 30vw;
+                     height: 5vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                }
+            }
+
+            .input01{
+                display: flex;
+                padding: 10px 0px;
+                flex-direction: column;
+                .estado{
+                    display: flex;
+                    width: 84%;
+                    
+                }
+                .est{
+                    border-color: blanchedalmond;
+                    width: 30vw;
+                     height: 5vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                }
+            }
+
+          
+            .input03{
+                display:flex;
+                padding:10px 0px;
+                flex-direction:column ;
+                .cidade{
+                    display: flex;
+                    width: 84%;
+                }
+                .cd{
+                    border-color: blanchedalmond;
+                    width: 30vw;
+                     height: 5vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                }
+            }
+
+            .end-nc{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                width: 100%;
+            
+            .input02{
+                display: flex;
+                flex-direction: column;
+                padding: 10px 0px;
+                .numero{    
+                    display: flex;
+                    width: 84%;
+                }
+                .nm{
+                    display: flex;
+                    border-color: blanchedalmond;
+                    width: 10vw;
+                     height: 7vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                    
+                }
+            }
+
+
+            .input04{
+                display:flex;
+                padding:10px 0px;
+                flex-direction: column;
+                .complement{
+                    display:flex;
+                    width: 84%;
+                }
+                .cmp{
+                    display: flex;
+                    border-color: blanchedalmond;
+                    width: 10vw;
+                     height: 7vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                 }
+            }
+        }
+        }    
+         
+    } 
+            
+             @media(max-width:900px){
+                .DatadeNascimento{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+             
+                
+             }
+            
+             #mensagem-erro{
+    
+                font-size: 20px;
+                font-weight: 600;
+                text-align: center;
+                color:rgba(224, 53, 53, 0.87);
+            }
+            
+        
+    
+        .bt{
+            display: flex;
+            width: 20%;
+            justify-content: center;
+            align-items: center;
+            align-self: center;
+            border-radius: 5px;
+            background-color: #619853;
+        .botao{
+            height:10vh;
+            justify-content: center;
+            align-items: center;
+            color:#ffff;
+            border: none;
+            font-size: 20px;
+           
+         }
+        }
+    
+    }
 }
+}
+
+    
+
