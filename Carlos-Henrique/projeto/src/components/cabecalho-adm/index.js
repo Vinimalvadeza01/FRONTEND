@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import './index.scss';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
+import storage from 'local-storage';
 
 export default function CabecalhoAdm(){
 
     const[mostrarMenu,setMostrarMenu]=useState(false);
 
+    const navigate=useNavigate();
+
+    useEffect(() =>{
+
+        if(!storage('adm-logado')){
+            navigate('/adm/login');
+        }
+    },[]);
     return(
 
         <header className='cabecalho-adm'>

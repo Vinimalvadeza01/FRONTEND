@@ -3,6 +3,7 @@ import { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CardProduto from '../card-produto';
 import axios from 'axios';
+import storage from 'local-storage';
 
 export default function Cabecalho() {
 
@@ -82,6 +83,7 @@ export default function Cabecalho() {
         catch(err){}
     }
 
+
     useEffect(() => {
 
         listarProdutosCachorro();
@@ -89,6 +91,8 @@ export default function Cabecalho() {
         listarProdutosPassaro();
         listarProdutosPeixe();
         listarProdutosOutros();
+
+        
     },[]);
 
     return(

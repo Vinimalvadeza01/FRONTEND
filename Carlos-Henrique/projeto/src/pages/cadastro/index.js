@@ -1,7 +1,8 @@
 import './index.scss';
 import Cabecalho from '../../components/cabecalho';
 import InputMask from 'react-input-mask';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import storage from 'local-storage';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
@@ -70,6 +71,14 @@ function Cadastro(){
         }
     }
   
+    useEffect(() => {
+
+        if(storage('usuario-logado')){
+  
+          navigate('/');
+        }
+    },[]);
+
     return(
         <section className='Page-Cadastro'>
             <Cabecalho/>

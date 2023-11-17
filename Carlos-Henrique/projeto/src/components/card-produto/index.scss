@@ -12,6 +12,7 @@
         gap:10px;
 
         text-align: center;
+        overflow-x:hidden;
 
         background-color:#EEF1DC;
         border-radius: 10px;
@@ -61,7 +62,6 @@
 
     .card-produto{
 
-        height:250px;
         width:200px;
 
         h6{
@@ -83,5 +83,13 @@
 
             font-size:16px;
         }
+    }
+}
+
+@media(max-width:425px){
+
+    .card-produto{
+
+        width:125px;
     }
 }

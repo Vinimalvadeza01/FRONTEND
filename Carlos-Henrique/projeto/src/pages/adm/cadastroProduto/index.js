@@ -2,6 +2,7 @@ import './index.scss';
 
 import Cabecalho from '../../../components/cabecalho-adm';
 import axios from 'axios';
+import storage from 'local-storage';
 
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -45,9 +46,6 @@ export default function CadastrarProduto(){
     const[disponivel,setDisponivel]=useState(undefined);
     const[lancamento,setLancamento]=useState('');
     const[desconto,setDesconto]=useState(Number(0));
-
-    // Por enquanto o login não está pronto e por isso não dará para colocar o usuário logado, colocar 1 apenas para exemplo
-    const[admUser,setAdmUser]=useState(Number(1));
 
     // Variável que mostrará o erro
     const[erro,setErro]=useState('');
@@ -117,6 +115,8 @@ export default function CadastrarProduto(){
         try{
 
             const url='http://localhost:5000/produto/inserir';
+
+            let admUser=storage('adm-logado').data.ID;
 
             let alterarCentavos=precoCentavos;
             let alterarTotal=precoTotal;
