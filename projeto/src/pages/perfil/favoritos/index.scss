@@ -59,6 +59,7 @@
             display: flex;
             justify-content: center;
             margin-top: 50px;
+            
 
             .lista-fav{
                 text-align: center;
@@ -69,6 +70,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                border:1px solid #3D5745;
 
                 .favoritos{
 
@@ -80,10 +82,13 @@
 
                         width:100%;
                         tr{
+                            font-size: 18px;
 
                             td{
                                 font-family: 'Josefin Sans';
-                                font-size: 12px;
+                                font-size: 17px;
+                                width: 20px;
+                                color: #6A7E71;
                             }
 
                         }

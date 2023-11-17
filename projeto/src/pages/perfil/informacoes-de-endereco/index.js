@@ -23,7 +23,7 @@ export default function endereco() {
                     <Link to="../../perfil" className='link'>Informações de Usuário</Link>
                     <Link className='link-p'>Informações de Endereco</Link>
                     <Link to="../../perfil/favoritos" className='link'>Favoritos</Link>
-                    <Link className='link'>Meus Pedidos</Link>
+                    <Link to='../../perfil/pedidos' className='link'>Meus Pedidos</Link>
                     <Link className='link'> Trocar de Conta</Link>
                     <Link className='link'>Sair</Link>
 

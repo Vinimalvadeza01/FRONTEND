@@ -6,13 +6,12 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
 export default function Cadastro() {
-  const [Nome, setNome] = useState('');
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [cpf, setCpf] = useState('');
   const [datanasc, setDatanasc] = useState('');
-  const [erro, setErro] = useState('')
-  const navigate = useNavigate()
+
   const [cep, setCEP] = useState('');
   const [rua, setRua] = useState('');
   const [bairro, setBairro] = useState('');
@@ -21,64 +20,65 @@ export default function Cadastro() {
   const [numero, setNumero] = useState('');
   const [completo, setCompleto] = useState('');
 
+  const navigate = useNavigate();
+  const [erro, setErro] = useState('');
 
+  // const verificarcaracter = (e) => {
+  //   const newEmail = e.target.value;
 
-  const verificarcaracter = (e) => {
-    const newEmail = e.target.value;
+  //   if (newEmail.includes("@")) {
+  //     // Se o e-mail contém o caractere "@", você pode fazer alguma ação, se necessário
+  //     console.log("E-mail válido:", newEmail);
+  //   } else {
+  //     // Se o e-mail não contém o caractere "@", você pode fazer alguma ação, se necessário
+  //     console.log("E-mail inválido:", newEmail);
+  //   }
 
-    if (newEmail.includes("@")) {
-      // Se o e-mail contém o caractere "@", você pode fazer alguma ação, se necessário
-      console.log("E-mail válido:", newEmail);
-    } else {
-      // Se o e-mail não contém o caractere "@", você pode fazer alguma ação, se necessário
-      console.log("E-mail inválido:", newEmail);
-    }
-
-    // Atualize o estado do e-mail
-    setEmail(newEmail);
-  };
+  //   // Atualize o estado do e-mail
+  //   setEmail(newEmail);
+  // };
   
-
   async function CadastrarUsuario() {
         
     try {
-      let response = await axios.post('http://Localhost:5000/Cadastro', {
-        nome: Nome,
-        email: email,
-        senha: senha,
-        cpf: cpf,
-        datanasc: datanasc,
-      });
-
-      if (response.status === 200) {
-        // Se o cadastro for bem-sucedido, navegue para a próxima página
+        let response = await axios.post('http://Localhost:5000/Cadastro', {
+          nome: nome,
+          email: email,
+          senha: senha,
+          cpf: cpf,
+          datanasc: datanasc,
+        });
     
-      let dadosEndereco = await axios.post('http://localhost:5000/Endereco',{
-        cep,
-        rua,
-        bairro,
-        cidade,
-        estado,
-        numero,
-        completo,
-      });
-      
-      if (dadosEndereco.status === 200) {
-        alert('Endereço cadastrado com sucesso');
-        // Limpar os campos de entrada ou redirecionar para outra página
-        navigate('./', { state: { idCliente: response.data.idCliente } });
-      } 
-      else {
-        alert('Falha ao cadastrar o endereço');
-      }
+        let dadosEndereco = await axios.post('http://localhost:5000/Endereco',{
+          cliente: response.data.insertId,
+          cep: cep,
+          rua: rua,
+          bairro: bairro,
+          cidade: cidade,
+          estado: estado,
+          numero: numero,
+          completo: completo,
+        });
+
+      const [usuarioResponse, enderecoResponse] = await Promise.all([dadosEndereco, response]);
+
+        if (usuarioResponse.status === 200 && enderecoResponse.status === 200 ) {
+          alert('Cadastrado feito com sucesso');
+          // Limpar os campos de entrada ou redirecionar para outra página
+          navigate('./');
+        } 
+        else {
+          alert('Falha ao cadastrar o endereço');
+        }
     }
 
-    }  catch (error) {
-      console.error('Erro ao cadastrar o endereço', erro);
-      setErro('Falha ao cadastrar o usuário ou endereço');
+    catch (error) {
+      console.log(erro);
+      setErro(erro);
     }
   }
-      
+
+
     return(
         <section className='Page-Cadastro'>
             <Cabecalho/>
@@ -95,7 +95,7 @@ export default function Cadastro() {
                         <input className="input1"
                         type="text"
                          placeholder="Digite seu nome completo"
-                        value={Nome}
+                        value={nome}
                         onChange={e => setNome (e.target.value)}
                         />
                     </div>  
@@ -106,7 +106,7 @@ export default function Cadastro() {
                             type="text"
                             placeholder="Digite seu e-mail"
                             value={email}
-                            onChange={verificarcaracter}
+                            onChange={e => setEmail (e.target.value)}
                           />
                       
                     </div>  

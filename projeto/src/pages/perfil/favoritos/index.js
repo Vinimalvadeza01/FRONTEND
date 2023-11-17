@@ -50,7 +50,7 @@ export default function favoritos(){
 
                                 <tbody>
                                     <tr>
-                                        <td> </td>
+                                        <td> <img></img></td>
                                         <td>Petisco sem glútem abóbora  e côco 150g</td>
                                         <td>R$17,90</td>
                                         <td>40</td>

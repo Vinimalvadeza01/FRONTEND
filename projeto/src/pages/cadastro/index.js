@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
 export default function Cadastro() {
-  const [Nome, setNome] = useState('');
+  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [cpf, setCpf] = useState('');
@@ -42,7 +42,7 @@ export default function Cadastro() {
         
     try {
         let response = await axios.post('http://Localhost:5000/Cadastro', {
-          nome: Nome,
+          nome: nome,
           email: email,
           senha: senha,
           cpf: cpf,
@@ -50,25 +50,34 @@ export default function Cadastro() {
         });
     
         let dadosEndereco = await axios.post('http://localhost:5000/Endereco',{
-          cep,
-          rua,
-          bairro,
-          cidade,
-          estado,
-          numero,
-          completo,
+          cliente: response.data.insertId,
+          cep: cep,
+          rua: rua,
+          bairro: bairro,
+          cidade: cidade,
+          estado: estado,
+          numero: numero,
+          completo: completo
+
+
         });
-      
-        // Limpar os campos de entrada ou redirecionar para outra página
-        navigate('/');
+        if (dadosEndereco.status === 200) {
+          alert('Endereço cadastrado com sucesso');
+          // Limpar os campos de entrada ou redirecionar para outra página
+          navigate('./', { state: { idCliente: response.data.idCliente } });
+        } 
+        else {
+          alert('Falha ao cadastrar o endereço');
+        }
     }
 
     catch (error) {
-      console.log(error);
-      setErro(error);
+      console.log(erro);
+      setErro(erro);
     }
   }
-      
+
+
     return(
         <section className='Page-Cadastro'>
             <Cabecalho/>
@@ -85,7 +94,7 @@ export default function Cadastro() {
                         <input className="input1"
                         type="text"
                          placeholder="Digite seu nome completo"
-                        value={Nome}
+                        value={nome}
                         onChange={e => setNome (e.target.value)}
                         />
                     </div>  
@@ -96,6 +105,7 @@ export default function Cadastro() {
                             type="text"
                             placeholder="Digite seu e-mail"
                             value={email}
+                            onChange={e => setEmail (e.target.value)}
                           />
                       
                     </div>  
