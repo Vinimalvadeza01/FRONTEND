@@ -41,39 +41,64 @@ export default function Cadastro() {
   async function CadastrarUsuario() {
         
     try {
-        let response = await axios.post('http://Localhost:5000/Cadastro', {
-          nome: nome,
-          email: email,
-          senha: senha,
-          cpf: cpf,
-          datanasc: datanasc,
-        });
-    
-        let dadosEndereco = await axios.post('http://localhost:5000/Endereco',{
+
+      let formatarCPF=cpf.replace(/\./g, '');
+      formatarCPF=formatarCPF.replace(/-/g, '');
+
+      let formatarData=datanasc.split('/');
+      let dataFormatada='';
+
+      const Ano=formatarData[2];
+      const Mes=formatarData[1];
+      const Dia=formatarData[0];
+
+      if(formatarData.length!==3){
+
+          throw new Error('Data Inválida');
+      }
+
+      if(Ano==='    '||Mes==='  '||Dia==='  '){
+
+          throw new Error('Data inválida');
+      }
+
+      else{
+
+        dataFormatada=`${Ano}-${Mes}-${Dia}`;
+      }
+
+      const dadosCliente={
+            nome: nome,
+            email: email,
+            senha: senha,
+            cpf: formatarCPF,
+            nasc: dataFormatada
+      };
+
+        let response = await axios.post('http://localhost:5000/cliente/Cadastro', dadosCliente);
+
+        let formatarCEP=cep.replace(/\-/g, '');
+
+        const dadosEndereco={
           cliente: response.data.insertId,
-          cep: cep,
+          cep: formatarCEP,
           rua: rua,
           bairro: bairro,
           cidade: cidade,
           estado: estado,
           numero: numero,
           completo: completo
-
-
-        });
-        if (dadosEndereco.status === 200) {
-          alert('Endereço cadastrado com sucesso');
-          // Limpar os campos de entrada ou redirecionar para outra página
-          navigate('./', { state: { idCliente: response.data.idCliente } });
-        } 
-        else {
-          alert('Falha ao cadastrar o endereço');
         }
+
+        let cadastrarEndereco = await axios.post('http://localhost:5000/Endereco',dadosEndereco);
+
+        // Limpar os campos de entrada ou redirecionar para outra página
+        navigate('/');
     }
 
     catch (error) {
-      console.log(erro);
-      setErro(erro);
+
+      setErro(error.response.data.erro);
     }
   }
 
