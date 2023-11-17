@@ -41,6 +41,65 @@
 
             }
         }
+
+        .conteiner-pr{
+            display: flex ;
+            flex-direction: column;
+            width: 100%;
+            height: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+
+            h4{
+                color: #3D5745;
+                font-size: 20px;
+ 
+            }
+
+            hr{
+                height: 3px;
+                width: 30%;
+                background-color: #3D5745;
+            }
+
+            .pedidos-info{
+                margin-top: 10px;
+                background-color: #EEF1DC;
+                height: 60%;
+                width: 90%;
+                border:1px solid #3D5745;
+                border-radius: 10px;
+                padding: 20px;
+                text-align: center;
+                
+
+                table{
+
+                    width: 100%;
+
+                    tr{
+
+                        font-size: 18px;
+
+                        .desgraca{
+                            width: 200px;
+                        }
+                    }
+
+                    button{
+                        background-color: #619853;
+                        height: 30px;
+                        font-family: 'Josefin Sans';
+                        font-size: 18px;
+                        border-radius: 10px;
+                        color: white;
+                    }
+                }
+
+            }
+        }
     
     }
 }
