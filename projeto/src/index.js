@@ -7,6 +7,7 @@ import Home from './pages/home';
 import Cadastro from './pages/cadastro';
 import Login from './pages/login';
 import Produtos from './pages/produtos';
+import ProdutoClientes from './pages/produto-cliente';
 
 import LoginAdm from './pages/adm/loginAdm';
 import HomeAdm from './pages/adm/homeAdm';
@@ -32,7 +33,8 @@ root.render(
         <Route path='/Cadastro' exact={true} element={<Cadastro/>}></Route>
         <Route path='/login' exact={true} element={<Login/>}></Route>
         <Route path='/produtos' exact={true} element={<Produtos/>}></Route>
-
+        <Route path='/produto/cliente' exact={true} element={<ProdutoClientes/>}></Route>
+        
         {/* Páginas do trajanilson */}
         <Route path='/perfil' exact={true} element={<Perfil/>} ></Route>
         <Route path='/perfil/informacoes-de-endereco' element={<Endereco/>} ></Route> 
