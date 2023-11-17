@@ -9,6 +9,7 @@ import Login from './pages/login';
 import Produtos from './pages/produtos';
 
 import LoginAdm from './pages/adm/loginAdm';
+import HomeAdm from './pages/adm/homeAdm';
 import CadastrarProduto from './pages/adm/cadastroProduto';
 import ProdutoCadastrado from './pages/adm/produtoCadastrado';
 import ConsultaAdmProdutos from './pages/adm/consultaProduto';
@@ -36,6 +37,7 @@ root.render(
         <Route path='/perfil/informacoes-de-endereco' element={<Endereco/>} ></Route> 
         <Route path='/perfil/favoritos' element={<Favoritos/>}></Route> 
 
+        <Route path='/adm' exact={true} element={<HomeAdm/>}></Route>
         <Route path='/adm/cadastrar-produto' exact={true} element={<CadastrarProduto/>}></Route>
         <Route path='/adm/produto-cadastrado' exact={true} element={<ProdutoCadastrado/>}></Route>
         <Route path='/adm/consulta/produtos' exact={true} element={<ConsultaAdmProdutos/>}></Route>
