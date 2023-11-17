@@ -88,10 +88,7 @@ export default function Endereco() {
               type='text'
             />
           </div>
-
-          <section className='complementos'>
-            <section className='endereco-ec'>
-              <div className='input01'>
+          <div className='input01'>
                 <label className='estado'>Estado</label>
                 <InputMask
                   mask=''
@@ -115,8 +112,6 @@ export default function Endereco() {
                 type='Number'
               />
               </div>
-            </section>
-            <div className='endereco-nc'>
                 <div className='input03'>
                     <label className='cidade'>Cidade</label>
                     <InputMask
@@ -141,9 +136,6 @@ export default function Endereco() {
                   type='text'
                 />
                 </div>
-            </div>
-          </section>
-          
           <div className='button'>
             <button className='bot' onClick={cadastrarEndereco}>
               Confirmar

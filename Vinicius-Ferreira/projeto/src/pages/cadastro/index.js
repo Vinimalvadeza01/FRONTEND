@@ -5,7 +5,7 @@ import { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
-function Cadastro() {
+export default function Cadastro() {
   const [Nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -22,9 +22,27 @@ function Cadastro() {
   const [completo, setCompleto] = useState('');
 
 
-  async function entrarClick() {
+
+  const verificarcaracter = (e) => {
+    const newEmail = e.target.value;
+
+    if (newEmail.includes("@")) {
+      // Se o e-mail contém o caractere "@", você pode fazer alguma ação, se necessário
+      console.log("E-mail válido:", newEmail);
+    } else {
+      // Se o e-mail não contém o caractere "@", você pode fazer alguma ação, se necessário
+      console.log("E-mail inválido:", newEmail);
+    }
+
+    // Atualize o estado do e-mail
+    setEmail(newEmail);
+  };
+  
+
+  async function CadastrarUsuario() {
+        
     try {
-      let response = await axios.post('http://localhost:5000/cliente', {
+      let response = await axios.post('http://Localhost:5000/Cadastro', {
         nome: Nome,
         email: email,
         senha: senha,
@@ -34,18 +52,8 @@ function Cadastro() {
 
       if (response.status === 200) {
         // Se o cadastro for bem-sucedido, navegue para a próxima página
-        navigate('./', { state: { idCliente: response.data.idCliente } });
-      }
-    } catch (error) {
-      console.error('Erro ao cadastrar o usuário', error);
-      setErro('Falha ao cadastrar o usuário');
-    }
-  }
-  async function cadastrarEndereco() {
     
-    try {
-
-      let dadosEndereco = ('http://localhost:5000/Endereco',{
+      let dadosEndereco = await axios.post('http://localhost:5000/Endereco',{
         cep,
         rua,
         bairro,
@@ -55,46 +63,61 @@ function Cadastro() {
         completo,
       });
       
-      const response = await axios.post('http://localhost:5000/Endereco', dadosEndereco);
-      
-    
-      if (response.status === 200) {
+      if (dadosEndereco.status === 200) {
         alert('Endereço cadastrado com sucesso');
         // Limpar os campos de entrada ou redirecionar para outra página
-      } else {
+        navigate('./', { state: { idCliente: response.data.idCliente } });
+      } 
+      else {
         alert('Falha ao cadastrar o endereço');
       }
-    } catch (error) {
-      console.error('Erro ao cadastrar o endereço', error);
+    }
+
+    }  catch (error) {
+      console.error('Erro ao cadastrar o endereço', erro);
+      setErro('Falha ao cadastrar o usuário ou endereço');
     }
   }
       
     return(
         <section className='Page-Cadastro'>
             <Cabecalho/>
+           <section className='inv'>
+            <div className='Titlt'>
             <h1 className='Titulo'>CRIAR SUA CONTA</h1>
+            </div>
+            
             <div className='Conteudo'>
-                   <section className='Criarconta'>
+              <section className='inv2'>
+                   <section className='Criaconta'>
                     <div className="Nome">
                         <label className="nm">Nome Completo</label>
-                        <input className="input1" type="text" placeholder="Digite seu nome completo" value={Nome} onChange={e => setNome (e.target.value)}/>
+                        <input className="input1"
+                        type="text"
+                         placeholder="Digite seu nome completo"
+                        value={Nome}
+                        onChange={e => setNome (e.target.value)}
+                        />
                     </div>  
-
                     <div className="e-mail">
                         <label className="email">E-mail</label>
-                        <InputMask
-                             mask="(99) 99999-9999"
-                             className='input1'
-                             type="text"
-                             placeholder="(99) 9999-9999"
-                             value={email}
-                             onChange={e =>setEmail (e.target.value)}
-                        />
+                        <input
+                            className="input2"
+                            type="text"
+                            placeholder="Digite seu e-mail"
+                            value={email}
+                            onChange={verificarcaracter}
+                          />
+                      
                     </div>  
                     
                     <div className="Senha">
                         <label className="snh">Senha</label>
-                        <input className="input3" type="text" placeholder="Digite sua senha" value={senha} onChange={e =>setSenha (e.target.value)}/> 
+                        <input className="input3" 
+                        type="password"
+                         placeholder="Digite sua senha"
+                          value={senha} 
+                          onChange={e =>setSenha (e.target.value)}/> 
                     </div>  
                     
                     <div className="CPF">
@@ -115,12 +138,9 @@ function Cadastro() {
                         onChange={e =>setDatanasc (e.target.value)}
                     />                    
                     </div>
-                    </section>    
-                    
-
-
-                <section className='Endereco'>
-                    <div className='inputum'>
+                    </section>  
+            <section className='Endereco'>
+                  <div className='inputum'>
             <label className='cep'>CEP</label>
             <InputMask
               className='incep'
@@ -132,7 +152,6 @@ function Cadastro() {
               type='text'
             />
           </div>
-
           <div className='inputdois'>
             <label className='Rua'>Rua</label>
             <InputMask
@@ -145,7 +164,6 @@ function Cadastro() {
               type='text'
             />
           </div>
-
           <div className='inputtres'>
             <label className='Bairro'>Bairro</label>
             <InputMask
@@ -158,13 +176,7 @@ function Cadastro() {
               type='text'
             />
           </div>
-          
-          
-
-            <section className='endereco-ec'>
-           
-
-              <div className='input01'>
+          <div className='input01'>
                 <label className='estado'>Estado</label>
                 <InputMask
                   mask=''
@@ -175,23 +187,8 @@ function Cadastro() {
                   placeholder='Nome do estado'
                   type='text'
                 />
-              </div>
-              <div className='input02'>
-                <label className='numero'>Numero</label>
-                <InputMask
-                mask=''
-                value={numero}
-                onChange={(e) => setNumero(e.target.value)}
-                className='nm'
-                maskChar=''
-                placeholder='N°'
-                type='Number'
-              />
-              </div>
-            </section>
-            <div className='com'>
-            <div className='endereco-nc'>
-                <div className='input03'>
+           </div>
+           <div className='input03'>
                     <label className='cidade'>Cidade</label>
                     <InputMask
                   mask=''
@@ -202,8 +199,22 @@ function Cadastro() {
                   placeholder='Nome da cidade'
                   type='text'
                 />
-                </div>
-                <div className='input04'>
+           </div>
+           <div className='end-nc'>
+           <div className='input02'>
+                <label className='numero'>Numero</label>
+                <InputMask
+                mask=''
+                value={numero}
+                onChange={(e) => setNumero(e.target.value)}
+                className='nm'
+                maskChar=''
+                placeholder='N°'
+                type='Number'
+              />
+            </div>
+            
+           <div className='input04'>
                     <label className='complement'>Complemento</label>
                     <InputMask
                   mask=''
@@ -214,27 +225,19 @@ function Cadastro() {
                   placeholder='Complementos'
                   type='text'
                 />
+                </div>    
                 </div>
-            </div>
-            </div>
-           
-            </section>
-
-                   
-            </div>
-       
-            
-            <div className='inv'>
-                    <div className='bt'>
-                    <button className="botao" onClick={entrarClick}>Confirmar</button>
-                    </div>
-                   
-                    <p id='mensagem-erro'>
-                        {erro}
-                    </p>
-                    </div>
+          </section>
         </section>
-    )
-}
+          
+          <div className='bt'>
+            <button className='botao' onClick={CadastrarUsuario}>
+              Confirmar
+            </button>
+        </div>
+        </div>
+        </section> 
+        </section>
+);
+}     
 
-export default Cadastro;

@@ -6,332 +6,334 @@
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
-
+  
+   .inv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+width: 100%;
+    .Titlt{
+    .Titulo{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+    }}
 
     .Conteudo{
         display: flex;        
         width: 80%;
-        height: 200%;
-        flex-direction: row;
-       
-        .Titulo{
-            display: flex;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
+        height: 100%;
+        flex-direction: column;
+       justify-content: space-around;
 
-        .Criarconta{
+        .inv2{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+
+        .Criaconta{
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-        .input1{
+
+            .Nome{
+                display: flex;
+                flex-direction: column;
+                padding: 10px 0px ;
+                .nm{
+                    display: flex;
+                    width: 84%;
+                }
+             .input1{
             display: flex;
             border-color: blanchedalmond;
             width: 40vw;
-             height: 3vh;
+             height: 7vh;
              padding: 10px;
              font-size: 17px;
              border-radius: 3px ;
-
-            
         }
+    }
+
+    .e-mail{
+        display: flex;
+        padding: 10px 0px;
+        flex-direction: column;
+        .email{
+            display: flex;
+            width: 84%;
+        }
+        
         .input2{
             width: 40vw;
-         height: 3vh;
+         height: 7vh;
          padding: 10px;
          border-radius: 3px;
-
          font-size: 17px;
         }
+    }
+
+        .Senha{
+            display: flex;
+            padding: 10px 0px;
+            flex-direction: column;
+            .snh{
+                display: flex;
+                width: 84%;
+            }
         .input3{
             width: 40vw;
-         height: 3vh;
-
+         height: 7vh;
          border-radius: 3px;
          padding: 10px;
          font-size: 17px;
-        
+        }
+    }
+
+
+
+    .CPF{
+        display: flex;
+        padding: 10px 0px;
+        flex-direction: column;
+
+         .cpf{
+            display: flex;
+            width: 84%;
+            
         }
         .input4{
             width: 40vw;
-         height: 3vh;
+         height: 7vh;
          border-radius: 3px;
-
          padding: 10px;
          align-items: start;
          justify-content: start;
          font-size: 17px;
+        }
+    }
 
+    .DatadeNascimento{
+        display: flex;
+        padding-bottom: 50px;
+        flex-direction: column;
+        .DataCadastro{
+            display: flex;
+            width: 100%;
         }
         .input5{
             display: flex;
             border-color: blanchedalmond;
             width: 10vw;
-             height: 3vh    ;
+             height: 7vh;
              padding: 10px;
              font-size: 17px;
              border-radius: 3px;
-            
+        }
         
         }
-
-        .input6{
-            display: flex;
-            border-color: blanchedalmond;
-            width: 40vw;
-             height: 3vh;
-             padding: 10px;
-             font-size: 17px;
-             border-radius: 10px;
-
-
-        }
-
-        .email{
-            display: flex;
-            width: 84%;
-        }   
-
-        .nm{
-            width: 84%;
-        }
-
-        .snh{
-            display: flex;
-            width: 84%;
-        }
-
-        .cpf{
-            display: flex;
-            width: 84%;
-            
-        }
-
-        .dataCadastro{
+    }
+        .Endereco{
             display: flex;
             width: 100%;
-        }
-
-        .DatadeNascimento{
-            display: flex;
-            flex-direction: column;
-        }
-    }
-        
-
-    .Endereco{
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        .inputum{
-            display: flex; 
-            flex-direction: column;
-            justify-content: space-between;
-            
-                .cep{   
-                    display: flex;  
-                    font-size: 15px;
-                    
-                }
-             .incep{
-                display: flex;
-                border-color: blanchedalmond;
-                width: 40vw;
-                 height: 3vh;
-                 padding: 10px;
-                 font-size: 17px;
-                 border-radius: 3px ;    
-                align-items: center;
-                justify-content: center;
-                }
-        }
-
-
-        .inputdois{
-            display: flex; 
-            flex-direction: column;
-                .Rua{
-                    display: flex;
-                    font-size: 15px;
-                    padding: 0px 5px;
-                }
-             .rua{
-                display: flex;
-                font-size: 20px;
-                height: 3vh;
-                padding-left: 10px;
-                border-radius: 3px;
-                align-items: center;
-                justify-content: center;
-                width: 40vw;
-            }
-        }
-
-
-        .inputtres{
-            display: flex; 
-            flex-direction: column;
-
-            .Bairro{
-                display: flex;
-                    font-size: 15px;
-            }
-          .bairro{
-              display: flex;
-              border-radius: 3px;
-              font-size: 20px;
-              height: 3vh;
-              width: 40vw;
-              padding-left: 10px;
-              align-items: center;
-              justify-content: center;
-                }
-        }
-
-        .complementos{
-            display: flex;
+            justify-content: center;
             align-items: center;
             flex-direction: column;
-            justify-content: center;
-            width: 25%;
-            justify-content: space-around;
-
-            .endereco-ec{
+            .inputum{
                 display: flex;
-                flex-direction:column;
-            .input01{
-                display: flex; 
+                padding: 10px 0px;
                 flex-direction: column;
-                    .estado{
-                        padding-bottom: 5px;
-                        display: flex;
-                    font-size: 15px;
-                    }
-
-                    .est{
-                        width: 50%;
-                        border-radius: 3px;
-                        font-size:20px;
-                        padding-left: 10px;
-                        height: 3.6vh;
-                        width: 14vw;
-                    }
-                
+                .cep{
+                    display: flex;
+                    width: 84%;
                 }
-            
-                .input02{
-                    display: flex; 
-                    flex-direction: column;
-                    padding-top: 10px;
-                        .numero{
-                        display: flex;
-                        font-size: 15px;
-                        padding-bottom: 5px;
-                        }
 
-                        .nm{
-                            width: 50%;
-                            border-radius: 3px;
-                            font-size:20px;
-                            height: 3.6vh;
-                            padding-left: 10px;
-                            width: 14vw;
-                        }
-                    
-                    }   
+                .incep{
+                    display: flex;
+                    border-color: blanchedalmond;
+                    width: 30vw;
+                     height: 5vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                }
             }
 
-
-            .endereco-nc{
+            .inputdois{
                 display: flex;
+                padding: 10px 0px;
                 flex-direction: column;
-                justify-content: space-around;
-                padding-top: 50px;
-           .input03{
-                display: flex;
-                flex-direction: column;
-                width: 50%;
+                .Rua{
+                    display: flex;
+                    width: 90%;
+                }
 
+                .rua{
+                    display: flex;
+                    border-color: blanchedalmond;
+                    width: 30vw;
+                     height: 5vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+
+                }
+            }
+
+            .inputtres{
+                display: flex;
+                padding: 10px 0px;
+                flex-direction: column;
+                .Bairro{
+                    display: flex;
+                    width: 84%;
+                }
+
+                .bairro{
+                    display: flex;
+                    border-color: blanchedalmond;
+                    width: 30vw;
+                     height: 5vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                }
+            }
+
+            .input01{
+                display: flex;
+                padding: 10px 0px;
+                flex-direction: column;
+                .estado{
+                    display: flex;
+                    width: 84%;
+                    
+                }
+                .est{
+                    border-color: blanchedalmond;
+                    width: 30vw;
+                     height: 5vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                }
+            }
+
+          
+            .input03{
+                display:flex;
+                padding:10px 0px;
+                flex-direction:column ;
                 .cidade{
                     display: flex;
-                    font-size: 15px;
-                    padding-bottom: 5px;
+                    width: 84%;
                 }
+                .cd{
+                    border-color: blanchedalmond;
+                    width: 30vw;
+                     height: 5vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                }
+            }
 
-                    .cd{
-                        width: 50%;
-                        border-radius: 3px;
-                        font-size:20px;
-                        height: 3.6vh;
-                        padding-left: 10px;
-                        width: 15vw;
-                    }
-           }
+            .end-nc{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                width: 100%;
             
-            .input04{
+            .input02{
                 display: flex;
                 flex-direction: column;
-                width: 100%;
-                padding-top: 10px;
-
-                .complement{
+                padding: 10px 0px;
+                .numero{    
                     display: flex;
-                    font-size: 15px;
+                    width: 84%;
                 }
+                .nm{
+                    display: flex;
+                    border-color: blanchedalmond;
+                    width: 10vw;
+                     height: 7vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                    
+                }
+            }
 
-                    .cmp{
-                        width: 50%;
-                        border-radius: 3px;
-                        font-size:20px;
-                        height: 3.6vh;
-                        padding-left: 10px;
-                        width: 15vw;
-                    }
-                
-            }    
+
+            .input04{
+                display:flex;
+                padding:10px 0px;
+                flex-direction: column;
+                .complement{
+                    display:flex;
+                    width: 84%;
+                }
+                .cmp{
+                    display: flex;
+                    border-color: blanchedalmond;
+                    width: 10vw;
+                     height: 7vh;
+                     padding: 10px;
+                     font-size: 17px;
+                     border-radius: 3px;
+                 }
             }
         }
-    }
-     
-      
-        
-         @media(max-width:900px){
-            .DatadeNascimento{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+        }    
          
+    } 
             
-         }
+             @media(max-width:900px){
+                .DatadeNascimento{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+             
+                
+             }
+            
+             #mensagem-erro{
+    
+                font-size: 20px;
+                font-weight: 600;
+                text-align: center;
+                color:rgba(224, 53, 53, 0.87);
+            }
+            
         
-         #mensagem-erro{
-
+    
+        .bt{
+            display: flex;
+            width: 20%;
+            justify-content: center;
+            align-items: center;
+            align-self: center;
+            border-radius: 5px;
+            background-color: #619853;
+        .botao{
+            height:10vh;
+            justify-content: center;
+            align-items: center;
+            color:#ffff;
+            border: none;
             font-size: 20px;
-            font-weight: 600;
-            text-align: center;
-            color:rgba(224, 53, 53, 0.87);
+           
+         }
         }
-        
-    }
-    .inv{
-        display: flex;
-        padding: 20px 20px;
-    .bt{
-        display: flex;
-        padding:20px;
-        border-radius: 5px;
-        background-color: #619853;
-    .botao{
-         width: 100%;
-        height:2vh;
-        color:#ffff;
-        border: none;
-        font-size: 20px;
-       
-     }
+    
     }
 }
 }
+
+    
+
