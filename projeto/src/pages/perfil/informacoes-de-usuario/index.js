@@ -10,7 +10,7 @@ export default function Perfil(){
 
     return (
 
-        <div className='corpo'>
+        <div className='pag-usuario'>
     
             <Cabecalho/>
 
@@ -49,7 +49,7 @@ export default function Perfil(){
                     />
                 </div>
 
-                <div className='email-celular'>
+                
                     <label>E-mail ou número de celular</label>
                     <InputMask
                     mask=""
@@ -58,9 +58,9 @@ export default function Perfil(){
                     className='input2'
                     type='text'
                     />
-                </div>
+                
 
-                <div className='cpf'>
+               
                     <label>CPF</label>
                     <InputMask
                     mask='999.999.999-99'
@@ -70,9 +70,9 @@ export default function Perfil(){
                     type='text'
 
                     />
-                </div>
                 
-                <div className='nascimento'>
+                
+                
                     <label>Data de Nascimento</label>
                     <InputMask
                         mask="99/99/9999"
@@ -81,7 +81,7 @@ export default function Perfil(){
                         className='input4'
                         type='text'
                     />          
-                </div>
+               
 
                 <button>ALTERAR</button>
 
