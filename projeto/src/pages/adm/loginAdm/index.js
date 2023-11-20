@@ -2,14 +2,14 @@ import './index.scss';
 import {useNavigate}   from 'react-router-dom';
 import CabecalhoAdm from '../../../components/cabecalho-adm';
 import SectionDecoration from '../../../components/section-decoration';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import storage from 'local-storage'
 import axios from 'axios';
 
 export default function LoginAdm (){
   const[usuario, setUsuario] = useState('');
   const[senhaAdm, setSenhaAdm] = useState('');
-  const[erro, setErro] = useState ('');
+  const[erro,setErro]=useState('');
 
   const navigate = useNavigate();
 
@@ -27,16 +27,25 @@ export default function LoginAdm (){
 
       const r = await axios.post(url,user);
 
-     storage('adm-logado', r);
+      storage('adm-logado', r);
 
       navigate('/adm');
     } 
 
-    catch (err) {
+    catch(err){
 
-        setErro(err.response.data.erro);
+      setErro(err.response.data.erro);
     } 
 }
+
+    useEffect(() => {
+
+      if(storage('adm-logado')){
+
+        navigate('/adm');
+      }
+    },[]);
+
     return (
       <div className="pagina-login-adm">
         

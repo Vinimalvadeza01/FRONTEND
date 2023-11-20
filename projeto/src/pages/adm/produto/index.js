@@ -711,7 +711,7 @@ export default function PageProdutoAdm(){
                             <label for='alterar-capa-produto' onChange={(e) => {previaImagem(e,0)}}>
 
                                 {previaCapa!=='' ?
-                                    <img src={previaCapa}/>
+                                    <img src={previaCapa} alt=''/>
                                 :
                                     <img src={`http://localhost:5000/${capa}`} alt='Imagem Principal' />}
 
@@ -827,7 +827,7 @@ export default function PageProdutoAdm(){
                                 
                                         {sec1!=='' ?
                                             <button onClick={() => {setExcluirSec1(true)}}>
-                                                <img src={`http://localhost:5000/${sec1}`}/>
+                                                <img src={`http://localhost:5000/${sec1}`} alt=''/>
 
                                                 {excluirSec1 ?
                                                     <svg width="35" height="46" viewBox="0 0 88 116" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -842,7 +842,7 @@ export default function PageProdutoAdm(){
 
                                         {sec2!=='' ?
                                             <button onClick={() => {setExcluirSec2(true)}}>
-                                                <img src={`http://localhost:5000/${sec2}`}/>
+                                                <img src={`http://localhost:5000/${sec2}`} alt=''/>
 
                                                 {excluirSec2 ?
                                                     <svg width="35" height="46" viewBox="0 0 88 116" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -857,7 +857,7 @@ export default function PageProdutoAdm(){
 
                                         {sec3!=='' ?
                                             <button onClick={() => {setExcluirSec3(true)}}>
-                                                <img src={`http://localhost:5000/${sec3}`}/>
+                                                <img src={`http://localhost:5000/${sec3}`} alt=''/>
 
                                                 {excluirSec3 ?
                                                     <svg width="35" height="46" viewBox="0 0 88 116" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -872,7 +872,7 @@ export default function PageProdutoAdm(){
 
                                         {sec4!=='' ?
                                             <button onClick={() => {setExcluirSec4(true)}}>
-                                                <img src={`http://localhost:5000/${sec4}`}/>
+                                                <img src={`http://localhost:5000/${sec4}`} alt=''/>
 
                                                 {excluirSec4 ?
                                                     <svg width="35" height="46" viewBox="0 0 88 116" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,6 +1,6 @@
 import './index.scss';
 import { useState,useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CardProduto from '../card-produto';
 import axios from 'axios';
 import storage from 'local-storage';
@@ -17,6 +17,9 @@ export default function Cabecalho() {
     const [produtosOutros,setProdutosOutros]=useState([]);
 
     const[mostrarMenu,setMostrarMenu]=useState(false);
+    const[verifLogin,setVerifLogin]=useState(false);
+
+    const navigate=useNavigate();
 
     async function listarProdutosCachorro(){
 
@@ -83,6 +86,13 @@ export default function Cabecalho() {
         catch(err){}
     }
 
+    function verificarLogin(){
+
+        if(storage('usuario-logado')){
+
+            setVerifLogin(true);
+        }
+    }
 
     useEffect(() => {
 
@@ -91,7 +101,6 @@ export default function Cabecalho() {
         listarProdutosPassaro();
         listarProdutosPeixe();
         listarProdutosOutros();
-        
     },[]);
 
     return(
@@ -108,7 +117,7 @@ export default function Cabecalho() {
 
                     <div className='pesquisa'>
                      
-                        <input type='text' value={valorPesquisa} maxLength='100' placeholder='Pesquise por um produto' onChange={(e) => { setValorPesquisa(e.target.value) }} />
+                        <input type='text' value={valorPesquisa} maxLength='100' placeholder='Pesquise por um produto' onChange={(e) => {setValorPesquisa(e.target.value) }} />
                         <button>
                             <svg  id='icon-lupa' width="25" height="25" viewBox="0 0 30 30" fill="#3D5745" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M24.3762 12.1857C24.3762 14.8748 23.5031 17.3588 22.0323 19.3741L29.4507 26.7969C30.1831 27.5292 30.1831 28.7185 29.4507 29.4508C28.7182 30.1831 27.5287 30.1831 26.7962 29.4508L19.3779 22.028C17.3622 23.5044 14.8777 24.3714 12.1881 24.3714C5.45534 24.3714 0 18.9172 0 12.1857C0 5.45428 5.45534 0 12.1881 0C18.9208 0 24.3762 5.45428 24.3762 12.1857ZM12.1881 20.622C13.2962 20.622 14.3934 20.4038 15.4171 19.9798C16.4409 19.5558 17.3711 18.9344 18.1546 18.1511C18.9381 17.3677 19.5597 16.4377 19.9837 15.4141C20.4078 14.3906 20.626 13.2936 20.626 12.1857C20.626 11.0778 20.4078 9.98083 19.9837 8.9573C19.5597 7.93376 18.9381 7.00375 18.1546 6.22038C17.3711 5.437 16.4409 4.81559 15.4171 4.39162C14.3934 3.96766 13.2962 3.74945 12.1881 3.74945C11.08 3.74945 9.98278 3.96766 8.95905 4.39162C7.93531 4.81559 7.00512 5.437 6.22159 6.22038C5.43806 7.00375 4.81653 7.93376 4.39248 8.9573C3.96844 9.98083 3.75018 11.0778 3.75018 12.1857C3.75018 13.2936 3.96844 14.3906 4.39248 15.4141C4.81653 16.4377 5.43806 17.3677 6.22159 18.1511C7.00512 18.9344 7.93531 19.5558 8.95905 19.9798C9.98278 20.4038 11.08 20.622 12.1881 20.622Z" fill="3D5745" />
@@ -120,13 +129,13 @@ export default function Cabecalho() {
                     <div className='direcionar'>
 
                         <div className='criar-conta'>
-                            <Link className='Link Link-cabecalho' name='Link-user' to={storage('usuario-cadastrado') ? '/cadastro' :'/perfil'}>
+                            <Link className='Link Link-cabecalho' name='Link-user' to={storage('usuario-logado') ? `/perfil/${storage('usuario-logado').data.ID}` :'/login'}>
                                 
                                 <svg id='user-icon' width="27" height="33" viewBox="0 0 27 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.5 16.5C15.546 16.5 17.5081 15.6308 18.9548 14.0836C20.4015 12.5365 21.2143 10.438 21.2143 8.25C21.2143 6.06196 20.4015 3.96354 18.9548 2.41637C17.5081 0.869194 15.546 0 13.5 0C11.454 0 9.49189 0.869194 8.04518 2.41637C6.59847 3.96354 5.78571 6.06196 5.78571 8.25C5.78571 10.438 6.59847 12.5365 8.04518 14.0836C9.49189 15.6308 11.454 16.5 13.5 16.5ZM10.7458 19.5938C4.80938 19.5938 0 24.7371 0 31.0857C0 32.1428 0.801563 33 1.78996 33H25.21C26.1984 33 27 32.1428 27 31.0857C27 24.7371 22.1906 19.5938 16.2542 19.5938H10.7458Z" fill="#619853" />
                                 </svg>
 
-                                <label for='Link-user'> {storage('usuario-cadastrado') ? 'Não possui uma conta ? Cadastre-se' :`Ver meu perfil de usuário`}</label>
+                                <label for='Link-user'> {storage('usuario-logado') ? 'Ver meu perfil de usuário' : 'Fazer Login'}</label>
                             </Link>
                         </div>
                         
