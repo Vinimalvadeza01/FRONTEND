@@ -100,11 +100,12 @@ export default function Cadastro() {
         cpf: formatarCPF,
         nasc: dataFormatada,
         senha: senha,
+        pedidos:0,
         endereco: cadastrarEndereco.data.insertId,
         ID: cadastroCliente.data.insertId
       };
       
-      await axios.put('http://localhost:5000/cliente/alterar/endereco', dadosLinkarEndereco);
+      await axios.put('http://localhost:5000/cliente/alterar', dadosLinkarEndereco);
 
       const infsLogin={
         ID:cadastroCliente.data.insertId,
