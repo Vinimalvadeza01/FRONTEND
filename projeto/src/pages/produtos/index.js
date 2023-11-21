@@ -102,7 +102,7 @@ export default function PageProdutos(){
 
                 <div className='container-search'>
 
-                    <h4>Exibindo resultados para: ""</h4>
+                    <h4>{valorPesquisa!=='' ? `Exibindo ${produtos.length} resultados para: "${valorPesquisa}"` : 'Exibindo resultados'}</h4>
 
                     <div className='sub-container-input'>
 

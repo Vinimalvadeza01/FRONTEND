@@ -4,9 +4,11 @@ import Cabecalho from '../../../components/cabecalho';
 import Rodape from '../../../components/rodape';
 import SectionDecoration from '../../../components/section-decoration'
 import InputMask from 'react-input-mask';
-
+import { useState, useEffect } from 'react';
 
 export default function Perfil(){
+
+    const[infsEmAlteracao,setInfsEmAlteracao]=useState(false);
 
     return (
 
@@ -21,8 +23,8 @@ export default function Perfil(){
 
                     <div className='menu'>
                         <Link className='link-p' >Informações de usuário</Link>
-                        <Link to="../../perfil/informacoes-de-endereco" className='link' >Informações de endereço</Link>
-                        <Link to="../../perfil/favoritos" className='link' >Favoritos</Link>
+                        <Link to='../../perfil/informacoes-de-endereco' className='link' >Informações de endereço</Link>
+                        <Link to='../../perfil/favoritos' className='link' >Favoritos</Link>
                         <Link to='../../perfil/pedidos' className='link' >Meus pedidos</Link>
                         <Link className='link' >Trocar de conta</Link>
                         <Link className='link' >Sair</Link>
@@ -59,8 +61,6 @@ export default function Perfil(){
                     type='text'
                     />
                 
-
-               
                     <label>CPF</label>
                     <InputMask
                     mask='999.999.999-99'
@@ -68,10 +68,7 @@ export default function Perfil(){
                     placeholder="999.999.999-99"
                     className='input3'
                     type='text'
-
                     />
-                
-                
                 
                     <label>Data de Nascimento</label>
                     <InputMask
@@ -82,22 +79,12 @@ export default function Perfil(){
                         type='text'
                     />          
                
-
                 <button>ALTERAR</button>
-
             </div>
-
-
             </div>
-    
-    
             <Rodape/>
-    
         </div>
-    
-    
-    
-    
+
     )
 }
 

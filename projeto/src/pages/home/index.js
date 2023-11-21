@@ -322,7 +322,7 @@ export default function HomePage(){
                             </button>
 
                             <div className='listagem-produtos' ref={carrossel4}>
-                                {produtosMelhorAvaliados.map(item => 
+                                {gatosMaisGostam.map(item => 
                                     <CardProduto 
                                         id={item.ID}
                                         capa={item.Capa}
