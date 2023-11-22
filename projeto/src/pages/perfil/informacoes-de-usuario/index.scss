@@ -25,12 +25,12 @@
             padding: 20px;
             padding-bottom: 40px;
 
-            hr {
+            hr{
                 width: 3px;
                 background-color: #3D5745;
             }
 
-            .menu {
+            .menu{
 
                 background-color: #EEF1DC;
                 display: flex;
@@ -38,7 +38,7 @@
                 justify-content: center;
                 border: 1px solid #3D5745;
                 border-radius: 10px;
-                padding-top:20px;
+                padding:10px 0px;
                 margin-right:5px;
 
                 .link {
@@ -52,7 +52,7 @@
                     color: #3BA73D;
                     font-size:14px;
                     padding: 10px;
-                    border: 1px solid #183D0A
+                    border: 1px solid #183D0A;
                 }
             }
 

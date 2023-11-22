@@ -141,16 +141,14 @@ export default function Perfil() {
 
                     <div className='menu'>
                         <Link className='link-p' >Informações de usuário</Link>
-                        <Link to='../../perfil/informacoes-de-endereco' className='link' >Informações de endereço</Link>
+                        <Link to={`../../perfil/endereco/${id}`} className='link' >Informações de endereço</Link>
                         <Link to='../../perfil/favoritos' className='link' >Favoritos</Link>
-                        <Link to='../../perfil/pedidos' className='link' >Meus pedidos</Link>
-                        <Link className='link' >Trocar de conta</Link>
                         <Link className='link' >Sair</Link>
                     </div>
                     <hr />
 
                     {alterarInfs ?
-                        <div className='alterar' onClick={() => { setAlterarInfs(false) }}>
+                        <div className='alterar' onClick={() => {setAlterarInfs(false) }}>
                             <h5>Deseja alterar alguma informação ?</h5>
                             <button onClick={alterar}>ALTERAR</button>
                         </div>
@@ -171,7 +169,6 @@ export default function Perfil() {
                             maskChar=" "
                             value={infNome}
                             onChange={(e) => { setInfNome(e.target.value) }}
-                            placeholder="Digite seu Nome e Sobrenome"
                             className='input1'
                             type='text'
                             readOnly={alterarInfs}
@@ -186,7 +183,6 @@ export default function Perfil() {
                         maskChar=" "
                         value={infEmail}
                         onChange={(e) => { setInfEmail(e.target.value) }}
-                        placeholder="Digite seu E-mail ou celular"
                         className='input2'
                         type='text'
                         readOnly={alterarInfs}
@@ -199,7 +195,6 @@ export default function Perfil() {
                         maskChar=''
                         value={infCPF}
                         onChange={(e) => { setInfCPF(e.target.value) }}
-                        placeholder="999.999.999-99"
                         className='input3'
                         type='text'
                         readOnly={alterarInfs}
@@ -212,7 +207,6 @@ export default function Perfil() {
                         maskChar=" "
                         value={infNascimento}
                         onChange={(e) => { setInfNascimento(e.target.value) }}
-                        placeholder="DD/MM/AAAA"
                         className='input4'
                         type='text'
                         readOnly={alterarInfs}

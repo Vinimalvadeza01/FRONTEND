@@ -12,8 +12,6 @@
         width:100vw;
 }
 
-
-
     .endereco-conteiner{
 
         background-color: #EBFBE9;
@@ -28,7 +26,6 @@
             flex-direction: row;
             justify-content: space-around;
             width: 100%;
-            padding: 20px;
             padding-bottom: 40px;
 
             hr{
@@ -44,25 +41,23 @@
                 flex-direction: column;
                 text-align: justify;
                 justify-content: center;
+                padding:10px 0px;
                 border:1px solid #3D5745;
                 border-radius: 10px;
-                height: 200px;
-                padding: 10px;
-                padding-bottom: 5px;
 
                 .link{
                     color: #3D5745;
-                    padding: 7px;
-                    padding-left: 25px;
-
+                    padding: 10px;
+                    font-size:14px;
                 }
+
                 .link-p{
                     background-color: #D2E1B2;
                     color: #3BA73D;
-                    border: 1px solid #183D0A
-
+                    font-size:14px;
+                    padding: 10px;
+                    border: 1px solid #183D0A;
                 }
-
             }
 
             .endereco-alterar{
@@ -89,9 +84,38 @@
                     border-radius: 10px;
                     
                 }
-
             }
 
+            .div-buttons-alteracao{
+
+                display:flex;
+                flex-direction: row;
+                align-items: center;
+                flex-wrap: wrap;
+
+                gap:10px;
+
+                button{
+
+                    width: 180px;
+                    height: 60px;
+                    border: none;
+                    color: white;
+                    font-family: 'Josefin Sans';
+                    font-size: 16px;
+                    border-radius: 10px;
+                }
+
+                #button-alterar1{
+
+                    background-color: #619853;
+                }
+
+                #button-alterar2{
+
+                    background-color: #EF4040;
+                }
+            }
         }
 
         .endereco-infos{
