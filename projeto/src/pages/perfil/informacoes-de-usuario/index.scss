@@ -117,6 +117,7 @@
             display: flex;
             flex-direction: column;
             padding: 15px;
+            gap:10px;
 
             input {
 
@@ -145,6 +146,13 @@
                 border-radius: 10px;
                 align-self: center;
 
+            }
+
+            .div-erro{
+
+                display:flex;
+                justify-content: center;
+                align-items: center;
             }
         }
     }

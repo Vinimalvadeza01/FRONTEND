@@ -183,7 +183,6 @@ export default function PageConsultaClientesAdm(){
 
         catch(err){
 
-            console.log(err);
             if(err.message){
 
                 setErroAno(err.message);
