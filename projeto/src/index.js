@@ -8,6 +8,7 @@ import Cadastro from './pages/cadastro';
 import Login from './pages/login';
 import Produtos from './pages/produtos';
 import ProdutoClientes from './pages/produto-cliente';
+import Pagamento from './pages/pagamento';
 
 import LoginAdm from './pages/adm/loginAdm';
 import HomeAdm from './pages/adm/homeAdm';
@@ -34,9 +35,11 @@ root.render(
         <Route path='/login' exact={true} element={<Login/>}></Route>
         <Route path='/produtos' exact={true} element={<Produtos/>}></Route>
         <Route path='/produto/cliente' exact={true} element={<ProdutoClientes/>}></Route>
-        
+        <Route path='/pagamento' exact={true} element={<Pagamento/>}></Route>
+
+
         {/* Páginas do trajanilson */}
-        <Route path='/perfil' exact={true} element={<Perfil/>} ></Route>
+        <Route path='/perfil/cliente/:id' exact={true} element={<Perfil/>} ></Route>
         <Route path='/perfil/informacoes-de-endereco' element={<Endereco/>} ></Route> 
         <Route path='/perfil/favoritos' element={<Favoritos/>}></Route> 
         <Route path='perfil/pedidos' element={<Pedidos/>}></Route>
