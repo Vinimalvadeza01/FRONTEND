@@ -39,7 +39,7 @@ root.render(
 
 
         {/* Páginas do trajanilson */}
-        <Route path='/perfil' exact={true} element={<Perfil/>} ></Route>
+        <Route path='/perfil/cliente/:id' exact={true} element={<Perfil/>} ></Route>
         <Route path='/perfil/informacoes-de-endereco' element={<Endereco/>} ></Route> 
         <Route path='/perfil/favoritos' element={<Favoritos/>}></Route> 
         <Route path='perfil/pedidos' element={<Pedidos/>}></Route>

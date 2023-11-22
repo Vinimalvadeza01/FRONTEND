@@ -252,12 +252,13 @@
                 margin-bottom:20px;
             }
 
-            .container-listagem-clientes{
+            .container-listar-clientes{
 
                 width:100%;
 
                 display:flex;
                 flex-direction: row;
+                flex-wrap: wrap;
 
                 gap:10px;
             }
