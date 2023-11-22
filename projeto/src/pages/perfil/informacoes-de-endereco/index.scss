@@ -1,79 +1,80 @@
-.pag-endereco{
+.pag-endereco {
 
     background: linear-gradient(180deg, #619853 0%, #325B23 100%);
-    max-width:100vw;
-    min-height:100vh;
+    max-width: 100vw;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
 
-    .rodape{
-        width:100vw;
-}
+    .rodape {
+        width: 100vw;
+    }
 
-    .endereco-conteiner{
+    .endereco-container {
 
         background-color: #EBFBE9;
         width: 60%;
         height: 100%;
-        align-items: center;
 
+        .endereco-altmenu, .endereco-infos{
 
-        .endereco-altmenu{
+            padding:10px;
+        }
+
+        .endereco-altmenu {
 
             display: flex;
             flex-direction: row;
             justify-content: space-around;
             width: 100%;
-            padding-bottom: 40px;
 
-            hr{
-                height: 50%x;
+            hr {
                 width: 3px;
                 background-color: #3D5745;
             }
 
-            .endereco-menu{
+            .endereco-menu {
 
                 background-color: #EEF1DC;
                 display: flex;
                 flex-direction: column;
-                text-align: justify;
                 justify-content: center;
-                padding:10px 0px;
-                border:1px solid #3D5745;
+                padding: 10px 0px;
+                margin-right:5px;
+                border: 1px solid #3D5745;
                 border-radius: 10px;
 
-                .link{
+                .link {
                     color: #3D5745;
                     padding: 10px;
-                    font-size:14px;
+                    font-size: 14px;
                 }
 
-                .link-p{
+                .link-p {
                     background-color: #D2E1B2;
                     color: #3BA73D;
-                    font-size:14px;
+                    font-size: 14px;
                     padding: 10px;
                     border: 1px solid #183D0A;
                 }
             }
 
-            .endereco-alterar{
+            .endereco-alterar {
 
-                padding: 30px;
+                padding: 10px;
                 align-items: center;
                 display: flex;
                 flex-direction: column;
 
-                h5{
+                h5 {
                     color: #3D5745;
                     padding-bottom: 20px;
                     font-size: 16px;
                 }
 
-                button{
+                button {
                     background-color: #619853;
                     width: 180px;
                     height: 60px;
@@ -82,20 +83,21 @@
                     font-family: 'Josefin Sans';
                     font-size: 18px;
                     border-radius: 10px;
-                    
+
                 }
             }
 
-            .div-buttons-alteracao{
+            .div-buttons-alteracao {
 
-                display:flex;
+                display: flex;
                 flex-direction: row;
+                justify-content: center;
                 align-items: center;
                 flex-wrap: wrap;
 
-                gap:10px;
+                gap: 10px;
 
-                button{
+                button {
 
                     width: 180px;
                     height: 60px;
@@ -106,112 +108,116 @@
                     border-radius: 10px;
                 }
 
-                #button-alterar1{
+                #button-alterar1 {
 
                     background-color: #619853;
                 }
 
-                #button-alterar2{
+                #button-alterar2 {
 
                     background-color: #EF4040;
                 }
             }
         }
 
-        .endereco-infos{
+        .endereco-infos {
 
             display: flex;
             flex-direction: column;
-            width:100%;
-            padding:20px;
+            width: 100%;
+            gap: 10px;
+            padding: 20px;
 
-            
-
-            input{
+            input {
 
                 width: 100%;
                 font-size: 18px;
                 padding: 10px;
                 border-radius: 5px;
                 border: 1px solid #3D5745;
-              }
+            }
 
-              label{
-
+            label {
 
                 font-size: 18px;
                 font-family: 'Aoboshi One', serif;
-                  
-              }
-            
+            }
 
-            .endereco-complementos{
+
+            .endereco-complementos {
                 display: flex;
                 flex-direction: row;
-                padding: 15px;
+                gap: 20px;
                 justify-content: space-between;
-                
 
-                .numero{
+
+                .numero,
+                .complemento {
                     display: flex;
                     flex-direction: column;
-                    width: 30%;
-                    
-                }
-
-                .complemento{
-                    
-                    display: flex;
-                    flex-direction: column;
-                    width: 30%;
-                        
-                    
+                    flex-grow: 1;
                 }
             }
 
-            .endereco-ec{
+            .endereco-ec {
 
                 display: flex;
                 flex-direction: row;
-                padding: 15px;
+                gap: 20px;
                 justify-content: space-between;
 
-                .estado{
-                    width: 30%;
+                .cidade,
+                .estado {
+
+                    flex-grow: 1;
                 }
 
-                .cidade{
-                    width: 30%;
+            }
+
+            .butt {
+                align-self: center;
+
+                button {
+                    background-color: #619853;
+                    width: 180px;
+                    height: 60px;
+                    border: none;
+                    color: white;
+                    font-family: 'Josefin Sans';
+                    font-size: 18px;
+                    border-radius: 10px;
+                    align-self: center;
+
                 }
-
             }
-
-            .butt{
-                align-self: center;
-                
-            button{
-                background-color: #619853;
-                width: 180px;
-                height: 60px;
-                border: none;
-                color: white;
-                font-family: 'Josefin Sans';
-                font-size: 18px;
-                border-radius: 10px;
-                align-self: center;
-                
-            }
-                    
-          
-            }
-
-
-
-
         }
+    }
+}
 
+@media(max-width:880px) {
+
+    .pag-endereco .endereco-container {
+
+        width: 80%;
+    }
+}
+
+@media(max-width:480px){
+
+    .pag-endereco .endereco-container{
+
+        width: 100%;
     }
 
-    
+    .pag-endereco .endereco-container .endereco-altmenu{
 
+        flex-direction: column;
+
+        .endereco-alterar button{
+
+            width:120px;
+            height:40px;
+            font-size:16px;
+        } 
+    }
 }

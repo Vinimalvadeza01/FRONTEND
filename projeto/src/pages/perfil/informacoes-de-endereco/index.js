@@ -110,7 +110,7 @@ export default function Endereco() {
 
             <Cabecalho />
 
-            <div className='endereco-conteiner'>
+            <div className='endereco-container'>
 
                 <SectionDecoration />
 
@@ -235,10 +235,10 @@ export default function Endereco() {
                             />
 
                         </div>
+                    </div>
 
-                        <div className='div-erro'>
+                    <div className='div-erro'>
                             <span className='mensagem-erro'>{erro}</span>
-                        </div>
                     </div>
                 </div>
             </div>
