@@ -10,13 +10,13 @@
 
     .conteudo {
         display: flex;
-        height: 80%;
-        width: 100vw;
-    }
-    
+        height: 60%;
+        width: 100%;
+   }
+     
     .imgs {
         height: 60vh;
-        width: 35vw;
+        width: 50vw;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -24,8 +24,8 @@
     }
     
     .quadrado-produto {
-        height: 50%;
-        width: 30%;
+        height: 100%;
+        width: 20%;
         margin: 20px;
         padding: 20px;
         align-self: center;
@@ -42,14 +42,40 @@
     .imagem-produto-cliente{
         display: flex;
         margin:20px;    
-        height: 100vh;
+        height: 70vh;
         width: 60vw;
 
             img{
                 
-                height: 50%;
+                height: 60%;
 
             }
+    }
+    .descricao-produto{
+        display: flex;
+        background-color: #EEF1DC;
+        height: 35vh;
+        width: 40vw;
+        margin: 20px;
+        padding: 20px;
+
+        label{
+            padding: 20px;
+            
+        }
+    }
+    .produto-descricao{
+        background-color: #BAE2B5;
+        height: 50%;
+        width: 75%;
+        padding: 20px;
+        margin-bottom: 60px;
+            h2{
+                margin-bottom:  20px; ;
+            }
+    }
+    .contador-produto{
+        
     }
 }
 
