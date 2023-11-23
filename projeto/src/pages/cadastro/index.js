@@ -7,6 +7,7 @@ import storage from 'local-storage';
 import { useNavigate } from 'react-router-dom';
 
 export default function Cadastro() {
+
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -21,23 +22,14 @@ export default function Cadastro() {
   const [numero, setNumero] = useState('');
   const [completo, setCompleto] = useState('');
 
-  const navigate = useNavigate();
-  const [erro, setErro] = useState('');
+  const[estados,setEstados]=useState([]);
+  const[IDEstado,setIDEstado]=useState(0);
+  const[cidades,setCidades]=useState([]);
+  const[infsEstados,setInfsEstados]=useState({});
+  const[infsCidades,setInfsCidades]=useState({});
 
-  // const verificarcaracter = (e) => {
-  //   const newEmail = e.target.value;
-
-  //   if (newEmail.includes("@")) {
-  //     // Se o e-mail contém o caractere "@", você pode fazer alguma ação, se necessário
-  //     console.log("E-mail válido:", newEmail);
-  //   } else {
-  //     // Se o e-mail não contém o caractere "@", você pode fazer alguma ação, se necessário
-  //     console.log("E-mail inválido:", newEmail);
-  //   }
-
-  //   // Atualize o estado do e-mail
-  //   setEmail(newEmail);
-  // };
+  const navigate=useNavigate();
+  const[erro, setErro]=useState('');
 
   async function CadastrarUsuario() {
 
@@ -66,6 +58,16 @@ export default function Cadastro() {
       else {
 
         dataFormatada = `${Ano}-${Mes}-${Dia}`;
+      }
+
+      if(estado==='todos'){
+
+        throw new Error('Defina o estado o qual você mora!');
+      }
+
+      if(cidade==='todos'){
+
+        throw new Error('Defina a cidade a qual você mora!');
       }
 
       const dadosCliente = {
@@ -133,13 +135,49 @@ export default function Cadastro() {
     }
   }
 
+  async function listarEstados(){
+
+    try{
+        const url='https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome';
+
+        let resp=await axios.get(url);
+
+        setEstados(resp.data);
+    }
+
+    catch(err){
+
+        alert('Ocorreu um erro ao listar os estados e as cidades, estes filtros não estarão funcionando');
+    }
+  }
+
+  async function listarCidades(){
+
+    try{
+
+      const url=`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${IDEstado}/municipios?orderBy=nome`;
+
+      let resp=await axios.get(url);
+
+      setCidades(resp.data);
+    }
+
+    catch(err){
+
+      alert('Não foi possível listar as cidades');
+    }
+  }
+
   useEffect(() => {
 
     if(storage('usuario-logado')){
 
       navigate('/');
     }
-  },[]);
+
+    listarEstados();
+    listarCidades();
+  },[IDEstado]);
 
   return (
     <section className='Page-Cadastro'>
@@ -239,30 +277,32 @@ export default function Cadastro() {
                   type='text'
                 />
               </div>
-              <div className='input01'>
-                <label className='estado'>Estado</label>
-                <InputMask
-                  mask=''
-                  value={estado}
-                  onChange={(e) => setEstado(e.target.value)}
-                  className='est'
-                  maskChar=''
-                  placeholder='Nome do estado'
-                  type='text'
-                />
+              
+              <div className='container-estado-cidade'>
+                <div className='input01'>
+                  <label className='estado'>Estado</label>
+                  <select onChange={(e) => {
+                          setEstado(e.target.value);
+                          const estadoSelecionado = estados.find(item => item.sigla === e.target.value);
+                          setIDEstado(estadoSelecionado ? estadoSelecionado.id : 0);
+                      }}>
+
+                    <option value='todos'>Selecionar</option>
+                    {estados.map(item => 
+                    <option value={item.sigla}>{item.sigla}</option>)}
+                  </select>
+                </div>
+
+                <div className='input03'>
+                  <label className='cidade'>Cidade</label>
+                  <select onChange={(e) => {setCidade(e.target.value);}}>
+                    <option value='todos'>Selecionar</option>
+                    {cidades.map(item => 
+                    <option value={item.nome}>{item.nome}</option>)}
+                  </select>
+                </div>
               </div>
-              <div className='input03'>
-                <label className='cidade'>Cidade</label>
-                <InputMask
-                  mask=''
-                  value={cidade}
-                  onChange={(e) => setCidade(e.target.value)}
-                  className='cd'
-                  maskChar=''
-                  placeholder='Nome da cidade'
-                  type='text'
-                />
-              </div>
+
               <div className='end-nc'>
                 <div className='input02'>
                   <label className='numero'>Numero</label>

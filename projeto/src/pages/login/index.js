@@ -24,7 +24,7 @@ export default function Login() {
           senha: senha 
         });
 
-        storage('usuario-logado',r);
+        storage('usuario-logado',r.data);
 
         navigate('/');
       } 

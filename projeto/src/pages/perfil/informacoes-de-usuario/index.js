@@ -1,6 +1,7 @@
 import './index.scss';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import storage from 'local-storage';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Cabecalho from '../../../components/cabecalho';
 import Rodape from '../../../components/rodape';
 import SectionDecoration from '../../../components/section-decoration'
@@ -17,11 +18,14 @@ export default function Perfil() {
     const [infNascimento, setInfNascimento] = useState('');
 
     const [alterarInfs, setAlterarInfs] = useState(true);
+    const[divSair,setDivSair]=useState(false);
 
     const [corInputs, setCorInputs] = useState('#EEF1DC');
     const [bordaInputs, setBordaInputs] = useState('none');
 
     const { id } = useParams();
+    const navigate=useNavigate();
+
     const [erro, setErro] = useState('');
 
     async function consultarInfsUsuario() {
@@ -123,7 +127,23 @@ export default function Perfil() {
         setErro('');
     }
 
+    function sair(){
+
+        storage.remove('usuario-logado');
+        navigate('/login');
+    }
+
     useEffect(() => {
+
+        if (!storage('usuario-logado')){
+
+            navigate('/login');
+        }
+
+        if(id!==storage('usuario-logado').ID){
+        
+            navigate(`/perfil/cliente/${storage('usuario-logado').ID}`);
+        }
 
         consultarInfsUsuario();
     }, []);
@@ -134,7 +154,27 @@ export default function Perfil() {
 
             <Cabecalho />
 
+            {divSair ?
+                <div className='div-sair'>
+
+                    <div className='acoes-sair'>
+
+                        <SectionDecoration/>
+
+                        <div className='container-sair'>
+                            <h2>Tem certeza que deseja sair da sua conta ?</h2>
+
+                            <div className='sub-container-buttons-confirmar'>
+                                <button id='button1-sair' onClick={sair}>CONFIRMAR</button>
+                                <button id='button2-sair' onClick={() => {setDivSair(false)}}>CANCELAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                : ''}
+            
             <div className='center'>
+
                 <SectionDecoration />
 
                 <div className='menu-alt'>
@@ -143,7 +183,7 @@ export default function Perfil() {
                         <Link className='link-p' >Informações de usuário</Link>
                         <Link to={`../../perfil/endereco/${id}`} className='link' >Informações de endereço</Link>
                         <Link to='../../perfil/favoritos' className='link' >Favoritos</Link>
-                        <Link className='link' >Sair</Link>
+                        <button className='link' onClick={() => {setDivSair(true)}}>Sair</button>
                     </div>
                     <hr />
 

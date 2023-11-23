@@ -36,6 +36,7 @@
                 flex-direction: row;
                 align-items: center;
 
+                gap:20px;
 
                 .Criaconta {
                     display: flex;
@@ -149,7 +150,6 @@
                     display: flex;
                     width: 100%;
                     justify-content: center;
-                    align-items: center;
                     flex-direction: column;
 
                     .inputum {
@@ -165,7 +165,7 @@
                         .incep {
                             display: flex;
                             border-color: blanchedalmond;
-                            width: 30vw;
+                            width: 100%;
                             height: 5vh;
                             padding: 10px;
                             font-size: 17px;
@@ -186,12 +186,30 @@
                         .rua {
                             display: flex;
                             border-color: blanchedalmond;
-                            width: 30vw;
+                            width: 100%;
                             height: 5vh;
                             padding: 10px;
                             font-size: 17px;
                             border-radius: 3px;
 
+                        }
+                    }
+
+                    .container-estado-cidade{
+
+                        display:flex;
+                        flex-direction:row;
+                        justify-content: space-between;
+
+                        width:100%;
+                        gap:10px;
+
+                        select{
+
+                            padding:10px 40px;
+
+                            flex-grow: 1;
+                            font-size:16px;
                         }
                     }
 
@@ -208,7 +226,7 @@
                         .bairro {
                             display: flex;
                             border-color: blanchedalmond;
-                            width: 30vw;
+                            width: 100%;
                             height: 5vh;
                             padding: 10px;
                             font-size: 17px;
@@ -220,21 +238,6 @@
                         display: flex;
                         padding: 10px 0px;
                         flex-direction: column;
-
-                        .estado {
-                            display: flex;
-                            width: 84%;
-
-                        }
-
-                        .est {
-                            border-color: blanchedalmond;
-                            width: 30vw;
-                            height: 5vh;
-                            padding: 10px;
-                            font-size: 17px;
-                            border-radius: 3px;
-                        }
                     }
 
 
@@ -242,26 +245,13 @@
                         display: flex;
                         padding: 10px 0px;
                         flex-direction: column;
-
-                        .cidade {
-                            display: flex;
-                            width: 84%;
-                        }
-
-                        .cd {
-                            border-color: blanchedalmond;
-                            width: 30vw;
-                            height: 5vh;
-                            padding: 10px;
-                            font-size: 17px;
-                            border-radius: 3px;
-                        }
                     }
 
                     .end-nc {
                         align-items: center;
                         display: flex;
                         flex-direction: row;
+                        gap:10px;
                         justify-content: space-evenly;
                         width: 100%;
 
@@ -269,6 +259,8 @@
                             display: flex;
                             flex-direction: column;
                             padding: 10px 0px;
+
+                            width:100%;
 
                             .numero {
                                 display: flex;
@@ -278,7 +270,7 @@
                             .nm {
                                 display: flex;
                                 border-color: blanchedalmond;
-                                width: 10vw;
+                                flex-grow: 1;
                                 height: 7vh;
                                 padding: 10px;
                                 font-size: 17px;
@@ -287,11 +279,11 @@
                             }
                         }
 
-
                         .input04 {
                             display: flex;
                             padding: 10px 0px;
                             flex-direction: column;
+                            width:100%;
 
                             .complement {
                                 display: flex;
@@ -301,7 +293,7 @@
                             .cmp {
                                 display: flex;
                                 border-color: blanchedalmond;
-                                width: 10vw;
+                                flex-grow: 1;
                                 height: 7vh;
                                 padding: 10px;
                                 font-size: 17px;

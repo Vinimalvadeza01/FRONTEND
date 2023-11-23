@@ -1,6 +1,7 @@
 import './index.scss';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams,useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import storage from 'local-storage';
 import Cabecalho from '../../../components/cabecalho';
 import Rodape from '../../../components/rodape';
 import SectionDecoration from '../../../components/section-decoration'
@@ -19,13 +20,19 @@ export default function Endereco() {
     const[infComplemento,setInfComplemento]=useState('');
     const[infCidade,setInfCidade]=useState('');
 
-    const [alterarInfs, setAlterarInfs] = useState(true);
+    const[alterarInfs, setAlterarInfs]=useState(true);
+    const[divSair,setDivSair]=useState(false);
 
-    const [corInputs, setCorInputs] = useState('#EEF1DC');
-    const [bordaInputs, setBordaInputs] = useState('none');
+    const[corInputs, setCorInputs]=useState('#EEF1DC');
+    const[bordaInputs,setBordaInputs]=useState('none');
+
+    const[estados,setEstados]=useState([]);
+    const[cidades,setCidades]=useState([]);
+    const[IDEstado,setIDEstado]=useState(0);
 
     const[erro,setErro]=useState('');
     const { id } = useParams();
+    const navigate=useNavigate();
 
     async function consultarInfsEndereco(){
 
@@ -82,6 +89,39 @@ export default function Endereco() {
         }
     }
 
+    async function listarEstados(){
+
+        try{
+            const url='https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome';
+    
+            let resp=await axios.get(url);
+    
+            setEstados(resp.data);
+        }
+    
+        catch(err){
+    
+            alert('Ocorreu um erro ao listar os estados e as cidades, estes filtros não estarão funcionando');
+        }
+    }
+    
+    async function listarCidades(){
+    
+        try{
+    
+          const url=`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${IDEstado}/municipios?orderBy=nome`;
+    
+          let resp=await axios.get(url);
+    
+          setCidades(resp.data);
+        }
+    
+        catch(err){
+    
+          alert('Não foi possível listar as cidades');
+        }
+    }
+
     function alterar() {
 
         setCorInputs('#FFF');
@@ -99,16 +139,54 @@ export default function Endereco() {
         setErro('');
     }
 
-    useEffect(() => {
+    function sair(){
 
+        storage.remove('usuario-logado');
+        navigate('/login');
+    }
+
+    useEffect(() => {
+        
         consultarInfsEndereco();
-    },[]);
+        listarEstados();
+        listarCidades();
+
+        if (!storage('usuario-logado')){
+
+            navigate('/login');
+        }
+
+        if(id!==storage('usuario-logado').ID){
+        
+            navigate(`/perfil/endereco/${storage('usuario-logado').ID}`);
+        }
+
+    },[IDEstado]);
 
     return(
 
         <div className='pag-endereco'>
 
             <Cabecalho />
+
+            {divSair ?
+                <div className='div-sair'>
+
+                    <div className='acoes-sair'>
+
+                        <SectionDecoration/>
+
+                        <div className='container-sair'>
+                            <h2>Tem certeza que deseja sair da sua conta ?</h2>
+
+                            <div className='sub-container-buttons-confirmar'>
+                                <button id='button1-sair' onClick={sair}>CONFIRMAR</button>
+                                <button id='button2-sair' onClick={() => {setDivSair(false)}}>CANCELAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            : ''}
 
             <div className='endereco-container'>
 
@@ -120,7 +198,7 @@ export default function Endereco() {
                         <Link to={`../../perfil/cliente/${id}`} className='link'>Informações de Usuário</Link>
                         <Link className='link-p'>Informações de Endereco</Link>
                         <Link to="../../perfil/favoritos" className='link'>Favoritos</Link>
-                        <Link className='link'>Sair</Link>
+                        <button className='link' onClick={() => {setDivSair(true)}}>Sair</button>
                     </div>
 
                     <hr/>
@@ -209,22 +287,34 @@ export default function Endereco() {
 
                             <label>Estado</label>
 
-                            <InputMask
-                                mask=''
-                                maskChar=''
-                                type='text'
-                                value={infEstado}
-                                onChange={(e) => {setInfEstado(e.target.value)}}
-                                readOnly={alterarInfs}
-                                style={{ backgroundColor: `${corInputs}`, border: `${bordaInputs}` }}
-                            />
+                            {alterarInfs ?
+                                <InputMask
+                                    mask=''
+                                    maskChar=''
+                                    type='text'
+                                    value={infEstado}
+                                    readOnly
+                                    style={{ backgroundColor: `${corInputs}`, border: `${bordaInputs}` }}
+                                />
+                            : 
+                                <select onChange={(e) => {
+                                    setInfEstado(e.target.value);
+                                    const estadoSelecionado = estados.find(item => item.sigla === e.target.value);
+                                    setIDEstado(estadoSelecionado ? estadoSelecionado.id : 0);
+                                }}>
+      
+                                    <option value=''>Selecionar</option>
+                                    {estados.map(item => 
+                                    <option value={item.sigla}>{item.sigla}</option>)}
+                                </select>
+                            }
                         </div>
 
                         <div className='cidade'>
 
                             <label>Cidade</label>
 
-                            <InputMask
+                            {alterarInfs ?<InputMask
                                 mask=''
                                 maskChar=''
                                 type='text'
@@ -233,6 +323,12 @@ export default function Endereco() {
                                 readOnly={alterarInfs}
                                 style={{ backgroundColor: `${corInputs}`, border: `${bordaInputs}` }}
                             />
+                            :                   
+                                <select onChange={(e) => {setInfCidade(e.target.value);}}>
+                                    <option value='todos'>Selecionar</option>
+                                    {cidades.map(item => 
+                                    <option value={item.nome}>{item.nome}</option>)}
+                                </select>}
 
                         </div>
                     </div>
