@@ -47,13 +47,13 @@ export default function Endereco() {
         setInfBairro(consulta.data.Bairro);
         setInfNumero(consulta.data.Numero);
         setInfComplemento(consulta.data.Complemento);
-        setInfEstado(consulta.data.Estado);
         setInfCidade(consulta.data.Cidade);
     }
     
     async function finalizarAlteracoes(){
 
         try{
+
             const url=`http://localhost:5000/endereco/alterar`;
 
             const cepFormatado=infCEP.replace(/\-/g, '');
@@ -70,9 +70,11 @@ export default function Endereco() {
                 ID:infsEndereco.ID
             };
 
+            console.log(dadosAlterarEndereco);
+
             const alterar=await axios.put(url,dadosAlterarEndereco);
 
-            window.location.reload();
+            //window.location.reload();
         }
 
         catch(err){
@@ -292,7 +294,7 @@ export default function Endereco() {
                                     mask=''
                                     maskChar=''
                                     type='text'
-                                    value={infEstado}
+                                    value={infsEndereco.Estado}
                                     readOnly
                                     style={{ backgroundColor: `${corInputs}`, border: `${bordaInputs}` }}
                                 />
